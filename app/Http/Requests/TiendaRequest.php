@@ -24,7 +24,8 @@ class TiendaRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+        'nombre'=>'max:100',
+        'codigo_tienda'=>'max:45',
         ];
     }
 }

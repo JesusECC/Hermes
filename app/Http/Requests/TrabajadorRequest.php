@@ -24,7 +24,9 @@ class TrabajadorRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+           'sueldo'=>'max:45',
+        'fecha_inicio'=>'date',
+        'fecha_fin'=>'date',    
         ];
     }
 }
