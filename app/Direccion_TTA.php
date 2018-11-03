@@ -16,6 +16,7 @@ class Direccion_TTA extends Model
         'Distrito_Provincia_idProvincia',
         'Distrito_Provincia_Departamento_idDepartamento',
         'estado_idEstado',
+        'direccionAL',
 
     ];
     protected $guarded=[
