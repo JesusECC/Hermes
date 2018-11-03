@@ -24,3 +24,4 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('Almacen',['as' => 'almacen','uses'=>'AlmacenController@index']);
 
 
+Route::get('Tienda',['as' => 'tienda','uses'=>'TiendaController@index']);

@@ -12,7 +12,7 @@ class TiendaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(Resquest $request)
-    {
+    {/*
         if($request)
         {
 
@@ -35,7 +35,10 @@ class TiendaController extends Controller
                  ->paginate(7);
                  return view('',["tienda"=>$tienda,"searchText"=>$query]);
 
-        }
+        }*/
+
+
+        return view('tienda.index');
     }
 
     /**
@@ -45,7 +48,7 @@ class TiendaController extends Controller
      */
     public function create()
     {
-                $tienda=DB::table('Tienda as t')
+              /*  $tienda=DB::table('Tienda as t')
                  ->join('Telefono_Tienda as tele','t.idTienda','=','tele.Tienda_idTienda')
                  ->join('Direccion as dire','dire.idDireccion','=','t.idDireccionT')
                  ->join('Distrito as dis','dis.idDistrito','=','dire.Distrito_idDistrito')
@@ -68,7 +71,7 @@ class TiendaController extends Controller
 
                    $estado=DB::table('estado as est')
                 ->select('est.tipo_estado')
-                ->get();
+                ->get();*/
     }
 
     /**
