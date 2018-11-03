@@ -20,4 +20,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 
+//almacen
+Route::get('Almacen',['as' => 'almacen','uses'=>'AlmacenController@index']);
+
 
