@@ -1,0 +1,214 @@
+//los model/request/controller
+
+php artisan make:model Producto
+php artisan make:request ProductoRequest
+php artisan make:controller ProductoController --resource
+
+php artisan make:model Proveedor
+php artisan make:request ProveedorRequest
+php artisan make:controller ProveedorController --resource
+
+php artisan make:model Tienda
+php artisan make:request TiendaRequest
+php artisan make:controller TiendaController --resource
+
+php artisan make:model Trabajador
+php artisan make:request TrabajadorRequest
+php artisan make:controller TrabajadorController --resource
+
+php artisan make:model Almacen
+php artisan make:request AlmacenRequest
+php artisan make:controller AlmacenController --resource
+
+
+php artisan make:model Cliente
+php artisan make:request ClienteRequest
+php artisan make:controller ClienteController --resource
+
+php artisan make:model Color
+php artisan make:request ColorRequest
+php artisan make:controller ColorController --resource
+
+php artisan make:model Departamento
+php artisan make:request DepartamentoRequest
+php artisan make:controller DepartamentoController --resource
+
+php artisan make:model Detalle_ingresoMP
+php artisan make:request Detalle_ingresoMPRequest
+php artisan make:controller Detalle_ingresoMPController --resource
+
+
+php artisan make:model Detalle_ingresoPF
+php artisan make:request Detalle_ingresoPFRequest
+php artisan make:controller Detalle_ingresoPFController --resource
+
+php artisan make:model Detalle_Salida
+php artisan make:request Detalle_SalidaRequest
+php artisan make:controller Detalle_SalidaController --resource
+
+
+php artisan make:model Detalle_Salida_MP
+php artisan make:request Detalle_Salida_MPRequest
+php artisan make:controller Detalle_Salida_MPController --resource
+
+
+php artisan make:model Direccion_persona
+php artisan make:request Direccion_personaRequest
+php artisan make:controller Direccion_personaController --resource
+
+php artisan make:model Direccion_TTA
+php artisan make:request Direccion_TTARequest
+php artisan make:controller Direccion_TTAController --resource
+
+php artisan make:model Distrito
+php artisan make:request DistritoRequest
+php artisan make:controller DistritoController --resource
+
+php artisan make:model Estado
+php artisan make:request EstadoRequest
+php artisan make:controller EstadoController --resource
+
+php artisan make:model Ingreso_Materia_Prima
+php artisan make:request Ingreso_Materia_PrimaRequest
+php artisan make:controller Ingreso_Materia_PrimaController --resource
+
+php artisan make:model Ingreso_Podructo_Final
+php artisan make:request Ingreso_Podructo_FinalRequest
+php artisan make:controller Ingreso_Podructo_FinalController --resource
+
+php artisan make:model operador
+php artisan make:request operadorRequest
+php artisan make:controller operadorController --resource
+
+php artisan make:model Persona
+php artisan make:request PersonaRequest
+php artisan make:controller PersonaController --resource
+
+php artisan make:model Producto_Detalle
+php artisan make:request Producto_DetalleRequest
+php artisan make:controller Producto_DetalleController --resource
+
+php artisan make:model Producto_MP
+php artisan make:request Producto_MPRequest
+php artisan make:controller Producto_MPController --resource
+
+php artisan make:model Provincia
+php artisan make:request ProvinciaRequest
+php artisan make:controller ProvinciaController --resource
+
+php artisan make:model Rol
+php artisan make:request RolRequest
+php artisan make:controller RolController --resource
+
+php artisan make:model Salida
+php artisan make:request SalidaRequest
+php artisan make:controller SalidaController --resource
+
+php artisan make:model Salida_MP
+php artisan make:request Salida_MPRequest
+php artisan make:controller Salida_MPController --resource
+
+php artisan make:model Tallas
+php artisan make:request TallasRequest
+php artisan make:controller TallasController --resource
+
+php artisan make:model Taller
+php artisan make:request TallerRequest
+php artisan make:controller TallerController --resource
+
+php artisan make:model Telefono_Almacen
+php artisan make:request Telefono_AlmacenRequest
+php artisan make:controller Telefono_AlmacenController --resource
+
+php artisan make:model Telefono_Persona
+php artisan make:request Telefono_PersonaRequest
+php artisan make:controller Telefono_PersonaController --resource
+
+php artisan make:model Telefono_proveedor
+php artisan make:request Telefono_proveedorRequest
+php artisan make:controller Telefono_proveedorController --resource
+
+php artisan make:model Telefono_Tienda
+php artisan make:request Telefono_TiendaRequest
+php artisan make:controller Telefono_TiendaController --resource
+
+php artisan make:model Tipo_Cliente
+php artisan make:request Tipo_ClienteRequest
+php artisan make:controller Tipo_ClienteController --resource
+
+php artisan make:model Tipo_Comprobante
+php artisan make:request Tipo_ComprobanteRequest
+php artisan make:controller Tipo_ComprobanteController --resource
+
+php artisan make:model Tipo_documento
+php artisan make:request Tipo_documentoRequest
+php artisan make:controller Tipo_documentoController --resource
+
+php artisan make:model Tipo_ingreso
+php artisan make:request Tipo_ingresoRequest
+php artisan make:controller Tipo_ingresoController --resource
+
+php artisan make:model Tipo_producto
+php artisan make:request Tipo_productoRequest
+php artisan make:controller Tipo_productoController --resource
+
+php artisan make:model Tipo_salida
+php artisan make:request Tipo_salidaRequest
+php artisan make:controller Tipo_salidaController --resource
+
+php artisan make:model Tipo_salida_MP
+php artisan make:request Tipo_salida_MPRequest
+php artisan make:controller Tipo_salida_MPController --resource
+
+php artisan make:model Tipo_telefono
+php artisan make:request Tipo_telefonoRequest
+php artisan make:controller Tipo_telefonoController --resource
+
+php artisan make:model Tipo_tienda
+php artisan make:request Tipo_tiendaRequest
+php artisan make:controller Tipo_tiendaController --resource
+
+php artisan make:model Tipo_Trabajador
+php artisan make:request Tipo_TrabajadorRequest
+php artisan make:controller Tipo_TrabajadorController --resource
+
+php artisan make:model users
+php artisan make:request usersRequest
+php artisan make:controller usersController --resource
+
+php artisan make:model Users_Rol
+php artisan make:request Users_RolRequest
+php artisan make:controller Users_RolController --resource
+
+php artisan make:model Telefono_taller
+php artisan make:request Telefono_tallerRequest
+php artisan make:controller Telefono_tallerController --resource
+
+Producto_Detalle
+Producto_MP
+Proveedor  //ya esta
+Provincia
+Rol
+Salida
+Salida_MP
+Tallas
+Taller
+Telefono_Almacen
+Telefono_Persona
+Telefono_proveedor
+Telefono_taller
+Telefono_Tienda
+Tienda  //ya esta
+Tipo_Cliente
+Tipo_Comprobante
+Tipo_documento
+Tipo_ingreso
+Tipo_producto
+Tipo_salida
+Tipo_salida_MP
+Tipo_telefono
+Tipo_tienda
+Tipo_Trabajador
+Trabajador  //ya esta
+users
+Users_Rol

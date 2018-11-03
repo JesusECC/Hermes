@@ -4,19 +4,20 @@ namespace hermes;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Telefono_proveedor extends Model
+class Telefono_taller extends Model
 {
     //
-    protected $table='Telefono_proveedor';
+    protected $table='Telefono_taller';
     protected $primarykey='idTelefono';
     public $timestamps=false;
     
     protected $filleable=[
         'numero',
-        'idProveedor',
+        'idTaller',
         'idTipo_telefono',
         'idoperador',
         'estado_idEstado',
+
     ];
     protected $guarded=[
 
