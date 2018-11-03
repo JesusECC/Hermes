@@ -25,6 +25,7 @@
     <!-- You can change the theme colors from here -->
     <link href="{{asset('css/colors/megna.css')}}"  rel="stylesheet">
     <link href="{{asset('css/colors/megna-dark.css')}}"  rel="stylesheet">
+    <link rel="stylesheet" href="{{asset('https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css')}}">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -227,63 +228,48 @@
     <script src="{{asset('assets/plugins/sparkline/jquery.sparkline.min.js')}}"></script>
     <!--Custom JavaScript -->
     <script src="{{asset('js/custom.min.js')}}"></script>
+    <script src="{{asset("https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js")}}"></script>
+    <script src="{{asset("https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js")}}"></script>
+
+    <script type="text/javascript">
+    $(document).ready(function() {
+                     $('#example').DataTable({
+                          "paging":   false,
+                          "info":     false,
+
+
+                         "tableTools": {
+                             "sRowSelect": "multi",
+                             "aButtons": [
+                                 {
+                                     "sExtends": "select_none",
+                                     "sButtonText": "Borrar selección"
+                                 }]
+                         },
+//Actualizo las etiquetas de mi tabla para mostrarlas en español
+                         "language": {
+                             "lengthMenu": "Mostrar _MENU_ registros.",
+                             "zeroRecords": "No se encontró registro.",
+                             "info": "Mostrando _START_ de _END_ elementos (_TOTAL_ registros totales).",
+                             "infoEmpty": "0 de 0 de 0 registros",
+                             "infoFiltered": "(Encontrado de _MAX_ registros)",
+                             "search": "Buscar: ",
+                             "processing": "Procesando la información",
+                             "paginate": {
+                                 "first": " |< ",
+                                 "previous": "Ant.",
+                                 "next": "Sig.",
+                                 "last": " >| "
+                             }
+                         }
+                     });
+                 } );
+    </script>
     <!-- This is data table -->
     <script src="{{asset('assets/plugins/datatables/jquery.dataTables.min.js')}}"></script>
     <!-- start - This is for export functionality only -->
-    <script src="{{asset('https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js')}}"></script>
-    <script src="{{asset('https://cdn.datatables.net/buttons/1.2.2/js/buttons.flash.min.js')}}"></script>
-    <script src="{{asset('https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js')}}"></script>
-    <script src="{{asset('https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js')}}"></script>
-    <script src="{{asset('https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js')}}"></script>
-    <script src="{{asset('https://cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js')}}"></script>
-    <script src="{{asset('https://cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js')}}"></script>
-    <script type="text/javascript">
-    $(document).ready(function() {
-        $('#myTable').DataTable();
-        $(document).ready(function() {
-            var table = $('#example').DataTable({
-                "columnDefs": [{
-                    "visible": false,
-                    "targets": 2
-                }],
-                "order": [
-                    [2, 'asc']
-                ],
-                "displayLength": 25,
-                "drawCallback": function(settings) {
-                    var api = this.api();
-                    var rows = api.rows({
-                        page: 'current'
-                    }).nodes();
-                    var last = null;
-                    api.column(2, {
-                        page: 'current'
-                    }).data().each(function(group, i) {
-                        if (last !== group) {
-                            $(rows).eq(i).before('<tr class="group"><td colspan="5">' + group + '</td></tr>');
-                            last = group;
-                        }
-                    });
-                }
-            });
-            // Order by the grouping
-            $('#example tbody').on('click', 'tr.group', function() {
-                var currentOrder = table.order()[0];
-                if (currentOrder[0] === 2 && currentOrder[1] === 'asc') {
-                    table.order([2, 'desc']).draw();
-                } else {
-                    table.order([2, 'asc']).draw();
-                }
-            });
-        });
-    });
-    $('#example23').DataTable({
-        dom: 'Bfrtip',
-        buttons: [
-            'copy', 'csv', 'excel', 'pdf', 'print'
-        ]
-    });
-    </script>
+
+
     <!-- ============================================================== -->
     <!-- This page plugins -->
     <!-- ============================================================== -->
