@@ -1,8 +1,15 @@
 <?php
 
 namespace hermes\Http\Controllers;
-
 use Illuminate\Http\Request;
+use hermes\Http\Requests;
+use hermes\Tienda;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Collection;
+
+
+use DB;
 
 class TiendaController extends Controller
 {
