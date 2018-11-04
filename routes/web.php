@@ -47,5 +47,5 @@ Route::get('estado',['as' => 'estado-index','uses'=>'EstadoController@index']);
 Route::get('estado/create',['as' => 'estado-create','uses'=>'EstadoController@create']);
 Route::post('estado/guardar',['as' => 'estado-guardar','uses'=>'EstadoController@store']);
 Route::get('estado/editar/{id}',['as' => 'estado-editar','uses'=>'EstadoController@edit']);
-Route::post('estado/update',['as' => 'estado-update','uses'=>'EstadoController@update']);
+Route::post('estado/update/{id}',['as' => 'estado-update','uses'=>'EstadoController@update']);
 Route::get('estado/delete/{id}',['as' => 'estado-delete','uses'=>'EstadoController@destroy']);

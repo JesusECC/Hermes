@@ -18,25 +18,10 @@
   </div>
     <div class="card-body">
         <div class="form-body">
-            <form action="{{ route('estado-guardar') }}" method="post" >
-                    @csrf
-                    <div class="row p-t-20">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="control-label">Estado</label>
-                                <input type="text" name="estado" id="estado" class="form-control" placeholder="Estado">                
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="control-label">Descripción</label>
-                                <input type="text" name="descri" id="descri" class="form-control" placeholder="Descripcion">                
-                            </div>
-                        </div>
-                    </div>              
-            
+            {!! Form::open(['route'=>'estado-guardar','method'=>'POST']) !!}
+                   @include('admin.estado.partials.fields')
                 <button type="submit" class="btn waves-effect waves-light btn-success pull-right">Agregar</button>
-            </form>     
+            {!! Form::close() !!}
         </div>
     </div>
 </div>
