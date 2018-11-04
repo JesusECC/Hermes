@@ -49,12 +49,13 @@ class RolController extends Controller
         $rol->descripcion_rol=$request->get('descripcion');
         $rol->save();
         return redirect::to('rol');
+
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int  $idx
      * @return \Illuminate\Http\Response
      */
     public function show($id)

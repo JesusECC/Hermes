@@ -13,6 +13,7 @@ class Estado extends Model
     
     protected $filleable=[
         'tipo_estado',
+        'descripcion',
     ];
     protected $guarded=[
 

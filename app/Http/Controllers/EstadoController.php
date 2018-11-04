@@ -4,6 +4,8 @@ namespace hermes\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use DB;
+use hermes\Estado;
 class EstadoController extends Controller
 {
     /**
@@ -14,6 +16,8 @@ class EstadoController extends Controller
     public function index()
     {
         //
+        $estado=DB::table('estado')->get();
+        return view('admin.estado.index',['estado'=>$estado]);
     }
 
     /**
@@ -24,6 +28,7 @@ class EstadoController extends Controller
     public function create()
     {
         //
+        return view('admin.estado.create');
     }
 
     /**
@@ -35,6 +40,11 @@ class EstadoController extends Controller
     public function store(Request $request)
     {
         //
+        $estado=new Estado;
+        $estado->tipo_estado=$request->get('estado');
+        $estado->descripcion=$request->get('descri');
+        $estado->save();
+        return redirect('estado');
     }
 
     /**
