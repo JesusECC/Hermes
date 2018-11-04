@@ -26,7 +26,11 @@ Route::get('Almacen',['as' => 'almacen','uses'=>'AlmacenController@index']);
 Route::get('Almacen/create',['as' => 'almacen-create','uses'=>'AlmacenController@create']);
 Route::post('Almacen/guardar',['as' => 'almacen-store','uses'=>'AlmacenController@store']);
 
-Route::get('Tienda',['as' => 'tienda','uses'=>'TiendaController@index']);
+
+// tienda
+Route::get('Tienda',['as'=>'tienda','uses'=>'TiendaController@index']);
+ Route::get('Tienda/create',['as' => 'tienda-create','uses'=>'TiendaController@create']);
+  Route::get('Tienda/{idTienda}/edit',['as'=>'Tienda','uses'=>'ControllerClientes@edit']);
 
 
 //roles

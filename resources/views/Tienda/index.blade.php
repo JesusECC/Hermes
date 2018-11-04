@@ -1,72 +1,56 @@
 @extends('layouts.admin')
-@section('contenido')
-<section class="content-header">
-	<h1 style="margin-top: 55px;">
-		Panel de Administrador
-		<small>Version 1.0.0</small>
-    </h1>
-    <ol class="breadcrumb" style="margin-top: 55px;">
-    	<li>
-    		<a href="#">
-    		<i class="fas fa-users"></i> Tienda</a>
-    	</li>
-    	<li class="active">Listado de las Tiendas</li>
-    </ol>
-</section>
-<section class="content">
-	<div class="row">
-		<div class="col-md-12">
-			<div class="box">
-				<div class="box-header with-border" style="padding: 10px !important">
-					<h4>
-						<strong style="font-weight: 400">
-							<i class="fas fa-list-ul"></i> Lista de las Tiendas Quality
-						</strong>
-					</h4>
-					<div class="ibox-title-buttons pull-right">
-						<a href="{{route('clientes-create')}}" style="text-decoration: none !important">
-							<button class="btn btn-block btn-success" style="background-color: #18A689 !important;">
-								<i class="fas fa-plus-circle"></i> Nueva Tienda
-							</button></a>
-					</div>
-				</div>
-                <!-- /.box-header -->
-				<div class="box-body">
-					<table id="example" class="table table-striped table-bordered table-hover" style="width:100%;font-size: 11px !important">
-				       <thead>
-				            <tr>
-				                <th>Cod. Tienda</th>
-				                <th>Nombre</th>
-				                <th>Telefono</th>
-				                <th>Distrito</th>
-				                <th>Provincia</th>
-				                <th>Departamento</th>
-				                <th>Estado</th>
-				            </tr>
-				        </thead>
-				        <tbody>
-				        	@foreach($tienda as $tie)
-				        	<tr>
-								<td>{{$tie->codigo_tienda}}</td>
-								<td>{{$tie->nombre}}</td>
-								<td>{{$tie->numero}}</td>
-								<td>{{$tie->nombre_distrito}}</td>
-								<td>{{$tie->nombre_provincia}}</td>
-								<td>{{$tie->nombre_departamento}}</td>
-				        		<td align="center">
-				        			<a  href=""  data-target="#modal-show-{{$tie->idTienda}}"  data-toggle="modal" class="btn btn-primary btn-xs" data-toggle="tooltip" data-placement="left" title="Ver Tienda"><i class="far fa-eye"></i> </a>
-									<a href="{{route('tienda-edit',$tie->idTienda)}}" class="btn btn-success btn-xs" role="button"><i class="fas fa-edit" title="Editar Tienda"></i> </a>
-									<a href="" data-target="#modal-delete-{{$tie->idTienda}}"  data-toggle="modal" class="btn btn-danger btn-xs" title="Eliminar Tienda"><i class="fas fa-trash-alt"></i> </a>
-								</td>
-							</tr>
-							@include('proforma.cliente.modal')
-							@include('proforma.cliente.show')
-							@endforeach
-				        </tbody>
-    				</table>
-				</div>
-              </div><!-- /.box -->
-            </div><!-- /.col -->
-          </div><!-- /.row -->
-</section><!-- /.content -->
+@section('content')
+<div class="row page-titles">
+    <div class="col-md-5 col-8 align-self-center">
+        <h3 class="text-themecolor">Panel de Adminsitrador</h3>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="javascript:void(0)">Tiendas</a></li>
+            <li class="breadcrumb-item ">Producto Final</li>
+            <li class="breadcrumb-item active">Producto Final</li>
+        </ol>
+    </div>
+</div>
+<div class="card">
+  <div class="card-header">
+     <h4 class="card-title pull-left">Listado de las Tienda</h4>
+     <button type="button" class="btn waves-effect waves-light btn-success pull-right">Agregar</button>
+  </div>
+    <div class="card-body">
+        <div class="">
+<table id="example" class="table table-striped table-bordered" style="width:100%">
+        <thead>
+            <tr>
+                <th>Cod.Tienda</th>
+                <th>Nomb Tienda</th>
+                <th>Telefono</th>
+                <th>Direccion</th>
+                <th>Tipo Tienda</th>
+                <th>Tipo Tefono</th>
+                 <th>Operador</th>
+                  <th>Opciones</th>
+            </tr>
+        </thead>
+        <tbody>
+           @foreach($tienda as $tie)
+            <tr>
+                <td>{{$tie->codigo_tienda}}</td>
+                <td>{{$tie->nombre}}</td>
+                <td>{{$tie->numero}}</td>
+                <td>{{$tie->direc}}</td>
+                <td>{{$tie->numeroTele}}</td>
+                <td>{{$tie->nombre_tipo}}</td>
+                <td>{{$tie->nombre_operador}}</td>
+                <td class="text-nowrap">
+                            <a href="{{route('clientes-edit',$tie->idTienda)}}" data-toggle="tooltip" data-original-title="Edit"> <i class="fa fa-pencil text-warning m-r-10"></i> </a>
+                            <a href="#" data-toggle="tooltip" data-original-title="Close"> <i class="fa fa-close text-danger m-r-10"></i> </a>
+                            <a href="#" data-toggle="tooltip" data-original-title="Close"> <i class="fa fa-eye text-success"></i> </a>
+                        </td>
+            </tr>
+            
+            @endforeach
+        </tbody>
+    </table>
+        </div>
+    </div>
+</div>
 @endsection
