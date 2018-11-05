@@ -8,7 +8,7 @@ class Color extends Model
 {
     //
     protected $table='Color';
-    protected $primarykey='idColor';
+    protected $primarykey='id';
     public $timestamps=false;
     
     protected $filleable=[

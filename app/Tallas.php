@@ -8,7 +8,7 @@ class Tallas extends Model
 {
     //
     protected $table='Tallas';
-    protected $primarykey='idTallas';
+    protected $primarykey='id';
     public $timestamps=false;
     
     protected $filleable=[

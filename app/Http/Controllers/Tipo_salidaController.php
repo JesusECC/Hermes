@@ -3,7 +3,10 @@
 namespace hermes\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
+use DB;
+use hermes\Tipo_salida;
 class Tipo_salidaController extends Controller
 {
     /**
@@ -14,6 +17,9 @@ class Tipo_salidaController extends Controller
     public function index()
     {
         //
+        $tipo_salida=DB::table('Tipo_salida')->get();
+        return view('producto.tipo_salida.index',['tipo_salida'=>$tipo_salida]);
+
     }
 
     /**
@@ -24,6 +30,7 @@ class Tipo_salidaController extends Controller
     public function create()
     {
         //
+        return view('producto.tipo_salida.create');
     }
 
     /**
@@ -35,6 +42,11 @@ class Tipo_salidaController extends Controller
     public function store(Request $request)
     {
         //
+        $tipo_salida=new Tipo_salida;
+        $tipo_salida->nombre=$request->get('nombre');
+        $tipo_salida->save();
+        return redirect::to('tipo_salida');
+
     }
 
     /**
@@ -57,6 +69,7 @@ class Tipo_salidaController extends Controller
     public function edit($id)
     {
         //
+        return view("producto.tipo_salida.edit",['tipo_salida'=>Tipo_salida::find($id)]);
     }
 
     /**
@@ -66,9 +79,14 @@ class Tipo_salidaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         //
+        $id=$request->get('id');
+        $tipo_salida=Tipo_salida::find($id);    
+        $tipo_salida->nombre=$request->get('nombre');
+        $tipo_salida->update();
+        return redirect::to('tipo_salida');
     }
 
     /**
@@ -80,5 +98,7 @@ class Tipo_salidaController extends Controller
     public function destroy($id)
     {
         //
+        $tipo_salida=Tipo_salida::destroy($id);
+        return Redirect::to('tipo_salida');
     }
 }

@@ -3,6 +3,10 @@
 namespace hermes\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+
+use DB;
+use hermes\Tipo_salida_MP;
 
 class Tipo_salida_MPController extends Controller
 {
@@ -14,6 +18,8 @@ class Tipo_salida_MPController extends Controller
     public function index()
     {
         //
+        $tipo_salida_mp=DB::table('Tipo_salida_MP')->get();
+        return view('producto.tipo_salida_mp.index',['tipo_salida_mp'=>$tipo_salida_mp]);
     }
 
     /**
@@ -24,6 +30,7 @@ class Tipo_salida_MPController extends Controller
     public function create()
     {
         //
+        return view('producto.tipo_salida_mp.create');
     }
 
     /**
@@ -35,6 +42,10 @@ class Tipo_salida_MPController extends Controller
     public function store(Request $request)
     {
         //
+        $tipo_salida_mp=new Tipo_salida_MP;
+        $tipo_salida_mp->nombreMP=$request->get('nombreMP');
+        $tipo_salida_mp->save();
+        return redirect::to('tipo_salida_mp');
     }
 
     /**
@@ -57,6 +68,7 @@ class Tipo_salida_MPController extends Controller
     public function edit($id)
     {
         //
+        return view("producto.tipo_salida_mp.edit",['tipo_salida_mp'=>Tipo_salida_MP::find($id)]);
     }
 
     /**
@@ -66,9 +78,14 @@ class Tipo_salida_MPController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         //
+        $id=$request->get('id');
+        $tipo_salida_mp=Tipo_salida_MP::find($id);
+        $tipo_salida_mp->nombreMP=$request->get('nombreMP');
+        $tipo_salida_mp->update();
+        return redirect::to('tipo_salida_mp');
     }
 
     /**
@@ -80,5 +97,7 @@ class Tipo_salida_MPController extends Controller
     public function destroy($id)
     {
         //
+        $tipo_salida_mp=Tipo_salida_MP::destroy($id);
+        return Redirect::to('tipo_salida_mp');
     }
 }

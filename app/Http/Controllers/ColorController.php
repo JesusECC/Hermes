@@ -3,6 +3,10 @@
 namespace hermes\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+
+use DB;
+use hermes\Color;
 
 class ColorController extends Controller
 {
@@ -14,6 +18,8 @@ class ColorController extends Controller
     public function index()
     {
         //
+        $color=DB::table('Color')->get();
+        return view('producto.color.index',['color'=>$color]);
     }
 
     /**
@@ -24,6 +30,7 @@ class ColorController extends Controller
     public function create()
     {
         //
+        return view('producto.color.create');
     }
 
     /**
@@ -35,6 +42,10 @@ class ColorController extends Controller
     public function store(Request $request)
     {
         //
+        $color=new Color;
+        $color->nombre_color=$request->get('nombre_color');
+        $color->save();
+        return redirect::to('color');
     }
 
     /**
@@ -57,6 +68,7 @@ class ColorController extends Controller
     public function edit($id)
     {
         //
+        return view("producto.color.edit",['color'=>Color::find($id)]);
     }
 
     /**
@@ -66,9 +78,15 @@ class ColorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         //
+        $id=$request->get('id');
+        $color=Color::find($id);
+        $color->nombre_color=$request->get('nombre_color');
+        $color->update();
+        return redirect::to('color');
+
     }
 
     /**
@@ -80,5 +98,7 @@ class ColorController extends Controller
     public function destroy($id)
     {
         //
+        $color=Color::destroy($id);
+        return Redirect::to('color');
     }
 }
