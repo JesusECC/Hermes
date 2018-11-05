@@ -30,6 +30,8 @@ Route::post('Almacen/guardar',['as' => 'almacen-store','uses'=>'AlmacenControlle
 // tienda
 Route::get('Tienda',['as'=>'tienda','uses'=>'TiendaController@index']);
  Route::get('Tienda/create',['as' => 'tienda-create','uses'=>'TiendaController@create']);
+ Route::post('Tienda/guardar',['as' => 'tienda-store','uses'=>'TiendaController@store']);
+
   Route::get('Tienda/{idTienda}/edit',['as'=>'Tienda','uses'=>'ControllerClientes@edit']);
 
 
@@ -47,6 +49,7 @@ Route::get('estado',['as' => 'estado-index','uses'=>'EstadoController@index']);
 Route::get('estado/create',['as' => 'estado-create','uses'=>'EstadoController@create']);
 Route::post('estado/guardar',['as' => 'estado-guardar','uses'=>'EstadoController@store']);
 Route::get('estado/editar/{id}',['as' => 'estado-editar','uses'=>'EstadoController@edit']);
+
 Route::post('estado/update/{id}',['as' => 'estado-update','uses'=>'EstadoController@update']);
 Route::get('estado/delete/{id}',['as' => 'estado-delete','uses'=>'EstadoController@destroy']);
 
@@ -78,6 +81,15 @@ Route::get('tipocliente/delete/{id}',['as' => 'tipocliente-delete','uses'=>'Tipo
 
 
 
+//producto
+Route::get('producto',['as' => 'producto','uses'=>'ProductoController@index']);
+Route::get('producto/create',['as' => 'producto-create','uses'=>'ProductoController@create']);
+Route::post('producto/guardar',['as' => 'producto-guardar','uses'=>'ProductoController@store']);
+Route::get('producto/editar/{id}',['as' => 'producto-editar','uses'=>'ProductoController@edit']);
+Route::post('producto/update',['as' => 'producto-update','uses'=>'ProductoController@update']);
+Route::get('producto/delete/{id}',['as' => 'producto-delete','uses'=>'ProductoController@destroy']);
+
+
 // tipo_producto
 Route::get('tipoproducto',['as' => 'tipoproducto','uses'=>'Tipo_productoController@index']);
 Route::get('tipoproducto/create',['as' => 'tipoproducto-create','uses'=>'Tipo_productoController@create']);
@@ -86,6 +98,13 @@ Route::get('tipoproducto/editar/{id}',['as' => 'tipoproducto-editar','uses'=>'Ti
 Route::post('tipoproducto/update',['as' => 'tipoproducto-update','uses'=>'Tipo_productoController@update']);
 Route::get('tipoproducto/delete/{id}',['as' => 'tipoproducto-delete','uses'=>'Tipo_productoController@destroy']);
 
+//ingreso
+Route::get('ingreso',['as' => 'ingreso','uses'=>'Ingreso_Podructo_FinalController@iIngreso_Podructo_FinalControllerndex']);
+Route::get('ingreso/create',['as' => 'ingreso-create','uses'=>'Ingreso_Podructo_FinalController@create']);
+Route::post('ingreso/guardar',['as' => 'ingreso-guardar','uses'=>'Ingreso_Podructo_FinalController@store']);
+Route::get('ingreso/editar/{id}',['as' => 'ingreso-editar','uses'=>'Ingreso_Podructo_FinalController@edit']);
+Route::post('ingreso/update',['as' => 'ingreso-update','uses'=>'Ingreso_Podructo_FinalController@update']);
+Route::get('ingreso/delete/{id}',['as' => 'ingreso-delete','uses'=>'Ingreso_Podructo_FinalController@destroy']);
 
 // tipo ingreso
 Route::get('tipoingreso',['as' => 'tipoingreso','uses'=>'Tipo_ingresoController@index']);
@@ -150,6 +169,23 @@ Route::post('tipo_salida_mp/guardar',['as'=>'tipo_salida_mp-guardar','uses'=>'Ti
 Route::get('tipo_salida_mp/editar/{id}',['as'=>'tipo_salida_mp-edit','uses'=>'Tipo_salida_MPController@edit']);
 Route::post('tipo_salida_mp/update',['as'=>'tipo_salida_mp-update','uses'=>'Tipo_salida_MPController@update']);
 Route::get('tipo_salida_mp/delete/{id}',['as'=>'tipo_salida_mp-delete','uses'=>'Tipo_salida_MPController@destroy']);
+
+//operador
+Route::get('operador',['as'=>'operador-index','uses'=>'operadorController@index']);
+Route::get('operador/create',['as'=>'operador-create','uses'=>'operadorController@create']);
+Route::post('operador/guardar',['as'=>'operador-guardar','uses'=>'operadorController@store']);
+Route::get('operador/editar/{id}',['as'=>'operador-edit','uses'=>'operadorController@edit']);
+Route::post('operador/update',['as'=>'operador-update','uses'=>'operadorController@update']);
+Route::get('operador/delete/{id}',['as'=>'operador-delete','uses'=>'operadorController@destroy']);
+
+//cliente
+Route::get('cliente',['as'=>'cliente-index','uses'=>'ClienteController@index']);
+Route::get('cliente/create',['as'=>'cliente-create','uses'=>'ClienteController@create']);
+Route::post('cliente/guardar',['as'=>'cliente-guardar','uses'=>'ClienteController@store']);
+Route::get('cliente/editar/{id}',['as'=>'cliente-edit','uses'=>'ClienteController@edit']);
+Route::post('cliente/update',['as'=>'cliente-update','uses'=>'ClienteController@update']);
+Route::get('cliente/delete/{id}',['as'=>'cliente-delete','uses'=>'ClienteController@destroy']);
+
 
 
 

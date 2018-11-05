@@ -19,7 +19,7 @@ class operadorController extends Controller
     {
         //
         $operador=DB::table('operador')->get();
-        return view('.operador.index',['operador'=>$operador]);
+        return view('admin.persona.operador.index',['operador'=>$operador]);
 
     }
 
@@ -31,7 +31,7 @@ class operadorController extends Controller
     public function create()
     {
         //
-        return view('.operador.create');
+        return view('admin.persona.operador.create');
     }
 
     /**
@@ -71,7 +71,7 @@ class operadorController extends Controller
     public function edit($id)
     {
         //
-        return view(".operador.edit",['operador'=>operador::find($id)]);
+        return view("admin.persona.operador.edit",['operador'=>operador::find($id)]);
     }
 
     /**
@@ -81,7 +81,7 @@ class operadorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         //
         $id=$request->get('id');
@@ -89,7 +89,7 @@ class operadorController extends Controller
         $operador->nombre_operador=$request->get('nombre_operador');
         $operador->glosa=$request->get('glosa');
         $operador->update();
-        return view('operador');
+        return redirect::to('operador');
     }
 
     /**

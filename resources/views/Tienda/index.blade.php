@@ -31,23 +31,7 @@
             </tr>
         </thead>
         <tbody>
-           @foreach($tienda as $tie)
-            <tr>
-                <td>{{$tie->codigo_tienda}}</td>
-                <td>{{$tie->nombre}}</td>
-                <td>{{$tie->numero}}</td>
-                <td>{{$tie->direc}}</td>
-                <td>{{$tie->numeroTele}}</td>
-                <td>{{$tie->nombre_tipo}}</td>
-                <td>{{$tie->nombre_operador}}</td>
-                <td class="text-nowrap">
-                            <a href="{{route('clientes-edit',$tie->idTienda)}}" data-toggle="tooltip" data-original-title="Edit"> <i class="fa fa-pencil text-warning m-r-10"></i> </a>
-                            <a href="#" data-toggle="tooltip" data-original-title="Close"> <i class="fa fa-close text-danger m-r-10"></i> </a>
-                            <a href="#" data-toggle="tooltip" data-original-title="Close"> <i class="fa fa-eye text-success"></i> </a>
-                        </td>
-            </tr>
-            
-            @endforeach
+
         </tbody>
     </table>
         </div>

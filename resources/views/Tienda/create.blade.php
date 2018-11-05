@@ -14,7 +14,7 @@
 <div class="card">
   <div class="card-header">
      <h4 class="card-title pull-left">Registrar Tienda</h4>
-     <button type="button"  id="save" class="btn waves-effect waves-light btn-success pull-right">Agregar</button>
+   <button id="save" type="sumbit" class="btn waves-effect waves-light btn-success pull-right"><i class="far fa-save"></i>Agregar</button>
   </div>
   <div class="card-body">
                                 <form action="#">
@@ -35,35 +35,47 @@
                                                     <input type="text" id="nomtienda" class="form-control" placeholder="Nombre Tienda">
                                                     </div>
                                             </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label>Tipo de Tienda</label>
+                                                <select  class="form-control selectpicker" id="tptienda" data-live-search="true">
+                                                <option value="" disabled="" selected="">Seleccione Tipo de tienda</option>
+                                                @foreach($tipotienda as $tie)                
+                                                <option value="{{$tie->id}}">{{$tie->nombre}}</option>
+                                                @endforeach  
+                                                </select>    
+                                                </div>
+                                            </div>
                                          <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Tipo de Telefono</label>
                                                 <select  class="form-control selectpicker" id="tipotele" data-live-search="true">
                                                 <option value="" disabled="" selected="">Seleccione Tipo Telefono</option>
                                                 @foreach($tipotelefono as $tt)                
-                                                <option value="{{$tt->idTipo_telefono}}">{{$tt->nombre_tipo}}</option>
+                                                <option value="{{$tt->id}}">{{$tt->nombre_tipo}}</option>
                                                 @endforeach  
                                                 </select>    
                                                     </div>
                                             </div>
-                                        <div class="col-md-4">
+                                       
+
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label class="control-label">Telefono</label>
+                                                    <input type="text" id="tele" class="form-control" placeholder="Ingrese numero Telefono">
+                                                    </div>
+                                            </div>
+                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Operador</label>
                                                 <select  class="form-control selectpicker" id="oper" data-live-search="true">
                                                 <option value="" disabled="" selected="">Seleccione el operador</option>
                                                 @foreach($operador as $op)                
-                                                <option value="{{$op->idoperador}}">{{$op->nombre_operador}}</option>
+                                                <option value="{{$op->id}}">{{$op->nombre_operador}}</option>
                                                 @endforeach  
                                                 </select>    
                                                     </div>
                                          </div>
-
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label class="control-label">Telefono</label>
-                                                    <input type="text" id="tele" class="form-control" placeholder="Nombre Tienda">
-                                                    </div>
-                                            </div>
                                             <!--/span-->
                                             <div class="col-md-4">
                                                 <div class="form-group">
@@ -71,7 +83,7 @@
                                                 <select  class="form-control selectpicker" id="depart" data-live-search="true">
                                                 <option value="" disabled="" selected="">Seleccione Departamento</option>
                                                 @foreach($departamento as $de)                
-                                                <option value="{{$de->idDepartamento}}">{{$de->nombre_departamento}}</option>
+                                                <option value="{{$de->id}}">{{$de->nombre_departamento}}</option>
                                                 @endforeach  
                                                 </select>    
                                                 </div>
@@ -82,7 +94,7 @@
                                                 <select  class="form-control selectpicker" id="dist" data-live-search="true">
                                                 <option value="" disabled="" selected="">Seleccione Distrito</option>
                                                 @foreach($distrito as $dis)                
-                                                <option value="{{$dis->idDistrito}}">{{$dis->nombre_distrito}}</option>
+                                                <option value="{{$dis->id}}">{{$dis->nombre_distrito}}</option>
                                                 @endforeach  
                                                 </select>    
                                                     </div>
@@ -93,7 +105,7 @@
                                                 <select  class="form-control selectpicker" id="pro" data-live-search="true">
                                                 <option value="" disabled="" selected="">Seleccione Provincia</option>
                                                 @foreach($provincia as $pro)                
-                                                <option value="{{$pro->idProvincia}}">{{$pro->nombre_provincia}}</option>
+                                                <option value="{{$pro->id}}">{{$pro->nombre_provincia}}</option>
                                                 @endforeach  
                                                 </select>    
                                                 </div>
@@ -101,7 +113,7 @@
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label class="control-label">Direccion</label>
-                                                    <input type="text" id="dire" class="form-control" placeholder="Nombre Tienda">
+                                                    <input type="text" id="dire" class="form-control" placeholder="Ingrese la Direccion">
                                                     </div>
                                             </div>
 
@@ -115,15 +127,16 @@
         <button type="submit" id="save"class="btn waves-effect waves-light btn-success pull-right m-r-5">Agregar</button>
     </div>
 </div>
-@endsection
+
 
 @push('scripts')
 
 <script>
     
-        $('#save').click(function(){
+            $('#save').click(function(){
             saveTienda();
         });
+        
         
         $('#su').keyup(function (){
             this.value = (this.value + '').replace(/[^0-9]/g, '1');
@@ -132,11 +145,16 @@
             this.value = (this.value + '').replace(/[^0-9]/g, '1');
        
         // Actualizar
-        function saveTienda(){
+      
+
+    });
+
+          function saveTienda(){
        
 
          var codigo=$("#codi").val();
         var nombrea=$("#nomtienda").val();
+        var tptienda=$("#tptienda").val();
         var tipotele=$("#tipotele").val();
         var opera=$("#oper").val();
         var tele=$("#tele").val();
@@ -145,11 +163,9 @@
          var provincia=$("#pro").val();
         var direcc=$("#dire").val();
       
-
-    });
      
         if(departamento!=''){
-        var dat=[{codigo:codigo,nombrea:nombrea,tipotele:tipotele,opera:opera,tele:tele,departamento:departamento,distrito:distrito,provincia:provincia,direcc:direcc}];
+        var dat=[{codigo:codigo,nombrea:nombrea,tptienda:tptienda,tipotele:tipotele,opera:opera,tele:tele,departamento:departamento,distrito:distrito,provincia:provincia,direcc:direcc}];
             $.ajax({
                 headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                 data:  {datos:dat}, //datos que se envian a traves de ajax
@@ -172,3 +188,5 @@
     
    
 </script>
+@endpush
+@endsection
