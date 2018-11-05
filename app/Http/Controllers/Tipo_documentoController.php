@@ -4,6 +4,8 @@ namespace hermes\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use DB;
+use hermes\Tipo_documento;
 class Tipo_documentoController extends Controller
 {
     /**
@@ -14,6 +16,8 @@ class Tipo_documentoController extends Controller
     public function index()
     {
         //
+        $documento=DB::table('Tipo_documento')->get();
+        return view('admin.documento.index',['documento'=>$documento]);
     }
 
     /**
@@ -24,6 +28,7 @@ class Tipo_documentoController extends Controller
     public function create()
     {
         //
+        return view('admin.documento.create');
     }
 
     /**
@@ -35,6 +40,10 @@ class Tipo_documentoController extends Controller
     public function store(Request $request)
     {
         //
+        $documento=new Tipo_documento;
+        $documento->nombre_TD=$request->get('nombre_TD');
+        $documento->save();
+        return redirect('documento');
     }
 
     /**
@@ -57,6 +66,7 @@ class Tipo_documentoController extends Controller
     public function edit($id)
     {
         //
+        return view('admin.documento.edit',['documento'=>Tipo_documento::findOrFail($id)]);
     }
 
     /**
@@ -69,6 +79,11 @@ class Tipo_documentoController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $documento=Tipo_documento::Find($id);
+        $documento->nombre_TD=$request->get('nombre_TD');
+        $documento->update();
+        return redirect('documento');
+    
     }
 
     /**
@@ -80,5 +95,7 @@ class Tipo_documentoController extends Controller
     public function destroy($id)
     {
         //
+        $documento=Tipo_documento::destroy($id);
+        return redirect('documento');
     }
 }

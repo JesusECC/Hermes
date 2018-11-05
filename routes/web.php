@@ -49,3 +49,11 @@ Route::post('estado/guardar',['as' => 'estado-guardar','uses'=>'EstadoController
 Route::get('estado/editar/{id}',['as' => 'estado-editar','uses'=>'EstadoController@edit']);
 Route::post('estado/update/{id}',['as' => 'estado-update','uses'=>'EstadoController@update']);
 Route::get('estado/delete/{id}',['as' => 'estado-delete','uses'=>'EstadoController@destroy']);
+
+// tipo documento
+Route::get('documento',['as' => 'documento-index','uses'=>'Tipo_documentoController@index']);
+Route::get('documento/create',['as' => 'documento-create','uses'=>'Tipo_documentoController@create']);
+Route::post('documento/guardar',['as' => 'documento-guardar','uses'=>'Tipo_documentoController@store']);
+Route::get('documento/editar/{id}',['as' => 'documento-editar','uses'=>'Tipo_documentoController@edit']);
+Route::post('documento/update/{id}',['as' => 'documento-update','uses'=>'Tipo_documentoController@update']);
+Route::get('documento/delete/{id}',['as' => 'documento-delete','uses'=>'Tipo_documentoController@destroy']);
