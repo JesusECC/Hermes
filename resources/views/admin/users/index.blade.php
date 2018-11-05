@@ -22,27 +22,17 @@
                     <tr>
                         <th>Nombre</th>
                         <th>Apelldos</th>
-                        <th>Tipo Documento</th>
-                        <th>Numero de documento</th>
-                        <th>Fecha de Nacimiento</th>
-                        <th>Sexo</th>
-                        <th>Sueldo</th>
-                        <th>Fecha de Inicio</th>
-                        <th>Fecha Fin</th>
+                        <th>Usuarios</th>
+                        <th>Rol</th>
                     </tr>
                 </thead>
                 <tbody>
-				@foreach($persona as $per)
+				@foreach($users as $user)
                     <tr>
-                        <td>{{ $per->nombre }}</td>
-                        <td>{{ $per->apellidos }}</td>
-                        <td>{{ $per->idTipo_documento }}</td>
-                        <td>{{ $per->nro_documento }}</td>
-                        <td>{{ $per->fecha_nacimiento }}</td>
-                        <td>{{ $per->sexo }}</td>
-                        <td>{{ $per->sueldo }}</td>
-                        <td>{{ $per->fecha_inicio }}</td>
-                        <td>{{ $per->fecha_fin }}</td>
+                        <td>{{ $user->nombre }}</td>
+                        <td>{{ $user->apellidos }}</td>
+                        <td>{{ $user->usuario }}</td>
+                        <td>{{ $user->nombreRol }}</td>
                         <td class="text-nowrap">
                             <a href="{{ route('persona-editar',$per->id) }}" data-toggle="tooltip" data-original-title="Edit"> <i class="fa fa-pencil text-warning m-r-10"></i> </a>
                             <a href="{{ route('persona-delete',$per->idTrabajador) }}" data-toggle="tooltip" data-original-title="Delete"> <i class="fa fa-close text-danger m-r-10"></i> </a>

@@ -4,6 +4,13 @@ namespace hermes\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use DB;
+
+use hermes\Persona;
+use hermes\Trabajador;
+use hermes\users;
+use hermes\Rol;
+use hermes\Users_Rol;
 class usersController extends Controller
 {
     /**
@@ -13,7 +20,18 @@ class usersController extends Controller
      */
     public function index()
     {
-        //
+        // nombre apellido usuario rol
+        $user=DB::table('Users_Rol as ur')
+        ->join('Rol as r','r.id','=','ur.idrol')
+        ->join('users as u','u.id','=','ur.id')
+        ->join('Trabajador as t','t.id','=','u.Trabajador_idTrabajador')
+        ->join('Persona as p','p.id','=','t.idPersona')
+        ->select('p.nombre','p.apellidos','u.usuario','r.nombreRol')
+        ->where('t.estado_idEstado','=',1)
+        ->get();
+        // dd($user);
+
+        return view('admin.users.index',['users'=>$user]);
     }
 
     /**
@@ -24,6 +42,8 @@ class usersController extends Controller
     public function create()
     {
         //
+        $trabajador=DB::table('Trabajador')->get();
+        return view('admin.users.create',['trabajador'=>$trabajador]);
     }
 
     /**
@@ -35,6 +55,7 @@ class usersController extends Controller
     public function store(Request $request)
     {
         //
+        
     }
 
     /**

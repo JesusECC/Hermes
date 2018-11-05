@@ -198,12 +198,20 @@ Route::get('cliente/delete/{id}',['as'=>'cliente-delete','uses'=>'ClienteControl
 
 
 
-// persona -> trabajador 
-Route::get('persona',['as' => 'persona-index','uses'=>'PersonaController@index']);
-Route::get('persona/create',['as' => 'persona-create','uses'=>'PersonaController@create']);
-Route::post('persona/guardar',['as' => 'persona-guardar','uses'=>'PersonaController@store']);
-Route::get('persona/editar/{id}',['as' => 'persona-editar','uses'=>'PersonaController@edit']);
-Route::post('persona/update/{id}',['as' => 'persona-update','uses'=>'PersonaController@update']);
-Route::get('persona/delete/{id}',['as' => 'persona-delete','uses'=>'PersonaController@destroy']);
+// persona -> Trabajador 
+Route::get('trabajador',['as' => 'persona-index','uses'=>'TrabajadorController@index']);
+Route::get('trabajador/create',['as' => 'persona-create','uses'=>'TrabajadorController@create']);
+Route::post('trabajador/guardar',['as' => 'persona-guardar','uses'=>'TrabajadorController@store']);
+Route::get('trabajador/editar/{id}',['as' => 'persona-editar','uses'=>'TrabajadorController@edit']);
+Route::post('trabajador/update/{id}',['as' => 'persona-update','uses'=>'TrabajadorController@update']);
+Route::get('trabajador/delete/{id}',['as' => 'persona-delete','uses'=>'TrabajadorController@destroy']);
+
+// users usuarios
+Route::get('usuarios',['as' => 'usuarios-index','uses'=>'usersController@index']);
+Route::get('usuarios/create',['as' => 'usuarios-create','uses'=>'usersController@create']);
+Route::post('usuarios/guardar',['as' => 'usuarios-guardar','uses'=>'usersController@store']);
+Route::get('usuarios/editar/{id}',['as' => 'usuarios-editar','uses'=>'usersController@edit']);
+Route::post('usuarios/update/{id}',['as' => 'usuarios-update','uses'=>'usersController@update']);
+Route::get('usuarios/delete/{id}',['as' => 'usuarios-delete','uses'=>'usersController@destroy']);
 
 
