@@ -47,7 +47,6 @@ Route::get('estado',['as' => 'estado-index','uses'=>'EstadoController@index']);
 Route::get('estado/create',['as' => 'estado-create','uses'=>'EstadoController@create']);
 Route::post('estado/guardar',['as' => 'estado-guardar','uses'=>'EstadoController@store']);
 Route::get('estado/editar/{id}',['as' => 'estado-editar','uses'=>'EstadoController@edit']);
-<<<<<<< HEAD
 Route::post('estado/update/{id}',['as' => 'estado-update','uses'=>'EstadoController@update']);
 Route::get('estado/delete/{id}',['as' => 'estado-delete','uses'=>'EstadoController@destroy']);
 
@@ -58,10 +57,6 @@ Route::post('documento/guardar',['as' => 'documento-guardar','uses'=>'Tipo_docum
 Route::get('documento/editar/{id}',['as' => 'documento-editar','uses'=>'Tipo_documentoController@edit']);
 Route::post('documento/update/{id}',['as' => 'documento-update','uses'=>'Tipo_documentoController@update']);
 Route::get('documento/delete/{id}',['as' => 'documento-delete','uses'=>'Tipo_documentoController@destroy']);
-=======
-Route::post('estado/update',['as' => 'estado-update','uses'=>'EstadoController@update']);
-Route::get('estado/delete/{id}',['as' => 'estado-delete','uses'=>'EstadoController@destroy']);
-
 
 //color
 Route::get('color',['as'=> 'color-index','uses'=>'ColorController@index']);
@@ -98,4 +93,3 @@ Route::post('tipo_salida_mp/update',['as'=>'tipo_salida_mp-update','uses'=>'Tipo
 Route::get('tipo_salida_mp/delete/{id}',['as'=>'tipo_salida_mp-delete','uses'=>'Tipo_salida_MPController@destroy']);
 
 
->>>>>>> 8cdf9ef85044a1cbdc9757679849e000849d98f8
