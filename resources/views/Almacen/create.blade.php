@@ -23,28 +23,72 @@
                                     <div class="form-body">
                                         <h3 class="card-title">Datos Generales</h3>
                                         <hr>
+
+
                                         <div class="row p-t-20">
+
+                                           <div class="row">
+
+                                             <div class="col-md-4 ">
+                                                <div class="form-group">
+                                                    <label class="control-label">Tipo Producto</label>
+                                                  
+                                                <select  class="form-control selectpicker" id="d" data-live-search="true">
+                                                <option value="" disabled="" selected="">Tipo Producto</option>
+                                                @foreach($tipoproducto as $tp)                
+                                                <option value="{{$tp->id}}">{{$tp->nombreTP}}</option>
+                                                @endforeach  
+                                                </select>   
+                                                </div>
+                                            </div>
+
+                                            
+                                            <!--/span-->
+                                            <div class="col-md-16">
+                                                <div class="form-group">
+                                                    <label class="control-label">Nombre Producto</label>
+                                                    <input type="text" id="b" class="form-control" placeholder="Nombre Almacen">
+                                                    </div>
+                                            </div>
+                                        </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label class="control-label">Marca</label>
+                                                    <input type="text" id="a" class="form-control" placeholder="Asignar un marca">
+                                                     </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label class="control-label">Precio unitario</label>
+                                                    <input type="text" id="a" class="form-control" placeholder="Asignar un precio">
+                                                     </div>
+                                            </div>
+                                             <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label class="control-label">Descuento</label>
+                                                    <input type="text" id="a" class="form-control" placeholder="Asignar un descuento">
+                                                     </div>
+                                            </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label class="control-label">Codigo</label>
                                                     <input type="text" id="a" class="form-control" placeholder="Asignar un codigo">
                                                      </div>
                                             </div>
-                                            <!--/span-->
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label class="control-label">Nombre Almacen</label>
-                                                    <input type="text" id="b" class="form-control" placeholder="Nombre Almacen">
-                                                    </div>
+                                                    <label class="control-label">Categoria</label>
+                                                    <input type="text" id="a" class="form-control" placeholder="Asignar un categoria">
+                                                     </div>
                                             </div>
                                             <!--/span-->
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label>Tienda</label>
+                                                    <label>Almacen</label>
                                                 <select  class="form-control selectpicker" id="g" data-live-search="true">
-                                                <option value="" disabled="" selected="">Tienda</option>
-                                                @foreach($tienda as $ti)                
-                                                <option value="{{$ti->id}}">{{$ti->nombre_tienda}}</option>
+                                                <option value="" disabled="" selected="">Almacen</option>
+                                                @foreach($almacen as $al)                
+                                                <option value="{{$al->id}}">{{$al->nombre_almacen}}</option>
                                                 @endforeach  
                                                 </select>    
                                                     </div>
@@ -53,20 +97,20 @@
 
 
                                  <div class="row">
-                                            <div class="col-md-4">
+                                           <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label class="control-label">Telefono </label>
-                                                    <input type="text" id="h" class="form-control" placeholder="Nombre Almacen">
-                                                    </div>
+                                                    <label class="control-label">Stock</label>
+                                                    <input type="text" id="a" class="form-control" placeholder="Asignar un categoria">
+                                                     </div>
                                             </div>
-
+                                             
                                              <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label>Tienda</label>
+                                                    <label>talla</label>
                                                 <select  class="form-control selectpicker" id="i" data-live-search="true">
                                                 <option value="" disabled="" selected="">Tipo Telefono</option>
-                                                @foreach($tipotelefono as $tt)                
-                                                <option value="{{$tt->id}}">{{$tt->nombre_tipo}}</option>
+                                                @foreach($talla as $t)                
+                                                <option value="{{$t->id}}">{{$t->nom_talla}}</option>
                                                 @endforeach  
                                                 </select>    
                                                     </div>
@@ -74,11 +118,11 @@
 
                                              <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label>Tienda</label>
+                                                    <label>Color</label>
                                                 <select  class="form-control selectpicker" id="j" data-live-search="true">
                                                 <option value="" disabled="" selected="">Operador</option>
-                                                @foreach($operador as $op)                
-                                                <option value="{{$op->id}}">{{$op->nombre_operador}}</option>
+                                                @foreach($color as $c)                
+                                                <option value="{{$c->id}}">{{$c->nombre_color}}</option>
                                                 @endforeach  
                                                 </select>    
                                                     </div>
@@ -88,56 +132,7 @@
                                         </div>
                                        
                                         <!--/row-->
-                                        <h3 class="box-title m-t-40">Address</h3>
-                                        <hr>
-                                        <div class="row">
-                                            <div class="col-md-12 ">
-                                                <div class="form-group">
-                                                    <label>Direccion</label>
-                                                    <input type="text" id="c" class="form-control" placeholder="Ingresar Direccion">
-                                                </div>
-                                            </div>
-                                        </div>
-                                           <div class="row">
-                                            <div class="col-md-4 ">
-                                                <div class="form-group">
-                                                  
-                                                <select  class="form-control selectpicker" id="d" data-live-search="true">
-                                                <option value="" disabled="" selected="">Departamento</option>
-                                                @foreach($departamento as $de)                
-                                                <option value="{{$de->id}}">{{$de->nombre_departamento}}</option>
-                                                @endforeach  
-                                                </select>   
-                                                </div>
-                                            </div>
-                                        
-                                        
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    
-                                                <select  class="form-control selectpicker" id="f" data-live-search="true">
-                                                <option value="" disabled="" selected="">Provincia</option>
-                                                @foreach($provincia as $pr)                
-                                                <option value="{{$pr->id}}">{{$pr->nombre_provincia}}</option>
-                                                @endforeach  
-                                                </select>  
-                                                </div>
-                                            </div>
-                                            <!--/span-->
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    
-                                                    <select  class="form-control selectpicker" id="e" data-live-search="true">
-                                                <option value="" disabled="" selected="">Distrito</option>
-                                                @foreach($distrito as $dis)                
-                                                <option value="{{$dis->id}}">{{$dis->nombre_distrito}}</option>
-                                                @endforeach  
-                                                </select>  
-                                                </div>
-                                            </div>
-                                            <!--/span-->
-                                        </div>
-                                        <!--/row-->
+                                      
 
 @push('scripts')
 <script>
