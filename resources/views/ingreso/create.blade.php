@@ -44,7 +44,7 @@
             <label for="proveedor">Tipo Ingreso</label>
             <select name="idAl" id="pid" class="form-control selectpicker" data-live-search="true">
                @foreach($tipoingreso as $ti)
-               <option value="{{$ti->idAl}}">{{$tra->nombre}}</option>
+               <option value="{{$ti->idIn}}">{{$tra->nombre}}</option>
                @endforeach  
     </select>
   </div>

@@ -41,7 +41,7 @@ $almacen=DB::table('Almacen as a')
 
 
 $tipoingreso=DB::table('Tipo_ingreso as t')
-->select('t.id','t.nombre')
+->select('t.id as idIn','t.nombre')
 ->get();
 
 $productos= DB::table('Productos as p')
