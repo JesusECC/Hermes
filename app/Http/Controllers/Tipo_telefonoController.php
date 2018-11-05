@@ -3,6 +3,10 @@
 namespace hermes\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+
+use DB;
+use hermes\Tipo_telefono;
 
 class Tipo_telefonoController extends Controller
 {
@@ -13,7 +17,9 @@ class Tipo_telefonoController extends Controller
      */
     public function index()
     {
-        //
+        $tipotelefono=DB::table('Tipo_telefono')->get();
+        // dd($rol);
+        return view('tipotelefono.index',['tipotelefono'=>$tipotelefono]);
     }
 
     /**
@@ -23,7 +29,7 @@ class Tipo_telefonoController extends Controller
      */
     public function create()
     {
-        //
+        return view('tipotelefono.create');
     }
 
     /**
@@ -34,7 +40,13 @@ class Tipo_telefonoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       
+          $tipotelefono=new Tipo_telefono;
+        $tipotelefono->nombre_tipo=$request->get('tipo');
+        $tipotelefono->glosa=$request->get('glosa');
+        $tipotelefono->save();
+        return redirect::to('tipotelefono');
+
     }
 
     /**
@@ -56,7 +68,7 @@ class Tipo_telefonoController extends Controller
      */
     public function edit($id)
     {
-        //
+         return view("tipotelefono.edit",['tipotelefono'=>Tipo_telefono::find($id)]);
     }
 
     /**
@@ -66,9 +78,14 @@ class Tipo_telefonoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $id=$request->get('id'); 
+        $tipotelefono=Tipo_telefono::Find($id);
+        $tipotelefono->nombre_tipo=$request->get('tipo'); 
+        $tipotelefono->glosa=$request->get('glosa'); 
+        $tipotelefono->update();
+        return redirect::to('tipotelefono');
     }
 
     /**
@@ -79,6 +96,9 @@ class Tipo_telefonoController extends Controller
      */
     public function destroy($id)
     {
-        //
+       $tipotelefono=Tipo_telefono::destroy($id);
+        // $rol->estado=0;
+        // $rol->update();
+        return Redirect::to('tipotelefono');
     }
 }

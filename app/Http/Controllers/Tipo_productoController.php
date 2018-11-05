@@ -3,6 +3,10 @@
 namespace hermes\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+
+use DB;
+use hermes\Tipo_producto;
 
 class Tipo_productoController extends Controller
 {
@@ -13,7 +17,9 @@ class Tipo_productoController extends Controller
      */
     public function index()
     {
-        //
+         $tipoproducto=DB::table('Tipo_producto')->get();
+        // dd($rol);
+        return view('tipoproducto.index',['tipoproducto'=>$tipoproducto]);
     }
 
     /**
@@ -23,7 +29,7 @@ class Tipo_productoController extends Controller
      */
     public function create()
     {
-        //
+          return view('tipoproducto.create');
     }
 
     /**
@@ -34,7 +40,10 @@ class Tipo_productoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $tipoproducto=new Tipo_producto;
+        $tipoproducto->nombre=$request->get('tipo');
+        $tipoproducto->save();
+        return redirect::to('tipoproducto');
     }
 
     /**
@@ -56,7 +65,7 @@ class Tipo_productoController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view("tipoproducto.edit",['tipoproducto'=>Tipo_producto::find($id)]);
     }
 
     /**
@@ -66,9 +75,13 @@ class Tipo_productoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+         $id=$request->get('id'); 
+        $tipoproducto=Tipo_producto::Find($id);
+        $tipoproducto->nombre=$request->get('tipo'); 
+        $tipoproducto->update();
+        return redirect::to('tipoproducto');
     }
 
     /**
@@ -79,6 +92,9 @@ class Tipo_productoController extends Controller
      */
     public function destroy($id)
     {
-        //
+         $tipoproducto=Tipo_producto::destroy($id);
+        // $rol->estado=0;
+        // $rol->update();
+        return Redirect::to('tipoproducto');
     }
 }

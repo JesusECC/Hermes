@@ -3,6 +3,10 @@
 namespace hermes\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+
+use DB;
+use hermes\Tipo_ingreso;
 
 class Tipo_ingresoController extends Controller
 {
@@ -13,7 +17,9 @@ class Tipo_ingresoController extends Controller
      */
     public function index()
     {
-        //
+        $tipoingreso=DB::table('Tipo_ingreso')->get();
+        // dd($rol);
+        return view('tipoingreso.index',['tipoingreso'=>$tipoingreso]);
     }
 
     /**
@@ -23,7 +29,7 @@ class Tipo_ingresoController extends Controller
      */
     public function create()
     {
-        //
+         return view('tipoingreso.create');
     }
 
     /**
@@ -34,7 +40,10 @@ class Tipo_ingresoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $tipoproducto=new Tipo_ingreso;
+        $tipoproducto->nombre=$request->get('tipo');
+        $tipoproducto->save();
+        return redirect::to('tipoingreso');
     }
 
     /**
@@ -56,7 +65,7 @@ class Tipo_ingresoController extends Controller
      */
     public function edit($id)
     {
-        //
+                return view("tipoingreso.edit",['tipoingreso'=>Tipo_ingreso::find($id)]);
     }
 
     /**
@@ -66,9 +75,13 @@ class Tipo_ingresoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+         $id=$request->get('id'); 
+        $tipoproducto=Tipo_ingreso::Find($id);
+        $tipoproducto->nombre=$request->get('tipo'); 
+        $tipoproducto->update();
+        return redirect::to('tipoingreso');
     }
 
     /**
@@ -79,6 +92,9 @@ class Tipo_ingresoController extends Controller
      */
     public function destroy($id)
     {
-        //
+          $tipoingreso=Tipo_ingreso::destroy($id);
+        // $rol->estado=0;
+        // $rol->update();
+        return Redirect::to('tipoingreso');
     }
 }

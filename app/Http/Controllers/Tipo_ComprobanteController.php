@@ -2,7 +2,13 @@
 
 namespace hermes\Http\Controllers;
 
+
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+
+use DB;
+use hermes\Tipo_Comprobante;
+
 
 class Tipo_ComprobanteController extends Controller
 {
@@ -13,7 +19,10 @@ class Tipo_ComprobanteController extends Controller
      */
     public function index()
     {
-        //
+          //
+        $tipocomprobante=DB::table('Tipo_Comprobante')->get();
+        // dd($rol);
+        return view('tipocomprobante.index',['tipocomprobante'=>$tipocomprobante]);
     }
 
     /**
@@ -23,7 +32,7 @@ class Tipo_ComprobanteController extends Controller
      */
     public function create()
     {
-        //
+        return view('tipocomprobante.create');
     }
 
     /**
@@ -34,7 +43,10 @@ class Tipo_ComprobanteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+         $tipocomprobante=new Tipo_Comprobante;
+        $tipocomprobante->nombre_comprobante=$request->get('tipo');
+        $tipocomprobante->save();
+        return redirect::to('tipocomprobante');
     }
 
     /**
@@ -56,7 +68,7 @@ class Tipo_ComprobanteController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view("tipocomprobante.edit",['tipocomprobante'=>Tipo_Comprobante::find($id)]);
     }
 
     /**
@@ -66,9 +78,13 @@ class Tipo_ComprobanteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $id=$request->get('id'); 
+        $tipocomprobante=Tipo_comprobante::Find($id);
+        $tipocomprobante->nombre_comprobante=$request->get('tipo'); 
+        $tipocomprobante->update();
+        return redirect::to('tipocomprobante');
     }
 
     /**
@@ -79,6 +95,9 @@ class Tipo_ComprobanteController extends Controller
      */
     public function destroy($id)
     {
-        //
+       $tipocomprobante=Tipo_comprobante::destroy($id);
+        // $rol->estado=0;
+        // $rol->update();
+        return Redirect::to('tipocomprobante');
     }
 }
