@@ -47,6 +47,7 @@ Route::get('estado',['as' => 'estado-index','uses'=>'EstadoController@index']);
 Route::get('estado/create',['as' => 'estado-create','uses'=>'EstadoController@create']);
 Route::post('estado/guardar',['as' => 'estado-guardar','uses'=>'EstadoController@store']);
 Route::get('estado/editar/{id}',['as' => 'estado-editar','uses'=>'EstadoController@edit']);
+
 Route::post('estado/update/{id}',['as' => 'estado-update','uses'=>'EstadoController@update']);
 Route::get('estado/delete/{id}',['as' => 'estado-delete','uses'=>'EstadoController@destroy']);
 
@@ -150,5 +151,15 @@ Route::post('tipo_salida_mp/guardar',['as'=>'tipo_salida_mp-guardar','uses'=>'Ti
 Route::get('tipo_salida_mp/editar/{id}',['as'=>'tipo_salida_mp-edit','uses'=>'Tipo_salida_MPController@edit']);
 Route::post('tipo_salida_mp/update',['as'=>'tipo_salida_mp-update','uses'=>'Tipo_salida_MPController@update']);
 Route::get('tipo_salida_mp/delete/{id}',['as'=>'tipo_salida_mp-delete','uses'=>'Tipo_salida_MPController@destroy']);
+
+Route::get('operador',['as'=>'operador-index','uses'=>'operadorController@index']);
+Route::get('operador/create',['as'=>'operador-create','uses'=>'operadorController@create']);
+Route::post('operador/guardar',['as'=>'operador-guardar','uses'=>'operadorController@store']);
+Route::get('operador/editar/{id}',['as'=>'operador-edit','uses'=>'operadorController@edit']);
+Route::post('operador/update',['as'=>'operador-update','uses'=>'operadorController@update']);
+Route::get('operador/delete/{id}',['as'=>'operador-delete','uses'=>'operadorController@destroy']);
+
+
+
 
 
