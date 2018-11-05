@@ -103,35 +103,7 @@ class TiendaController extends Controller
      */
     public function store(Request $request)
     {
-        try{
-        $codigo;
-        $nombrea;
-        $tipotele;
-        $opera;
-        $tele;
-        $departamento;
-        $distrito;
-        $provincia;
-        $direcc;
-
-            }
-
-             foreach ($request->datos as $dato) {
-            $departamento=$dato['departamento'];
-            $distrito=$dato['distrito'];
-            $provincia=$dato['provincia'];
-            $direccion=$dato['direccion'];
-            $codigo=$dato['codigo'];
-            $Tienda=$dato['Tienda'];
-         
-            
-        }
-
-
-            
-        }catch(Exception $e){
-            return ['data' =>$e,'veri'=>false];
-        }
+        
 
 
 

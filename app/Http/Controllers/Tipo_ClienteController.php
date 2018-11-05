@@ -3,7 +3,10 @@
 namespace hermes\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
+use DB;
+use hermes\Tipo_Cliente;
 class Tipo_ClienteController extends Controller
 {
     /**
@@ -13,7 +16,9 @@ class Tipo_ClienteController extends Controller
      */
     public function index()
     {
-        //
+         $tipocliente=DB::table('Tipo_Cliente')->get();
+        // dd($rol);
+        return view('tipocliente.index',['tipocliente'=>$tipocliente]);
     }
 
     /**
@@ -23,7 +28,7 @@ class Tipo_ClienteController extends Controller
      */
     public function create()
     {
-        //
+        return view('tipocliente.create');
     }
 
     /**
@@ -34,7 +39,10 @@ class Tipo_ClienteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+         $tipocliente=new Tipo_Cliente;
+        $tipocliente->nombre=$request->get('tipo');
+        $tipocliente->save();
+        return redirect::to('tipocliente');
     }
 
     /**
@@ -56,7 +64,7 @@ class Tipo_ClienteController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view("tipocliente.edit",['tipocliente'=>Tipo_Cliente::find($id)]);
     }
 
     /**
@@ -66,9 +74,13 @@ class Tipo_ClienteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+         $id=$request->get('id'); 
+        $tipocliente=Tipo_Cliente::Find($id);
+        $tipocliente->nombre=$request->get('tipo'); 
+        $tipocliente->update();
+        return redirect::to('tipocliente');
     }
 
     /**
@@ -79,6 +91,9 @@ class Tipo_ClienteController extends Controller
      */
     public function destroy($id)
     {
-        //
+      $tipocliente=Tipo_Cliente::destroy($id);
+        // $rol->estado=0;
+        // $rol->update();
+        return Redirect::to('tipocliente');
     }
 }
