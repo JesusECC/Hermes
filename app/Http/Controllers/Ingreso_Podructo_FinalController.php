@@ -24,6 +24,7 @@ class Ingreso_Podructo_FinalController extends Controller
     public function index()
     {
 
+
     }
 
 public function create()
@@ -41,12 +42,12 @@ $almacen=DB::table('Almacen as a')
 
 
 $tipoingreso=DB::table('Tipo_ingreso as t')
-->select('t.id as idIn','t.nombre')
+->select('t.id as idIn','t.nombreTP')
 ->get();
 
 $productos= DB::table('Productos as p')
 ->join('Producto_Detalle as pd','pd.id','=','p.id')
-->select('p.CodigoB_Producto','pd.nombre_producto','pd.marca_producto','pd.categoria','pd.descuento','p.stockP','p.precio_unitario')
+->select('p.CodigoB_Producto','pd.nombre_producto','pd.marca_producto','pd.categoria','pd.descuento','p.stockP','p.precio_unitario','p.id as idPro')
 ->where('p.estado_idEstado','=',1)
 ->get();
  

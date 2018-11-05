@@ -13,6 +13,15 @@
 <div class="card">
     <div class="card-header">
         <h4 class="card-title pull-left">Registrar Producto Final</h4>
+        @if (count($errors)>0)
+            <div class="alert-alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{$error}}</li>
+                    @endforeach 
+                </ul>   
+            </div>
+        @endif
     </div>
     <div class="card-body">
         <h4 class="card-title">Datos del Producto</h4>
