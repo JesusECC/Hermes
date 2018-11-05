@@ -18,16 +18,8 @@
   </div>
   <div class="card-body">
         <div class="form-body">
-            {!! Form::model($documento, ['method'=>'POST','route' => ['documento-update',$documento->id]]) !!}
-                @csrf
-                <div class="row p-t-20">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label class="control-label">Documento</label>
-                            <input type="text" name="nombre_TD" id="nombre_TD" class="form-control" value="{{ $documento->nombre_TD }}">                
-                        </div>
-                    </div>
-                </div>
+            {!! Form::model($persona, ['method'=>'POST','route' => ['persona-update',$persona->id]]) !!}
+            @include('admin.persona.partials.update')
                 <button type="submit" class="btn waves-effect waves-light btn-success pull-right">Actualizar</button>
             {!! Form::close() !!}
         </div>

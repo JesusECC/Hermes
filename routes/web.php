@@ -152,3 +152,30 @@ Route::post('tipo_salida_mp/update',['as'=>'tipo_salida_mp-update','uses'=>'Tipo
 Route::get('tipo_salida_mp/delete/{id}',['as'=>'tipo_salida_mp-delete','uses'=>'Tipo_salida_MPController@destroy']);
 
 
+
+
+
+
+
+
+
+
+
+
+// persona
+Route::get('persona',['as' => 'persona-index','uses'=>'PersonaController@index']);
+Route::get('persona/create',['as' => 'persona-create','uses'=>'PersonaController@create']);
+Route::post('persona/guardar',['as' => 'persona-guardar','uses'=>'PersonaController@store']);
+Route::get('persona/editar/{id}',['as' => 'persona-editar','uses'=>'PersonaController@edit']);
+Route::post('persona/update/{id}',['as' => 'persona-update','uses'=>'PersonaController@update']);
+Route::get('persona/delete/{id}',['as' => 'persona-delete','uses'=>'PersonaController@destroy']);
+
+
+// trabajador FALTA
+Route::get('trabajador',['as' => 'trabajador-index','uses'=>'TrabajadorController@index']);
+Route::get('trabajador/create',['as' => 'trabajador-create','uses'=>'TrabajadorController@create']);
+Route::post('trabajador/guardar',['as' => 'trabajador-guardar','uses'=>'TrabajadorController@store']);
+Route::get('trabajador/editar/{id}',['as' => 'trabajador-editar','uses'=>'TrabajadorController@edit']);
+Route::post('trabajador/update/{id}',['as' => 'trabajador-update','uses'=>'TrabajadorController@update']);
+Route::get('trabajador/delete/{id}',['as' => 'trabajador-delete','uses'=>'TrabajadorController@destroy']);
+

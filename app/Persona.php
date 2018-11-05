@@ -24,4 +24,8 @@ class Persona extends Model
     protected $guarded=[
 
     ];
+
+    public function Trabajador(){
+        return $this->belongsTo(Trabajador::class,'idPersona','id');
+    }
 }
