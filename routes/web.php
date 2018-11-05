@@ -47,8 +47,19 @@ Route::get('estado',['as' => 'estado-index','uses'=>'EstadoController@index']);
 Route::get('estado/create',['as' => 'estado-create','uses'=>'EstadoController@create']);
 Route::post('estado/guardar',['as' => 'estado-guardar','uses'=>'EstadoController@store']);
 Route::get('estado/editar/{id}',['as' => 'estado-editar','uses'=>'EstadoController@edit']);
-Route::post('estado/update',['as' => 'estado-update','uses'=>'EstadoController@update']);
+
+Route::post('estado/update/{id}',['as' => 'estado-update','uses'=>'EstadoController@update']);
 Route::get('estado/delete/{id}',['as' => 'estado-delete','uses'=>'EstadoController@destroy']);
+
+// tipo documento
+Route::get('documento',['as' => 'documento-index','uses'=>'Tipo_documentoController@index']);
+Route::get('documento/create',['as' => 'documento-create','uses'=>'Tipo_documentoController@create']);
+Route::post('documento/guardar',['as' => 'documento-guardar','uses'=>'Tipo_documentoController@store']);
+Route::get('documento/editar/{id}',['as' => 'documento-editar','uses'=>'Tipo_documentoController@edit']);
+Route::post('documento/update/{id}',['as' => 'documento-update','uses'=>'Tipo_documentoController@update']);
+Route::get('documento/delete/{id}',['as' => 'documento-delete','uses'=>'Tipo_documentoController@destroy']);
+
+
 
 //tipo comprobante
 Route::get('tipocomprobante',['as' => 'tipocomprobante','uses'=>'Tipo_ComprobanteController@index']);
@@ -105,3 +116,40 @@ Route::post('tipotelefono/guardar',['as' => 'tipotelefono-guardar','uses'=>'Tipo
 Route::get('tipotelefono/editar/{id}',['as' => 'tipotelefono-editar','uses'=>'Tipo_telefonoController@edit']);
 Route::post('tipotelefono/update',['as' => 'tipotelefono-update','uses'=>'Tipo_telefonoController@update']);
 Route::get('tipotelefono/delete/{id}',['as' => 'tipotelefono-delete','uses'=>'Tipo_telefonoController@destroy']);
+
+
+//color
+Route::get('color',['as'=> 'color-index','uses'=>'ColorController@index']);
+Route::get('color/create',['as'=>'color-create','uses'=>'ColorController@create']);
+Route::post('color/guardar',['as'=>'color-guardar','uses'=>'ColorController@store']);
+Route::get('color/editar/{id}',['as'=>'color-edit','uses'=>'ColorController@edit']);
+Route::post('color/upadte',['as'=>'color-update','uses'=>'ColorController@update']);
+Route::get('color/delete/{id}',['as'=>'color-delete','uses'=>'ColorController@destroy']);
+
+//talla
+Route::get('talla',['as'=>'talla-index','uses'=>'TallasController@index']);
+Route::get('talla/create',['as'=>'talla-create','uses'=>'TallasController@create']);
+Route::post('talla/guardar',['as'=>'talla-guardar','uses'=>'TallasController@store']);
+Route::get('talla/editar/{id}',['as'=>'talla-edit','uses'=>'TallasController@edit']);
+Route::post('talla/update',['as'=>'talla-update','uses'=>'TallasController@update']);
+Route::get('tall/delete/{id}',['as'=>'talla-delete','uses'=>'TallasController@destroy']);
+
+
+//tipo_salida
+Route::get('tipo_salida',['as'=>'tipo_salida-index','uses'=>'Tipo_salidaController@index']);
+Route::get('tipo_salida/create',['as'=>'tipo_salida-create','uses'=>'Tipo_salidaController@create']);
+Route::post('tipo_salida/guardar',['as'=>'tipo_salida-guardar','uses'=>'Tipo_salidaController@store']);
+Route::get('tipo_salida/editar/{id}',['as'=>'tipo_salida-edit','uses'=>'Tipo_salidaController@edit']);
+Route::post('tipo_salida/update',['as'=>'tipo_salida-update','uses'=>'Tipo_salidaController@update']);
+Route::get('tipo_salida/delete/{id}',['as'=>'tipo_salida-delete','uses'=>'Tipo_salidaController@destroy']);
+
+
+//tipo_salida_mp
+Route::get('tipo_salida_mp',['as'=>'tipo_salida_mp-index','uses'=>'Tipo_salida_MPController@index']);
+Route::get('tipo_salida_mp/create',['as'=>'tipo_salida_mp-create','uses'=>'Tipo_salida_MPController@create']);
+Route::post('tipo_salida_mp/guardar',['as'=>'tipo_salida_mp-guardar','uses'=>'Tipo_salida_MPController@store']);
+Route::get('tipo_salida_mp/editar/{id}',['as'=>'tipo_salida_mp-edit','uses'=>'Tipo_salida_MPController@edit']);
+Route::post('tipo_salida_mp/update',['as'=>'tipo_salida_mp-update','uses'=>'Tipo_salida_MPController@update']);
+Route::get('tipo_salida_mp/delete/{id}',['as'=>'tipo_salida_mp-delete','uses'=>'Tipo_salida_MPController@destroy']);
+
+

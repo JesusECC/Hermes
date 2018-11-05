@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use DB;
 use hermes\Estado;
+
+
 class EstadoController extends Controller
 {
     /**
@@ -41,8 +43,8 @@ class EstadoController extends Controller
     {
         //
         $estado=new Estado;
-        $estado->tipo_estado=$request->get('estado');
-        $estado->descripcion=$request->get('descri');
+        $estado->tipo_estado=$request->get('tipo_estado');
+        $estado->descripcion=$request->get('descripcion');
         $estado->save();
         return redirect('estado');
     }
@@ -66,7 +68,8 @@ class EstadoController extends Controller
      */
     public function edit($id)
     {
-        //
+        // dd(Estado::findOrFail($id));
+        return view("admin.estado.edit",['estado'=>Estado::findOrFail($id)]);
     }
 
     /**
@@ -78,7 +81,11 @@ class EstadoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $estado=Estado::Find($id);
+        $estado->tipo_estado=$request->get('tipo_estado');
+        $estado->descripcion=$request->get('descripcion');
+        $estado->update();
+        return redirect('estado');
     }
 
     /**
@@ -90,5 +97,7 @@ class EstadoController extends Controller
     public function destroy($id)
     {
         //
+        $rol=Estado::destroy($id);
+        return redirect('estado');
     }
 }

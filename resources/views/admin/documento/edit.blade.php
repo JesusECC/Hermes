@@ -18,19 +18,13 @@
   </div>
   <div class="card-body">
         <div class="form-body">
-            {!! Form::model($estado, ['method'=>'POST','route' => ['estado-update',$estado->id]]) !!}
+            {!! Form::model($documento, ['method'=>'POST','route' => ['documento-update',$documento->id]]) !!}
                 @csrf
                 <div class="row p-t-20">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label class="control-label">Estado</label>
-                            <input type="text" name="tipo_estado" id="tipo_estado" class="form-control" value={{$estado->tipo_estado}} >                
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label class="control-label">Descripción</label>
-                            <input type="text" name="descripcion" id="descripcion" class="form-control" value="{{ $estado->descripcion }}" >                
+                            <label class="control-label">Documento</label>
+                            <input type="text" name="nombre_TD" id="nombre_TD" class="form-control" value="{{ $documento->nombre_TD }}">                
                         </div>
                     </div>
                 </div>

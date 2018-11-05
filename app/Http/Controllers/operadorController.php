@@ -3,6 +3,10 @@
 namespace hermes\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+
+use DB;
+use hermes\operador;
 
 class operadorController extends Controller
 {
@@ -14,6 +18,9 @@ class operadorController extends Controller
     public function index()
     {
         //
+        $operador=DB::table('operador')->get();
+        return view('.operador.index',['operador'=>$operador]);
+
     }
 
     /**
@@ -24,6 +31,7 @@ class operadorController extends Controller
     public function create()
     {
         //
+        return view('.operador.create');
     }
 
     /**
@@ -35,6 +43,11 @@ class operadorController extends Controller
     public function store(Request $request)
     {
         //
+        $operador=new operador;
+        $operador->nombre_operador=$request->get('nombre_operador');
+        $operador->glosa=$request->get('glosa');
+        $operador->save();
+        return redirect::to('operador');
     }
 
     /**
@@ -46,6 +59,7 @@ class operadorController extends Controller
     public function show($id)
     {
         //
+
     }
 
     /**
@@ -57,6 +71,7 @@ class operadorController extends Controller
     public function edit($id)
     {
         //
+        return view(".operador.edit",['operador'=>operador::find($id)]);
     }
 
     /**
@@ -69,6 +84,12 @@ class operadorController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $id=$request->get('id');
+        $operador=operador::find($id);
+        $operador->nombre_operador=$request->get('nombre_operador');
+        $operador->glosa=$request->get('glosa');
+        $operador->update();
+        return view('operador');
     }
 
     /**
@@ -80,5 +101,8 @@ class operadorController extends Controller
     public function destroy($id)
     {
         //
+        $operador=operador::destroy();
+        return Redirect::to('operador');
+
     }
 }

@@ -18,8 +18,8 @@
   </div>
     <div class="card-body">
         <div class="form-body">
-            {!! Form::open(['route'=>'estado-guardar','method'=>'POST']) !!}
-                   @include('admin.estado.partials.fields')
+            {!! Form::open(['route'=>'documento-guardar','method'=>'POST']) !!}
+                   @include('admin.documento.partials.fields')
                 <button type="submit" class="btn waves-effect waves-light btn-success pull-right">Agregar</button>
             {!! Form::close() !!}
         </div>
