@@ -3,7 +3,7 @@
 namespace hermes\Http\Controllers;
 
 use Illuminate\Http\Request;
-use hermes\Productos;
+use hermes\Producto;
 
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
@@ -88,7 +88,7 @@ class ProductoController extends Controller
             'descuento'=>$descuento,
             ]
         );
-            $producto=new Productos;
+            $producto=new Producto;
             $producto->idDetalle_produto=$idDetalleProducto;
             $producto->CodigoB_Producto=$codigo;
             $producto->Tallas_idTallas=$talla;

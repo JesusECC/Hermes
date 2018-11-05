@@ -18,27 +18,11 @@
         <h4 class="card-title">Datos del Producto</h4>
         <div class="form-body">
             <div class="row p-t-10">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label class="control-label">Nombre Producto</label>
-                        <input type="text" id="b" class="form-control" placeholder="Nombre Almacen">
-                    </div>                    
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <div class="form-group">
-                            <label class="control-label">Codigo</label>
-                            <input type="text" id="a" class="form-control" placeholder="Asignar un codigo">
-                        </div>                        
-                    </div>
-                </div>
 
-            </div>
-            <div class="row p-t-2">
-                <div class="col-md-6">
+            	<div class="col-md-6">
                     <div class="form-group">
                         <label class="control-label">Tipo Producto</label>
-                        <select  class="form-control selectpicker" id="d" data-live-search="true">
+                        <select  class="form-control selectpicker" id="a" data-live-search="true">
                             <option value="" disabled="" selected="">Tipo Producto</option>
                             @foreach($tipoproducto as $tp)                
                             <option value="{{$tp->id}}">{{$tp->nombreTP}}</option>
@@ -48,8 +32,26 @@
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
+                        <label class="control-label">Nombre Producto</label>
+                        <input type="text" id="b" class="form-control" placeholder="Nombre Almacen">
+                    </div>                    
+                </div>
+                
+
+            </div>
+            <div class="row p-t-2">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <div class="form-group">
+                            <label class="control-label">Codigo</label>
+                            <input type="text" id="c" class="form-control" placeholder="Asignar un codigo">
+                        </div>                        
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
                         <label>Almacen</label>
-                        <select  class="form-control selectpicker" id="g" data-live-search="true">
+                        <select  class="form-control selectpicker" id="d" data-live-search="true">
                         <option value="" disabled="" selected="">Almacen</option>
                         @foreach($almacen as $al)                
                         <option value="{{$al->id}}">{{$al->nombre_almacen}}</option>
@@ -62,19 +64,19 @@
                 <div class="col-md-3">
                     <div class="form-group">
                         <label class="control-label">Marca</label>
-                        <input type="text" id="a" class="form-control" placeholder="Asignar un marca">                        
+                        <input type="text" id="e" class="form-control" placeholder="Asignar un marca">                        
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="form-group">
                         <label class="control-label">Categoria</label>
-                        <input type="text" id="a" class="form-control" placeholder="Asignar un categoria">                        
+                        <input type="text" id="f" class="form-control" placeholder="Asignar un categoria">                        
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="form-group">
                         <label>Color</label>
-                        <select  class="form-control selectpicker" id="j" data-live-search="true">
+                        <select  class="form-control selectpicker" id="g" data-live-search="true">
                         <option value="" disabled="" selected="">Color</option>
                         @foreach($color as $c)                
                         <option value="{{$c->id}}">{{$c->nombre_color}}</option>
@@ -85,7 +87,7 @@
                 <div class="col-md-3">
                     <div class="form-group">
                         <label>talla</label>
-                        <select  class="form-control selectpicker" id="i" data-live-search="true">
+                        <select  class="form-control selectpicker" id="h" data-live-search="true">
                         <option value="" disabled="" selected="">Talla</option>
                         @foreach($talla as $t)                
                         <option value="{{$t->id}}">{{$t->nom_talla}}</option>
@@ -98,18 +100,18 @@
                 <div class="col-md-4">
                     <div class="input-group">
                         <span class="input-group-addon">S/.</span>
-                        <input type="text" class="form-control" id="a" aria-label="Amount (to the nearest dollar)" placeholder="Precio Unitario">                      
+                        <input type="text" class="form-control" id="i" aria-label="Amount (to the nearest dollar)" placeholder="Precio Unitario">                      
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="input-group">
                         <span class="input-group-addon">%</span>
-                        <input type="text" id="a" class="form-control" aria-label="Amount (to the nearest dollar)" placeholder="Asignar un descuento">                        
+                        <input type="text" id="j" class="form-control" aria-label="Amount (to the nearest dollar)" placeholder="Asignar un descuento">                        
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
-                        <input type="text" id="a" class="form-control" placeholder="Ingrese Stock">                        
+                        <input type="text" id="k" class="form-control" placeholder="Ingrese Stock">                        
                     </div>
                 </div>
             </div>
@@ -121,7 +123,7 @@
 <script>
     
         $('#save').click(function(){
-            saveAlamcen();
+            saveProducto();
         });
         
         $('#su').keyup(function (){
@@ -135,24 +137,25 @@
 
     });
 
-    function saveAlamcen(){
+    function saveProducto(){
         
         // se enviar los datos al controlador empleados
-        var codigo=$("#a").val();
-        var nombrea=$("#b").val();
-        var idTienda=$("#g").val();
-        var direccion=$("#c").val();
-        var departamento=$("#d").val();
-        var provincia=$("#f").val();
-        var distrito=$("#e").val();
-        var numero=$("#h").val();
-        var tipo=$("#i").val();
-        var operador=$("#j").val();
+        var idTipoProducto=$("#a").val();
+        var nombre=$("#b").val();
+        var codigo=$("#c").val();
+        var almacen=$("#d").val();
+        var marca=$("#e").val();
+        var categoria=$("#f").val();
+        var color=$("#g").val();
+        var talla=$("#h").val();
+        var precioU=$("#i").val();
+        var descuento=$("#j").val();
+        var stock=$("#k").val();
         
-
+ 
           
-        if(departamento!=''){
-        var dat=[{nombrea:nombrea,departamento:departamento,distrito:distrito,provincia:provincia,direccion:direccion,codigo:codigo,idTienda:idTienda,numero:numero,tipo:tipo,operador:operador}];
+        if(nombre!=''){
+        var dat=[{idTipoProducto:idTipoProducto,nombre:nombre,codigo:codigo,almacen:almacen,marca:marca,categoria:categoria,color:color,talla:talla,precioU:precioU,descuento:descuento,stock:stock}];
         console.log(dat);
             $.ajax({
                 headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
