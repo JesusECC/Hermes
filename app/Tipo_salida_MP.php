@@ -8,7 +8,7 @@ class Tipo_salida_MP extends Model
 {
     //
     protected $table='Tipo_salida_MP';
-    protected $primarykey='idTipo_salidaMP';
+    protected $primarykey='id';
     public $timestamps=false;
     
     protected $filleable=[

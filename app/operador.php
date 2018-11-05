@@ -8,7 +8,7 @@ class operador extends Model
 {
     //
     protected $table='operador';
-    protected $primarykey='idoperador';
+    protected $primarykey='id';
     public $timestamps=false;
     
     protected $filleable=[

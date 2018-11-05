@@ -3,6 +3,10 @@
 namespace hermes\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+
+use DB;
+use hermes\Tallas;
 
 class TallasController extends Controller
 {
@@ -14,6 +18,8 @@ class TallasController extends Controller
     public function index()
     {
         //
+        $talla=DB::table('Tallas')->get();
+        return view('producto.talla.index',['talla'=>$talla]);
     }
 
     /**
@@ -24,6 +30,7 @@ class TallasController extends Controller
     public function create()
     {
         //
+        return view('producto.talla.create');
     }
 
     /**
@@ -35,6 +42,10 @@ class TallasController extends Controller
     public function store(Request $request)
     {
         //
+        $talla=new Tallas;
+        $talla->nom_talla=$request->get('nom_talla');
+        $talla->save();
+        return redirect::to('talla');
     }
 
     /**
@@ -57,6 +68,8 @@ class TallasController extends Controller
     public function edit($id)
     {
         //
+        return view("producto.talla.edit",['talla'=>Tallas::find($id)]);
+
     }
 
     /**
@@ -66,9 +79,14 @@ class TallasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         //
+        $id=$request->get('id');
+        $talla=Tallas::find($id);
+        $talla->nom_talla=$request->get('nom_talla');
+        $talla->update();
+        return redirect::to('talla');        
     }
 
     /**
@@ -80,5 +98,7 @@ class TallasController extends Controller
     public function destroy($id)
     {
         //
+        $talla=Tallas::destroy($id);
+        return Redirect::to('talla');
     }
 }
