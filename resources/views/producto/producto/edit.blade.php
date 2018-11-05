@@ -13,7 +13,6 @@
 <div class="card">
   <div class="card-header">
      <h4 class="card-title pull-left">Editar Color</h4>
-     
   </div>
   <div class="card-body">
     <h4 class="card-title">Datos del Producto</h4>

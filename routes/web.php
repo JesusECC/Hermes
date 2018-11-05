@@ -161,6 +161,7 @@ Route::get('tipo_salida_mp/editar/{id}',['as'=>'tipo_salida_mp-edit','uses'=>'Ti
 Route::post('tipo_salida_mp/update',['as'=>'tipo_salida_mp-update','uses'=>'Tipo_salida_MPController@update']);
 Route::get('tipo_salida_mp/delete/{id}',['as'=>'tipo_salida_mp-delete','uses'=>'Tipo_salida_MPController@destroy']);
 
+//operador
 Route::get('operador',['as'=>'operador-index','uses'=>'operadorController@index']);
 Route::get('operador/create',['as'=>'operador-create','uses'=>'operadorController@create']);
 Route::post('operador/guardar',['as'=>'operador-guardar','uses'=>'operadorController@store']);
@@ -168,7 +169,13 @@ Route::get('operador/editar/{id}',['as'=>'operador-edit','uses'=>'operadorContro
 Route::post('operador/update',['as'=>'operador-update','uses'=>'operadorController@update']);
 Route::get('operador/delete/{id}',['as'=>'operador-delete','uses'=>'operadorController@destroy']);
 
-
+//cliente
+Route::get('cliente',['as'=>'cliente-index','uses'=>'ClienteController@index']);
+Route::get('cliente/create',['as'=>'cliente-create','uses'=>'ClienteController@create']);
+Route::post('cliente/guardar',['as'=>'cliente-guardar','uses'=>'ClienteController@store']);
+Route::get('cliente/editar/{id}',['as'=>'cliente-edit','uses'=>'ClienteController@edit']);
+Route::post('cliente/update',['as'=>'cliente-update','uses'=>'ClienteController@update']);
+Route::get('cliente/delete/{id}',['as'=>'cliente-delete','uses'=>'ClienteController@destroy']);
 
 
 
