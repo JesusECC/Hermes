@@ -97,8 +97,13 @@
 
 
                                  <div class="row">
-                                           
-
+                                           <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label class="control-label">Stock</label>
+                                                    <input type="text" id="a" class="form-control" placeholder="Asignar un categoria">
+                                                     </div>
+                                            </div>
+                                             
                                              <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>talla</label>
