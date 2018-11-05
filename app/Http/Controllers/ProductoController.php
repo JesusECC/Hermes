@@ -48,7 +48,7 @@ class ProductoController extends Controller
 
 
 
-        return view('producto.producto.index');
+        
     }
 
     /**
