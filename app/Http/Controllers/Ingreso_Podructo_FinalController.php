@@ -63,52 +63,6 @@ $productos= DB::table('Productos as p')
 
 public function store(Request $request)
     {
- /*      try{
-
- DB::beginTransaction();
-dd($request);
-$ingreso=new Ingreso_Podructo_Final;
-$ingreso->idTrabajador=$request->get('idTrabajador');
-$ingreso->idAlmacen=$request->get('idAlmacen');
-$ingreso->idTipo_ingreso=$request->get('idTipo_ingreso');
-$ingreso->codigo_ingresoPF=$request->get('idTrabajador');
-$ingreso->impuestoPF=18;
-$ingreso->estado_idEstado=1;
-$ingreso->save();
-
-$idProducto=$request->get('idProduto_PF');
-$cantidad=$request->get('cantidadPF');
-$precio_compra=$request->get('precio_compraPF');
-$precio_venta=$request->get('precio_ventaPF');
-
-$cont = 0;
-
-while ($cont<count($idProducto)) {
-    $detalle = new Detalle_ingresoPF();
-    $detalle->idIngreso_PF=$ingreso->idingreso;
-    $detalle->idProduto_PF=$idProducto[$cont];
-    $detalle->cantidadPF=$cantidad[$cont];
-    $detalle->precio_compraPF=$precio_compra[$cont];
-    $detalle->precio_ventaPF=$precio_venta[$cont];
-    $detalle->save();
-    $cont=$cont+1;
-
-}
-
-
- DB::Commit();
-
-}catch(\Exception $e)
-
-{
-
-DB::rollback();
-}
-    return Redirect::to('/ingreso');
-
-*/
-
-
      try{
         $idProducto;
         $produc;
@@ -135,6 +89,7 @@ DB::rollback();
             ['idTrabajador'=>$trabajador,
             'idAlmacen'=>$almacen,           
             'idTipo_ingreso'=>$tipoingreso,
+            'tipo_producto_ingreso'=>'productoF',//le asigne un tipo de producto el que ingresa 
             'codigo_ingresoPF'=>123,
             'impuestoPF'=>18,
             'estado_idEstado'=>1,
@@ -142,7 +97,7 @@ DB::rollback();
             ]
         );
 
-        foreach($request->filas as $fila){
+        foreach($request->fila as $fila){
             $detalle=new Detalle_ingresoPF;	
             $detalle->idIngreso_PF=$idIngreso;
             $detalle->idProduto_PF=$idProducto;

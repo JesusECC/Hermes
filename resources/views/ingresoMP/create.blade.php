@@ -12,7 +12,7 @@
 </div>
 <div class="card">
     <div class="card-header">
-        <h4 class="card-title pull-left">Registro del Producto Final</h4>
+        <h4 class="card-title pull-left">Registro de Materia Prima</h4>
         @if (count($errors)>0)
             <div class="alert-alert-danger">
                 <ul>
@@ -56,14 +56,32 @@
                         <label for="proveedor">Tipo Ingreso</label>
                         <select name="idTipo_ingreso" id="idTipo_ingreso" class="form-control selectpicker" data-live-search="true">
                             <option value="" selected="" disabled="">Seleccione</option>
-                            @foreach($tipoingreso as $ti)
-                            <option value="{{$ti->idIn}}">{{$ti->nombreTP}}</option>
+                            @foreach($Tipo_Comprobante as $ti)
+                            <option value="{{$ti->idTC}}">{{$ti->nombre_comprobante}}</option>
                             @endforeach  
                         </select>
                     </div>                    
                 </div>
                           
             </div>
+                    <div class="row p-t-10">
+
+                           
+                           <div class="col-md-5">
+                    <div class="from-group">
+                        <label>Numero de Comprobante</label>
+                        <input type="text" name="pforma_Ing_producto" id="num_comprobanteMP" class="form-control" placeholder="Und, rollo, peso, etc.">
+                    </div>                    
+                </div>
+                <div class="col-md-5">
+                    <div class="from-group">
+                        <label>Serie de Comprobante</label>
+                        <input type="text" name="pforma_Ing_producto" id="serie_comprobanteMP" class="form-control" placeholder="Und, rollo, peso, etc.">
+                    </div>                    
+                </div>
+
+                    </div>
+
             
         </div>
     </div>    
@@ -78,35 +96,7 @@
           <div class="row p-t-10">
 
 
-        	<div class="col-md-3">
-                    <div class="form-group">
-                        <label>Talla</label>
-                        <select name="idTalla" class="form-control selectpicker" id="pidTalla" data-live-search="true">
-                        	<option value="" selected="" disabled="">Seleccione</option>
-                            @foreach($talla as $ta)
-                            
-                            <option value="{{$ta->idTa}}">{{$ta->nom_talla}}</option>
-                            @endforeach
-                        </select>                        
-                    </div>
-                </div>
-
-
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label>Color</label>
-                        <select name="idCollor" class="form-control selectpicker" id="pidCollor" data-live-search="true">
-                        	<option value="" selected="" disabled="">Seleccione</option>
-                            @foreach($color as $co)
-                            
-                            <option value="{{$co->idC}}">{{$co->nombre_color}}</option>
-                            @endforeach
-                        </select>                        
-                    </div>
-                </div>
-
-
-                <div class="col-md-5">
+                <div class="col-md-7">
                     <div class="form-group">
                         <label>Producto</label>
                         <select name="pidProducto" class="form-control selectpicker" id="pidProducto" data-live-search="true">
@@ -117,26 +107,30 @@
                         </select>                        
                     </div>
                 </div>
+                <div class="col-md-5">
+                    <div class="from-group">
+                        <label>Tipo Ingreso Materia Prima</label>
+                        <input type="text" name="pforma_Ing_producto" id="pforma_Ing_producto" class="form-control" placeholder="Und, rollo, peso, etc.">
+                    </div>                    
+                </div>
             </div>
             <div class="row p-t-10">
+            	
                 <div class="col-md-3">
                     <div class="from-group">
                         <label>Cantidad</label>
-                        <input type="number" name="pcantidadPF" id="pcantidadPF" class="form-control" placeholder="cantidad">
+                        <input type="number" name="pcantidadMP" id="pcantidadMP" class="form-control" placeholder="cantidad">
                     </div>                    
                 </div>
                 <div class="col-md-3">
                     <div class="from-group">
                         <label>Precio compra</label>
-                        <input type="number" name="pprecio_compraPF" id="pprecio_compraPF" class="form-control" placeholder="P. comrpa">
+                        <input type="number" name="pprecio_compraMP" id="pprecio_compraMP" class="form-control" placeholder="P. comrpa">
                     </div>                    
                 </div>
-                <div class="col-md-3">
-                    <div class="from-group">
-                        <label>Precio venta</label>
-                        <input type="number" name="pprecio_ventaPF" id="pprecio_ventaPF" class="form-control" placeholder="P. venta">
-                    </div>                    
-                </div>
+
+                
+                
                 <div class="col-md-3">
                     <div class="from-group">
                          <button style="margin-top:31px; " type="button" id="bt_add" class="btn btn-primary pull-left">agregar</button>
@@ -152,9 +146,10 @@
                 <thead style="background-color:#A9D0F5">
                     <th>opciones</th>
                     <th>Producto</th>
+                    <th>Tipo Ing.</th>
                     <th>cantidad</th>
                     <th>precio compra</th>
-                    <th>precio venta</th>
+                    
                     <th>subtotal</th>
                 </thead>
                 <tbody>
@@ -165,7 +160,8 @@
                     <th></th>
                     <th></th>
                     <th></th>
-                    <th><h4 id="total">s/. 0.00</h4></th>
+                  
+                    <th><h4 id="total">s/. 0.00</h4><input type="hidden" name="total_compra" id="total_compra"></th>
 
                 </tfoot>
             </table>
@@ -226,28 +222,32 @@ function agregar()
 {
     idProducto=$("#pidProducto").val();
     produc=$("#pidProducto option:selected").text();
-    cantidad=$("#pcantidadPF").val();
-    precio_compra=$("#pprecio_compraPF").val();
-    precio_venta=$("#pprecio_ventaPF").val();
+    cantidad=$("#pcantidadMP").val();
+    precio_compra=$("#pprecio_compraMP").val();
+    tipo_ingreso_producto=$("#pforma_Ing_producto").val();
     trabajador=$("#idTrabajador").val();
     almacen=$("#idAlmacen").val();
     tipoingreso=$("#idTipo_ingreso").val();
+    num_comporbante=$("#num_comprobanteMP").val();
+    serie_comprobante=$("#num_comprobanteMP").val();
+    //total_com=$("#total_compra").val();
 
-    if(idProducto!="" && cantidad!=""  && precio_compra!="" && precio_venta!="" && trabajador!="" && almacen!="" && tipoingreso!="")
+    if(idProducto!="" && cantidad!=""  && precio_compra!="" && trabajador!="" && almacen!="" && tipoingreso!="" && tipo_ingreso_producto!="" && num_comporbante!="" && serie_comprobante!="")
     {
-       subtotal[cont]=(cantidad*precio_compra);
+       subtotal[cont]=cantidad*precio_compra;
        total=total+subtotal[cont];
 
-       var fila='<tr class="selected" id="fila'+cont+'"><td><button type="button" class="btn btn-warning" onclick="eliminar('+cont+');">X</button></td> <td><input type="hidden" name="idProduto_PF[]" value="'+idProducto+'">'+produc+'</td> <td><input type="number" name="cantidadPF[]" value="'+cantidad+'"></td> <td><input type="number" name="precio_compraPF[]" value="'+precio_compra+'"></td> <td><input type="number" name="precio_ventaPF[]" value="'+precio_venta+'"></td> <td>'+subtotal[cont]+'</td></tr>';
+       var fila='<tr class="selected" id="fila'+cont+'"><td><button type="button" class="btn btn-warning" onclick="eliminar('+cont+');">X</button></td> <td><input type="hidden" name="idProduto_PF[]" value="'+idProducto+'">'+produc+'</td> <td><input type="text" name="forma_Ing_producto[]" value="'+tipo_ingreso_producto+'"></td> <td><input type="number" name="cantidadPF[]" value="'+cantidad+'"></td> <td><input type="number" name="precio_compraPF[]" value="'+precio_compra+'"></td> <td>'+subtotal[cont]+'</td></tr>';
 
        cont++;
 
-       var dat={idProducto:idProducto,produc:produc,cantidad:cantidad,precio_compra:precio_compra,precio_venta:precio_venta,trabajador:trabajador,almacen:almacen,tipoingreso:tipoingreso};
+       var dat={idProducto:idProducto,produc:produc,cantidad:cantidad,precio_compra:precio_compra,trabajador:trabajador,almacen:almacen,tipoingreso:tipoingreso,tipo_ingreso_producto:tipo_ingreso_producto,total:total,num_comporbante:num_comporbante,serie_comprobante:serie_comprobante};
         
        producto.push(dat);
-console.log(producto);
+       console.log(producto);
        limpiar();
        $("#total").html("s/. " + total);
+       $("#total_compra").val(total);
        evaluar();
        $('#detalles').append(fila);
 
@@ -261,9 +261,10 @@ console.log(producto);
 
     total=0;
     function limpiar(){
-        $("#pcantidad").val("");
-        $("#pprecio_compra").val("");
-        $("#pprecio_venta").val("");
+        $("#pcantidadMP").val("");
+        $("#pprecio_compraMP").val("");
+        $("#pforma_Ing_producto").val("");
+     
     }
 
     function evaluar()

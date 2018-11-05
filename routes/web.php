@@ -99,12 +99,21 @@ Route::post('tipoproducto/update',['as' => 'tipoproducto-update','uses'=>'Tipo_p
 Route::get('tipoproducto/delete/{id}',['as' => 'tipoproducto-delete','uses'=>'Tipo_productoController@destroy']);
 
 //ingreso
-Route::get('ingreso',['as' => 'ingreso','uses'=>'Ingreso_Podructo_FinalController@iIngreso_Podructo_FinalControllerndex']);
+Route::get('ingreso',['as' => 'ingreso','uses'=>'Ingreso_Podructo_FinalController@index']);
 Route::get('ingreso/create',['as' => 'ingreso-create','uses'=>'Ingreso_Podructo_FinalController@create']);
 Route::post('ingreso/guardar',['as' => 'ingreso-guardar','uses'=>'Ingreso_Podructo_FinalController@store']);
 Route::get('ingreso/editar/{id}',['as' => 'ingreso-editar','uses'=>'Ingreso_Podructo_FinalController@edit']);
 Route::post('ingreso/update',['as' => 'ingreso-update','uses'=>'Ingreso_Podructo_FinalController@update']);
 Route::get('ingreso/delete/{id}',['as' => 'ingreso-delete','uses'=>'Ingreso_Podructo_FinalController@destroy']);
+
+//ingresoMP
+
+Route::get('ingresoMP',['as' => 'ingresoMP','uses'=>'Ingreso_Materia_PrimaController@index']);
+Route::get('ingresoMP/create',['as' => 'ingresoMP-create','uses'=>'Ingreso_Materia_PrimaController@create']);
+Route::post('ingresoMP/guardar',['as' => 'ingresoMP-guardar','uses'=>'Ingreso_Materia_PrimaController@store']);
+Route::get('ingresoMP/editar/{id}',['as' => 'ingresoMP-editar','uses'=>'Ingreso_Materia_PrimaController@edit']);
+Route::post('ingresoMP/update',['as' => 'ingresoMP-update','uses'=>'Ingreso_Materia_PrimaController@update']);
+Route::get('ingresoMP/delete/{id}',['as' => 'ingresoMP-delete','uses'=>'Ingreso_Materia_PrimaController@destroy']);
 
 // tipo ingreso
 Route::get('tipoingreso',['as' => 'tipoingreso','uses'=>'Tipo_ingresoController@index']);
@@ -169,6 +178,17 @@ Route::post('tipo_salida_mp/guardar',['as'=>'tipo_salida_mp-guardar','uses'=>'Ti
 Route::get('tipo_salida_mp/editar/{id}',['as'=>'tipo_salida_mp-edit','uses'=>'Tipo_salida_MPController@edit']);
 Route::post('tipo_salida_mp/update',['as'=>'tipo_salida_mp-update','uses'=>'Tipo_salida_MPController@update']);
 Route::get('tipo_salida_mp/delete/{id}',['as'=>'tipo_salida_mp-delete','uses'=>'Tipo_salida_MPController@destroy']);
+
+
+//salida
+Route::get('salida',['as'=>'salida-index','uses'=>'SalidaController@index']);
+Route::get('salida/create',['as'=>'salida-create','uses'=>'SalidaController@create']);
+Route::post('salida/guardar',['as'=>'salida-guardar','uses'=>'SalidaController@store']);
+Route::get('salida/editar/{id}',['as'=>'salida-edit','uses'=>'SalidaController@edit']);
+Route::post('salida/update',['as'=>'salida-update','uses'=>'SalidaController@update']);
+Route::get('salida/delete/{id}',['as'=>'salida-delete','uses'=>'SalidaController@destroy']);
+
+
 
 //operador
 Route::get('operador',['as'=>'operador-index','uses'=>'operadorController@index']);
