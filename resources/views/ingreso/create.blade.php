@@ -23,27 +23,27 @@
             </div>
         @endif
     </div> 
-    {!!Form::open(array('url'=>'/ingreso','method'=>'POST','autocomplete'=>'off'))!!}
-
-    {{Form::token()}}  
+    
     <div class="card-body">
         <h4 class="card-title">Datos del Ingreso</h4>
         <div class="form-body">
             <div class="row p-t-10">
-                <div class="col-lg-3 col-sm-3 col-md-3 col-xs-3">
+                <div class="col-lg-4">
                     <div class="form-group">
                         <label for="proveedor">Trabajador</label>
-                        <select name="idTra" id="pid" class="form-control selectpicker" data-live-search="true">
+                        <select name="idTrabajador" id="idTrabajador" class="form-control selectpicker" data-live-search="true">
+                        	<option value="" selected="" disabled="">Seleccione</option>
                            @foreach($trabajador as $tra)
+                           
                            <option value="{{$tra->idTra}}">{{$tra->nombre.' '.$tra->apellidos}}</option>
                            @endforeach  
                         </select>
                     </div>
                 </div> 
-                <div class="col-lg-3">
+                <div class="col-lg-4">
                     <div class="form-group">
                         <label for="proveedor">Almacen</label>
-                        <select name="idAl" id="pid" class="form-control selectpicker" data-live-search="true">
+                        <select name="idAlmacen" id="idAlmacen" class="form-control selectpicker" data-live-search="true">
                             <option value="" selected="" disabled="">Seleccione</option>
                             @foreach($almacen as $al)
                             <option value="{{$al->idAl}}">{{$al->codigo.' '.$al->nombre_almacen}}</option>
@@ -51,10 +51,10 @@
                         </select>
                     </div>                    
                 </div> 
-                <div class="col-lg-3">
+                <div class="col-lg-4">
                     <div class="form-group">
                         <label for="proveedor">Tipo Ingreso</label>
-                        <select name="idAl" id="pid" class="form-control selectpicker" data-live-search="true">
+                        <select name="idTipo_ingreso" id="idTipo_ingreso" class="form-control selectpicker" data-live-search="true">
                             <option value="" selected="" disabled="">Seleccione</option>
                             @foreach($tipoingreso as $ti)
                             <option value="{{$ti->idIn}}">{{$ti->nombreTP}}</option>
@@ -62,32 +62,9 @@
                         </select>
                     </div>                    
                 </div>
-                <div class="col-lg-3">
-                    <div class="from-group">
-                        <label>Tipo Comprobante</label>
-                        <select name="tipo_comprobante" class="form-control">
-                            <option value="" selected="" disabled="">Seleccione</option>
-                            <option value="boleta">Boleta</option>
-                            <option value="factura">Factura</option>
-                            <option value="ticket">Ticket</option>
-                        </select>
-                    </div>                    
-                </div>             
+                          
             </div>
-            <div class="row p-t-2">
-                <div class="col-lg-6">
-                    <div class="form-group">
-                        <label for="serie_comprobante">Serie Comprobante</label>
-                        <input type="text" name="serie_comprobante" value="{{old('serie_comprobante')}}" class="form-control" placeholder="Serie comprobante...">       
-                    </div> 
-                </div>
-                <div class="col-lg-6">
-                    <div class="form-group">
-                        <label for="num_comprobante">Numero Comprobante</label>
-                        <input type="text" name="num_comprobante" required value="{{old('num_comprobante')}}" class="form-control" placeholder="numero comprobante..."> 
-                    </div>                    
-                </div>
-            </div>
+            
         </div>
     </div>    
 </div>
@@ -98,38 +75,76 @@
     <div class="card-body">
         <h4 class="card-title">Detalle Productos</h4>
         <div class="form-body">
-            <div class="row p-t-10">
-                <div class="col-md-6">
+          <div class="row p-t-10">
+
+
+        	<div class="col-md-3">
+                    <div class="form-group">
+                        <label>Talla</label>
+                        <select name="idTalla" class="form-control selectpicker" id="pidTalla" data-live-search="true">
+                        	<option value="" selected="" disabled="">Seleccione</option>
+                            @foreach($talla as $ta)
+                            
+                            <option value="{{$ta->idTa}}">{{$ta->nom_talla}}</option>
+                            @endforeach
+                        </select>                        
+                    </div>
+                </div>
+
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Color</label>
+                        <select name="idCollor" class="form-control selectpicker" id="pidCollor" data-live-search="true">
+                        	<option value="" selected="" disabled="">Seleccione</option>
+                            @foreach($color as $co)
+                            
+                            <option value="{{$co->idC}}">{{$co->nombre_color}}</option>
+                            @endforeach
+                        </select>                        
+                    </div>
+                </div>
+
+
+                <div class="col-md-5">
                     <div class="form-group">
                         <label>Producto</label>
                         <select name="pidProducto" class="form-control selectpicker" id="pidProducto" data-live-search="true">
+                        	 <option value="" selected="" disabled="">Seleccione</option>
                             @foreach($productos as $prod)
                             <option value="{{$prod->idPro}}">{{$prod->nombre_producto}}</option>
                             @endforeach
                         </select>                        
                     </div>
                 </div>
-                <div class="col-md-2">
-                    <div class="from-group">
-                        <label for="cantidad">Cantidad</label>
-                        <input type="number" name="pcantidad" id="pcantidad" class="form-control" placeholder="cantidad">
-                    </div>                    
-                </div>
-                <div class="col-md-2">
-                    <div class="from-group">
-                        <label for="precio_compra">Precio compra</label>
-                        <input type="number" name="pprecio_compra" id="pprecio_compra" class="form-control" placeholder="P. comrpa">
-                    </div>                    
-                </div>
-                <div class="col-md-2">
-                    <div class="from-group">
-                        <label for="precio_venta">Precio venta</label>
-                        <input type="number" name="pprecio_venta" id="pprecio_venta" class="form-control" placeholder="P. venta">
-                    </div>                    
-                </div>
             </div>
+            <div class="row p-t-10">
+                <div class="col-md-3">
+                    <div class="from-group">
+                        <label>Cantidad</label>
+                        <input type="number" name="pcantidadPF" id="pcantidadPF" class="form-control" placeholder="cantidad">
+                    </div>                    
+                </div>
+                <div class="col-md-3">
+                    <div class="from-group">
+                        <label>Precio compra</label>
+                        <input type="number" name="pprecio_compraPF" id="pprecio_compraPF" class="form-control" placeholder="P. comrpa">
+                    </div>                    
+                </div>
+                <div class="col-md-3">
+                    <div class="from-group">
+                        <label>Precio venta</label>
+                        <input type="number" name="pprecio_ventaPF" id="pprecio_ventaPF" class="form-control" placeholder="P. venta">
+                    </div>                    
+                </div>
+                <div class="col-md-3">
+                    <div class="from-group">
+                         <button style="margin-top:31px; " type="button" id="bt_add" class="btn btn-primary pull-left">agregar</button>
+                    </div>                    
+                </div>
+          </div>
         </div>
-        <button type="button" id="bt_add" class="btn btn-primary pull-right">agregar</button>
+       
     </div>
     <div class="card-footer">
         <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
@@ -155,17 +170,17 @@
                 </tfoot>
             </table>
         </div>
-        <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12" id="guardar">
+        <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
             <div class="form-group">
                 <input name"_token" value="{{ csrf_token() }}" type="hidden">
-                <button class="btn btn-primary" type="submit">guardar</button>
+                <button id="save" class="btn btn-primary" type="button">guardar</button>
                 <button class="btn btn-danger" type="reset">cancelar</button>
             </div>
         </div>        
     </div>
 </div>
 
-{!!Form::close()!!}
+
 
 @push('scripts')
 <script>
@@ -176,25 +191,61 @@ $(document).ready(function(){
 });
 
 var cont=0;
+var producto=[];
 total=0;
 subtotal=[];
-$("#guardar").hide();
+
+
+$('#save').click(function(){
+            guardar();
+        });
+function guardar(){
+
+$.ajax({
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                data:  {producto:producto}, //datos que se envian a traves de ajax
+                url:   'guardar', //archivo que recibe la peticion
+                type:  'post', //método de envio
+                dataType: "json",//tipo de dato que envio 
+                success:  function (response) { //una vez que el archivo recibe el request lo procesa y lo devuelve
+                    if(response.veri==true){
+                        var urlBase=window.location.origin;
+                        var url=urlBase+'/'+response.data;
+                        document.location.href=url;
+                    }else{
+                        alert("problemas al guardar la informacion");
+                    }
+                }
+            });
+        }
+       
+
+
 
 function agregar()
 {
     idProducto=$("#pidProducto").val();
-    producto=$("#pidProducto option:selected").text();
-    cantidad=$("#pcantidad").val();
-    precio_compra=$("#pprecio_compra").val();
-    precio_venta=$("#pprecio_venta").val();
+    produc=$("#pidProducto option:selected").text();
+    cantidad=$("#pcantidadPF").val();
+    precio_compra=$("#pprecio_compraPF").val();
+    precio_venta=$("#pprecio_ventaPF").val();
+    trabajador=$("#idTrabajador").val();
+    almacen=$("#idAlmacen").val();
+    tipoingreso=$("#idTipo_ingreso").val();
 
-    if(idProducto!="" && cantidad!="" && cantidad>0 && precio_compra!="" && precio_venta!="")
+    if(idProducto!="" && cantidad!=""  && precio_compra!="" && precio_venta!="" && trabajador!="" && almacen!="" && tipoingreso!="")
     {
        subtotal[cont]=(cantidad*precio_compra);
        total=total+subtotal[cont];
 
-       var fila='<tr class="selected" id="fila'+cont+'"><td><button type="button" class="btn btn-warning" onclick="eliminar('+cont+');">X</button></td> <td><input type="hidden" name="idProducto[]" value="'+idProducto+'">'+producto+'</td> <td><input type="number" name="cantidad[]" value="'+cantidad+'"></td> <td><input type="number" name="precio_compra[]" value="'+precio_compra+'"></td> <td><input type="number" name="precio_venta[]" value="'+precio_venta+'"></td> <td>'+subtotal[cont]+'</td></tr>';
+       var fila='<tr class="selected" id="fila'+cont+'"><td><button type="button" class="btn btn-warning" onclick="eliminar('+cont+');">X</button></td> <td><input type="hidden" name="idProduto_PF[]" value="'+idProducto+'">'+produc+'</td> <td><input type="number" name="cantidadPF[]" value="'+cantidad+'"></td> <td><input type="number" name="precio_compraPF[]" value="'+precio_compra+'"></td> <td><input type="number" name="precio_ventaPF[]" value="'+precio_venta+'"></td> <td>'+subtotal[cont]+'</td></tr>';
+
        cont++;
+
+       var dat={idProducto:idProducto,produc:produc,cantidad:cantidad,precio_compra:precio_compra,precio_venta:precio_venta,trabajador:trabajador,almacen:almacen,tipoingreso:tipoingreso};
+        
+       producto.push(dat);
+console.log(producto);
        limpiar();
        $("#total").html("s/. " + total);
        evaluar();

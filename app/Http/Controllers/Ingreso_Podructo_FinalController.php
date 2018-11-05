@@ -40,6 +40,13 @@ $almacen=DB::table('Almacen as a')
 ->select('a.id as idAl','a.nombre_almacen','a.codigo')
 ->get();
 
+$talla=DB::table('Tallas as t')
+->select('t.id as idTa','t.nom_talla')
+->get();
+
+$color=DB::table('Color as t')
+->select('t.id as idC','t.nombre_color')
+->get();
 
 $tipoingreso=DB::table('Tipo_ingreso as t')
 ->select('t.id as idIn','t.nombreTP')
@@ -48,26 +55,23 @@ $tipoingreso=DB::table('Tipo_ingreso as t')
 $productos= DB::table('Productos as p')
 ->join('Producto_Detalle as pd','pd.id','=','p.id')
 ->select('p.CodigoB_Producto','pd.nombre_producto','pd.marca_producto','pd.categoria','pd.descuento','p.stockP','p.precio_unitario','p.id as idPro')
-->where('p.estado_idEstado','=',1)
 ->get();
  
- return view("ingreso.create",["tipoingreso"=>$tipoingreso,"almacen"=>$almacen,"trabajador"=>$trabajador,"productos"=>$productos]);
+ return view("ingreso.create",["color"=>$color,"tipoingreso"=>$tipoingreso,"talla"=>$talla,"almacen"=>$almacen,"trabajador"=>$trabajador,"productos"=>$productos]);
     
 }
 
 public function store(Request $request)
     {
-       try{
+ /*      try{
 
  DB::beginTransaction();
-
+dd($request);
 $ingreso=new Ingreso_Podructo_Final;
 $ingreso->idTrabajador=$request->get('idTrabajador');
 $ingreso->idAlmacen=$request->get('idAlmacen');
 $ingreso->idTipo_ingreso=$request->get('idTipo_ingreso');
-$ingreso->codigo_ingresoPF=$request->get('codigo_ingresoPF');
-$ingreso->serie_comprobantePF=$request->get('serie_comprobantePF');
-$ingreso->num_comprobantePF=$request->get('num_comprobantePF');
+$ingreso->codigo_ingresoPF=$request->get('idTrabajador');
 $ingreso->impuestoPF=18;
 $ingreso->estado_idEstado=1;
 $ingreso->save();
@@ -91,6 +95,7 @@ while ($cont<count($idProducto)) {
 
 }
 
+
  DB::Commit();
 
 }catch(\Exception $e)
@@ -100,6 +105,56 @@ while ($cont<count($idProducto)) {
 DB::rollback();
 }
     return Redirect::to('/ingreso');
+
+*/
+
+
+     try{
+        $idProducto;
+        $produc;
+        $cantidad;
+        $precio_compra;
+        $precio_venta;
+        $trabajador;
+        $almacen;
+        $tipoingreso;
+       
+           
+        foreach ($request->producto as $dato) {
+            $idProducto=$dato['idProducto'];
+            $produc=$dato['produc'];
+            $cantidad=$dato['cantidad'];
+            $precio_compra=$dato['precio_compra'];
+            $precio_venta=$dato['precio_venta'];
+            $trabajador=$dato['trabajador'];
+            $almacen=$dato['almacen'];
+            $tipoingreso=$dato['tipoingreso'];
+           
+        }
+        $idIngreso=DB::table('Ingreso_Podructo_Final')->insertGetId(
+            ['idTrabajador'=>$trabajador,
+            'idAlmacen'=>$almacen,           
+            'idTipo_ingreso'=>$tipoingreso,
+            'codigo_ingresoPF'=>123,
+            'impuestoPF'=>18,
+            'estado_idEstado'=>1,
+            
+            ]
+        );
+
+        foreach($request->filas as $fila){
+            $detalle=new Detalle_ingresoPF;	
+            $detalle->idIngreso_PF=$idIngreso;
+            $detalle->idProduto_PF=$idProducto;
+            $detalle->cantidadPF=$fila['cantidad'];
+            $detalle->precio_compraPF=$fila['precio_compra'];
+            $detalle->precio_ventaPF=$fila['precio_venta'];	
+            $detalle->save();            
+        }
+            return ['dat' =>'/ingreso','veri'=>true];
+        }catch(Exception $e){
+            return ['dat' =>$e,'veri'=>false];
+        }
 }
 
  
