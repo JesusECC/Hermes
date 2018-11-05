@@ -16,6 +16,7 @@
     <!-- Bootstrap Core CSS -->
     <link href="{{asset('assets/plugins/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
     <!-- chartist CSS -->
+    <link href="{{asset('assets/plugins/select2/dist/css/select2.min.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{asset('assets/plugins/chartist-js/dist/chartist.min.css')}}" rel="stylesheet">
     <link href="{{asset('assets/plugins/chartist-js/dist/chartist-init.css')}}" rel="stylesheet">
     <link href="{{asset('assets/plugins/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.css')}}" rel="stylesheet">
@@ -226,6 +227,7 @@
     <script src="{{asset('js/waves.js')}}"></script>
     <!--Menu sidebar -->
     <script src="{{asset('js/sidebarmenu.js')}}"></script>
+    <script src="{{asset('assets/plugins/select2/dist/js/select2.full.min.js')}}" type="text/javascript"></script>
     <!--stickey kit -->
     <script src="{{asset('assets/plugins/sticky-kit-master/dist/sticky-kit.min.js')}}"></script>
     <script src="{{asset('assets/plugins/sparkline/jquery.sparkline.min.js')}}"></script>
@@ -236,6 +238,7 @@
 
     <script type="text/javascript">
     $(document).ready(function() {
+                    $(".select2").select2();
                      $('#example').DataTable({
                           "paging":   false,
                           "info":     false,
