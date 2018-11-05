@@ -79,6 +79,15 @@ Route::get('tipocliente/delete/{id}',['as' => 'tipocliente-delete','uses'=>'Tipo
 
 
 
+//producto
+Route::get('producto',['as' => 'producto','uses'=>'ProductoController@index']);
+Route::get('producto/create',['as' => 'producto-create','uses'=>'ProductoController@create']);
+Route::post('producto/guardar',['as' => 'producto-guardar','uses'=>'ProductoController@store']);
+Route::get('producto/editar/{id}',['as' => 'producto-editar','uses'=>'ProductoController@edit']);
+Route::post('producto/update',['as' => 'producto-update','uses'=>'ProductoController@update']);
+Route::get('producto/delete/{id}',['as' => 'producto-delete','uses'=>'ProductoController@destroy']);
+
+
 // tipo_producto
 Route::get('tipoproducto',['as' => 'tipoproducto','uses'=>'Tipo_productoController@index']);
 Route::get('tipoproducto/create',['as' => 'tipoproducto-create','uses'=>'Tipo_productoController@create']);

@@ -65,7 +65,8 @@ class AlmacenController extends Controller
      */
     public function store(Request $request)
     {
-try{
+        
+      try{
         $departamento;
         $distrito;
         $provincia;
@@ -123,11 +124,6 @@ try{
             return ['data' =>$e,'veri'=>false];
         }
 
-
-
-  
-
-
-}
+   }  
 
 }
