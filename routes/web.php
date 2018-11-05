@@ -30,6 +30,8 @@ Route::post('Almacen/guardar',['as' => 'almacen-store','uses'=>'AlmacenControlle
 // tienda
 Route::get('Tienda',['as'=>'tienda','uses'=>'TiendaController@index']);
  Route::get('Tienda/create',['as' => 'tienda-create','uses'=>'TiendaController@create']);
+ Route::post('Tienda/guardar',['as' => 'tienda-store','uses'=>'TiendaController@store']);
+
   Route::get('Tienda/{idTienda}/edit',['as'=>'Tienda','uses'=>'ControllerClientes@edit']);
 
 
