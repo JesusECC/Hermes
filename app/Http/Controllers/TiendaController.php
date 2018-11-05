@@ -29,29 +29,28 @@ class TiendaController extends Controller
     {
         
 
-               // $query=trim($request->get('searchText'));
-               /* $tienda=DB::table('Tienda as t')
-                 ->join('Telefono_Tienda as tele','tele.Tienda_idTienda','=','t.idTienda')
-                 ->join('Direccion_TTA as dire','dire.idDireccion','=','t.idDireccionT')
-                 ->join('Distrito as dis','dis.idDistrito','=','dire.Distrito_idDistrito')
-                 ->join('Provincia as pro','pro.idProvincia','=','dis.Provincia_idProvincia')
-                 ->join('Departamento as depa','depa.idDepartamento','=','pro.Departamento_idDepartamento')
-                 //->join('Almacen as alma','alma.Tienda_idTienda','=','t.idTienda')
-                 ->join('Tipo_tienda as tp','tp.idtipo_tienda','=','t.idtipo_tienda') 
-                 ->join('estado as est','est.idEstado','=','t.estado_idEstado')
-                 //->join('Telefono_Almacen as ta','ta.Almacen_idAlmacen','=','alma.idAlmacen')
-                 ->join('operador as op','op.idoperador','=','tele.idoperador')
-                 ->join('Tipo_telefono as tt','tt.idTipo_telefono','=','tele.idTipo_telefono')
+     
+                $tienda=DB::table('Tienda as t')
+                 ->join('Telefono_Tienda as tele','tele.Tienda_idTienda','=','t.id')
 
-                
-                 ->select('t.codigo_tienda','t.nombre','tele.numero as numeroTele',DB::raw('CONCAT(depa.nombre_departamento,"/",pro.nombre_provincia,"/",dis.nombre_distrito) as direc'),'tp.nombre','tt.nombre_tipo','op.nombre_operador')
-               // ->where('codigo_tienda','LIKE','%'.$query.'%')
-                ->where('est.tipo_estado','=','activo')
-                 ->orderBy('t.idTienda','desc')
+                 ->join('Direccion_TTA as dire','dire.id','=','t.idDireccionT')
+                 ->join('estado as est','est.id','=','t.estado_idEstado')
+                 ->join('Tipo_tienda as tp','tp.id','=','t.idtipo_tienda') 
 
-                 ->paginate(7);*/
+                 ->join('Distrito as dis','dis.id','=','dire.Distrito_idDistrito')
+                 ->join('Provincia as pro','pro.id','=','dis.Provincia_idProvincia')
+                 ->join('Departamento as depa','depa.id','=','pro.Departamento_idDepartamento')
+                 
+                 ->join('operador as op','op.id','=','tele.idoperador')
+                 ->join('Tipo_telefono as tt','tt.id','=','tele.idTipo_telefono')
 
-                  return view('Tienda.index');
+                 ->select('t.codigo_tienda','t.nombre_tienda','tele.numero',DB::raw('CONCAT(depa.nombre_departamento,"/",pro.nombre_provincia,"/",dis.nombre_distrito) as direc'),'dire.direccionAL','tp.nombre','tt.nombre_tipo','op.nombre_operador')
+                ->where('est.tipo_estado','=',1)
+                 ->orderBy('t.id','desc')
+
+                 ->paginate(10);
+
+                  return view('Tienda.index',['tienda'=>$tienda]);
 
     
 
@@ -66,8 +65,6 @@ class TiendaController extends Controller
     {
              $tienda=DB::table('Tienda')
              ->get();
-
-                
 
                 $distrito=DB::table('Distrito')
                  ->get();
