@@ -23,8 +23,29 @@ class AlmacenController extends Controller
      */
     public function index()
     {
-        //
-        return view('Almacen.index');
+
+          $Almacen=DB::table('Almacen as a')
+                 ->join('Telefono_Almacen as Ta','Ta.Almacen_idAlmacen','=','a.id')
+
+                 ->join('Direccion_TTA as dire','dire.id','=','a.idDireccion')
+                 ->join('estado as est','est.id','=','a.idEstado')
+                ->join('Distrito as dis','dis.id','=','dire.Distrito_idDistrito')
+                 ->join('Provincia as pro','pro.id','=','dis.Provincia_idProvincia')
+                 ->join('Departamento as depa','depa.id','=','pro.Departamento_idDepartamento')
+                 ->join('operador as op','op.id','=','Ta.idoperador')
+                 ->join('Tienda as tie','tie.id','=','a.Tienda_idTienda')
+                      ->join('Tipo_telefono as tp','tp.id','=','Ta.idTipo_telefono')
+
+                 ->select('a.codigo','a.nombre_almacen','tie.nombre_tienda','Ta.numero','tp.nombre_tipo',DB::raw('CONCAT(depa.nombre_departamento,"/",pro.nombre_provincia,"/",dis.nombre_distrito) as direc'),'dire.direccionAL','op.nombre_operador')
+                ->where('est.tipo_estado','=',1)
+                 ->orderBy('a.id','desc')
+
+                 ->paginate(10);
+
+                  return view('Almacen.index',['Almacen'=>$Almacen]);
+
+       
+        
     }
 
     /**

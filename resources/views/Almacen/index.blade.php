@@ -12,7 +12,7 @@
 </div>
 <div class="card">
   <div class="card-header">
-     <h4 class="card-title pull-left">Listar Producto Final</h4>
+     <h4 class="card-title pull-left">Listado De Almacen</h4>
      <button type="button" class="btn waves-effect waves-light btn-success pull-right">Agregar</button>
   </div>
     <div class="card-body">
@@ -20,51 +20,38 @@
             <table id="example" class="table table-striped table-bordered" style="width:100%">
                 <thead>
                     <tr>
-                        <th>Name</th>
-                        <th>Position</th>
-                        <th>Office</th>
-                        <th>Age</th>
-                        <th>Start date</th>
+                        <th>Cod.Almacen</th>
+                        <th>Nombre</th>
+                        <th>Nom.Tienda</th>
+                        <th>Telefono</th>
+                        <th>Tipo de Telefono</th>
+                        <th>Lugar</th>
+                        <th>Direccion</th>
+                        <th>Operador</th>
                         <th>opciones</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Tiger Nixon</td>
-                        <td>System Architect</td>
-                        <td>Edinburgh</td>
-                        <td>61</td>
-                        <td>2011/04/25</td>
-                        <td class="text-nowrap">
+                     @foreach($Almacen as $alma)
+         <tr>
+                <td>{{$alma->codigo}}</td>
+                <td>{{$alma->nombre_almacen}}</td>
+                <td>{{$alma->nombre_tienda}}</td>
+                <td>{{$alma->numero}}</td>
+                <td>{{$alma->nombre_tipo}}</td>
+                <td>{{$alma->direc}}</td>
+                <td>{{$alma->direccionAL}}</td>
+                <td>{{$alma->nombre_operador}}</td>
+                <td class="text-nowrap">
                             <a href="#" data-toggle="tooltip" data-original-title="Edit"> <i class="fa fa-pencil text-warning m-r-10"></i> </a>
                             <a href="#" data-toggle="tooltip" data-original-title="Close"> <i class="fa fa-close text-danger m-r-10"></i> </a>
                             <a href="#" data-toggle="tooltip" data-original-title="Close"> <i class="fa fa-eye text-success"></i> </a>
-                        </td>                        
-                    </tr>
-                    <tr>
-                        <td>Garrett Winters</td>
-                        <td>Accountant</td>
-                        <td>Tokyo</td>
-                        <td>63</td>
-                        <td>2011/07/25</td>
-                        <td class="text-nowrap">
-                            <a href="#" data-toggle="tooltip" data-original-title="Edit"> <i class="fa fa-pencil text-warning m-r-10"></i> </a>
-                            <a href="#" data-toggle="tooltip" data-original-title="Close"> <i class="fa fa-close text-danger m-r-10"></i> </a>
-                            <a href="#" data-toggle="tooltip" data-original-title="Close"> <i class="fa fa-eye text-success"></i> </a>
-                        </td> 
-                    </tr>
+                        </td>
+            </tr>   
+                @endforeach
                     
                 </tbody>
-                <tfoot>
-                    <tr>
-                        <th>Name</th>
-                        <th>Position</th>
-                        <th>Office</th>
-                        <th>Age</th>
-                        <th>Start date</th>
-                        <th>opciones</th>
-                    </tr>
-                </tfoot>
+                
             </table>
         </div>
     </div>
