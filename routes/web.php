@@ -98,6 +98,13 @@ Route::get('tipoproducto/editar/{id}',['as' => 'tipoproducto-editar','uses'=>'Ti
 Route::post('tipoproducto/update',['as' => 'tipoproducto-update','uses'=>'Tipo_productoController@update']);
 Route::get('tipoproducto/delete/{id}',['as' => 'tipoproducto-delete','uses'=>'Tipo_productoController@destroy']);
 
+//ingreso
+Route::get('ingreso',['as' => 'ingreso','uses'=>'Ingreso_Podructo_FinalController@iIngreso_Podructo_FinalControllerndex']);
+Route::get('ingreso/create',['as' => 'ingreso-create','uses'=>'Ingreso_Podructo_FinalController@create']);
+Route::post('ingreso/guardar',['as' => 'ingreso-guardar','uses'=>'Ingreso_Podructo_FinalController@store']);
+Route::get('ingreso/editar/{id}',['as' => 'ingreso-editar','uses'=>'Ingreso_Podructo_FinalController@edit']);
+Route::post('ingreso/update',['as' => 'ingreso-update','uses'=>'Ingreso_Podructo_FinalController@update']);
+Route::get('ingreso/delete/{id}',['as' => 'ingreso-delete','uses'=>'Ingreso_Podructo_FinalController@destroy']);
 
 // tipo ingreso
 Route::get('tipoingreso',['as' => 'tipoingreso','uses'=>'Tipo_ingresoController@index']);
