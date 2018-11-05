@@ -8,7 +8,7 @@ class Estado extends Model
 {
     //
     protected $table='estado';
-    protected $primarykey='idEstado';
+    protected $primarykey='id';
     public $timestamps=false;
     
     protected $filleable=[

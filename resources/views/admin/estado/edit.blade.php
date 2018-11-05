@@ -18,33 +18,25 @@
   </div>
   <div class="card-body">
         <div class="form-body">
-                Form::open(['route' => ['estado-guardar', $estado->id]])
-                    @csrf
-                    <div class="row p-t-20">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="control-label">estao</label>
-                                <input type="hidden" name="id" value="{{ $estado->id }}">
-                                <input type="text" name="rol" id="rol" class="form-control" value="{{ $rol->nombreRol }}">
-                                <small class="form-control-feedback"> This is inline help </small> 
-                            </div>
+            {!! Form::model($estado, ['method'=>'POST','route' => ['estado-update',$estado->id]]) !!}
+                @csrf
+                <div class="row p-t-20">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label">Estado</label>
+                            <input type="text" name="tipo_estado" id="tipo_estado" class="form-control" value={{$estado->tipo_estado}} >                
                         </div>
-                        <!--/span-->
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="control-label">Descripcion</label>
-                                <input type="text" id="descripcion" name="descripcion" class="form-control"  value="{{ $rol->descripcion_rol }}">
-                                <small class="form-control-feedback"> This is inline help </small>
-                            </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label">Descripción</label>
+                            <input type="text" name="descripcion" id="descripcion" class="form-control" value="{{ $estado->descripcion }}" >                
                         </div>
-                        <!--/span-->
-                    </div>                   
-                        <!--/span-->
                     </div>
                 </div>
                 <button type="submit" class="btn waves-effect waves-light btn-success pull-right">Actualizar</button>
-            </form>     
+            {!! Form::close() !!}
         </div>
-    
+    </div>
 </div>
 @endsection

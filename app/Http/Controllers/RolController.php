@@ -75,7 +75,7 @@ class RolController extends Controller
         // $rol=Rol::where('idRol',$id)
         // ->get();
         // dd($rol);
-        return view("usuarios.rol.edit",['rol'=>Rol::find($id)]);
+        return view("usuarios.rol.edit",['rol'=>Rol::findOrFail($id)]);
     }
 
     /**
