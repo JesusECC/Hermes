@@ -45,7 +45,7 @@ class ProductoController extends Controller
     $almacen=db::table('Almacen')
     ->get();
 
-        return view('Almacen.create',["almacen"=>$almacen,"tipoproducto"=>$tipoproducto,"talla"=>$talla,"color"=>$color]);
+        return view('producto.producto.create',["almacen"=>$almacen,"tipoproducto"=>$tipoproducto,"talla"=>$talla,"color"=>$color]);
     }
 
     

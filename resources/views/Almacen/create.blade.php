@@ -15,7 +15,7 @@
 
 <div class="card">
   <div class="card-header">
-     <h4 class="card-title pull-left">Registrar Producto Final</h4>
+     <h4 class="card-title pull-left">Registrar Producto asdads</h4>
      <button id="save" type="sumbit" class="btn waves-effect waves-light btn-success pull-right"><i class="far fa-save"></i>Agregar</button>
   </div>
   <div class="card-body">

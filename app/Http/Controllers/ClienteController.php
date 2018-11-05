@@ -48,9 +48,11 @@ class ClienteController extends Controller
     {
         //
         try {
-
-
             
+
+
+
+
             
         } catch (Exception $e) {
             return ['data'=>$e,'veri'=>false]
