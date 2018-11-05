@@ -1,10 +1,11 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
@@ -213,8 +214,10 @@
     <!-- ============================================================== -->
     <!-- All Jquery -->
     <!-- ============================================================== -->
+
     <script src="{{asset('assets/plugins/jquery/jquery.min.js')}}"></script>
     <!-- Bootstrap tether Core JavaScript -->
+    @stack('scripts')
     <script src="{{asset('assets/plugins/bootstrap/js/popper.min.js')}}"></script>
     <script src="{{asset('assets/plugins/bootstrap/js/bootstrap.min.js')}}"></script>
     <!-- slimscrollbar scrollbar JavaScript -->
@@ -248,11 +251,11 @@
                          },
 //Actualizo las etiquetas de mi tabla para mostrarlas en español
                          "language": {
-                             "lengthMenu": "Mostrar _MENU_ registros.",
+                             "lengthMenu": "Mostrar MENU registros.",
                              "zeroRecords": "No se encontró registro.",
-                             "info": "Mostrando _START_ de _END_ elementos (_TOTAL_ registros totales).",
+                             "info": "Mostrando START de END elementos (TOTAL registros totales).",
                              "infoEmpty": "0 de 0 de 0 registros",
-                             "infoFiltered": "(Encontrado de _MAX_ registros)",
+                             "infoFiltered": "(Encontrado de MAX registros)",
                              "search": "Buscar: ",
                              "processing": "Procesando la información",
                              "paginate": {

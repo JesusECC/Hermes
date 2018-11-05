@@ -11,13 +11,15 @@
         </ol>
     </div>
 </div>
+
+
 <div class="card">
   <div class="card-header">
      <h4 class="card-title pull-left">Registrar Producto Final</h4>
-     <button id="save" type="button" class="btn waves-effect waves-light btn-success pull-right"><i class="far fa-save"></i>Agregar</button>
+     <button id="save" type="sumbit" class="btn waves-effect waves-light btn-success pull-right"><i class="far fa-save"></i>Agregar</button>
   </div>
   <div class="card-body">
-                                <form action="#">
+   
                                     <div class="form-body">
                                         <h3 class="card-title">Datos Generales</h3>
                                         <hr>
@@ -42,7 +44,7 @@
                                                 <select  class="form-control selectpicker" id="g" data-live-search="true">
                                                 <option value="" disabled="" selected="">Tienda</option>
                                                 @foreach($tienda as $ti)                
-                                                <option value="{{$ti>idTienda}}">{{$ti->nombre_tienda}}</option>
+                                                <option value="{{$ti->id}}">{{$ti->nombre_tienda}}</option>
                                                 @endforeach  
                                                 </select>    
                                                     </div>
@@ -64,7 +66,7 @@
                                                 <select  class="form-control selectpicker" id="i" data-live-search="true">
                                                 <option value="" disabled="" selected="">Tipo Telefono</option>
                                                 @foreach($tipotelefono as $tt)                
-                                                <option value="{{$tt->idTipo_telefono}}">{{$tt->nombre_tipo}}</option>
+                                                <option value="{{$tt->id}}">{{$tt->nombre_tipo}}</option>
                                                 @endforeach  
                                                 </select>    
                                                     </div>
@@ -76,7 +78,7 @@
                                                 <select  class="form-control selectpicker" id="j" data-live-search="true">
                                                 <option value="" disabled="" selected="">Operador</option>
                                                 @foreach($operador as $op)                
-                                                <option value="{{$op->idoperador}}">{{$op->nombre_operador}}</option>
+                                                <option value="{{$op->id}}">{{$op->nombre_operador}}</option>
                                                 @endforeach  
                                                 </select>    
                                                     </div>
@@ -103,7 +105,7 @@
                                                 <select  class="form-control selectpicker" id="d" data-live-search="true">
                                                 <option value="" disabled="" selected="">Departamento</option>
                                                 @foreach($departamento as $de)                
-                                                <option value="{{$de->idDepartamento}}">{{$de->nombre_departamento}}</option>
+                                                <option value="{{$de->id}}">{{$de->nombre_departamento}}</option>
                                                 @endforeach  
                                                 </select>   
                                                 </div>
@@ -116,7 +118,7 @@
                                                 <select  class="form-control selectpicker" id="f" data-live-search="true">
                                                 <option value="" disabled="" selected="">Provincia</option>
                                                 @foreach($provincia as $pr)                
-                                                <option value="{{$pr->idProvincia}}">{{$pr->nombre_provincia}}</option>
+                                                <option value="{{$pr->id}}">{{$pr->nombre_provincia}}</option>
                                                 @endforeach  
                                                 </select>  
                                                 </div>
@@ -128,7 +130,7 @@
                                                     <select  class="form-control selectpicker" id="e" data-live-search="true">
                                                 <option value="" disabled="" selected="">Distrito</option>
                                                 @foreach($distrito as $dis)                
-                                                <option value="{{$dis->idDistrito}}">{{$dis->nombre_distrito}}</option>
+                                                <option value="{{$dis->id}}">{{$dis->nombre_distrito}}</option>
                                                 @endforeach  
                                                 </select>  
                                                 </div>
@@ -136,18 +138,6 @@
                                             <!--/span-->
                                         </div>
                                         <!--/row-->
-                                        
-                                            <!--/span-->
-                                     
-                                    
-                                </form>     
-  </div>
-  <div class="card-footer">
-        <button  type="button" class="btn waves-effect waves-light btn-info pull-right m-r-5">Volver</button>
-        <button type="button" class="btn waves-effect waves-light btn-danger pull-right m-r-5">Cancelar</button>
-        
-    </div>
-</div>
 
 @push('scripts')
 <script>
@@ -168,6 +158,7 @@
     });
 
     function saveAlamcen(){
+        
         // se enviar los datos al controlador empleados
         var codigo=$("#a").val();
         var nombrea=$("#b").val();
@@ -180,9 +171,11 @@
         var tipo=$("#i").val();
         var operador=$("#j").val();
         
+
           
         if(departamento!=''){
         var dat=[{nombrea:nombrea,departamento:departamento,distrito:distrito,provincia:provincia,direccion:direccion,codigo:codigo,idTienda:idTienda,numero:numero,tipo:tipo,operador:operador}];
+        console.log(dat);
             $.ajax({
                 headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                 data:  {datos:dat}, //datos que se envian a traves de ajax

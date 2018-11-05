@@ -24,7 +24,7 @@ class AlmacenController extends Controller
     public function index()
     {
         //
-        return view('almacen.index');
+        return view('Almacen.index');
     }
 
     /**
@@ -39,7 +39,7 @@ class AlmacenController extends Controller
     ->where('estado_idEstado','=',1)
     ->get();
      
-     $departamento=db::table('Departamento')
+    $departamento=db::table('Departamento')
     ->get();
 
     $provincia=db::table('Provincia')
@@ -76,19 +76,19 @@ try{
         $numero;
         $tipo;
         $operador;
-
-       
-        
-           
+  
         foreach ($request->datos as $dato) {
             $departamento=$dato['departamento'];
             $distrito=$dato['distrito'];
             $provincia=$dato['provincia'];
             $direccion=$dato['direccion'];
             $codigo=$dato['codigo'];
-            $Tienda=$dato['Tienda'];
-         
-            
+            $idTienda=$dato['idTienda'];
+            $nombrea=$dato['nombrea'];
+            $numero=$dato['numero'];
+            $tipo=$dato['tipo'];
+            $operador=$dato['operador'];
+                    
         }
      $idDireccion=DB::table('Direccion_TTA')->insertGetId(
             [
@@ -106,7 +106,7 @@ try{
        'nombre_almacen'=>$nombrea,
        'idEstado'=>1,
        'idDireccion'=>$idDireccion,
-       'Tienda_idTienda'=>$Tienda,
+       'Tienda_idTienda'=>$idTienda,
            ]
         );
 
