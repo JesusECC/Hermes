@@ -18,29 +18,39 @@
         <div class="col-lg-12">
             <table id="example" class="table table-striped table-bordered" style="width:100%">
                 <thead>
-                    <tr>
-                        <th>Nombre </th>
-                        <th>Marca   </th>
-                        <th>Categoria</th>
-                        <th>Descuento</th>
+                     <tr>
+                        <th>Cod.Producto</th>
+                        <th>Nom.Producto</th>
+                        <th>Nom.Almacen</th>
+                        <th>Marca</th>
+                        <th>Talla</th>
+                        <th>Color</th>
                         <th>Stock</th>
-                        <th>Acciones</th>
+                         <th>Precio Unitario</th>
+                        <th>Tipo Producto</th>
+                        <th>opciones</th>
                     </tr>
                 </thead>
                 <tbody>
                 
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td class="text-nowrap">
-                            <a href="" data-toggle="tooltip" data-original-title="Editar"> <i class="fa fa-pencil text-warning m-r-10"></i> </a>
-                            <a href="" data-toggle="tooltip" data-original-title="Eliminar"> <i class="fa fa-close text-danger m-r-10"></i> </a>
-                            <!-- <a href="#" data-toggle="tooltip" data-original-title="Close"> <i class="fa fa-eye text-success"></i> </a> -->
-                        </td>                        
-                    </tr>  
+                     @foreach($producto as $prod)
+         <tr>
+                <td>{{$prod->CodigoB_Producto}}</td>
+                <td>{{$prod->nombre_producto}}</td>
+                <td>{{$prod->nombre_almacen}}</td>
+                <td>{{$prod->marca_producto}}</td>
+                <td>{{$prod->nom_talla}}</td>
+                <td>{{$prod->nombre_color}}</td>
+                <td>{{$prod->stockP}}</td>
+                <td>{{$prod->precio_unitario}}</td>
+                <td>{{$prod->nombreTP}}</td>
+                <td class="text-nowrap">
+                            <a href="#" data-toggle="tooltip" data-original-title="Edit"> <i class="fa fa-pencil text-warning m-r-10"></i> </a>
+                            <a href="#" data-toggle="tooltip" data-original-title="Close"> <i class="fa fa-close text-danger m-r-10"></i> </a>
+                            <a href="#" data-toggle="tooltip" data-original-title="Close"> <i class="fa fa-eye text-success"></i> </a>
+                        </td>
+            </tr>   
+                @endforeach
                     
                 </tbody>
             </table>

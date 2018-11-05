@@ -22,7 +22,32 @@ class ProductoController extends Controller
      */
     public function index()
     {
-        //
+         $producto=DB::table('Productos as p')
+                ->join('Producto_Detalle as dp','dp.id','=','p.idDetalle_produto')
+                 ->join('Color as col','col.id','=','p.Color_idColor')
+                 ->join('estado as est','est.id','=','p.estado_idEstado')
+                 ->join('Tallas as tas','tas.id','=','p.Tallas_idTallas') 
+
+                ->join('Almacen as al','al.id','=','p.Almacen_idAlmacen') 
+                ->join('Tipo_producto as tpro','tpro.id','=','dp.idTipoProducto')
+                 
+                 
+                 
+                 
+
+                 ->select('p.CodigoB_Producto','dp.nombre_producto','dp.marca_producto','al.nombre_almacen','tas.nom_talla','col.nombre_color','p.stockP','p.precio_unitario','tpro.nombreTP')
+                ->where('est.tipo_estado','=',1)
+                 ->orderBy('p.id','desc')
+
+                 ->paginate(10);
+
+                  return view('producto.producto.index',['producto'=>$producto]);
+
+
+
+
+
+
         return view('producto.producto.index');
     }
 
