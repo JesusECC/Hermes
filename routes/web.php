@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
 Auth::routes();
@@ -20,12 +20,10 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 //Route::resource('/Almacen','AlmacenController');
 
-
 //almacen
 Route::get('Almacen',['as' => 'almacen','uses'=>'AlmacenController@index']);
 Route::get('Almacen/create',['as' => 'almacen-create','uses'=>'AlmacenController@create']);
 Route::post('Almacen/guardar',['as' => 'almacen-store','uses'=>'AlmacenController@store']);
-
 
 // tienda
 Route::get('Tienda',['as'=>'tienda','uses'=>'TiendaController@index']);
@@ -61,8 +59,6 @@ Route::get('documento/editar/{id}',['as' => 'documento-editar','uses'=>'Tipo_doc
 Route::post('documento/update/{id}',['as' => 'documento-update','uses'=>'Tipo_documentoController@update']);
 Route::get('documento/delete/{id}',['as' => 'documento-delete','uses'=>'Tipo_documentoController@destroy']);
 
-
-
 //tipo comprobante
 Route::get('tipocomprobante',['as' => 'tipocomprobante','uses'=>'Tipo_ComprobanteController@index']);
 Route::get('tipocomprobante/create',['as' => 'tipocomprobante-create','uses'=>'Tipo_ComprobanteController@create']);
@@ -78,8 +74,6 @@ Route::post('tipocliente/guardar',['as' => 'tipocliente-guardar','uses'=>'Tipo_C
 Route::get('tipocliente/editar/{id}',['as' => 'tipocliente-editar','uses'=>'Tipo_ClienteController@edit']);
 Route::post('tipocliente/update',['as' => 'tipocliente-update','uses'=>'Tipo_ClienteController@update']);
 Route::get('tipocliente/delete/{id}',['as' => 'tipocliente-delete','uses'=>'Tipo_ClienteController@destroy']);
-
-
 
 //producto
 Route::get('producto',['as' => 'producto','uses'=>'ProductoController@index']);
@@ -133,9 +127,6 @@ Route::get('tipotienda/editar/{id}',['as' => 'tipotienda-editar','uses'=>'Tipo_t
 Route::post('tipotienda/update',['as' => 'tipotienda-update','uses'=>'Tipo_tiendaController@update']);
 Route::get('tipotienda/delete/{id}',['as' => 'tipotienda-delete','uses'=>'Tipo_tiendaController@destroy']);
 
-
-
- 
 // tipo telefono
 Route::get('tipotelefono',['as' => 'tipotelefono','uses'=>'Tipo_telefonoController@index']);
 Route::get('tipotelefono/create',['as' => 'tipotelefono-create','uses'=>'Tipo_telefonoController@create']);
@@ -143,7 +134,6 @@ Route::post('tipotelefono/guardar',['as' => 'tipotelefono-guardar','uses'=>'Tipo
 Route::get('tipotelefono/editar/{id}',['as' => 'tipotelefono-editar','uses'=>'Tipo_telefonoController@edit']);
 Route::post('tipotelefono/update',['as' => 'tipotelefono-update','uses'=>'Tipo_telefonoController@update']);
 Route::get('tipotelefono/delete/{id}',['as' => 'tipotelefono-delete','uses'=>'Tipo_telefonoController@destroy']);
-
 
 //color
 Route::get('color',['as'=> 'color-index','uses'=>'ColorController@index']);
@@ -205,16 +195,6 @@ Route::post('cliente/guardar',['as'=>'cliente-guardar','uses'=>'ClienteControlle
 Route::get('cliente/editar/{id}',['as'=>'cliente-edit','uses'=>'ClienteController@edit']);
 Route::post('cliente/update',['as'=>'cliente-update','uses'=>'ClienteController@update']);
 Route::get('cliente/delete/{id}',['as'=>'cliente-delete','uses'=>'ClienteController@destroy']);
-
-
-
-
-
-
-
-
-
-
 
 
 

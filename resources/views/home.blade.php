@@ -10,6 +10,127 @@
         </ol>
     </div>
 </div>
-
+<div class="row">
+    <!-- Column -->
+    <div class="col-lg-3 col-md-6">
+        <div class="card">
+            <div class="card-body">
+            	<a href="{{route('ingreso-create')}}">
+	                <div class="d-flex flex-row">
+	                    <div class="round round-lg align-self-center round-info"><i class="mdi mdi-cart-outline"></i></div>
+	                    <div class="m-l-10 align-self-center">
+	                        <h5 class="text-muted m-b-0">Ingreso Producto Final</h5>
+	                    </div>
+	                </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- Column -->
+    <!-- Column -->
+    <div class="col-lg-3 col-md-6">
+        <div class="card">
+            <div class="card-body">
+            	<a href="{{route('tipoingreso-create')}}">
+	                <div class="d-flex flex-row">
+	                    <div class="round round-lg align-self-center round-warning"><i class="mdi mdi-cart-outline"></i></div>
+	                    <div class="m-l-10 align-self-center">
+	                        <h5 class="text-muted m-b-0">Ingreso Materia Prima</h5>
+	                    </div>
+	                </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- Column -->
+    <!-- Column -->
+    <div class="col-lg-3 col-md-6">
+        <div class="card">
+            <div class="card-body">
+            	<a href="{{route('tipo_salida-create')}}">
+	                <div class="d-flex flex-row">
+	                    <div class="round round-lg align-self-center round-primary"><i class="mdi mdi-cart-outline"></i></div>
+	                    <div class="m-l-10 align-self-center">
+	                        <h5 class="text-muted m-b-0">Salida Producto Final</h5>
+	                    </div>
+	                </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- Column -->
+    <!-- Column -->
+    <div class="col-lg-3 col-md-6">
+        <div class="card">
+            <div class="card-body">
+            	<a href="{{route('tipo_salida_mp-create')}}">
+		            <div class="d-flex flex-row">
+		                <div class="round round-lg align-self-center round-danger"><i class="mdi mdi-cart-outline"></i></div>
+		                <div class="m-l-10 align-self-center">
+		                    <h5 class="text-muted m-b-0">Salida Materia Prima</h5>
+		                </div>
+		            </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6">
+        <div class="card">
+            <div class="card-body">
+            	<a href="{{route('tienda')}}">
+	                <div class="d-flex flex-row">
+	                    <div class="round round-lg align-self-center round-info"><i class="mdi mdi-cart-outline"></i></div>
+	                    <div class="m-l-10 align-self-center">
+	                        <h5 class="text-muted m-b-0">Ingreso Tienda</h5>
+	                    </div>
+	                </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6">
+        <div class="card">
+            <div class="card-body">
+            	<a href="{{route('producto')}}">
+	                <div class="d-flex flex-row">
+	                    <div class="round round-lg align-self-center round-info"><i class="mdi mdi-cart-outline"></i></div>
+	                    <div class="m-l-10 align-self-center">
+	                        <h5 class="text-muted m-b-0">Productos Finales</h5>
+	                    </div>
+	                </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6">
+        <div class="card">
+            <div class="card-body">
+            	<a href="{{route('persona-index')}}">
+	                <div class="d-flex flex-row">
+	                    <div class="round round-lg align-self-center round-info"><i class="mdi mdi-cart-outline"></i></div>
+	                    <div class="m-l-10 align-self-center">
+	                        <h5 class="text-muted m-b-0">Trabajadores</h5>
+	                    </div>
+	                </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6">
+        <div class="card">
+            <div class="card-body">
+            	<a href="{{route('almacen')}}">
+	                <div class="d-flex flex-row">
+	                    <div class="round round-lg align-self-center round-info"><i class="mdi mdi-cart-outline"></i></div>
+	                    <div class="m-l-10 align-self-center">
+	                        <h5 class="text-muted m-b-0">Almacen</h5>
+	                    </div>
+	                </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- Column -->
+</div>
 @endsection
                     

@@ -5,15 +5,14 @@
         <h3 class="text-themecolor">Panel de Adminsitrador</h3>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="javascript:void(0)">Productos</a></li>
-            <li class="breadcrumb-item ">Producto Final</li>
-            <li class="breadcrumb-item active">Producto Final</li>
+            <li class="breadcrumb-item ">Almacen</li>
         </ol>
     </div>
 </div>
 <div class="card">
   <div class="card-header">
      <h4 class="card-title pull-left">Listado De Almacen</h4>
-     <button type="button" class="btn waves-effect waves-light btn-success pull-right">Agregar</button>
+     <a href="{{ route('almacen-create') }}"><button type="button" class="btn waves-effect waves-light btn-success pull-right">Agregar</button></a>
   </div>
     <div class="card-body">
         <div class="">
