@@ -68,6 +68,7 @@ class ClienteController extends Controller
      */
     public function store(Request $request)
     {
+      
              try{
         $nombre;
         $apellidos;
@@ -82,7 +83,8 @@ class ClienteController extends Controller
         $tipotelefono;
         $operador;
         $numero_telefonico;
-  
+       
+ dd($request->datos);
         foreach ($request->datos as $dato) {
                 $nombre=$dato['nombre'];
                 $apellidos=$dato['apellidos'];
@@ -109,40 +111,46 @@ class ClienteController extends Controller
             ]
         );
 
-
-        $idtipoCliente=DB::table('Tipo_Cliente')->insertGetId(
-            [
-            'nombre'=> $tipocliente,
-           ]
-        );
-           $idtipodocumento=DB::table('Tipo_documento')->insertGetId(
-            [
-            'nombre_TD'=> $tipodocumento,
-           ]
-        );
-
-
-         $idtipodocumento=DB::table('Tipo_documento')->insertGetId(
-            [
-            'nombre_TD'=> $tipodocumento,
-           ]
-        );
-
        $idcliente=DB::table('Cliente')->insertGetId(
             [
-       'idTipo_Persona'=>$idtipoCliente,
-       'Persona_idPersona'=>$nombrea,
+       'idTipo_Persona'=>$tipocliente,
+       'Persona_idPersona'=>$idpersona,
        'estado_idEstado'=>1,
            ]
         );
 
+           
+     $idpersona=DB::table('Persona')->insertGetId(
+            [
+            'idTipo_documento'=>$tipodocumento,
+            'nro_documento'=>$nro_documento,           
+            'nombre'=> $nombre,
+            'apellidos'=>$apellidos,
+            'fecha_nacimiento'=>$fecnaci,
+            'sexo'=>$sexo,
+            ]
+        );
 
-       $tel=new Persona;
-            $tel->Almacen_idAlmacen=$idAlmacen;
-            $tel->numero=$numero;
-            $tel->idTipo_telefono=$tipo;
+
+    $idtele_persona=DB::table('Telefono_Persona')->insertGetId(
+            [
+       'numero'=>$numero_telefonico,
+       'Persona_idPersona'=>$idpersona,
+       'idTipo_telefono'=>$tipotelefono,
+       'idoperador'=>$operador,
+       'estado_idEstado'=>1,
+           ]
+        );
+/*
+           $tel=new Telefono_Persona;
+            $tel->numero=$numero_telefonico;
+            $tel->Persono_idPersona=$idpersona;
+            $tel->idTipo_telefono=$$ipotelefono;
             $tel->idoperador=$operador;
+            $tel->estado_idEstado=1;
             $tel->save();
+
+*/
 
 
             return ['data' =>'/cliente','veri'=>true];
