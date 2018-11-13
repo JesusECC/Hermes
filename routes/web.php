@@ -30,7 +30,7 @@ Route::get('Tienda',['as'=>'tienda','uses'=>'TiendaController@index']);
  Route::get('Tienda/create',['as' => 'tienda-create','uses'=>'TiendaController@create']);
  Route::post('Tienda/guardar',['as' => 'tienda-store','uses'=>'TiendaController@store']);
 
-  Route::get('Tienda/{idTienda}/edit',['as'=>'Tienda','uses'=>'ControllerClientes@edit']);
+//   Route::get('Tienda/{idTienda}/edit',['as'=>'Tienda','uses'=>'ControllerClientes@edit']);
 
 
 //roles
@@ -195,6 +195,11 @@ Route::post('cliente/guardar',['as'=>'cliente-guardar','uses'=>'ClienteControlle
 Route::get('cliente/editar/{id}',['as'=>'cliente-edit','uses'=>'ClienteController@edit']);
 Route::post('cliente/update',['as'=>'cliente-update','uses'=>'ClienteController@update']);
 Route::get('cliente/delete/{id}',['as'=>'cliente-delete','uses'=>'ClienteController@destroy']);
+
+// rutas para ajax
+Route::post('cliente/departamento',['as'=>'cliente-departamento','uses'=>'ClienteController@provincia']);
+Route::post('cliente/distrito',['as'=>'cliente-distrito','uses'=>'ClienteController@distrito']);
+
 
 
 

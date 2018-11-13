@@ -37,14 +37,14 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label class="control-label">Fecha de Nacimiento</label>
-                                <input type="date" id="fecnaci" class="form-control" placeholder="">
+                                <input type="date" id="fecnaci" name="fecnaci" class="form-control" placeholder="">
                             </div>
                         </div>
                          <div class="col-md-4 ">
                             <div class="form-group">
                                 <label class="control-label">Tipo Documento</label>
                               
-                            <select  class="form-control selectpicker" id="tipodocumento" data-live-search="true">
+                            <select  class="form-control selectpicker" id="tipodocumento" name="tipodocumento" data-live-search="true">
                             <option value="" disabled="" selected="">seleccione Documento</option>
                             @foreach($tipo_documento as $td)                
                             <option value="{{$td->id}}">{{$td->nombre_TD}}</option>
@@ -57,7 +57,7 @@
                               <div class="form-group">
                                     <label class="control-label">Tipo Cliente</label>
                                   
-                                <select  class="form-control selectpicker" id="tipocliente" data-live-search="true">
+                                <select  class="form-control selectpicker" id="tipocliente" name="tipocliente" data-live-search="true">
                                 <option value="" disabled="" selected="">Seleccione</option>
                                 @foreach($tipo_cliente as $tpclien)                
                                 <option value="{{$tpclien->id}}">{{$tpclien->nombre}}</option>
@@ -83,7 +83,7 @@
                                 <div class="form-group">
                                     <label class="control-label">Departamento</label>
                                   
-                                <select  class="form-control selectpicker" id="departamento" data-live-search="true">
+                                <select  class="form-control selectpicker" id="departamento" name="departamento" data-live-search="true">
                                 <option value="" disabled="" selected="">Seleccione</option>
                                 @foreach($departamento as $depa)                
                                 <option value="{{$depa->id}}">{{$depa->nombre_departamento}}</option>
@@ -93,25 +93,17 @@
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                    <label class="control-label">Provincia</label>
-                                  
-                                <select  class="form-control selectpicker" id="provincia" data-live-search="true">
-                                <option value="" disabled="" selected="">Seleccione</option>
-                                @foreach($provincia as $pro)                
-                                <option value="{{$pro->id}}">{{$pro->nombre_provincia}}</option>
-                                @endforeach  
+                                    <label class="control-label">Provincia</label>                                  
+                                <select  class="form-control selectpicker" id="provincia" name="provincia" data-live-search="true">
+                                    <option value="" disabled="" selected="">Seleccione</option>
                                 </select>   
                                 </div>
                         </div>
                         <div class="col-md-4">
                         <div class="form-group">
-                                    <label class="control-label">Distrito</label>
-                                  
-                                <select  class="form-control selectpicker" id="distrito" data-live-search="true">
-                                <option value="" disabled="" selected="">Seleccione</option>
-                                @foreach($distrito as $dis)                
-                                <option value="{{$dis->id}}">{{$dis->nombre_distrito}}</option>
-                                @endforeach  
+                                    <label class="control-label">Distrito</label>                                  
+                                <select  class="form-control selectpicker" id="distrito" nama="distrito" data-live-search="true">
+                                    <option value="" disabled="" selected="">Seleccione</option>
                                 </select>   
                                 </div>
                         </div>
@@ -129,7 +121,7 @@
                            <div class="form-group">
                                     <label class="control-label">Tipo Telefono</label>
                                   
-                                <select  class="form-control selectpicker" id="tipotelefono" data-live-search="true">
+                                <select  class="form-control selectpicker" id="tipotelefono" name="tipotelefono" data-live-search="true">
                                 <option value="" disabled="" selected="">Seleccione</option>
                                 @foreach($tipo_telefono as $tptele)                
                                 <option value="{{$tptele->id}}">{{$tptele->nombre_tipo}}</option>
@@ -142,7 +134,7 @@
                               <div class="form-group">
                                     <label class="control-label">Operador</label>
                                   
-                                <select  class="form-control selectpicker" id="operador" data-live-search="true">
+                                <select  class="form-control selectpicker" id="operador" name="operador" data-live-search="true">
                                 <option value="" disabled="" selected="">Seleccione</option>
                                 @foreach($operador as $oper)                
                                 <option value="{{$oper->id}}">{{$oper->nombre_operador}}</option>
@@ -169,67 +161,97 @@
 
 @push('scripts')
 <script>
-    
-        $('#save').click(function(){
-            saveCliente();
-        });
-        
-        $('#su').keyup(function (){
-            this.value = (this.value + '').replace(/[^0-9]/g, '1');
-        });
-        $('#su').click(function (){
-            this.value = (this.value + '').replace(/[^0-9]/g, '1');
-       
-        // Actualizar
-       
+    // $('#departamento').click(function(){
+    //         console.log('departamento');
+    // });
 
+    // $("#departamento").change(console.log('entre'));
+
+    var selectDepartamento = document.getElementById('departamento');
+    selectDepartamento.addEventListener('change',function(){
+        var selectedOption = this.options[selectDepartamento.selectedIndex];
+        console.log(selectedOption.value + ': ' + selectedOption.text);
+        var id=selectedOption.value;
+        console.log(id);
+        provincia(id);
+        
+    });
+    var selectProvincia = document.getElementById('provincia');
+    selectProvincia.addEventListener('change',function(){
+        var selectedOption = this.options[selectProvincia.selectedIndex];
+        console.log(selectedOption.value + ': ' + selectedOption.text);
+        var id=selectedOption.value;
+        console.log(id);
+        distrito(id);        
     });
 
-    function saveCliente(){
-        
-        // se enviar los datos al controlador empleados
 
-                var nombre=$("#nombre").val();
-                var apellidos=$("#apellidos").val();
-                var fecnaci=$("#fecnaci").val();
-                var tipodocumento=$("#tipodocumento").val();
-                var tipocliente=$("#tipocliente").val();
-                var nro_documento=$("#nro_documento").val();
-                var sexo=$("#sexo").val();
-                var departamento=$("#departamento").val();
-                var provincia=$("#provincia").val();
-                var distrito=$("#distrito").val();
-                var nombre_direccion=$("#nombre_direccion").val();
-                var tipotelefono=$("#tipotelefono").val();
-                var operador=$("#tipotelefono").val();
-                var numero_telefonico=$("#tipotelefono").val();
-   
+    function provincia(idDepartamento){
+        console.log(idDepartamento,'-----');
+      $.ajax({
+            headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+            data:{departamento:idDepartamento}, //datos que se envian a traves de ajax
+            url:'departamento', //archivo que recibe la peticion
+            type:'post', //método de envio
+            dataType:"json",//tipo de dato que envio 
+            beforeSend: function () {
+                console.log('procesando');
+                // $("#resultado").html("Procesando, espere por favor...");
+            },
+            success:  function (response) { //una vez que el archivo recibe el request lo procesa y lo devuelve
+                if(response.veri==true){
 
-          
-        if(departamento!=''){
-        var dat=[{nombre:nombre,apellidos:apellidos,fecnaci:fecnaci,tipodocumento:tipodocumento,tipocliente:tipocliente,nro_documento:nro_documento,sexo:sexo,departamento:departamento,provincia:provincia,distrito:distrito,nombre_direccion:nombre_direccion,tipotelefono:tipotelefono,operador:operador,numero_telefonico:numero_telefonico}];
-        console.log(dat);
-            $.ajax({
-                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-                data:  {datos:dat}, //datos que se envian a traves de ajax
-                url:   'guardar', //archivo que recibe la peticion
-                type:  'post', //método de envio
-                dataType: "json",//tipo de dato que envio 
-                success:  function (response) { //una vez que el archivo recibe el request lo procesa y lo devuelve
-                    if(response.veri==true){
-                        var urlBase=window.location.origin;
-                        var url=urlBase+'/'+response.data;
-                        document.location.href=url;
-                    }else{
-                        alert("problemas al guardar la informacion");
+                    // var urlBase=window.location.origin;
+                    // var url=urlBase+'/'+response.data;
+                    // document.location.href=url;
+                    var provincia=response.provincia;
+                    var va;
+                    // console.log(response.provincia,response.veri);
+                    va='<option value="" disabled="" selected="">Seleccione</option>'
+                    for(const i in provincia){
+                        va+='<option value="'+provincia[i]['id']+'">'+provincia[i]['nombre_provincia']+'</option>';                 
                     }
+                    $("#provincia").html(va); 
+                }else{
+                    alert("problemas al enviar la informacion");
                 }
-            });
-        }
+            }
+        });
     }
-    var bool;
-    
-   
+    function distrito(idProvincia){
+        console.log(idProvincia,'-----');
+      $.ajax({
+            headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+            data:{Provincia:idProvincia}, //datos que se envian a traves de ajax
+            url:'distrito', //archivo que recibe la peticion
+            type:'post', //método de envio
+            dataType:"json",//tipo de dato que envio 
+            beforeSend: function () {
+                console.log('procesando');
+                // $("#resultado").html("Procesando, espere por favor...");
+            },
+            success:  function (response) { //una vez que el archivo recibe el request lo procesa y lo devuelve
+                if(response.veri==true){
+
+                    // var urlBase=window.location.origin;
+                    // var url=urlBase+'/'+response.data;
+                    // document.location.href=url;
+                    var distrito=response.distrito;
+                    var va;
+                    // console.log(response.distrito,response.veri);
+                    va='<option value="" disabled="" selected="">Seleccione</option>'
+                    for(const i in distrito){
+                        va+='<option value="'+distrito[i]['id']+'">'+distrito[i]['nombre_distrito']+'</option>';      
+                    }
+                    $("#distrito").html(va); 
+                }else{
+                    alert("problemas al enviar la informacion");
+                }
+            }
+        });
+    }
+
+
 </script>
 @endpush
 @endsection

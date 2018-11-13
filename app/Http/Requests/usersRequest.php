@@ -13,7 +13,7 @@ class usersRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -25,6 +25,10 @@ class usersRequest extends FormRequest
     {
         return [
             //
+            'Trabajador_idTrabajador'=>['required'],
+            'usuario' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:6', 'confirmed'],
+            // 'idRol' => ['required', 'int', 'min:6'],
         ];
     }
 }

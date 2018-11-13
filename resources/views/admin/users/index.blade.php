@@ -12,8 +12,8 @@
 </div>
 <div class="card">
   <div class="card-header">
-     <h4 class="card-title pull-left">Lista de Trabadores</h4>
-     <a href="{{ route('persona-create') }}"><button type="button" class="btn waves-effect waves-light btn-success pull-right">Agregar</button></a>
+     <h4 class="card-title pull-left">Lista de Usuarios</h4>
+     <a href="{{ route('usuarios-create') }}"><button type="button" class="btn waves-effect waves-light btn-success pull-right">Agregar</button></a>
   </div>
     <div class="card-body">
         <div class="">
@@ -34,8 +34,8 @@
                         <td>{{ $user->usuario }}</td>
                         <td>{{ $user->nombreRol }}</td>
                         <td class="text-nowrap">
-                            <a href="{{ route('persona-editar',$per->id) }}" data-toggle="tooltip" data-original-title="Edit"> <i class="fa fa-pencil text-warning m-r-10"></i> </a>
-                            <a href="{{ route('persona-delete',$per->idTrabajador) }}" data-toggle="tooltip" data-original-title="Delete"> <i class="fa fa-close text-danger m-r-10"></i> </a>
+                            <a href="{{ route('usuarios-editar',$user->id) }}" data-toggle="tooltip" data-original-title="Edit"> <i class="fa fa-pencil text-warning m-r-10"></i> </a>
+                            <a href="{{ route('usuarios-delete',$user->id) }}" data-toggle="tooltip" data-original-title="Delete"> <i class="fa fa-close text-danger m-r-10"></i> </a>
                             <!-- <a href="#" data-toggle="tooltip" data-original-title="Close"> <i class="fa fa-eye text-success"></i> </a> -->
                         </td>                        
                     </tr>

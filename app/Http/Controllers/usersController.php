@@ -11,6 +11,7 @@ use hermes\Trabajador;
 use hermes\users;
 use hermes\Rol;
 use hermes\Users_Rol;
+use hermes\Http\Requests\usersRequest;
 class usersController extends Controller
 {
     /**
@@ -26,11 +27,10 @@ class usersController extends Controller
         ->join('users as u','u.id','=','ur.id')
         ->join('Trabajador as t','t.id','=','u.Trabajador_idTrabajador')
         ->join('Persona as p','p.id','=','t.idPersona')
-        ->select('p.nombre','p.apellidos','u.usuario','r.nombreRol')
+        ->select('u.id','p.nombre','p.apellidos','u.usuario','r.nombreRol')
         ->where('t.estado_idEstado','=',1)
         ->get();
         // dd($user);
-
         return view('admin.users.index',['users'=>$user]);
     }
 
@@ -42,8 +42,17 @@ class usersController extends Controller
     public function create()
     {
         //
-        $trabajador=DB::table('Trabajador')->get();
-        return view('admin.users.create',['trabajador'=>$trabajador]);
+        $trabajador=DB::table('Persona as p')
+        ->join('Trabajador as t','p.id','=','t.idPersona')
+        ->join('estado as e','e.id','=','t.estado_idEstado')
+        ->select('p.nombre','p.apellidos','t.id as idTrabajador')
+        ->where('t.estado_idEstado','=',1)
+        ->get();
+
+        $rol=DB::table('Rol')->get();
+        // $trabajador=DB::table('Trabajador')->get();
+        // dd($trabajador);
+        return view('admin.users.create',['trabajador'=>$trabajador,'rol'=>$rol]);
     }
 
     /**
@@ -52,10 +61,26 @@ class usersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    // Request $request
+    public function store(usersRequest $request)
     {
         //
+        // dd($request);
+        $iduser=DB::table('users')->insertGetId(
+            [
+                'Trabajador_idTrabajador'=>$request->get('Trabajador_idTrabajador'),
+                'usuario'=>$request->get('usuario'),
+                'password'=>Hash::make($request->get('password')),
+                // 'remember_token'=>('remember_token', 100)->nullable(),
+                // 'created_at'=>$request->get(''),
+                // 'updated_at'=>$request->get(''),
+            ]);
+        $user_rol=new Users_Rol;
+        $user_rol->id=$iduser;
+        $user_rol->idRol=$request->get('idRol');
         
+        $user_rol->save();
+        return redirect('usuarios');
     }
 
     /**

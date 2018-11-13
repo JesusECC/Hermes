@@ -74,7 +74,7 @@ public function store(Request $request)
 
      try{
         $idProducto;
-        $idTipo_Comprobante
+        $idTipo_Comprobante;
     
         $cantidad;
         $trabajador;

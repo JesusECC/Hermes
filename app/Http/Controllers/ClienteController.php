@@ -11,6 +11,8 @@ use hermes\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 
 use DB;
+use hermes\Departamento;
+use hermes\Provincia;
 class ClienteController extends Controller
 {
     /**
@@ -69,23 +71,41 @@ class ClienteController extends Controller
     public function store(Request $request)
     {
       
-             try{
-        $nombre;
-        $apellidos;
-        $fecnaci;
-        $tipodocumento;
-        $tipocliente;
-        $nro_documento;
-        $sexo;
-        $departamento;
-        $provincia;
-        $nombre_direccion;
-        $tipotelefono;
-        $operador;
-        $numero_telefonico;
-       
- dd($request->datos);
-        foreach ($request->datos as $dato) {
+        try{       
+            dd($request);
+
+            $idpersona=DB::table('Persona')->insertGetId(
+                [
+                    'idTipo_documento'=>$request->get('tipodocumento'),
+                    'nro_documento'=>$request->get('nro_documento'),
+                    'nombre'=>$request->get('nombre'),
+                    'apellidos'=>$request->get('apellidos'),
+                    'fecha_nacimiento'=>$request->get('fecnaci'),
+                    'sexo'=>$request->get('sexo'),
+                ]
+            );
+
+            $idcliente=DB::table('Cliente')->insertGetId(
+                [
+                    'idTipo_Persona'=>$tipocliente,
+                    'Persona_idPersona'=>$idpersona,
+                    'estado_idEstado'=>1,
+                ]
+            );
+
+
+            $idpersona=DB::table('Departamento')->insertGetId(
+                [
+                    'idTipo_documento'=>$tipodocumento,
+                    'nro_documento'=>$nro_documento,           
+                    'nombre'=> $nombre,
+                    'apellidos'=>$apellidos,
+                    'fecha_nacimiento'=>$fecnaci,
+                    'sexo'=>$sexo,
+                ]
+            );
+
+            foreach ($request->datos as $dato) {            
                 $nombre=$dato['nombre'];
                 $apellidos=$dato['apellidos'];
                 $fecnaci=$dato['fecnaci'];
@@ -99,48 +119,48 @@ class ClienteController extends Controller
                 $tipotelefono=$dato['tipotelefono'];
                 $operador=$dato['operador'];
                 $numero_telefonico=$dato['numero_telefonico'];
-                            
-        }
-     $idDireccion=DB::table('Direccion_TTA')->insertGetId(
-            [
-            'direccionAL'=>$nombre_direccion,
-            'Distrito_idDistrito'=>$distrito,           
-            'Distrito_Provincia_idProvincia'=>$provincia,
-            'Distrito_Provincia_Departamento_idDepartamento'=>$departamento,
-            'estado_idEstado'=>1,
-            ]
-        );
 
-       $idcliente=DB::table('Cliente')->insertGetId(
+            }
+            
+
+            $idDireccion=DB::table('Direccion_TTA')->insertGetId(
             [
-       'idTipo_Persona'=>$tipocliente,
-       'Persona_idPersona'=>$idpersona,
-       'estado_idEstado'=>1,
-           ]
-        );
+                'direccionAL'=>$nombre_direccion,
+                'Distrito_idDistrito'=>$distrito,           
+                'Distrito_Provincia_idProvincia'=>$provincia,
+                'Distrito_Provincia_Departamento_idDepartamento'=>$departamento,
+                'estado_idEstado'=>1,
+            ]);
+
+            $idDireccion=DB::table('Direccion_')->insertGetId(
+                [
+                    'direccionAL'=>$nombre_direccion,
+                    'Distrito_idDistrito'=>$distrito,           
+                    'Distrito_Provincia_idProvincia'=>$provincia,
+                    'Distrito_Provincia_Departamento_idDepartamento'=>$departamento,
+                    'estado_idEstado'=>1,
+                ]);
 
            
-     $idpersona=DB::table('Persona')->insertGetId(
+            $idpersona=DB::table('Persona')->insertGetId(
             [
-            'idTipo_documento'=>$tipodocumento,
-            'nro_documento'=>$nro_documento,           
-            'nombre'=> $nombre,
-            'apellidos'=>$apellidos,
-            'fecha_nacimiento'=>$fecnaci,
-            'sexo'=>$sexo,
-            ]
-        );
+                'idTipo_documento'=>$tipodocumento,
+                'nro_documento'=>$nro_documento,           
+                'nombre'=> $nombre,
+                'apellidos'=>$apellidos,
+                'fecha_nacimiento'=>$fecnaci,
+                'sexo'=>$sexo,
+            ]);
 
 
-    $idtele_persona=DB::table('Telefono_Persona')->insertGetId(
+            $idtele_persona=DB::table('Telefono_Persona')->insertGetId(
             [
-       'numero'=>$numero_telefonico,
-       'Persona_idPersona'=>$idpersona,
-       'idTipo_telefono'=>$tipotelefono,
-       'idoperador'=>$operador,
-       'estado_idEstado'=>1,
-           ]
-        );
+               'numero'=>$numero_telefonico,
+               'Persona_idPersona'=>$idpersona,
+               'idTipo_telefono'=>$tipotelefono,
+               'idoperador'=>$operador,
+               'estado_idEstado'=>1,
+            ]);
 /*
            $tel=new Telefono_Persona;
             $tel->numero=$numero_telefonico;
@@ -205,5 +225,35 @@ class ClienteController extends Controller
     public function destroy($id)
     {
         //
+    }
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function provincia(Request $request)
+    {
+        $idDepartamento=$request->get('departamento');
+        $provincia=DB::table('Provincia')
+        ->where('Departamento_idDepartamento','=',$idDepartamento)
+        ->get();
+        // dd($request);
+        return ['provincia' =>$provincia,'veri'=>true];
+    }
+    public function distrito(Request $request)
+    {
+        $idProvincia=$request->get('Provincia');
+
+        $distrito=DB::table('Distrito')
+        ->where('Provincia_idProvincia','=',$idProvincia)
+        ->get();
+        // dd($request);
+        return ['distrito' =>$distrito,'veri'=>true];
+
+    //    id
+    //    nombre_distrito
+    //    Provincia_idProvincia
+    //    Provincia_Departamento_idDepartamento
     }
 }
