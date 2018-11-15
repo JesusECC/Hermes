@@ -37,14 +37,14 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label class="control-label">Fecha de Nacimiento</label>
-                                <input type="date" id="fecnaci" name="fecnaci" class="form-control" placeholder="">
+                                <input type="date" id="fecha_nacimiento" name="fecha_nacimiento" class="form-control" placeholder="">
                             </div>
                         </div>
                          <div class="col-md-4 ">
                             <div class="form-group">
                                 <label class="control-label">Tipo Documento</label>
                               
-                            <select  class="form-control selectpicker" id="tipodocumento" name="tipodocumento" data-live-search="true">
+                            <select  class="form-control selectpicker" id="idTipo_documento" name="idTipo_documento" data-live-search="true">
                             <option value="" disabled="" selected="">seleccione Documento</option>
                             @foreach($tipo_documento as $td)                
                             <option value="{{$td->id}}">{{$td->nombre_TD}}</option>
@@ -73,8 +73,12 @@
                         </div>
                         <div class="col-md-2">
                             <div class="group">
-                                <label class="control-label">Sexo</label>
-                                <input type="text" name="sexo" id="sexo" class="form-control" placeholder="Sexo">
+                                <label class="control-label">Sexo</label>                                  
+                                <select  class="form-control selectpicker" id="sexo" nama="sexo" data-live-search="true">
+                                    <option value="" disabled="" selected="">Seleccione</option>
+                                    <option value="M"  selected="">Masculino</option>
+                                    <option value="F"  selected="">Femenino</option>
+                                </select> 
                             </div>
                         </div>
                     </div>
@@ -93,20 +97,22 @@
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                    <label class="control-label">Provincia</label>                                  
+                                <label class="control-label">Provincia</label>                                  
                                 <select  class="form-control selectpicker" id="provincia" name="provincia" data-live-search="true">
                                     <option value="" disabled="" selected="">Seleccione</option>
                                 </select>   
-                                </div>
+                            </div>
                         </div>
+
                         <div class="col-md-4">
-                        <div class="form-group">
-                                    <label class="control-label">Distrito</label>                                  
-                                <select  class="form-control selectpicker" id="distrito" nama="distrito" data-live-search="true">
+                            <div class="form-group">
+                                <label class="control-label">Distrito</label>                                  
+                                <select  class="form-control selectpicker" id="distrito" name="distrito" data-live-search="true">
                                     <option value="" disabled="" selected="">Seleccione</option>
                                 </select>   
-                                </div>
+                            </div>
                         </div>
+                        
                     </div>
                     <div class="row p-t-2">
                         <div class="col-md-12">
@@ -150,7 +156,11 @@
                                 <label class="control-label">Número Teléfonico</label>
                                 <input type="text" name="numero_telefonico" id="numero_telefonico" class="form-control" placeholder="Número">
                             </div>  
-                        </div>                        
+                        </div>  
+
+                        
+
+                                              
                     </div>                    
                      <button id="save" type="sumbit" class="btn waves-effect waves-light btn-success pull-right"><i class="far fa-save"></i>Agregar</button>           
      </form>     
@@ -184,7 +194,9 @@
         console.log(id);
         distrito(id);        
     });
-
+    $('#save').click(function(){
+        console.log($("#simbolo").val());
+    });
 
     function provincia(idDepartamento){
         console.log(idDepartamento,'-----');

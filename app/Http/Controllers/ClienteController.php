@@ -3,7 +3,6 @@
 namespace hermes\Http\Controllers;
 
 use Illuminate\Http\Request;
-use hermes\Cliente;
 
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
@@ -13,6 +12,9 @@ use Illuminate\Support\Facades\Hash;
 use DB;
 use hermes\Departamento;
 use hermes\Provincia;
+use hermes\Cliente;
+
+use hermes\Direccion_persona;
 class ClienteController extends Controller
 {
     /**
@@ -59,7 +61,9 @@ class ClienteController extends Controller
         $tipo_telefono=DB::table('Tipo_telefono')->get();
         $operador=DB::table('operador')->get();
 
-        return view('cliente.create',["cliente"=>$cliente,"tipo_cliente"=>$tipo_cliente,"persona"=>$persona,"tipo_documento"=>$tipo_documento,"distrito"=>$distrito,"provincia"=>$provincia,"departamento"=>$departamento,"tipo_telefono"=>$tipo_telefono,"operador"=>$operador]);
+        $estado=DB::table('estado')->get();
+
+        return view('cliente.create',["cliente"=>$cliente,"tipo_cliente"=>$tipo_cliente,"persona"=>$persona,"tipo_documento"=>$tipo_documento,"distrito"=>$distrito,"provincia"=>$provincia,"departamento"=>$departamento,"tipo_telefono"=>$tipo_telefono,"operador"=>$operador,'estado'=>$estado]);
     }
 
     /**
@@ -70,114 +74,36 @@ class ClienteController extends Controller
      */
     public function store(Request $request)
     {
-      
-        try{       
-            dd($request);
-
-            $idpersona=DB::table('Persona')->insertGetId(
-                [
-                    'idTipo_documento'=>$request->get('tipodocumento'),
-                    'nro_documento'=>$request->get('nro_documento'),
-                    'nombre'=>$request->get('nombre'),
-                    'apellidos'=>$request->get('apellidos'),
-                    'fecha_nacimiento'=>$request->get('fecnaci'),
-                    'sexo'=>$request->get('sexo'),
-                ]
-            );
-
-            $idcliente=DB::table('Cliente')->insertGetId(
-                [
-                    'idTipo_Persona'=>$tipocliente,
-                    'Persona_idPersona'=>$idpersona,
-                    'estado_idEstado'=>1,
-                ]
-            );
-
-
-            $idpersona=DB::table('Departamento')->insertGetId(
-                [
-                    'idTipo_documento'=>$tipodocumento,
-                    'nro_documento'=>$nro_documento,           
-                    'nombre'=> $nombre,
-                    'apellidos'=>$apellidos,
-                    'fecha_nacimiento'=>$fecnaci,
-                    'sexo'=>$sexo,
-                ]
-            );
-
-            foreach ($request->datos as $dato) {            
-                $nombre=$dato['nombre'];
-                $apellidos=$dato['apellidos'];
-                $fecnaci=$dato['fecnaci'];
-                $tipodocumento=$dato['tipodocumento'];
-                $tipocliente=$dato['tipocliente'];
-                $nro_documento=$dato['nro_documento'];
-                $sexo=$dato['sexo'];
-                $departamento=$dato['departamento'];
-                $provincia=$dato['provincia'];
-                $nombre_direccion=$dato['nombre_direccion'];
-                $tipotelefono=$dato['tipotelefono'];
-                $operador=$dato['operador'];
-                $numero_telefonico=$dato['numero_telefonico'];
-
-            }
-            
-
-            $idDireccion=DB::table('Direccion_TTA')->insertGetId(
+        // dd($request);
+        $idpersona=DB::table('Persona')->insertGetId(
             [
-                'direccionAL'=>$nombre_direccion,
-                'Distrito_idDistrito'=>$distrito,           
-                'Distrito_Provincia_idProvincia'=>$provincia,
-                'Distrito_Provincia_Departamento_idDepartamento'=>$departamento,
-                'estado_idEstado'=>1,
-            ]);
+                'idTipo_documento'=>$request->get('idTipo_documento'),
+                'nro_documento'=>$request->get('nro_documento'),
+                'nombre'=>$request->get('nombre'),
+                'apellidos'=>$request->get('apellidos'),
+                'fecha_nacimiento'=>$request->get('fecha_nacimiento'),
+                'sexo'=>$request->get('sexo'),
+            ]
+        );
+        // dd($idpersona,$request);
+        $cliente=new Cliente;
+        $cliente->idTipo_Persona=$request->get('tipocliente');
+        $cliente->Persona_idPersona=$idpersona;
+        $cliente->estado_idEstado=1;
+        $cliente->save();
 
-            $idDireccion=DB::table('Direccion_')->insertGetId(
-                [
-                    'direccionAL'=>$nombre_direccion,
-                    'Distrito_idDistrito'=>$distrito,           
-                    'Distrito_Provincia_idProvincia'=>$provincia,
-                    'Distrito_Provincia_Departamento_idDepartamento'=>$departamento,
-                    'estado_idEstado'=>1,
-                ]);
+        // dd($cliente,$request,$request->get('tipocliente'),$idpersona);
 
-           
-            $idpersona=DB::table('Persona')->insertGetId(
-            [
-                'idTipo_documento'=>$tipodocumento,
-                'nro_documento'=>$nro_documento,           
-                'nombre'=> $nombre,
-                'apellidos'=>$apellidos,
-                'fecha_nacimiento'=>$fecnaci,
-                'sexo'=>$sexo,
-            ]);
+        $Direccion_persona=new Direccion_persona;
+        $Direccion_persona->nombre_direccion=$request->get('nombre_direccion');
+        $Direccion_persona->idPersona=$idpersona;
+        $Direccion_persona->Distrito_idDistrito=$request->get('distrito');
+        $Direccion_persona->Distrito_Provincia_idProvincia=$request->get('provincia');
+        $Direccion_persona->Distrito_Provincia_Departamento_idDepartamento=$request->get('departamento');
+        $Direccion_persona->estado_idEstado=1;
+        $Direccion_persona->save();
 
-
-            $idtele_persona=DB::table('Telefono_Persona')->insertGetId(
-            [
-               'numero'=>$numero_telefonico,
-               'Persona_idPersona'=>$idpersona,
-               'idTipo_telefono'=>$tipotelefono,
-               'idoperador'=>$operador,
-               'estado_idEstado'=>1,
-            ]);
-/*
-           $tel=new Telefono_Persona;
-            $tel->numero=$numero_telefonico;
-            $tel->Persono_idPersona=$idpersona;
-            $tel->idTipo_telefono=$$ipotelefono;
-            $tel->idoperador=$operador;
-            $tel->estado_idEstado=1;
-            $tel->save();
-
-*/
-
-
-            return ['data' =>'/cliente','veri'=>true];
-        }catch(Exception $e){
-            return ['data' =>$e,'veri'=>false];
-        }
-
+        return redirect('cliente');
    }  
        
     
