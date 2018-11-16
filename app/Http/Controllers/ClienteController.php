@@ -94,6 +94,8 @@ class ClienteController extends Controller
 
         // dd($cliente,$request,$request->get('tipocliente'),$idpersona);
 
+        
+
         $Direccion_persona=new Direccion_persona;
         $Direccion_persona->nombre_direccion=$request->get('nombre_direccion');
         $Direccion_persona->idPersona=$idpersona;

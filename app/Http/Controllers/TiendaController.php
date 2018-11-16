@@ -80,6 +80,7 @@ class TiendaController extends Controller
                      $tipotienda=DB::table('Tipo_tienda')
                     ->get();
                     
+                
 
                 $operador=DB::table('operador')
                 ->get();
@@ -87,7 +88,7 @@ class TiendaController extends Controller
                    $estado=DB::table('estado')
                    ->get();
 
- return view('Tienda.create',["tienda"=>$tienda,"distrito"=>$distrito,"tipotienda"=>$tipotienda,"departamento"=>$departamento,"provincia"=>$provincia,"distrito"=>$distrito,"tipotelefono"=>$tipotelefono,"operador"=>$operador]);
+ return view('Tienda.create',["tienda"=>$tienda,"distrito"=>$distrito,"tipotienda"=>$tipotienda,"departamento"=>$departamento,"provincia"=>$provincia,"distrito"=>$distrito,"tipotelefono"=>$tipotelefono,"operador"=>$operador,"estado"=>$estado]);
 
     }
 
@@ -100,78 +101,47 @@ class TiendaController extends Controller
     public function store(Request $request)
     {
         
-  
-      try{
-        $codigo;//
-        $nombrea;//
-        $tptienda;//
-        $tipotele;//
-        $opera;//
-        $tele;//
-        $departamento;
-        $distrito;
-        $provincia;
-        $direcc;
-       
-  
-        foreach ($request->datos as $dato) {
-
-        $codigo=$dato['codigo'];
-        $nombrea=$dato['nombrea'];
-        $tptienda=$dato['tptienda'];
-        $tipotele=$dato['tipotele'];
-        $opera=$dato['opera'];
-        $tele=$dato['tele'];
-        $departamento=$dato['departamento'];
-        $distrito=$dato['distrito'];
-        $provincia=$dato['provincia'];
-        $direcc=$dato['direcc'];
-            
-                    
-        }
-     $idDireccion=DB::table('Direccion_TTA')->insertGetId(
+         $idDireccion=DB::table('Direccion_TTA')->insertGetId(
             [
-            'direccionAL'=>$direcc,
-            'Distrito_idDistrito'=>$distrito,           
-            'Distrito_Provincia_idProvincia'=>$provincia,
-            'Distrito_Provincia_Departamento_idDepartamento'=>$departamento,
+            'direccionAL'=>$request->get('direccionAL'),
+            'Distrito_idDistrito'=>$request->get('distrito'),          
+            'Distrito_Provincia_idProvincia'=>$request->get('provincia'),
+            'Distrito_Provincia_Departamento_idDepartamento'=>$request->get('departamento'),
             'estado_idEstado'=>1,
             ]
         );
-/*
-        $idTienda=new Tipo_tienda;
-            $tptienda->nombre=$tptienda;
-            $Tien->save();
 
-*/
-       $idTienda=DB::table('Tienda')->insertGetId(
-        [
-       'nombre'=>$nombrea,
-       'codigo_tienda'=>$codigo,
-       'estado_idEstado'=>1,
-       'idDireccionT'=>$idDireccion,
-       'idtipo_tienda'=>$tptienda,
-           ]
+        $idTienda=DB::table('Tienda')->insertGetId(
+            [
+                'nombre_tienda'=>$request->get('nombre_tienda'),
+                'codigo_tienda'=>$request->get('codigo_tienda'),
+                'estado_idEstado'=>1,
+                'idDireccionT'=>$idDireccion,
+                'idtipo_tienda'=>$request->get('idTipo_tienda'),
+                
+            ]
         );
 
-  $tie=new Telefono_Tienda;
-            $tie->Tienda_idTienda=$idTienda;
-            $tie->numero=$tele;
-            $tie->idTipo_telefono=$tipotele;
-            $tie->idoperador=$opera;
-            $tie->save();
-       
+        
 
+        $teletienda=new Telefono_Tienda;
+        $teletienda->Tienda_idTienda=$idTienda;
+        $teletienda->numero=$request->get('numero');
+        $teletienda->idTipo_telefono=$request->get('idTipo_telefono');;
+        $teletienda->idoperador=$request->get('idTipooperador');
+        $teletienda->save();
+      /*  
+        $Direccion_TTA=new Direccion_TTA;
+        $Direccion_TTA->direccionAL=$request->get('direccionAL');
+        $Direccion_TTA->Distrito_idDistrito=$request->get('distrito');
+        $Direccion_TTA->Distrito_Provincia_idProvincia=$request->get('provincia');
+        $Direccion_TTA->Distrito_Provincia_Departamento_idDepartamento=$request->get('departamento');
+        $Direccion_TTA->estado_idEstado=1;
+        $Direccion_TTA->save();
+*/
 
-
-      
-
-            return ['data' =>'/Tienda','veri'=>true];
-        }catch(Exception $e){
-            return ['data' =>$e,'veri'=>false];
-        }
-
-
+        return redirect('Tienda');
+        
 
     }
 
@@ -217,8 +187,35 @@ class TiendaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     public function destroy($id)
     {
         //
     }
+
+       public function provincia(Request $request)
+    {
+        $idDepartamento=$request->get('departamento');
+        $provincia=DB::table('Provincia')
+        ->where('Departamento_idDepartamento','=',$idDepartamento)
+        ->get();
+        // dd($request);
+        return ['provincia' =>$provincia,'veri'=>true];
+    }
+    public function distrito(Request $request)
+    {
+        $idProvincia=$request->get('Provincia');
+
+        $distrito=DB::table('Distrito')
+        ->where('Provincia_idProvincia','=',$idProvincia)
+        ->get();
+        // dd($request);
+        return ['distrito' =>$distrito,'veri'=>true];
+
+    //    id
+    //    nombre_distrito
+    //    Provincia_idProvincia
+    //    Provincia_Departamento_idDepartamento
+    }
+
 }
