@@ -29,7 +29,7 @@ Route::post('Almacen/guardar',['as' => 'almacen-store','uses'=>'AlmacenControlle
 Route::get('Tienda',['as'=>'tienda','uses'=>'TiendaController@index']);
  Route::get('Tienda/create',['as' => 'tienda-create','uses'=>'TiendaController@create']);
  Route::post('Tienda/guardar',['as' => 'tienda-store','uses'=>'TiendaController@store']);
-
+//Route::get('trabajador/create',['as' => 'persona-create','uses'=>'TrabajadorController@create']);
 //   Route::get('Tienda/{idTienda}/edit',['as'=>'Tienda','uses'=>'ControllerClientes@edit']);
 
 
