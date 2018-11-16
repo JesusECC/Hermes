@@ -10,6 +10,7 @@ use hermes\Departamento;
 use hermes\Tipo_telefono;
 use hermes\operador;
 use hermes\Telefono_Tienda;
+use hermes\Tienda;
 
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
@@ -44,7 +45,7 @@ class TiendaController extends Controller
                  ->join('operador as op','op.id','=','tele.idoperador')
                  ->join('Tipo_telefono as tt','tt.id','=','tele.idTipo_telefono')
 
-                 ->select('t.codigo_tienda','t.nombre_tienda','tele.numero',DB::raw('CONCAT(depa.nombre_departamento,"/",pro.nombre_provincia,"/",dis.nombre_distrito) as direc'),'dire.direccionAL','tp.nombre','tt.nombre_tipo','op.nombre_operador')
+                 ->select('t.id','t.codigo_tienda','t.nombre_tienda','tele.numero',DB::raw('CONCAT(depa.nombre_departamento,"/",pro.nombre_provincia,"/",dis.nombre_distrito) as direc'),'dire.direccionAL','tp.nombre','tt.nombre_tipo','op.nombre_operador')
                 ->where('est.tipo_estado','=',1)
                  ->orderBy('t.id','desc')
 
@@ -164,8 +165,39 @@ class TiendaController extends Controller
      */
     public function edit($id)
     {
-       
-        return view("Tienda.edit",["tienda"=>tienda::findOrFail($id)]);
+
+        $distrito=DB::table('Distrito')
+                 ->get();
+                 
+         $provincia=DB::table('Provincia')    
+         ->get();
+
+        $departamento=DB::table('Departamento')
+        ->get();
+
+        $estado=DB::table('estado')
+        ->get();
+
+
+        $tipotelefono=DB::table('Tipo_telefono')
+        ->get();
+         $tipotienda=DB::table('Tipo_tienda')
+        ->get();
+
+        $operador=DB::table('operador')
+        ->get();
+                    
+
+        $teletienda=DB::table('Tienda as t')
+        ->join('Telefono_Tienda as tele','t.id','=','tele.Tienda_idTienda')
+        ->select('t.id','t.nombre_tienda','t.codigo_tienda','t.estado_idEstado','t.idDireccionT','t.idtipo_tienda','tele.id as idTelefonoTienda','tele.numero','tele.idTipo_telefono','tele.idoperador')
+        ->where('t.estado_idEstado','=',1)
+        ->where('t.id','=',$id)
+        ->get();
+        //dd($id,$teletienda);
+        // dd($persona,Persona::findOrFail($id));
+        // dd(['trabajador'=>$trabajador]);
+        return view('Tienda.edit',['tienda'=>Tienda::findOrFail($id),'teletienda'=>$teletienda,'distrito'=>$distrito,'provincia'=>$provincia,'departamento'=>$departamento,'estado'=>$estado,'tipotelefono'=>$tipotelefono,'tipotienda'=>$tipotienda,'operador'=>$operador]);
 
     }
 
