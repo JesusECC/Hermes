@@ -8,7 +8,7 @@ class Telefono_Tienda extends Model
 {
     //
     protected $table='Telefono_Tienda';
-    protected $primarykey='idTelefono';
+    protected $primarykey='id';
     public $timestamps=false;
     
     protected $filleable=[

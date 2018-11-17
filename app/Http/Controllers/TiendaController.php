@@ -11,6 +11,10 @@ use hermes\Tipo_telefono;
 use hermes\operador;
 use hermes\Telefono_Tienda;
 use hermes\Tienda;
+use hermes\Direccion_TTA;
+use hermes\Tipo_tienda
+;
+
 
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
@@ -183,14 +187,17 @@ class TiendaController extends Controller
         ->get();
          $tipotienda=DB::table('Tipo_tienda')
         ->get();
-
+        
         $operador=DB::table('operador')
         ->get();
                     
 
         $teletienda=DB::table('Tienda as t')
         ->join('Telefono_Tienda as tele','t.id','=','tele.Tienda_idTienda')
-        ->select('t.id','t.nombre_tienda','t.codigo_tienda','t.estado_idEstado','t.idDireccionT','t.idtipo_tienda','tele.id as idTelefonoTienda','tele.numero','tele.idTipo_telefono','tele.idoperador')
+        ->join('Direccion_TTA as dire','t.idDireccionT','=','dire.id')
+        ->join('estado as est','t.estado_idEstado','=','est.id')
+        //->join('Tipo_tienda as tptienda ','tptienda.id','=','t.idtipo_tienda')
+        ->select('t.id','t.nombre_tienda','t.codigo_tienda','t.estado_idEstado','t.idDireccionT','dire.direccionAL','tele.id as idTelefonoTienda','tele.numero','tele.idTipo_telefono','tele.idoperador')
         ->where('t.estado_idEstado','=',1)
         ->where('t.id','=',$id)
         ->get();
