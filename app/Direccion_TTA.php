@@ -8,7 +8,7 @@ class Direccion_TTA extends Model
 {
     //
     protected $table='Direccion_TTA';
-    protected $primarykey='idDireccion';
+    protected $primarykey='id';
     public $timestamps=false;
     
     protected $filleable=[

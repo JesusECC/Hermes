@@ -11,7 +11,7 @@
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label class="control-label">Nombre Tienda</label>
-                                                    <input type="text" id="nombre_tienda" name="nombre_tienda" class="form-control" value="{{$teletienda[0]->nombre_tienda}} >
+                                                    <input type="text" id="nombre_tienda" name="nombre_tienda" class="form-control" value="{{$teletienda[0]->nombre_tienda}}">
                                                  </div>
                                             </div>
                                             <div class="col-md-4">
