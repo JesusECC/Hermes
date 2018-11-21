@@ -28,7 +28,7 @@
         <h4 class="card-title">Datos del Ingreso</h4>
         <div class="form-body">
             <div class="row p-t-10">
-                <div class="col-lg-4">
+                <div class="col-lg-6">
                     <div class="form-group">
                         <label for="proveedor">Trabajador</label>
                         <select name="idTrabajador" id="idTrabajador" class="form-control selectpicker" data-live-search="true">
@@ -40,7 +40,7 @@
                         </select>
                     </div>
                 </div> 
-                <div class="col-lg-4">
+                <div class="col-lg-6">
                     <div class="form-group">
                         <label for="proveedor">Almacen</label>
                         <select name="idAlmacen" id="idAlmacen" class="form-control selectpicker" data-live-search="true">
@@ -51,17 +51,24 @@
                         </select>
                     </div>                    
                 </div> 
-                <div class="col-lg-4">
+                <div class="col-lg-6">
                     <div class="form-group">
-                        <label for="proveedor">Tipo Ingreso</label>
-                        <select name="idTipo_ingreso" id="idTipo_ingreso" class="form-control selectpicker" data-live-search="true">
+                        <label for="proveedor">Taller</label>
+                        <select name="idTaller" id="idTaller" class="form-control selectpicker" data-live-search="true">
                             <option value="" selected="" disabled="">Seleccione</option>
-                            @foreach($tipoingreso as $ti)
-                            <option value="{{$ti->idIn}}">{{$ti->nombreTP}}</option>
-                            @endforeach  
+                             
                         </select>
                     </div>                    
                 </div>
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label for="proveedor">Numero de Guia</label>
+                         <input type="number" name="pnum" id="pcantidadPF" class="form-control" placeholder="cantidad">
+                             
+                        </select>
+                    </div>                    
+                </div>  
+                
                           
             </div>
             
@@ -75,19 +82,36 @@
     <div class="card-body">
         <h4 class="card-title">Detalle Productos</h4>
         <div class="form-body">
-          <div class="row p-t-10">
+          
 
+        <div class="row">
+                <div class="col-md-5">
+                    <div class="form-group">
+                        <label>Codigo de Barras</label>
+                        <input type="text" name="pcodigo" id="pcodigo" class="form-control">                    
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="form-group">
+                        <label>Ingreso Manual de Codigo</label>
+                         <input type="text" name="pCodprod" id="pCodprod" class="form-control" placeholder="Codigo Producto">                       
+                    </div>
+                </div>
+            </div>
+            <div class="row">
 
-        	<div class="col-md-3">
+            
+
+             <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Nombre Producto</label>
+                        <input type="text" name="pnproducto" id="pnproducto" class="form-control" placeholder="nombre Producto">                    
+                    </div>
+                </div>
+            <div class="col-md-2">
                     <div class="form-group">
                         <label>Talla</label>
-                        <select name="idTalla" class="form-control selectpicker" id="pidTalla" data-live-search="true">
-                        	<option value="" selected="" disabled="">Seleccione</option>
-                            @foreach($talla as $ta)
-                            
-                            <option value="{{$ta->idTa}}">{{$ta->nom_talla}}</option>
-                            @endforeach
-                        </select>                        
+                        <input type="text" name="ptalla" id="ptalla" class="form-control" placeholder="talla">                    
                     </div>
                 </div>
 
@@ -95,49 +119,27 @@
                 <div class="col-md-4">
                     <div class="form-group">
                         <label>Color</label>
-                        <select name="idCollor" class="form-control selectpicker" id="pidCollor" data-live-search="true">
-                        	<option value="" selected="" disabled="">Seleccione</option>
-                            @foreach($color as $co)
-                            
-                            <option value="{{$co->idC}}">{{$co->nombre_color}}</option>
-                            @endforeach
-                        </select>                        
+                        <input type="text" name="pcolor" id="pcolor" class="form-control" placeholder="Color">                     
                     </div>
                 </div>
 
 
-                <div class="col-md-5">
-                    <div class="form-group">
-                        <label>Producto</label>
-                        <select name="pidProducto" class="form-control selectpicker" id="pidProducto" data-live-search="true">
-                        	 <option value="" selected="" disabled="">Seleccione</option>
-                            @foreach($productos as $prod)
-                            <option value="{{$prod->idPro}}">{{$prod->nombre_producto}}</option>
-                            @endforeach
-                        </select>                        
-                    </div>
-                </div>
+               
             </div>
             <div class="row p-t-10">
-                <div class="col-md-3">
+                <div class="col-md-4">
+                    <div class="from-group">
+                        <label>Cantidad de Salida</label>
+                        <input type="text" name="pcantidadSMP" id="pcantidadSMP" class="form-control" >
+                    </div>                    
+                </div>
+                <div class="col-md-4">
                     <div class="from-group">
                         <label>Cantidad</label>
-                        <input type="number" name="pcantidadPF" id="pcantidadPF" class="form-control" placeholder="cantidad">
+                        <input type="text" name="pcantidadPF" id="pcantidadPF" class="form-control" placeholder="cantidad">
                     </div>                    
-                </div>
-                <div class="col-md-3">
-                    <div class="from-group">
-                        <label>Precio compra</label>
-                        <input type="number" name="pprecio_compraPF" id="pprecio_compraPF" class="form-control" placeholder="P. comrpa">
-                    </div>                    
-                </div>
-                <div class="col-md-3">
-                    <div class="from-group">
-                        <label>Precio venta</label>
-                        <input type="number" name="pprecio_ventaPF" id="pprecio_ventaPF" class="form-control" placeholder="P. venta">
-                    </div>                    
-                </div>
-                <div class="col-md-3">
+                </div>               
+                 <div class="col-md-3">
                     <div class="from-group">
                          <button style="margin-top:31px; " type="button" id="bt_add" class="btn btn-primary pull-left">agregar</button>
                     </div>                    
@@ -151,21 +153,25 @@
             <table id="detalles" class="table table-striped table-bordered table-condensed table-hover">
                 <thead style="background-color:#A9D0F5">
                     <th>opciones</th>
+                    <th>Taller</th>
+                    <th>Num. Guia</th>
                     <th>Producto</th>
                     <th>cantidad</th>
-                    <th>precio compra</th>
-                    <th>precio venta</th>
-                    <th>subtotal</th>
+                    <th>color</th>
+                    <th>talla</th>
+                    
                 </thead>
                 <tbody>
                 </tbody>
                 <tfoot>
-                    <th>total</th>
                     <th></th>
                     <th></th>
                     <th></th>
                     <th></th>
-                    <th><h4 id="total">s/. 0.00</h4></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    
 
                 </tfoot>
             </table>
@@ -247,7 +253,7 @@ function agregar()
        producto.push(dat);
 console.log(producto);
        limpiar();
-       $("#total").html("s/. " + total);
+      
        evaluar();
        $('#detalles').append(fila);
 
@@ -262,8 +268,7 @@ console.log(producto);
     total=0;
     function limpiar(){
         $("#pcantidad").val("");
-        $("#pprecio_compra").val("");
-        $("#pprecio_venta").val("");
+       
     }
 
     function evaluar()
@@ -278,8 +283,7 @@ console.log(producto);
         }
     }
     function eliminar(index){
-        total=total-subtotal[index];
-        $("#total").html("s/. "+total);
+       
         $("#fila" + index).remove();
         evaluar();
     }
