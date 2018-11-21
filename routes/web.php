@@ -18,6 +18,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
 //Route::resource('/Almacen','AlmacenController');
 
 //almacen
@@ -85,6 +86,13 @@ Route::get('producto/editar/{id}',['as' => 'producto-editar','uses'=>'ProductoCo
 Route::post('producto/update',['as' => 'producto-update','uses'=>'ProductoController@update']);
 Route::get('producto/delete/{id}',['as' => 'producto-delete','uses'=>'ProductoController@destroy']);
 
+//Detalle_producto
+Route::get('detalle_producto',['as' => 'detalle_producto','uses'=>'Producto_DetalleController@index']);
+Route::get('detalle_producto/create',['as' => 'detalle_producto-create','uses'=>'Producto_DetalleController@create']);
+Route::post('detalle_producto/',['as' => 'detalle_producto-guardar','uses'=>'Producto_DetalleController@store']);
+Route::get('detalle_producto/editar/{id}',['as' => 'detalle_producto-editar','uses'=>'Producto_DetalleController@edit']);
+Route::post('detalle_producto/update',['as' => 'detalle_producto-update','uses'=>'Producto_DetalleController@update']);
+Route::get('detalle_producto/delete/{id}',['as' => 'detalle_producto-delete','uses'=>'Producto_DetalleController@destroy']);
 
 // tipo_producto
 Route::get('tipoproducto',['as' => 'tipoproducto','uses'=>'Tipo_productoController@index']);
