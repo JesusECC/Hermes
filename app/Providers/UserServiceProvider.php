@@ -3,7 +3,9 @@
 namespace hermes\Providers;
 
 use Illuminate\Support\ServiceProvider;
-
+use View;
+use auth;
+use hermes\Http\Controllers\usersController;
 class UserServiceProvider extends ServiceProvider
 {
     /**
@@ -15,12 +17,17 @@ class UserServiceProvider extends ServiceProvider
     {
         //
         view()->composer("*",function($view){
-        $id=auth()->user()->id;
-        $uc=new usersController();        
-        $rol=$uc->roles($id);
+            // dd(empty(auth()->user()));
+            if(!empty(auth()->user())){
+                $id=auth()->user()->id;
+                $uc=new usersController();        
+                $rol=$uc->roles($id);
+                // Session::put('usuario', $rol);
+                $view->with("usuario",$rol);
+            }
         
-        $view->with("usuario",Session::put('usuario', $rol));
         });
+        // view::share('usuario','hola');
     }
 
     /**

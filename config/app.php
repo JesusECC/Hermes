@@ -172,7 +172,7 @@ return [
         // hermes\Providers\BroadcastServiceProvider::class,
         hermes\Providers\EventServiceProvider::class,
         hermes\Providers\RouteServiceProvider::class,
-
+        hermes\Providers\UserServiceProvider::class,
 
         // laravel collective
         Collective\Html\HtmlServiceProvider::class,

@@ -58,7 +58,7 @@ class ProductoController extends Controller
      */
      public function create()
     {
-    $tipoproducto=db::table('Tipo_producto')
+    $detalle_producto=db::table('Producto_Detalle')
     ->get();
 
     $talla=db::table('Tallas')
@@ -70,12 +70,44 @@ class ProductoController extends Controller
     $almacen=db::table('Almacen')
     ->get();
 
-        return view('producto.producto.create',["almacen"=>$almacen,"tipoproducto"=>$tipoproducto,"talla"=>$talla,"color"=>$color]);
+        return view('producto.producto.create',["almacen"=>$almacen,"detalle_producto"=>$detalle_producto,"talla"=>$talla,"color"=>$color]);
     }
 
     
     public function store(Request $request)
     {
+
+$idDetalle_produto=$request->get('idDetalle_produto');
+$CodigoB_Producto=$request->get('CodigoB_Producto');
+$Tallas_idTallas=$request->get('Tallas_idTallas');
+$Color_idColor=$request->get('Color_idColor');
+$Almacen_idAlmacen=$request->get('Almacen_idAlmacen');
+$stockP=$request->get('stockP');
+$precio_unitario=$request->get('precio_unitario');
+
+
+//dd($nombre_tarea,$precioT);  
+
+$cont=0;
+
+while ($cont<count($nombre_tarea)) {
+ 
+    $tarea = new Tipotarea();
+    $tarea->nombre_tarea=$nombre_tarea[$cont];
+    $tarea->precioT=$precioT[$cont];
+     $tarea->nombre_tarea=$nombre_tarea[$cont];
+    $tarea->precioT=$precioT[$cont];
+     $tarea->nombre_tarea=$nombre_tarea[$cont];
+    $tarea->precioT=$precioT[$cont];
+    $tarea->estado=1;
+    $tarea->save();
+
+    $cont=$cont+1;
+}
+
+
+
+    /*
        try{
         $idTipoProducto;
         $nombre;
@@ -104,15 +136,7 @@ class ProductoController extends Controller
             $stock=$dato['stock'];
                     
         }
-     $idDetalleProducto=DB::table('Producto_Detalle')->insertGetId(
-            [
-            'idTipoProducto'=>$idTipoProducto,
-            'nombre_producto'=>$nombre,           
-            'marca_producto'=>$marca,
-            'categoria'=>$categoria,
-            'descuento'=>$descuento,
-            ]
-        );
+    
             $producto=new Producto;
             $producto->idDetalle_produto=$idDetalleProducto;
             $producto->CodigoB_Producto=$codigo;
@@ -137,5 +161,5 @@ class ProductoController extends Controller
 
     /**
     
-    }
+    }*/
 }

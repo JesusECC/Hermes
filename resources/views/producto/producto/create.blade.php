@@ -32,9 +32,9 @@
                     <div class="form-group">
                         <label class="control-label">Tipo Producto</label>
                         <select  class="form-control selectpicker" id="a" data-live-search="true">
-                            <option value="" disabled="" selected="">Tipo Producto</option>
-                            @foreach($tipoproducto as $tp)                
-                            <option value="{{$tp->id}}">{{$tp->nombreTP}}</option>
+                            <option value="" disabled="" selected="">Producto</option>
+                            @foreach($detalle_producto as $tp)                
+                            <option value="{{$tp->id}}">{{$tp->nombre_producto}}</option>
                             @endforeach  
                         </select>   
                     </div>                    
@@ -130,10 +130,103 @@
                 </div>
             </div>
         </div>
+
+        <div class="col-lg-6">
+                        <div class="nav-tabs-custom">
+                            <div class="tab-content">
+                                <div class="row">
+                                    <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+                                        <table id="detalles" class="table table-striped table-bordered table-condensed table-hover">
+                                            <thead style="background-color:#A9D0F5">
+                                                <th>Tareas</th>
+                                                <th>Precio</th>
+                                                <th>Opciones</th>
+                                            </thead>
+                                            <tfoot>
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
+                                            </tfoot>
+                                        </table>
+                                    </div>                                            
+                                </div>
+                            </div>
+                        </div>                        
+                    </div>
         <button type="submit" class="btn waves-effect waves-light btn-success pull-right" id="save">Agregar</button>
     </div>
 </div>                            
 @push('scripts')
+<script>
+$(document).ready(function(){
+    $('#bt_add').click(function(){
+        agregar();
+    });
+});
+
+var cont=0;
+
+
+$("#guardar").show();
+
+function agregar()
+{
+    
+    tarea=$("#pnombre_tarea").val();
+    precio=$("#pprecioT").val();
+   
+
+    if(tarea!="")
+    {
+       
+       var fila='<tr class="selected" id="fila'+cont+'"><td><input type="hidden" name="nombre_tarea[]" value="'+tarea+'">'+tarea+'</td> <td><input type="hidden" name="precioT[]" value="'+precio+'">'+precio+'</td><td><button type="button" class="btn btn-danger" onclick="eliminar('+cont+');">X</button></td></tr>';
+       cont++;
+       limpiar();
+       evaluar();
+       $('#detalles').append(fila);
+
+    }
+    else
+    {
+        alert("erros al ingresar el detale del ingreso, revise los datos del articulo");
+    }
+}
+
+
+   
+    function limpiar(){
+        $("#pnombre_tarea").val("");
+        
+    }
+
+    function evaluar()
+    {
+        if(cont<0)
+        {
+            $("#guardar").hide();
+        }
+        else
+        {
+            $("#guardar").show();
+        }
+    }
+ function eliminar(index){
+        
+        $("#fila" + index).remove();
+        evaluar();
+    }
+
+</script>
+
+
+
+@endpush
+@endsection
+
+
+
+
+<!--
 <script>
     
         $('#save').click(function(){
@@ -193,5 +286,4 @@
     
    
 </script>
-@endpush
-@endsection
+-->
