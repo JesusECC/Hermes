@@ -28,7 +28,7 @@
         <div class="form-body">
             <div class="row p-t-10">
 
-            	<div class="col-md-6">
+            	<div class="col-md-4">
                     <div class="form-group">
                         <label class="control-label">Tipo Producto</label>
                         <select  class="form-control selectpicker" id="a" data-live-search="true">
@@ -39,21 +39,26 @@
                         </select>   
                     </div>                    
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <div class="form-group">
                         <label class="control-label">Nombre Producto</label>
-                        <input type="text" id="b" class="form-control" placeholder="Nombre Almacen">
+                        <input type="text" id="b" class="form-control" placeholder="Ingrese Producto">
                     </div>                    
                 </div>
-                
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="control-label">Codigo Producto</label>
+                        <input type="text" id="" class="form-control" placeholder="Ingrese Codigo">
+                    </div>                    
+                </div>
 
             </div>
             <div class="row p-t-2">
                 <div class="col-md-6">
                     <div class="form-group">
                         <div class="form-group">
-                            <label class="control-label">Codigo</label>
-                            <input type="text" id="c" class="form-control" placeholder="Asignar un codigo">
+                            <label class="control-label">Codigo de Barras</label>
+                            <input type="text" id="c" class="form-control" placeholder="Asignar un codigo de barras">
                         </div>                        
                     </div>
                 </div>

@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+ @extends('layouts.admin')
 @section('content')
 <div class="row page-titles">
     <div class="col-md-5 col-8 align-self-center">
@@ -12,7 +12,7 @@
 </div>
 <div class="card">
     <div class="card-header">
-        <h4 class="card-title pull-left">Registro del Producto Final</h4>
+        <h4 class="card-title pull-left">Salida del Producto</h4>
         @if (count($errors)>0)
             <div class="alert-alert-danger">
                 <ul>
@@ -53,15 +53,14 @@
                 </div> 
                 <div class="col-lg-4">
                     <div class="form-group">
-                        <label for="proveedor">Tipo Ingreso</label>
-                        <select name="idTipo_ingreso" id="idTipo_ingreso" class="form-control selectpicker" data-live-search="true">
+                        <label for="proveedor">Taller</label>
+                        <select name="idTaller" id="idTaller" class="form-control selectpicker" data-live-search="true">
                             <option value="" selected="" disabled="">Seleccione</option>
-                            @foreach($tipoingreso as $ti)
-                            <option value="{{$ti->idIn}}">{{$ti->nombreTP}}</option>
-                            @endforeach  
+                             
                         </select>
                     </div>                    
                 </div>
+                
                           
             </div>
             
@@ -75,19 +74,34 @@
     <div class="card-body">
         <h4 class="card-title">Detalle Productos</h4>
         <div class="form-body">
-          <div class="row p-t-10">
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="form-group">
+                        <label>Codigo de Barras</label>
+                        <input type="text" name="pcodigo" id="pcodigo" class="form-control">                    
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="form-group">
+                        <label>Ingreso Manual de Codigo</label>
+                         <input type="text" name="pCodprod" id="pCodprod" class="form-control" placeholder="Codigo Producto">                       
+                    </div>
+                </div>
+            </div>
+          <div class="row">
 
+            
 
-        	<div class="col-md-3">
+             <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Nombre Producto</label>
+                        <input type="text" name="pnproducto" id="pnproducto" class="form-control" placeholder="nombre Producto">                    
+                    </div>
+                </div>
+        	<div class="col-md-2">
                     <div class="form-group">
                         <label>Talla</label>
-                        <select name="idTalla" class="form-control selectpicker" id="pidTalla" data-live-search="true">
-                        	<option value="" selected="" disabled="">Seleccione</option>
-                            @foreach($talla as $ta)
-                            
-                            <option value="{{$ta->idTa}}">{{$ta->nom_talla}}</option>
-                            @endforeach
-                        </select>                        
+                        <input type="text" name="ptalla" id="ptalla" class="form-control" placeholder="talla">                    
                     </div>
                 </div>
 
@@ -95,48 +109,21 @@
                 <div class="col-md-4">
                     <div class="form-group">
                         <label>Color</label>
-                        <select name="idCollor" class="form-control selectpicker" id="pidCollor" data-live-search="true">
-                        	<option value="" selected="" disabled="">Seleccione</option>
-                            @foreach($color as $co)
-                            
-                            <option value="{{$co->idC}}">{{$co->nombre_color}}</option>
-                            @endforeach
-                        </select>                        
+                        <input type="text" name="pcolor" id="pcolor" class="form-control" placeholder="Color">                     
                     </div>
                 </div>
 
 
-                <div class="col-md-5">
-                    <div class="form-group">
-                        <label>Producto</label>
-                        <select name="pidProducto" class="form-control selectpicker" id="pidProducto" data-live-search="true">
-                        	 <option value="" selected="" disabled="">Seleccione</option>
-                            @foreach($productos as $prod)
-                            <option value="{{$prod->idPro}}">{{$prod->nombre_producto}}</option>
-                            @endforeach
-                        </select>                        
-                    </div>
-                </div>
+               
             </div>
             <div class="row p-t-10">
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <div class="from-group">
                         <label>Cantidad</label>
-                        <input type="number" name="pcantidadPF" id="pcantidadPF" class="form-control" placeholder="cantidad">
+                        <input type="text" name="pcantidadPF" id="pcantidadPF" class="form-control" placeholder="cantidad">
                     </div>                    
                 </div>
-                <div class="col-md-3">
-                    <div class="from-group">
-                        <label>Precio compra</label>
-                        <input type="number" name="pprecio_compraPF" id="pprecio_compraPF" class="form-control" placeholder="P. comrpa">
-                    </div>                    
-                </div>
-                <div class="col-md-3">
-                    <div class="from-group">
-                        <label>Precio venta</label>
-                        <input type="number" name="pprecio_ventaPF" id="pprecio_ventaPF" class="form-control" placeholder="P. venta">
-                    </div>                    
-                </div>
+                
                 <div class="col-md-3">
                     <div class="from-group">
                          <button style="margin-top:31px; " type="button" id="bt_add" class="btn btn-primary pull-left">agregar</button>
@@ -151,21 +138,26 @@
             <table id="detalles" class="table table-striped table-bordered table-condensed table-hover">
                 <thead style="background-color:#A9D0F5">
                     <th>opciones</th>
+                    <th>Taller</th>
                     <th>Producto</th>
-                    <th>cantidad</th>
-                    <th>precio compra</th>
-                    <th>precio venta</th>
-                    <th>subtotal</th>
+                    <th>Cod.Producto</th>
+                    <th>Cant.</th>
+                    <th>Talla</th>
+                    <th>Color</th>
+
+                    
                 </thead>
                 <tbody>
                 </tbody>
                 <tfoot>
-                    <th>total</th>
                     <th></th>
                     <th></th>
                     <th></th>
                     <th></th>
-                    <th><h4 id="total">s/. 0.00</h4></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    
 
                 </tfoot>
             </table>
@@ -227,13 +219,13 @@ function agregar()
     idProducto=$("#pidProducto").val();
     produc=$("#pidProducto option:selected").text();
     cantidad=$("#pcantidadPF").val();
-    precio_compra=$("#pprecio_compraPF").val();
-    precio_venta=$("#pprecio_ventaPF").val();
+    talla=$("").val();
+    color=$("").val();
     trabajador=$("#idTrabajador").val();
     almacen=$("#idAlmacen").val();
-    tipoingreso=$("#idTipo_ingreso").val();
+    taller=$("").val();
 
-    if(idProducto!="" && cantidad!=""  && precio_compra!="" && precio_venta!="" && trabajador!="" && almacen!="" && tipoingreso!="")
+    if(idProducto!="" && cantidad!=""  && talla!="" && color!="" && trabajador!="" && almacen!="" && taller!="")
     {
        subtotal[cont]=(cantidad*precio_compra);
        total=total+subtotal[cont];
@@ -242,12 +234,12 @@ function agregar()
 
        cont++;
 
-       var dat={idProducto:idProducto,produc:produc,cantidad:cantidad,precio_compra:precio_compra,precio_venta:precio_venta,trabajador:trabajador,almacen:almacen,tipoingreso:tipoingreso};
+       var dat={idProducto:idProducto,produc:produc,cantidad:cantidad,trabajador:trabajador,almacen:almacen};
         
        producto.push(dat);
-console.log(producto);
+        console.log(producto);
        limpiar();
-       $("#total").html("s/. " + total);
+       
        evaluar();
        $('#detalles').append(fila);
 
@@ -262,8 +254,7 @@ console.log(producto);
     total=0;
     function limpiar(){
         $("#pcantidad").val("");
-        $("#pprecio_compra").val("");
-        $("#pprecio_venta").val("");
+        
     }
 
     function evaluar()
@@ -278,8 +269,6 @@ console.log(producto);
         }
     }
     function eliminar(index){
-        total=total-subtotal[index];
-        $("#total").html("s/. "+total);
         $("#fila" + index).remove();
         evaluar();
     }
