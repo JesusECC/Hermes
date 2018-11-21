@@ -104,7 +104,13 @@
                                     <li role="separator" class="divider"></li>
                                     <li><a href="#"><i class="ti-settings"></i> Configuración</a></li>
                                     <li role="separator" class="divider"></li>
-                                    <li><a href="#"><i class="fa fa-power-off"></i> Logout</a></li>
+                                    <li>
+                                        <form action="{{ route('logout') }}" method="POST">
+                                        @csrf
+                                            <!-- <a href="#"><i class="fa fa-power-off"></i> Logout</a> -->
+                                            <button type="submit" >Logout</button>
+                                        </form>  
+                                    </li>
                                 </ul>
                             </div>
                         </li>
@@ -133,7 +139,13 @@
                         <div class="dropdown-menu animated flipInY"> 
                             <a href="#" class="dropdown-item"><i class="ti-user"></i> Mi Perfil</a>
                             <div class="dropdown-divider"></div> <a href="#" class="dropdown-item"><i class="ti-settings"></i> Configuración</a>
-                            <div class="dropdown-divider"></div> <a href="login.html" class="dropdown-item"><i class="fa fa-power-off"></i> Logout</a> </div>
+                            <div class="dropdown-divider"></div> 
+                            <form action="{{ route('logout') }}" method="POST">
+                            @csrf
+                                            <!-- <a href="#"><i class="fa fa-power-off"></i> Logout</a> -->
+                                            <button type="submit" >Logout</button>
+                                        </form>
+                            </div>
                     </div>
                 </div>
                 <!-- End User profile text-->
