@@ -70,13 +70,13 @@
                            <div class="col-md-5">
                     <div class="from-group">
                         <label>Numero de Comprobante</label>
-                        <input type="text" name="pforma_Ing_producto" id="num_comprobanteMP" class="form-control" placeholder="Und, rollo, peso, etc.">
+                        <input type="text" name="pforma_Ing_producto" id="num_comprobanteMP" class="form-control" placeholder="">
                     </div>                    
                 </div>
                 <div class="col-md-5">
                     <div class="from-group">
                         <label>Serie de Comprobante</label>
-                        <input type="text" name="pforma_Ing_producto" id="serie_comprobanteMP" class="form-control" placeholder="Und, rollo, peso, etc.">
+                        <input type="text" name="pforma_Ing_producto" id="serie_comprobanteMP" class="form-control" placeholder="">
                     </div>                    
                 </div>
 

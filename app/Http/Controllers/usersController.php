@@ -3,17 +3,20 @@
 namespace hermes\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 use DB;
 
 use hermes\Persona;
 use hermes\Trabajador;
-use hermes\users;
+use hermes\User;
 use hermes\Rol;
 use hermes\Users_Rol;
 use hermes\Http\Requests\usersRequest;
 class usersController extends Controller
 {
+    // function __construct() {
+    // }
     /**
      * Display a listing of the resource.
      *
@@ -27,7 +30,7 @@ class usersController extends Controller
         ->join('users as u','u.id','=','ur.id')
         ->join('Trabajador as t','t.id','=','u.Trabajador_idTrabajador')
         ->join('Persona as p','p.id','=','t.idPersona')
-        ->select('u.id','p.nombre','p.apellidos','u.usuario','r.nombreRol')
+        ->select('u.id','p.nombre','p.apellidos','u.email','r.nombreRol')
         ->where('t.estado_idEstado','=',1)
         ->get();
         // dd($user);
@@ -69,7 +72,7 @@ class usersController extends Controller
         $iduser=DB::table('users')->insertGetId(
             [
                 'Trabajador_idTrabajador'=>$request->get('Trabajador_idTrabajador'),
-                'usuario'=>$request->get('usuario'),
+                'email'=>$request->get('usuario'),
                 'password'=>Hash::make($request->get('password')),
                 // 'remember_token'=>('remember_token', 100)->nullable(),
                 // 'created_at'=>$request->get(''),
@@ -126,5 +129,17 @@ class usersController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function roles($id){
+        $user=DB::table('Users_Rol as ur')
+        ->join('Rol as r','r.id','=','ur.idrol')
+        ->join('users as u','u.id','=','ur.id')
+        ->join('Trabajador as t','t.id','=','u.Trabajador_idTrabajador')
+        ->join('Persona as p','p.id','=','t.idPersona')
+        ->select('u.id','p.nombre','p.apellidos','u.email','r.nombreRol')
+        ->where('t.estado_idEstado','=',1)
+        ->where('u.id','=',$id)
+        ->get();
+        return $user;
     }
 }

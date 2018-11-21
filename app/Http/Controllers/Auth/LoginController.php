@@ -3,7 +3,11 @@
 namespace hermes\Http\Controllers\Auth;
 
 use hermes\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use hermes\users;
+
+use Illuminate\Support\Facades\Auth;
+
 
 class LoginController extends Controller
 {
@@ -17,23 +21,39 @@ class LoginController extends Controller
     | to conveniently provide its functionality to your applications.
     |
     */
-
-    use AuthenticatesUsers;
-
-    /**
-     * Where to redirect users after login.
-     *
-     * @var string
-     */
-    protected $redirectTo = '/home';
-
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    public function showLoginForm()
     {
-        $this->middleware('guest')->except('logout');
+        return view('auth.login');
     }
+    public function login(Request $request){
+        $credentials=$this->validate($request,[
+            $this->username()=>'required|string',
+            'password'=>'required|string',
+        ]);
+        if(Auth::attempt($credentials)){
+            return redirect()->route('principal');
+            // return 'tu session ha iniciado correctamente';
+        }
+        // return 'tu session no ha iniciado correctamente';
+        return back()
+        ->withErrors([$this->username()=>'estas credenciales no coinciden con nuestros registros'])
+        ->withInput(request([$this->username()]));
+    }
+    public function logout(){        
+        Auth::logout();
+        return redirect('login');
+    }
+
+    public function username(){
+        return 'email';
+    }
+    // public function logout(Request $request)
+    // {
+    //     $this->guard()->logout();
+
+    //     $request->session()->invalidate();
+
+    //     return $this->loggedOut($request) ?: redirect('login');
+    // }
+
 }

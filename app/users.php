@@ -19,7 +19,7 @@ class users extends Model
         'created_at',
         'updated_at',
     ];
-    protected $guarded=[
-
+    protected $hidden = [
+        'password', 'remember_token',
     ];
 }
