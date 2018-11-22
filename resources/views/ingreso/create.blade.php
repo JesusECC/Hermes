@@ -31,13 +31,16 @@
                 <div class="col-lg-6">
                     <div class="form-group">
                         <label for="proveedor">Trabajador</label>
-                        <select name="idTrabajador" id="idTrabajador" class="form-control selectpicker" data-live-search="true">
-                        	<option value="" selected="" disabled="">Seleccione</option>
-                           @foreach($trabajador as $tra)
+                        <!-- <select name="idTrabajador" id="idTrabajador" class="form-control selectpicker" data-live-search="true">
+                        	<!-- <option value="" selected="" disabled="">Seleccione</option> -->
+                           <!-- @foreach($trabajador as $tra)
                            
                            <option value="{{$tra->idTra}}">{{$tra->nombre.' '.$tra->apellidos}}</option>
-                           @endforeach  
-                        </select>
+                           @endforeach   
+                        </select> -->
+                        <input type="hidden" name="idTrabajador" id="idTrabajador" class="form-control" value="{{ $usuario[0]->id }}">
+                        <input type="text" name="Nombres" id="Nombres" class="form-control" value="{{ $usuario[0]->nombre }} {{ $usuario[0]->apellidos }}" readonly >
+                        <!-- {{ $usuario[0]->id }} {{ $usuario[0]->apellidos }} -->
                     </div>
                 </div> 
                 <div class="col-lg-6">
@@ -88,13 +91,7 @@
                 <div class="col-md-5">
                     <div class="form-group">
                         <label>Codigo de Barras</label>
-                        <input type="text" name="pcodigo" id="pcodigo" class="form-control">                    
-                    </div>
-                </div>
-                <div class="col-md-5">
-                    <div class="form-group">
-                        <label>Ingreso Manual de Codigo</label>
-                         <input type="text" name="pCodprod" id="pCodprod" class="form-control" placeholder="Codigo Producto">                       
+                        <input type="text" name="pcodigo" id="pcodigo" class="form-control" onkeypress="return runScript(event)">                    
                     </div>
                 </div>
             </div>
@@ -194,36 +191,72 @@ $(document).ready(function(){
     $('#bt_add').click(function(){
         agregar();
     });
+    // (function($) {
+    //    $('#pcodigo').keyup(function () {
+    //         console.log("ingrese");
+    //         consulBarras();
+    //             })
+    //   }(jQuery));
 });
-
+document.getElementById("idTrabajador").disabled = false;
+// captura el evento del codigo de barras y llama al metodo donde se realiza la consulta
+function runScript(e) {
+    if (e.keyCode == 13) {
+        consulBarras();
+    }
+}
 var cont=0;
 var producto=[];
 total=0;
 subtotal=[];
-
-
+function consulBarras(){
+    codBarras=$("#pcodigo").val();
+    $.ajax({
+        headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        data:{codBarras:codBarras}, //datos que se envian a traves de ajax
+        url:'barras', //archivo que recibe la peticion
+        type:'post', //método de envio
+        dataType:"json",//tipo de dato que envio 
+        beforeSend: function () {
+            console.log('procesando');
+            // $("#resultado").html("Procesando, espere por favor...");
+        },
+        success:  function (response) { //una vez que el archivo recibe el request lo procesa y lo devuelve
+            // console.log(response.consulta);
+            if(response.veri==true){
+                // var urlBase=window.location.origin;
+                // var url=urlBase+'/'+response.data;
+                // document.location.href=url; ptalla  pcolor
+                document.getElementById('pnproducto').value = response.consulta[0]['nombre_producto'];
+                document.getElementById('ptalla').value = response.consulta[0]['nom_talla'];
+                document.getElementById('pcolor').value = response.consulta[0]['nombre_color'];
+                // console.log( response.consulta);
+            }                
+        }
+      });
+}
 $('#save').click(function(){
-            guardar();
-        });
+    guardar();
+});
 function guardar(){
 
-$.ajax({
-                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-                data:  {producto:producto}, //datos que se envian a traves de ajax
-                url:   'guardar', //archivo que recibe la peticion
-                type:  'post', //método de envio
-                dataType: "json",//tipo de dato que envio 
-                success:  function (response) { //una vez que el archivo recibe el request lo procesa y lo devuelve
-                    if(response.veri==true){
-                        var urlBase=window.location.origin;
-                        var url=urlBase+'/'+response.data;
-                        document.location.href=url;
-                    }else{
-                        alert("problemas al guardar la informacion");
-                    }
-                }
-            });
+    $.ajax({
+        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        data:  {producto:producto}, //datos que se envian a traves de ajax
+        url:   'guardar', //archivo que recibe la peticion
+        type:  'post', //método de envio
+        dataType: "json",//tipo de dato que envio 
+        success:  function (response) { //una vez que el archivo recibe el request lo procesa y lo devuelve
+            if(response.veri==true){
+                var urlBase=window.location.origin;
+                var url=urlBase+'/'+response.data;
+                document.location.href=url;
+            }else{
+                alert("problemas al guardar la informacion");
+            }
         }
+    });
+}
        
 
 

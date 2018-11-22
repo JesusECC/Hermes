@@ -58,84 +58,74 @@ class ProductoController extends Controller
      */
      public function create()
     {
-    $detalle_producto=db::table('Producto_Detalle')
-    ->get();
+        $detalle_producto=db::table('Producto_Detalle')
+        ->get();
 
-    $talla=db::table('Tallas')
-    ->get();
+        $talla=db::table('Tallas')
+        ->get();
 
-    $color=db::table('Color')
-    ->get();
+        $color=db::table('Color')
+        ->get();
 
-    $almacen=db::table('Almacen')
-    ->get();
+        $almacen=db::table('Almacen')
+        ->get();
 
         return view('producto.producto.create',["almacen"=>$almacen,"detalle_producto"=>$detalle_producto,"talla"=>$talla,"color"=>$color]);
     }
-
     
     public function store(Request $request)
     {
+        $idDetalle_produto=$request->get('idDetalle_produto');
+        $CodigoB_Producto=$request->get('CodigoB_Producto');
+        $Tallas_idTallas=$request->get('Tallas_idTallas');
+        $Color_idColor=$request->get('Color_idColor');
+        $Almacen_idAlmacen=$request->get('Almacen_idAlmacen');
+        $stockP=$request->get('stockP');
+        $precio_unitario=$request->get('precio_unitario');
+        //dd($nombre_tarea,$precioT);  
+        $cont=0;
+        while ($cont<count($nombre_tarea)) {
+        
+            $tarea = new Tipotarea();
+            $tarea->nombre_tarea=$nombre_tarea[$cont];
+            $tarea->precioT=$precioT[$cont];
+            $tarea->nombre_tarea=$nombre_tarea[$cont];
+            $tarea->precioT=$precioT[$cont];
+            $tarea->nombre_tarea=$nombre_tarea[$cont];
+            $tarea->precioT=$precioT[$cont];
+            $tarea->estado=1;
+            $tarea->save();
 
-$idDetalle_produto=$request->get('idDetalle_produto');
-$CodigoB_Producto=$request->get('CodigoB_Producto');
-$Tallas_idTallas=$request->get('Tallas_idTallas');
-$Color_idColor=$request->get('Color_idColor');
-$Almacen_idAlmacen=$request->get('Almacen_idAlmacen');
-$stockP=$request->get('stockP');
-$precio_unitario=$request->get('precio_unitario');
-
-
-//dd($nombre_tarea,$precioT);  
-
-$cont=0;
-
-while ($cont<count($nombre_tarea)) {
- 
-    $tarea = new Tipotarea();
-    $tarea->nombre_tarea=$nombre_tarea[$cont];
-    $tarea->precioT=$precioT[$cont];
-     $tarea->nombre_tarea=$nombre_tarea[$cont];
-    $tarea->precioT=$precioT[$cont];
-     $tarea->nombre_tarea=$nombre_tarea[$cont];
-    $tarea->precioT=$precioT[$cont];
-    $tarea->estado=1;
-    $tarea->save();
-
-    $cont=$cont+1;
-}
-
-
-
-    /*
-       try{
-        $idTipoProducto;
-        $nombre;
-        $marca;
-        $categoria;
-        $descuento;
-        $codigo;
-        $talla;
-        $color;
-        $almacen;
-        $precioU;
-        $stock;
+            $cont=$cont+1;
+        }    
+        try{
+            $idTipoProducto;
+            $nombre;
+            $marca;
+            $categoria;
+            $descuento;
+            $codigo;
+            $talla;
+            $color;
+            $almacen;
+            $precioU;
+            $stock;
         
   
-        foreach ($request->datos as $dato) {
-            $idTipoProducto=$dato['idTipoProducto'];
-            $nombre=$dato['nombre'];
-            $marca=$dato['marca'];
-            $categoria=$dato['categoria'];
-            $descuento=$dato['descuento'];
-            $codigo=$dato['codigo'];
-            $talla=$dato['talla'];
-            $color=$dato['color'];
-            $almacen=$dato['almacen'];
-            $precioU=$dato['precioU'];
-            $stock=$dato['stock'];
-                    
-        }
+            foreach ($request->datos as $dato) {
+                $idTipoProducto=$dato['idTipoProducto'];
+                $nombre=$dato['nombre'];
+                $marca=$dato['marca'];
+                $categoria=$dato['categoria'];
+                $descuento=$dato['descuento'];
+                $codigo=$dato['codigo'];
+                $talla=$dato['talla'];
+                $color=$dato['color'];
+                $almacen=$dato['almacen'];
+                $precioU=$dato['precioU'];
+                $stock=$dato['stock'];
+                        
+            }
     
             $producto=new Producto;
             $producto->idDetalle_produto=$idDetalleProducto;
@@ -155,11 +145,4 @@ while ($cont<count($nombre_tarea)) {
         }
 
    }    
-    }
-
-   
-
-    /**
-    
-    }*/
 }
