@@ -104,7 +104,8 @@ Route::middleware(['auth','admin'])->group(function () {
     Route::get('ingreso/editar/{id}',['as' => 'ingreso-editar','uses'=>'Ingreso_Podructo_FinalController@edit']);
     Route::post('ingreso/update',['as' => 'ingreso-update','uses'=>'Ingreso_Podructo_FinalController@update']);
     Route::get('ingreso/delete/{id}',['as' => 'ingreso-delete','uses'=>'Ingreso_Podructo_FinalController@destroy']);
-    
+    // ajax de ingreso
+    Route::post('ingreso/barras',['as'=>'ingreso-cod','uses'=>'Ingreso_Podructo_FinalController@codBarra']);
     //ingresoMP
     
     Route::get('ingresoMP',['as' => 'ingresoMP','uses'=>'Ingreso_Materia_PrimaController@index']);

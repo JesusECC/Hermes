@@ -82,8 +82,7 @@ public function store(Request $request)
             $precio_venta=$dato['precio_venta'];
             $trabajador=$dato['trabajador'];
             $almacen=$dato['almacen'];
-            $tipoingreso=$dato['tipoingreso'];
-           
+            $tipoingreso=$dato['tipoingreso'];           
         }
         $idIngreso=DB::table('Ingreso_Podructo_Final')->insertGetId(
             ['idTrabajador'=>$trabajador,
@@ -92,8 +91,7 @@ public function store(Request $request)
             'tipo_producto_ingreso'=>'productoF',//le asigne un tipo de producto el que ingresa 
             'codigo_ingresoPF'=>123,
             'impuestoPF'=>18,
-            'estado_idEstado'=>1,
-            
+            'estado_idEstado'=>1,            
             ]
         );
 
@@ -151,4 +149,31 @@ public function show($id)
     {
         //
     }
+
+
+
+    // 
+    // CONSULTA PARA EL CODIGO DE BARRAS
+    // 
+    public function codBarra(Request $request)
+    {
+        //
+        $codBarras=$request->get('codBarras');
+
+        $consulta=DB::table('Productos as p')
+        ->join('Tallas as t','t.id','=','p.Tallas_idTallas')
+        ->join('Color as c','c.id','=','p.Color_idColor')
+        ->join('Producto_Detalle as pd','pd.id','=','p.idDetalle_produto')
+        ->where('p.CodigoB_Producto','=',$codBarras)
+        ->get();
+        if (count($consulta)>0) {
+            $op=true;
+            return ['consulta' =>$consulta,'veri'=>$op];
+        }else{
+            $op=false;
+            return ['veri'=>$op];
+        }
+        
+    }
+    
 }

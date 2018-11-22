@@ -183,8 +183,7 @@
         console.log(selectedOption.value + ': ' + selectedOption.text);
         var id=selectedOption.value;
         console.log(id);
-        provincia(id);
-        
+        provincia(id);        
     });
     var selectProvincia = document.getElementById('provincia');
     selectProvincia.addEventListener('change',function(){
