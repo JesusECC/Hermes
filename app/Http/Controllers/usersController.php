@@ -32,6 +32,7 @@ class usersController extends Controller
         ->join('Persona as p','p.id','=','t.idPersona')
         ->select('u.id','p.nombre','p.apellidos','u.email','r.nombreRol')
         ->where('t.estado_idEstado','=',1)
+        ->where('u.estado','=',1)
         ->get();
         // dd($user);
         return view('admin.users.index',['users'=>$user]);
@@ -74,6 +75,7 @@ class usersController extends Controller
                 'Trabajador_idTrabajador'=>$request->get('Trabajador_idTrabajador'),
                 'email'=>$request->get('usuario'),
                 'password'=>Hash::make($request->get('password')),
+                'estado'=>1,
                 // 'remember_token'=>('remember_token', 100)->nullable(),
                 // 'created_at'=>$request->get(''),
                 // 'updated_at'=>$request->get(''),
@@ -129,7 +131,30 @@ class usersController extends Controller
     public function destroy($id)
     {
         //
+        // $user=User::find($id);
+        // $user->estado=0;
+        // $user->update();
+        // return redirect('usuarios');
+        // dd($id);
+        DB::table('Users_Rol')
+        ->where('id', '=', $id)
+        ->delete();
+
+        DB::table('users')
+        ->where('id', '=', $id)
+        ->delete();
+        
+        // __parent::delete();
+
+        // $user=Users_Rol::destroy($id);
+        // return redirect('usuarios');
+
+        // $user=User::destroy($id);
+        return redirect('usuarios');  
     }
+    // 
+    // 
+    //metodo para retornar los roles del usuario
     public function roles($id){
         $user=DB::table('Users_Rol as ur')
         ->join('Rol as r','r.id','=','ur.idrol')
@@ -141,5 +166,6 @@ class usersController extends Controller
         ->where('u.id','=',$id)
         ->get();
         return $user;
+           
     }
 }

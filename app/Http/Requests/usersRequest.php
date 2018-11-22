@@ -26,7 +26,7 @@ class usersRequest extends FormRequest
         return [
             //
             'Trabajador_idTrabajador'=>['required'],
-            'usuario' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'usuario' => ['required', 'string', 'email', 'max:255', 'unique:users,email'],
             'password' => ['required', 'string', 'min:6', 'confirmed'],
             // 'idRol' => ['required', 'int', 'min:6'],
         ];

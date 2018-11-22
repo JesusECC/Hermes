@@ -131,6 +131,20 @@
         </div>
     </div>
     <!-- Column -->
+    <div class="col-lg-3 col-md-6">
+        <div class="card">
+            <div class="card-body">
+            	<a href="{{route('usuarios-index')}}">
+	                <div class="d-flex flex-row">
+	                    <div class="round round-lg align-self-center round-info"><i class="mdi mdi-account-multiple"></i></div>
+	                    <div class="m-l-10 align-self-center">
+	                        <h5 class="text-muted m-b-0">Usuarios</h5>
+	                    </div>
+	                </div>
+                </a>
+            </div>
+        </div>
+    </div>
 </div>
 @endsection
                     

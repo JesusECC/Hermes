@@ -96,7 +96,11 @@
                                             <div class="u-img"><img src="{{asset('images/users/1.jpg')}}" alt="user"></div>
                                             <div class="u-text">
                                                 <h4>Steave Jobs</h4>
-                                                <p class="text-muted">{{ $usuario[0]->nombre }} {{ $usuario[0]->apellidos }} </p><a href="profile.html" class="btn btn-rounded btn-danger btn-sm">Ver Perfil</a></div>
+                                                <p class="text-muted">
+                                                @if(isset($usuario))
+                                                {{ $usuario[0]->nombre }} {{ $usuario[0]->apellidos }} 
+                                                @endif
+                                                </p><a href="profile.html" class="btn btn-rounded btn-danger btn-sm">Ver Perfil</a></div>
                                         </div>
                                     </li>
                                     <li role="separator" class="divider"></li>
@@ -105,7 +109,7 @@
                                     <li><a href="#"><i class="ti-settings"></i> Configuración</a></li>
                                     <li role="separator" class="divider"></li>
                                     <li>
-                                        <form action="{! route('logout') !}" method="POST">
+                                        <form action="{{ route('logout') }}" method="POST">
                                         @csrf
                                             <!-- <a href="#"><i class="fa fa-power-off"></i> Logout</a> -->
                                             <button type="submit" >Logout</button>
@@ -135,7 +139,12 @@
                     <!-- User profile image -->
                     <div class="profile-img"> <img src="{{asset('images/users/1.jpg')}}" alt="user" /> </div>
                     <!-- User profile text-->
-                    <div class="profile-text"> <a href="#" class="dropdown-toggle u-dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">{{ $usuario[0]->nombre }} {{ $usuario[0]->apellidos }}</a>
+                    <div class="profile-text"> 
+                        <a href="#" class="dropdown-toggle u-dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
+                        @if(isset($usuario))
+                            {{ $usuario[0]->nombre }} {{ $usuario[0]->apellidos }}
+                        @endif
+                        </a>
                         <div class="dropdown-menu animated flipInY"> 
                             <a href="#" class="dropdown-item"><i class="ti-user"></i> Mi Perfil</a>
                             <div class="dropdown-divider"></div> <a href="#" class="dropdown-item"><i class="ti-settings"></i> Configuración</a>

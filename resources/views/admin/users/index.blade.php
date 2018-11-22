@@ -31,7 +31,7 @@
                     <tr>
                         <td>{{ $user->nombre }}</td>
                         <td>{{ $user->apellidos }}</td>
-                        <td>{{ $user->usuario }}</td>
+                        <td>{{ $user->email }}</td>
                         <td>{{ $user->nombreRol }}</td>
                         <td class="text-nowrap">
                             <a href="{{ route('usuarios-editar',$user->id) }}" data-toggle="tooltip" data-original-title="Edit"> <i class="fa fa-pencil text-warning m-r-10"></i> </a>

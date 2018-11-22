@@ -8,11 +8,11 @@ class Users_Rol extends Model
 {
     //
     protected $table='Users_Rol';
-    protected $primarykey='idUser';
+    // protected $primarykey='id';
     public $timestamps=false;
     
     protected $filleable=[
-        'idRol',
+        'id','idRol',
     ];
     protected $guarded=[
 
