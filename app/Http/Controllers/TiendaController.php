@@ -199,8 +199,8 @@ class TiendaController extends Controller
         ->join('Telefono_Tienda as tele','t.id','=','tele.Tienda_idTienda')
         ->join('Direccion_TTA as dire','t.idDireccionT','=','dire.id')
         ->join('estado as est','t.estado_idEstado','=','est.id')
-       // ->join('Tipo_tienda as tptienda ','tptienda.id','=','t.idtipo_tienda')
-        ->select('t.id','t.nombre_tienda','t.codigo_tienda','t.estado_idEstado','dire.direccionAL','dire.Distrito_idDistrito','tele.id','tele.numero','tele.idTipo_telefono','tele.idoperador')
+        ->join('Tipo_tienda as tptienda','tptienda.id','=','t.idtipo_tienda')
+        ->select('t.id as tid','t.nombre_tienda','t.codigo_tienda','t.estado_idEstado','dire.id as direid','dire.direccionAL','dire.Distrito_idDistrito','tele.id as teleid','tptienda.id as idtptienda','tele.numero','tele.idTipo_telefono','tele.idoperador')
         ->where('t.estado_idEstado','=',1)
         ->where('t.id','=',$id)
         ->get();
@@ -220,7 +220,25 @@ class TiendaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return redirect::to('Tienda');
+        //dd($request,$id);
+        Tienda::where('id',$id)
+
+        ->update([
+            'nombre_tienda'=>$request->get('nombre_tienda'),
+            'codigo_tienda'=>$request->get('codigo_tienda'),
+            'estado_idEstado'=>$request->get('estado_idEstado'),
+            'idDireccionT'=>$request->get('direid'),
+            'idtipo_tienda'=>$request->get('idTipo_tienda'),
+            
+        ]);
+        Telefono_Tienda::where('Tienda_idTienda',$id)
+        ->update([
+            'numero'=>$request->get('numero'),
+            'idTipo_telefono'=>$request->get('idTipo_telefono'),
+            'idoperador'=>$request->get('idTipooperador')
+        ]);
+
+        return redirect('Tienda');
     }
 
     /**
