@@ -37,6 +37,12 @@ Route::middleware(['auth','admin'])->group(function () {
     //Route::get('trabajador/create',['as' => 'persona-create','uses'=>'TrabajadorController@create']);
     //   Route::get('Tienda/{idTienda}/edit',['as'=>'Tienda','uses'=>'ControllerClientes@edit']);
     
+    //Taller
+      Route::get('Taller',['as'=>'taller','uses'=>'TallerController@index']);
+     Route::get('Taller/create',['as' => 'taller-create','uses'=>'TallerController@create']);
+     Route::post('Taller/guardar',['as' => 'taller-store','uses'=>'TallerController@store']);
+     Route::get('Taller/editar/{id}',['as' => 'taller-editar','uses'=>'TallerController@edit']);
+     Route::post('Taller/update/{id}',['as' => 'taller-update','uses'=>'TallerController@update']);
     
     //roles
     Route::get('rol',['as' => 'rol-index','uses'=>'RolController@index']);
