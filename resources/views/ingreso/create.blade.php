@@ -57,16 +57,18 @@
                 <div class="col-lg-6">
                     <div class="form-group">
                         <label for="proveedor">Taller</label>
-                        <select name="idTaller" id="idTaller" class="form-control selectpicker" data-live-search="true">
+                       <select name="idTaller" id="pidTaller" class="form-control selectpicker" data-live-search="true">
                             <option value="" selected="" disabled="">Seleccione</option>
-                             
+                             @foreach($taller as $ta)>
+                                 <option value="{{$ta->idTA}}">{{$ta->codigoT.' '.$ta->nombre_taller}}</option>
+                             @endforeach
                         </select>
                     </div>                    
                 </div>
                 <div class="col-lg-6">
                     <div class="form-group">
                         <label for="proveedor">Numero de Guia</label>
-                         <input type="number" name="pnum" id="pcantidadPF" class="form-control" placeholder="cantidad">
+                         <input type="number" name="pnum" id="pcantidadPF" class="form-control" placeholder="Numero de guia">
                              
                         </select>
                     </div>                    
@@ -85,63 +87,65 @@
     <div class="card-body">
         <h4 class="card-title">Detalle Productos</h4>
         <div class="form-body">
-          
 
-        <div class="row">
-                <div class="col-md-5">
+
+             <div class="row">
+                <div class="col-md-3">
                     <div class="form-group">
                         <label>Codigo de Barras</label>
                         <input type="text" name="pcodigo" id="pcodigo" class="form-control" onkeypress="return runScript(event)">                    
                     </div>
                 </div>
-            </div>
-            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>Tipo de Producto</label>
+                        <input type="text" name="pcodigoP" id="pcodigoP" class="form-control" placeholder="Codigo Producto">                    
+                    </div>
+                </div>
 
-            
 
-             <div class="col-md-6">
+                 <div class="col-md-3">
                     <div class="form-group">
                         <label>Nombre Producto</label>
                         <input type="text" name="pnproducto" id="pnproducto" class="form-control" placeholder="nombre Producto">                    
                     </div>
                 </div>
-            <div class="col-md-2">
+            <div class="col-md-3">
+                    <div class="form-group">
+                        <label>Color</label>
+                        <input type="text" name="pcolor" id="pcolor" class="form-control" placeholder="Color">                     
+                    </div>
+                </div>    
+             
+                </div>
+<div class="row">
+           
+                    <div class="col-md-2">
                     <div class="form-group">
                         <label>Talla</label>
                         <input type="text" name="ptalla" id="ptalla" class="form-control" placeholder="talla">                    
                     </div>
                 </div>
 
-
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label>Color</label>
-                        <input type="text" name="pcolor" id="pcolor" class="form-control" placeholder="Color">                     
-                    </div>
-                </div>
-
-
-               
-            </div>
-            <div class="row p-t-10">
-                <div class="col-md-4">
-                    <div class="from-group">
-                        <label>Cantidad de Salida</label>
-                        <input type="text" name="pcantidadSMP" id="pcantidadSMP" class="form-control" >
-                    </div>                    
-                </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <div class="from-group">
                         <label>Cantidad</label>
                         <input type="text" name="pcantidadPF" id="pcantidadPF" class="form-control" placeholder="cantidad">
                     </div>                    
-                </div>               
-                 <div class="col-md-3">
+                </div>     
+                <div class="col-md-5">
+                    <div class="from-group">
+                        <label>Descripcion</label>
+                        <input type="text" name="pdescripcionPF" id="pdescripcionPF" class="form-control" placeholder="cantidad">
+                    </div>                    
+                </div>             
+                 <div class="col-md-2">
                     <div class="from-group">
                          <button style="margin-top:31px; " type="button" id="bt_add" class="btn btn-primary pull-left">agregar</button>
                     </div>                    
                 </div>
           </div>
+
         </div>
        
     </div>
@@ -150,25 +154,29 @@
             <table id="detalles" class="table table-striped table-bordered table-condensed table-hover">
                 <thead style="background-color:#A9D0F5">
                     <th>opciones</th>
+                    <th>Codigo B.</th>
                     <th>Taller</th>
-                    <th>Num. Guia</th>
+                 
+                    <th>Cod.Producto</th>
                     <th>Producto</th>
-                    <th>cantidad</th>
-                    <th>color</th>
-                    <th>talla</th>
-                    
+                    <th>Descripcion</th>
+                    <th>Talla</th>
+                    <th>Color</th>
+                    <th>Cant.</th>
                 </thead>
                 <tbody>
                 </tbody>
                 <tfoot>
                     <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
                     
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
 
                 </tfoot>
             </table>
@@ -191,13 +199,8 @@ $(document).ready(function(){
     $('#bt_add').click(function(){
         agregar();
     });
-    // (function($) {
-    //    $('#pcodigo').keyup(function () {
-    //         console.log("ingrese");
-    //         consulBarras();
-    //             })
-    //   }(jQuery));
 });
+
 document.getElementById("idTrabajador").disabled = false;
 // captura el evento del codigo de barras y llama al metodo donde se realiza la consulta
 function runScript(e) {
@@ -205,10 +208,12 @@ function runScript(e) {
         consulBarras();
     }
 }
+
 var cont=0;
 var producto=[];
 total=0;
 subtotal=[];
+
 function consulBarras(){
     codBarras=$("#pcodigo").val();
     $.ajax({
@@ -228,65 +233,72 @@ function consulBarras(){
                 // var url=urlBase+'/'+response.data;
                 // document.location.href=url; ptalla  pcolor
                 document.getElementById('pnproducto').value = response.consulta[0]['nombre_producto'];
+                document.getElementById('pcodigoP').value = response.consulta[0]['codigo_Prod'];
                 document.getElementById('ptalla').value = response.consulta[0]['nom_talla'];
                 document.getElementById('pcolor').value = response.consulta[0]['nombre_color'];
+
                 // console.log( response.consulta);
             }                
         }
       });
 }
+
 $('#save').click(function(){
-    guardar();
-});
+            guardar();
+        });
 function guardar(){
 
-    $.ajax({
-        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-        data:  {producto:producto}, //datos que se envian a traves de ajax
-        url:   'guardar', //archivo que recibe la peticion
-        type:  'post', //método de envio
-        dataType: "json",//tipo de dato que envio 
-        success:  function (response) { //una vez que el archivo recibe el request lo procesa y lo devuelve
-            if(response.veri==true){
-                var urlBase=window.location.origin;
-                var url=urlBase+'/'+response.data;
-                document.location.href=url;
-            }else{
-                alert("problemas al guardar la informacion");
-            }
+$.ajax({
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                data:  {producto:producto}, //datos que se envian a traves de ajax
+                url:   'guardar', //archivo que recibe la peticion
+                type:  'post', //método de envio
+                dataType: "json",//tipo de dato que envio 
+                success:  function (response) { //una vez que el archivo recibe el request lo procesa y lo devuelve
+                    if(response.veri==true){
+                        var urlBase=window.location.origin;
+                        var url=urlBase+'/'+response.data;
+                        document.location.href=url;
+                    }else{
+                        alert("problemas al guardar la informacion");
+                    }
+                }
+            });
         }
-    });
-}
        
 
 
 
 function agregar()
 {
-    idProducto=$("#pidProducto").val();
-    produc=$("#pidProducto option:selected").text();
+    codigob=$("#pcodigo").val();
+    idAlmacen=$("#pidAlmacen").val();
+    almacen=$("#pidAlmacen option:selected").text();
+    idTaller=$("#pidTaller").val();
+    taller=$("#pidTaller option:selected").text();
+    codigo=$("#pcodigoP").val();
+    produco=$("#pnproducto").val();
+    talla=$("#ptalla").val();
+    color=$("#pcolor").val();
     cantidad=$("#pcantidadPF").val();
-    precio_compra=$("#pprecio_compraPF").val();
-    precio_venta=$("#pprecio_ventaPF").val();
     trabajador=$("#idTrabajador").val();
-    almacen=$("#idAlmacen").val();
-    tipoingreso=$("#idTipo_ingreso").val();
+    descripcion=$("#pdescripcionPF").val();
 
-    if(idProducto!="" && cantidad!=""  && precio_compra!="" && precio_venta!="" && trabajador!="" && almacen!="" && tipoingreso!="")
+    
+    if(idAlmacen!="" && idTaller!=""  && talla!="" && color!="")
     {
-       subtotal[cont]=(cantidad*precio_compra);
-       total=total+subtotal[cont];
+       
 
-       var fila='<tr class="selected" id="fila'+cont+'"><td><button type="button" class="btn btn-warning" onclick="eliminar('+cont+');">X</button></td> <td><input type="hidden" name="idProduto_PF[]" value="'+idProducto+'">'+produc+'</td> <td><input type="number" name="cantidadPF[]" value="'+cantidad+'"></td> <td><input type="number" name="precio_compraPF[]" value="'+precio_compra+'"></td> <td><input type="number" name="precio_ventaPF[]" value="'+precio_venta+'"></td> <td>'+subtotal[cont]+'</td></tr>';
+       var fila='<tr class="selected" id="fila'+cont+'"><td><button type="button" class="btn btn-warning" onclick="eliminar('+cont+');">X</button></td> <td><input type="hidden" name="codigo_bar[]" value="'+codigob+'">'+codigob+'</td>  <td><input type="hidden" name="idTaller[]" value="'+idTaller+'">'+taller+'</td>  <td><input type="hidden" name="codigoSMP[]" value="'+codigo+'">'+codigo+'</td> <td><input type="hidden" name="productoSMP[]" value="'+produco+'">'+produco+'</td> <td><input type="hidden" name="pdescripcionPF[]" value="'+descripcion+'">'+descripcion+'</td> <td><input type="hidden" name="tallaSMP[]" value="'+talla+'">'+talla+'</td> <td><input type="hidden" name="colorSMP[]" value="'+color+'">'+color+'</td> <td><input type="hidden" name="cantidadSMP[]" value="'+cantidad+'">'+cantidad+'</td> </tr>';
 
        cont++;
 
-       var dat={idProducto:idProducto,produc:produc,cantidad:cantidad,precio_compra:precio_compra,precio_venta:precio_venta,trabajador:trabajador,almacen:almacen,tipoingreso:tipoingreso};
+       var dat={codigob:codigob,idAlmacen:idAlmacen,idTaller:idTaller,codigo:codigo,produco:produco,talla:talla,color:color,cantidad:cantidad,trabajador:trabajador};
         
        producto.push(dat);
-console.log(producto);
+        console.log(producto);
        limpiar();
-      
+       
        evaluar();
        $('#detalles').append(fila);
 
@@ -301,7 +313,7 @@ console.log(producto);
     total=0;
     function limpiar(){
         $("#pcantidad").val("");
-       
+        
     }
 
     function evaluar()
@@ -316,7 +328,6 @@ console.log(producto);
         }
     }
     function eliminar(index){
-       
         $("#fila" + index).remove();
         evaluar();
     }

@@ -1,0 +1,135 @@
+$(document).ready(function(){
+    $('#bt_add').click(function(){
+        agregar();
+    });
+});
+
+document.getElementById("idTrabajador").disabled = false;
+// captura el evento del codigo de barras y llama al metodo donde se realiza la consulta
+function runScript(e) {
+    if (e.keyCode == 13) {
+        consulBarras();
+    }
+}
+
+var cont=0;
+var producto=[];
+total=0;
+subtotal=[];
+
+function consulBarras(){
+    codBarras=$("#pcodigo").val();
+    $.ajax({
+        headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        data:{codBarras:codBarras}, //datos que se envian a traves de ajax
+        url:'barras', //archivo que recibe la peticion
+        type:'post', //método de envio
+        dataType:"json",//tipo de dato que envio 
+        beforeSend: function () {
+            console.log('procesando');
+            // $("#resultado").html("Procesando, espere por favor...");
+        },
+        success:  function (response) { //una vez que el archivo recibe el request lo procesa y lo devuelve
+            // console.log(response.consulta);
+            if(response.veri==true){
+                // var urlBase=window.location.origin;
+                // var url=urlBase+'/'+response.data;
+                // document.location.href=url; ptalla  pcolor
+                document.getElementById('pnproducto').value = response.consulta[0]['nombre_producto'];
+                document.getElementById('pcodigoP').value = response.consulta[0]['codigo_Prod'];
+                document.getElementById('ptalla').value = response.consulta[0]['nom_talla'];
+                document.getElementById('pcolor').value = response.consulta[0]['nombre_color'];
+
+                // console.log( response.consulta);
+            }                
+        }
+      });
+}
+
+$('#save').click(function(){
+            guardar();
+        });
+function guardar(){
+
+$.ajax({
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                data:  {producto:producto}, //datos que se envian a traves de ajax
+                url:   'guardar', //archivo que recibe la peticion
+                type:  'post', //método de envio
+                dataType: "json",//tipo de dato que envio 
+                success:  function (response) { //una vez que el archivo recibe el request lo procesa y lo devuelve
+                    if(response.veri==true){
+                        var urlBase=window.location.origin;
+                        var url=urlBase+'/'+response.data;
+                        document.location.href=url;
+                    }else{
+                        alert("problemas al guardar la informacion");
+                    }
+                }
+            });
+        }
+       
+
+
+
+function agregar()
+{
+    codigob=$("#pcodigo").val();
+    idAlmacen=$("#pidAlmacen").val();
+    almacen=$("#pidAlmacen option:selected").text();
+    idTaller=$("#pidTaller").val();
+    taller=$("#pidTaller option:selected").text();
+    codigo=$("#pcodigoP").val();
+    produco=$("#pnproducto").val();
+    talla=$("#ptalla").val();
+    color=$("#pcolor").val();
+    cantidad=$("#pcantidadPF").val();
+    trabajador=$("#idTrabajador").val();
+
+    
+    if(idAlmacen!="" && idTaller!=""  && talla!="" && color!="")
+    {
+       
+
+       var fila='<tr class="selected" id="fila'+cont+'"><td><button type="button" class="btn btn-warning" onclick="eliminar('+cont+');">X</button></td> <td><input type="hidden" name="codigo_bar[]" value="'+codigob+'">'+codigob+'</td>  <td><input type="hidden" name="idTaller[]" value="'+idTaller+'">'+taller+'</td>  <td><input type="hidden" name="codigoSMP[]" value="'+codigo+'">'+codigo+'</td> <td><input type="hidden" name="productoSMP[]" value="'+produco+'">'+produco+'</td> <td><input type="hidden" name="tallaSMP[]" value="'+talla+'">'+talla+'</td> <td><input type="hidden" name="colorSMP[]" value="'+color+'">'+color+'</td> <td><input type="hidden" name="cantidadSMP[]" value="'+cantidad+'">'+cantidad+'</td> </tr>';
+
+       cont++;
+
+       var dat={codigob:codigob,idAlmacen:idAlmacen,idTaller:idTaller,codigo:codigo,produco:produco,talla:talla,color:color,cantidad:cantidad,trabajador:trabajador};
+        
+       producto.push(dat);
+        console.log(producto);
+       limpiar();
+       
+       evaluar();
+       $('#detalles').append(fila);
+
+    }
+    else
+    {
+        alert("erros al ingresar el detale del ingreso, revise los datos del articulo");
+    }
+}
+
+
+    total=0;
+    function limpiar(){
+        $("#pcantidad").val("");
+        
+    }
+
+    function evaluar()
+    {
+        if(total>0)
+        {
+            $("#guardar").show();
+        }
+        else
+        {
+            $("#guardar").hide();
+        }
+    }
+    function eliminar(index){
+        $("#fila" + index).remove();
+        evaluar();
+    }

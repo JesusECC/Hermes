@@ -48,6 +48,10 @@ $color=DB::table('Color as t')
 ->select('t.id as idC','t.nombre_color')
 ->get();
 
+$taller=DB::table('Taller as ta')
+->select('ta.id as idTA','ta.nombre_taller','ta.codigoT')
+->get();
+
 $tipoingreso=DB::table('Tipo_ingreso as t')
 ->select('t.id as idIn','t.nombreTP')
 ->get();
@@ -57,7 +61,7 @@ $productos= DB::table('Productos as p')
 ->select('p.CodigoB_Producto','pd.nombre_producto','pd.marca_producto','pd.categoria','pd.descuento','p.stockP','p.precio_unitario','p.id as idPro')
 ->get();
  
- return view("ingreso.create",["color"=>$color,"tipoingreso"=>$tipoingreso,"talla"=>$talla,"almacen"=>$almacen,"trabajador"=>$trabajador,"productos"=>$productos]);
+ return view("ingreso.create",["taller"=>$taller,"color"=>$color,"tipoingreso"=>$tipoingreso,"talla"=>$talla,"almacen"=>$almacen,"trabajador"=>$trabajador,"productos"=>$productos]);
     
 }
 

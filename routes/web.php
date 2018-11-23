@@ -89,10 +89,18 @@ Route::middleware(['auth','admin'])->group(function () {
     //producto
     Route::get('producto',['as' => 'producto','uses'=>'ProductoController@index']);
     Route::get('producto/create',['as' => 'producto-create','uses'=>'ProductoController@create']);
-    Route::post('producto/guardar',['as' => 'producto-guardar','uses'=>'ProductoController@store']);
+    Route::post('producto/',['as' => 'producto-guardar','uses'=>'ProductoController@store']);
     Route::get('producto/editar/{id}',['as' => 'producto-editar','uses'=>'ProductoController@edit']);
     Route::post('producto/update',['as' => 'producto-update','uses'=>'ProductoController@update']);
     Route::get('producto/delete/{id}',['as' => 'producto-delete','uses'=>'ProductoController@destroy']);
+
+    //detalle_producto
+     Route::get('detalle_producto',['as' => 'detalle_producto','uses'=>'Producto_DetalleController@index']);
+    Route::get('detalle_producto/create',['as' => 'detalle_producto-create','uses'=>'Producto_DetalleController@create']);
+    Route::post('detalle_producto/',['as' => 'detalle_producto-guardar','uses'=>'Producto_DetalleController@store']);
+    Route::get('detalle_producto/editar/{id}',['as' => 'detalle_producto-editar','uses'=>'Producto_DetalleController@edit']);
+    Route::post('detalle_producto/update',['as' => 'detalle_producto-update','uses'=>'Producto_DetalleController@update']);
+    Route::get('detalle_producto/delete/{id}',['as' => 'detalle_producto-delete','uses'=>'Producto_DetalleController@destroy']);
     
     
     // tipo_producto
@@ -189,7 +197,18 @@ Route::middleware(['auth','admin'])->group(function () {
     Route::get('salida/editar/{id}',['as'=>'salida-edit','uses'=>'SalidaController@edit']);
     Route::post('salida/update',['as'=>'salida-update','uses'=>'SalidaController@update']);
     Route::get('salida/delete/{id}',['as'=>'salida-delete','uses'=>'SalidaController@destroy']);
+    // ajax de salida
+    Route::post('salida/barras',['as'=>'salida-cod','uses'=>'SalidaController@codBarra']);
     
+    //salidaVenta
+    Route::get('salidaVenta',['as'=>'salidaVenta-index','uses'=>'SalidaVentaController@index']);
+    Route::get('salidaVenta/create',['as'=>'salidaVenta-create','uses'=>'SalidaVentaController@create']);
+    Route::post('salidaVenta/guardar',['as'=>'salidaVenta-guardar','uses'=>'SalidaVentaController@store']);
+    Route::get('salidaVenta/editar/{id}',['as'=>'salidaVenta-edit','uses'=>'SalidaVentaController@edit']);
+    Route::post('salidaVenta/update',['as'=>'salidaVenta-update','uses'=>'SalidaVentaController@update']);
+    Route::get('salidaVenta/delete/{id}',['as'=>'salidaVenta-delete','uses'=>'SalidaVentaController@destroy']);
+    // ajax de salidaventa
+    Route::post('salidaVenta/barras',['as'=>'salidaVenta-cod','uses'=>'SalidaVentaController@codBarra']);
     
     
     //operador

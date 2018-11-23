@@ -56,7 +56,7 @@
              <div class="col-md-4">
                     <div class="form-group">
                         <label class="control-label">Codigo Producto</label>
-                        <input type="text" id="" class="form-control" placeholder="Ingrese Codigo">
+                        <input type="text" name="codigo_Prod" id="codigo_Prod" class="form-control" placeholder="Ingrese Codigo">
                     </div>                    
                 </div>
         
