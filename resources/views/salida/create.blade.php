@@ -31,19 +31,22 @@
                 <div class="col-lg-4">
                     <div class="form-group">
                         <label for="proveedor">Trabajador</label>
-                        <select name="idTrabajador" id="idTrabajador" class="form-control selectpicker" data-live-search="true">
-                        	<option value="" selected="" disabled="">Seleccione</option>
-                           @foreach($trabajador as $tra)
+                        <!-- <select name="idTrabajador" id="idTrabajador" class="form-control selectpicker" data-live-search="true">-->
+                            <!-- <option value="" selected="" disabled="">Seleccione</option> -->
+                           <!-- @foreach($trabajador as $tra)
                            
                            <option value="{{$tra->idTra}}">{{$tra->nombre.' '.$tra->apellidos}}</option>
-                           @endforeach  
-                        </select>
+                           @endforeach   
+                        </select> -->
+                        <input type="hidden" name="idTrabajador" id="idTrabajador" class="form-control" value="{{ $usuario[0]->id }}">
+                        <input type="text" name="Nombres" id="Nombres" class="form-control" value="{{ $usuario[0]->nombre }} {{ $usuario[0]->apellidos }}" readonly >
+                        <!-- {{ $usuario[0]->id }} {{ $usuario[0]->apellidos }} -->
                     </div>
                 </div> 
                 <div class="col-lg-4">
                     <div class="form-group">
                         <label for="proveedor">Almacen</label>
-                        <select name="idAlmacen" id="idAlmacen" class="form-control selectpicker" data-live-search="true">
+                        <select name="pidAlmacen" id="pidAlmacen" class="form-control selectpicker" data-live-search="true">
                             <option value="" selected="" disabled="">Seleccione</option>
                             @foreach($almacen as $al)
                             <option value="{{$al->idAl}}">{{$al->codigo.' '.$al->nombre_almacen}}</option>
@@ -51,12 +54,16 @@
                         </select>
                     </div>                    
                 </div> 
+                
+                
                 <div class="col-lg-4">
                     <div class="form-group">
                         <label for="proveedor">Taller</label>
-                        <select name="idTaller" id="idTaller" class="form-control selectpicker" data-live-search="true">
+                        <select name="idTaller" id="pidTaller" class="form-control selectpicker" data-live-search="true">
                             <option value="" selected="" disabled="">Seleccione</option>
-                             
+                             @foreach($taller as $ta)>
+                                 <option value="{{$ta->idTA}}">{{$ta->codigoT.' '.$ta->nombre_taller}}</option>
+                             @endforeach
                         </select>
                     </div>                    
                 </div>
@@ -74,31 +81,32 @@
     <div class="card-body">
         <h4 class="card-title">Detalle Productos</h4>
         <div class="form-body">
-            <div class="row">
-                <div class="col-md-5">
+
+
+             <div class="row">
+                <div class="col-md-4">
                     <div class="form-group">
                         <label>Codigo de Barras</label>
-                        <input type="text" name="pcodigo" id="pcodigo" class="form-control">                    
+                        <input type="text" name="pcodigo" id="pcodigo" class="form-control" onkeypress="return runScript(event)">                    
                     </div>
                 </div>
-                <div class="col-md-5">
+                <div class="col-md-3">
                     <div class="form-group">
-                        <label>Ingreso Manual de Codigo</label>
-                         <input type="text" name="pCodprod" id="pCodprod" class="form-control" placeholder="Codigo Producto">                       
+                        <label>Tipo de Producto</label>
+                        <input type="text" name="pcodigoP" id="pcodigoP" class="form-control" placeholder="Codigo Producto">                    
                     </div>
                 </div>
-            </div>
-          <div class="row">
 
-            
 
-             <div class="col-md-6">
+                 <div class="col-md-5">
                     <div class="form-group">
                         <label>Nombre Producto</label>
                         <input type="text" name="pnproducto" id="pnproducto" class="form-control" placeholder="nombre Producto">                    
                     </div>
                 </div>
-        	<div class="col-md-2">
+            </div>
+<div class="row">
+            <div class="col-md-3">
                     <div class="form-group">
                         <label>Talla</label>
                         <input type="text" name="ptalla" id="ptalla" class="form-control" placeholder="talla">                    
@@ -111,25 +119,22 @@
                         <label>Color</label>
                         <input type="text" name="pcolor" id="pcolor" class="form-control" placeholder="Color">                     
                     </div>
-                </div>
-
-
-               
-            </div>
-            <div class="row p-t-10">
-                <div class="col-md-4">
+                </div>               
+            
+                
+                <div class="col-md-3">
                     <div class="from-group">
                         <label>Cantidad</label>
                         <input type="text" name="pcantidadPF" id="pcantidadPF" class="form-control" placeholder="cantidad">
                     </div>                    
-                </div>
-                
-                <div class="col-md-3">
+                </div>               
+                 <div class="col-md-2">
                     <div class="from-group">
                          <button style="margin-top:31px; " type="button" id="bt_add" class="btn btn-primary pull-left">agregar</button>
                     </div>                    
                 </div>
           </div>
+
         </div>
        
     </div>
@@ -138,26 +143,27 @@
             <table id="detalles" class="table table-striped table-bordered table-condensed table-hover">
                 <thead style="background-color:#A9D0F5">
                     <th>opciones</th>
+                    <th>Codigo B.</th>
                     <th>Taller</th>
-                    <th>Producto</th>
+                 
                     <th>Cod.Producto</th>
-                    <th>Cant.</th>
+                    <th>Producto</th>
                     <th>Talla</th>
                     <th>Color</th>
-
-                    
+                    <th>Cant.</th>
                 </thead>
                 <tbody>
                 </tbody>
                 <tfoot>
                     <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
                     
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
 
                 </tfoot>
             </table>
@@ -182,11 +188,47 @@ $(document).ready(function(){
     });
 });
 
+document.getElementById("idTrabajador").disabled = false;
+// captura el evento del codigo de barras y llama al metodo donde se realiza la consulta
+function runScript(e) {
+    if (e.keyCode == 13) {
+        consulBarras();
+    }
+}
+
 var cont=0;
 var producto=[];
 total=0;
 subtotal=[];
 
+function consulBarras(){
+    codBarras=$("#pcodigo").val();
+    $.ajax({
+        headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        data:{codBarras:codBarras}, //datos que se envian a traves de ajax
+        url:'barras', //archivo que recibe la peticion
+        type:'post', //método de envio
+        dataType:"json",//tipo de dato que envio 
+        beforeSend: function () {
+            console.log('procesando');
+            // $("#resultado").html("Procesando, espere por favor...");
+        },
+        success:  function (response) { //una vez que el archivo recibe el request lo procesa y lo devuelve
+            // console.log(response.consulta);
+            if(response.veri==true){
+                // var urlBase=window.location.origin;
+                // var url=urlBase+'/'+response.data;
+                // document.location.href=url; ptalla  pcolor
+                document.getElementById('pnproducto').value = response.consulta[0]['nombre_producto'];
+                document.getElementById('pcodigoP').value = response.consulta[0]['codigo_Prod'];
+                document.getElementById('ptalla').value = response.consulta[0]['nom_talla'];
+                document.getElementById('pcolor').value = response.consulta[0]['nombre_color'];
+
+                // console.log( response.consulta);
+            }                
+        }
+      });
+}
 
 $('#save').click(function(){
             guardar();
@@ -216,25 +258,28 @@ $.ajax({
 
 function agregar()
 {
-    idProducto=$("#pidProducto").val();
-    produc=$("#pidProducto option:selected").text();
+    codigob=$("#pcodigo").val();
+    idAlmacen=$("#pidAlmacen").val();
+    almacen=$("#pidAlmacen option:selected").text();
+    idTaller=$("#pidTaller").val();
+    taller=$("#pidTaller option:selected").text();
+    codigo=$("#pcodigoP").val();
+    produco=$("#pnproducto").val();
+    talla=$("#ptalla").val();
+    color=$("#pcolor").val();
     cantidad=$("#pcantidadPF").val();
-    talla=$("").val();
-    color=$("").val();
     trabajador=$("#idTrabajador").val();
-    almacen=$("#idAlmacen").val();
-    taller=$("").val();
 
-    if(idProducto!="" && cantidad!=""  && talla!="" && color!="" && trabajador!="" && almacen!="" && taller!="")
+    
+    if(idAlmacen!="" && idTaller!=""  && talla!="" && color!="")
     {
-       subtotal[cont]=(cantidad*precio_compra);
-       total=total+subtotal[cont];
+       
 
-       var fila='<tr class="selected" id="fila'+cont+'"><td><button type="button" class="btn btn-warning" onclick="eliminar('+cont+');">X</button></td> <td><input type="hidden" name="idProduto_PF[]" value="'+idProducto+'">'+produc+'</td> <td><input type="number" name="cantidadPF[]" value="'+cantidad+'"></td> <td><input type="number" name="precio_compraPF[]" value="'+precio_compra+'"></td> <td><input type="number" name="precio_ventaPF[]" value="'+precio_venta+'"></td> <td>'+subtotal[cont]+'</td></tr>';
+       var fila='<tr class="selected" id="fila'+cont+'"><td><button type="button" class="btn btn-warning" onclick="eliminar('+cont+');">X</button></td> <td><input type="hidden" name="codigo_bar[]" value="'+codigob+'">'+codigob+'</td>  <td><input type="hidden" name="idTaller[]" value="'+idTaller+'">'+taller+'</td>  <td><input type="hidden" name="codigoSMP[]" value="'+codigo+'">'+codigo+'</td> <td><input type="hidden" name="productoSMP[]" value="'+produco+'">'+produco+'</td> <td><input type="hidden" name="tallaSMP[]" value="'+talla+'">'+talla+'</td> <td><input type="hidden" name="colorSMP[]" value="'+color+'">'+color+'</td> <td><input type="hidden" name="cantidadSMP[]" value="'+cantidad+'">'+cantidad+'</td> </tr>';
 
        cont++;
 
-       var dat={idProducto:idProducto,produc:produc,cantidad:cantidad,trabajador:trabajador,almacen:almacen};
+       var dat={codigob:codigob,idAlmacen:idAlmacen,idTaller:idTaller,codigo:codigo,produco:produco,talla:talla,color:color,cantidad:cantidad,trabajador:trabajador};
         
        producto.push(dat);
         console.log(producto);

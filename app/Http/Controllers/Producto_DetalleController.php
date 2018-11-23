@@ -33,6 +33,7 @@ class Producto_DetalleController extends Controller
             $producto=new Producto_Detalle;
             $producto->idTipoProducto=$request->get('idTipoProducto');
             $producto->nombre_producto=$request->get('nombre_producto');
+            $producto->codigo_Prod=$request->get('codigo_Prod');
             $producto->marca_producto=$request->get('marca_producto');
             $producto->categoria=$request->get('categoria');
             $producto->descuento=$request->get('descuento');

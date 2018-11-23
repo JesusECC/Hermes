@@ -88,10 +88,16 @@
           
 
         <div class="row">
-                <div class="col-md-5">
+                <div class="col-md-6">
                     <div class="form-group">
                         <label>Codigo de Barras</label>
                         <input type="text" name="pcodigo" id="pcodigo" class="form-control" onkeypress="return runScript(event)">                    
+                    </div>
+                </div>
+                 <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Nombre Producto</label>
+                        <input type="text" name="pnproducto" id="pnproducto" class="form-control" placeholder="nombre Producto">                    
                     </div>
                 </div>
             </div>
@@ -99,13 +105,8 @@
 
             
 
-             <div class="col-md-6">
-                    <div class="form-group">
-                        <label>Nombre Producto</label>
-                        <input type="text" name="pnproducto" id="pnproducto" class="form-control" placeholder="nombre Producto">                    
-                    </div>
-                </div>
-            <div class="col-md-2">
+            
+            <div class="col-md-4">
                     <div class="form-group">
                         <label>Talla</label>
                         <input type="text" name="ptalla" id="ptalla" class="form-control" placeholder="talla">                    
@@ -118,18 +119,9 @@
                         <label>Color</label>
                         <input type="text" name="pcolor" id="pcolor" class="form-control" placeholder="Color">                     
                     </div>
-                </div>
-
-
-               
-            </div>
-            <div class="row p-t-10">
-                <div class="col-md-4">
-                    <div class="from-group">
-                        <label>Cantidad de Salida</label>
-                        <input type="text" name="pcantidadSMP" id="pcantidadSMP" class="form-control" >
-                    </div>                    
-                </div>
+                </div>               
+            
+                
                 <div class="col-md-4">
                     <div class="from-group">
                         <label>Cantidad</label>
@@ -281,7 +273,7 @@ function agregar()
 
        cont++;
 
-       var dat={idProducto:idProducto,produc:produc,cantidad:cantidad,precio_compra:precio_compra,precio_venta:precio_venta,trabajador:trabajador,almacen:almacen,tipoingreso:tipoingreso};
+       var dat={idProducto:idProducto,produc:produc,cantidad:cantidad,trabajador:trabajador,almacen:almacen,tipoingreso:tipoingreso};
         
        producto.push(dat);
 console.log(producto);
