@@ -96,4 +96,28 @@
                                                     <input type="text" id="direccionAL" name="direccionAL" class="form-control" value="{{$teletienda[0]->direccionAL}}">
                                                     </div>
                                             </div>
+                                                 <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label class="control-label">Estado</label>
+                                                        <select class="form-control selectpicker" style="width: 100%" name="estado_idEstado" id="estado_idEstado">
+                                                            <option >Seleccione</option>
+                                                            @foreach($estado as $est)
+                                                                <option value="{{$est->id}}">{{ $est->descripcion}}</option>
+                                                            @endforeach
+                                                        </select>          
+                                                    </div>
+                                                </div>
+
+
+                                             </div>
+                                            
+                                            <input type="hidden" name="tid" value="{{$teletienda[
+                                            0]->tid}}">
+                                           
+
+                                            <input type="hidden" name="direid" value="{{$teletienda[
+                                            0]->direid}}">
+
+                                            <input type="hidden" name="teleid" value="{{$teletienda[
+                                            0]->teleid}}">
                                            
