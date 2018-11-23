@@ -43,6 +43,8 @@ Route::middleware(['auth','admin'])->group(function () {
      Route::post('Taller/guardar',['as' => 'taller-store','uses'=>'TallerController@store']);
      Route::get('Taller/editar/{id}',['as' => 'taller-editar','uses'=>'TallerController@edit']);
      Route::post('Taller/update/{id}',['as' => 'taller-update','uses'=>'TallerController@update']);
+      Route::get('Taller/delete/{id}',['as' => 'taller-delete','uses'=>'TallerController@destroy']);
+    
     
     //roles
     Route::get('rol',['as' => 'rol-index','uses'=>'RolController@index']);

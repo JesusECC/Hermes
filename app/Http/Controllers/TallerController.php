@@ -33,7 +33,7 @@ class TallerController extends Controller
     {
         
 
-                $taller=DB::table('Taller as ta')
+                $taller=DB::table('Taller as ta')       
                  ->join('Direccion_TTA as dire','dire.id','=','ta.idDireccion')
 
                  ->join('estado as est','est.id','=','ta.estado_idEstado')
@@ -233,7 +233,10 @@ class TallerController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $taller=Taller::find($id);
+        $taller->estado_idEstado=2;
+        $taller->update();
+        return redirect('Taller');
     }
 
   public function provincia(Request $request)
@@ -261,5 +264,5 @@ class TallerController extends Controller
     //    Provincia_Departamento_idDepartamento
     }
 
-    
+
 }
