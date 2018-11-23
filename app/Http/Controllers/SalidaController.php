@@ -69,8 +69,8 @@ $productos= DB::table('Productos as p')
     
 }
 
-public function store(Request $request)
-    {
+public function store(Request $request){
+    dd($request);
      try{
         $idAlmacen;
         $codigob;
@@ -98,7 +98,7 @@ public function store(Request $request)
 
            
         }
-        $idSalida=DB::table('Salida')->insertGetId(
+        $idSalida=DB::table('Salida_MP')->insertGetId(
             ['idTrabajador'=>$idTrabajador,
             'idAlmacen'=>$idAlmacen,           
             'idTipo_salida'=>1,
@@ -108,7 +108,7 @@ public function store(Request $request)
         );
 
         foreach($request->fila as $fila){
-            $detalle=new Detalle_ingresoPF;	
+            $detalle=new Detalle_Salida_MP;	
             $detalle->idSalidaMP=$idSalida;
             $detalle->codigoSMP=$fila['cantidad'];
             $detalle->idTaller=$fila['cantidad'];
