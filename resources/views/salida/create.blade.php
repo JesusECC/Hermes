@@ -140,7 +140,7 @@
     </div>
     <div class="card-footer">
         <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
-        <form action="{{route('salida-guardar')}}" method="post">
+        <form action="route('salida-guardar')" method="post">
             <table id="detalles" class="table table-striped table-bordered table-condensed table-hover">
                 <thead style="background-color:#A9D0F5">
                     <th>opciones</th>
@@ -170,7 +170,7 @@
         </div>
         <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
             <div class="form-group">
-               @csrf
+                <input name"_token" value="{{ csrf_token() }}" type="hidden">
                 <button id="save" class="btn btn-primary" type="submit">guardar</button>
                 <button class="btn btn-danger" type="reset">cancelar</button>
             </div>
