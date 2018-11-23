@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+ @extends('layouts.admin')
 @section('content')
 <div class="row page-titles">
     <div class="col-md-5 col-8 align-self-center">
@@ -12,7 +12,7 @@
 </div>
 <div class="card">
     <div class="card-header">
-        <h4 class="card-title pull-left">Registro del Producto Final</h4>
+        <h4 class="card-title pull-left">Salida del Producto</h4>
         @if (count($errors)>0)
             <div class="alert-alert-danger">
                 <ul>
@@ -28,11 +28,11 @@
         <h4 class="card-title">Datos del Ingreso</h4>
         <div class="form-body">
             <div class="row p-t-10">
-                <div class="col-lg-6">
+                <div class="col-lg-4">
                     <div class="form-group">
                         <label for="proveedor">Trabajador</label>
-                        <!-- <select name="idTrabajador" id="idTrabajador" class="form-control selectpicker" data-live-search="true">
-                        	<!-- <option value="" selected="" disabled="">Seleccione</option> -->
+                        <!-- <select name="idTrabajador" id="idTrabajador" class="form-control selectpicker" data-live-search="true">-->
+                            <!-- <option value="" selected="" disabled="">Seleccione</option> -->
                            <!-- @foreach($trabajador as $tra)
                            
                            <option value="{{$tra->idTra}}">{{$tra->nombre.' '.$tra->apellidos}}</option>
@@ -43,10 +43,10 @@
                         <!-- {{ $usuario[0]->id }} {{ $usuario[0]->apellidos }} -->
                     </div>
                 </div> 
-                <div class="col-lg-6">
+                <div class="col-lg-4">
                     <div class="form-group">
                         <label for="proveedor">Almacen</label>
-                        <select name="idAlmacen" id="idAlmacen" class="form-control selectpicker" data-live-search="true">
+                        <select name="pidAlmacen" id="pidAlmacen" class="form-control selectpicker" data-live-search="true">
                             <option value="" selected="" disabled="">Seleccione</option>
                             @foreach($almacen as $al)
                             <option value="{{$al->idAl}}">{{$al->codigo.' '.$al->nombre_almacen}}</option>
@@ -54,10 +54,12 @@
                         </select>
                     </div>                    
                 </div> 
-                <div class="col-lg-6">
+                
+                
+                <div class="col-lg-4">
                     <div class="form-group">
                         <label for="proveedor">Taller</label>
-                       <select name="idTaller" id="pidTaller" class="form-control selectpicker" data-live-search="true">
+                        <select name="idTaller" id="pidTaller" class="form-control selectpicker" data-live-search="true">
                             <option value="" selected="" disabled="">Seleccione</option>
                              @foreach($taller as $ta)>
                                  <option value="{{$ta->idTA}}">{{$ta->codigoT.' '.$ta->nombre_taller}}</option>
@@ -65,14 +67,6 @@
                         </select>
                     </div>                    
                 </div>
-                <div class="col-lg-6">
-                    <div class="form-group">
-                        <label for="proveedor">Numero de Guia</label>
-                         <input type="number" name="pnum" id="pcantidadPF" class="form-control" placeholder="Numero de guia">
-                             
-                        </select>
-                    </div>                    
-                </div>  
                 
                           
             </div>
@@ -90,7 +84,7 @@
 
 
              <div class="row">
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <div class="form-group">
                         <label>Codigo de Barras</label>
                         <input type="text" name="pcodigo" id="pcodigo" class="form-control" onkeypress="return runScript(event)">                    
@@ -104,41 +98,36 @@
                 </div>
 
 
-                 <div class="col-md-3">
+                 <div class="col-md-5">
                     <div class="form-group">
                         <label>Nombre Producto</label>
                         <input type="text" name="pnproducto" id="pnproducto" class="form-control" placeholder="nombre Producto">                    
                     </div>
                 </div>
-            <div class="col-md-3">
-                    <div class="form-group">
-                        <label>Color</label>
-                        <input type="text" name="pcolor" id="pcolor" class="form-control" placeholder="Color">                     
-                    </div>
-                </div>    
-             
-                </div>
+            </div>
 <div class="row">
-           
-                    <div class="col-md-2">
+            <div class="col-md-3">
                     <div class="form-group">
                         <label>Talla</label>
                         <input type="text" name="ptalla" id="ptalla" class="form-control" placeholder="talla">                    
                     </div>
                 </div>
 
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Color</label>
+                        <input type="text" name="pcolor" id="pcolor" class="form-control" placeholder="Color">                     
+                    </div>
+                </div>               
+            
+                
                 <div class="col-md-3">
                     <div class="from-group">
                         <label>Cantidad</label>
                         <input type="text" name="pcantidadPF" id="pcantidadPF" class="form-control" placeholder="cantidad">
                     </div>                    
-                </div>     
-                <div class="col-md-5">
-                    <div class="from-group">
-                        <label>Descripcion</label>
-                        <input type="text" name="pdescripcionPF" id="pdescripcionPF" class="form-control" placeholder="cantidad">
-                    </div>                    
-                </div>             
+                </div>               
                  <div class="col-md-2">
                     <div class="from-group">
                          <button style="margin-top:31px; " type="button" id="bt_add" class="btn btn-primary pull-left">agregar</button>
@@ -159,7 +148,6 @@
                  
                     <th>Cod.Producto</th>
                     <th>Producto</th>
-                    <th>Descripcion</th>
                     <th>Talla</th>
                     <th>Color</th>
                     <th>Cant.</th>
@@ -169,7 +157,6 @@
                 <tfoot>
                     <th></th>
                     
-                    <th></th>
                     <th></th>
                     <th></th>
                     <th></th>
@@ -282,14 +269,13 @@ function agregar()
     color=$("#pcolor").val();
     cantidad=$("#pcantidadPF").val();
     trabajador=$("#idTrabajador").val();
-    descripcion=$("#pdescripcionPF").val();
 
     
     if(idAlmacen!="" && idTaller!=""  && talla!="" && color!="")
     {
        
 
-       var fila='<tr class="selected" id="fila'+cont+'"><td><button type="button" class="btn btn-warning" onclick="eliminar('+cont+');">X</button></td> <td><input type="hidden" name="codigo_bar[]" value="'+codigob+'">'+codigob+'</td>  <td><input type="hidden" name="idTaller[]" value="'+idTaller+'">'+taller+'</td>  <td><input type="hidden" name="codigoSMP[]" value="'+codigo+'">'+codigo+'</td> <td><input type="hidden" name="productoSMP[]" value="'+produco+'">'+produco+'</td> <td><input type="hidden" name="pdescripcionPF[]" value="'+descripcion+'">'+descripcion+'</td> <td><input type="hidden" name="tallaSMP[]" value="'+talla+'">'+talla+'</td> <td><input type="hidden" name="colorSMP[]" value="'+color+'">'+color+'</td> <td><input type="hidden" name="cantidadSMP[]" value="'+cantidad+'">'+cantidad+'</td> </tr>';
+       var fila='<tr class="selected" id="fila'+cont+'"><td><button type="button" class="btn btn-warning" onclick="eliminar('+cont+');">X</button></td> <td><input type="hidden" name="codigo_bar[]" value="'+codigob+'">'+codigob+'</td>  <td><input type="hidden" name="idTaller[]" value="'+idTaller+'">'+taller+'</td>  <td><input type="hidden" name="codigoSMP[]" value="'+codigo+'">'+codigo+'</td> <td><input type="hidden" name="productoSMP[]" value="'+produco+'">'+produco+'</td> <td><input type="hidden" name="tallaSMP[]" value="'+talla+'">'+talla+'</td> <td><input type="hidden" name="colorSMP[]" value="'+color+'">'+color+'</td> <td><input type="hidden" name="cantidadSMP[]" value="'+cantidad+'">'+cantidad+'</td> </tr>';
 
        cont++;
 

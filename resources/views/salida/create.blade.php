@@ -23,8 +23,11 @@
             </div>
         @endif
     </div> 
-    
-    <div class="card-body">
+
+    <form action="{{route('salida-guardar')}}" method="POST" id="form" name="guardar">
+        @csrf
+
+        <div class="card-body">
         <h4 class="card-title">Datos del Ingreso</h4>
         <div class="form-body">
             <div class="row p-t-10">
@@ -87,7 +90,7 @@
                 <div class="col-md-4">
                     <div class="form-group">
                         <label>Codigo de Barras</label>
-                        <input type="text" name="pcodigo" id="pcodigo" class="form-control" onkeypress="return runScript(event);">                    
+                        <input type="text" name="pcodigo" id="pcodigo" class="form-control" onkeypress="return runScript(event)">                    
                     </div>
                 </div>
                 <div class="col-md-3">
@@ -105,7 +108,7 @@
                     </div>
                 </div>
             </div>
-        <div class="row">
+<div class="row">
             <div class="col-md-3">
                     <div class="form-group">
                         <label>Talla</label>
@@ -140,12 +143,15 @@
     </div>
     <div class="card-footer">
         <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+<<<<<<< HEAD
         <form action="route('salida-guardar')" method="post">
+=======
+>>>>>>> 53f57e1073d08414c963eca291c922c29805a6b0
             <table id="detalles" class="table table-striped table-bordered table-condensed table-hover">
                 <thead style="background-color:#A9D0F5">
                     <th>opciones</th>
                     <th>Codigo B.</th>
-                    <th>Taller</th>                 
+                    <th>Taller</th>
                     <th>Cod.Producto</th>
                     <th>Producto</th>
                     <th>Talla</th>
@@ -155,7 +161,8 @@
                 <tbody>
                 </tbody>
                 <tfoot>
-                    <th></th>                    
+                    <th></th>
+                    
                     <th></th>
                     <th></th>
                     <th></th>
@@ -166,94 +173,137 @@
 
                 </tfoot>
             </table>
-            
         </div>
         <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
             <div class="form-group">
                 <input name"_token" value="{{ csrf_token() }}" type="hidden">
+<<<<<<< HEAD
                 <button id="save" class="btn btn-primary" type="submit">guardar</button>
+=======
+                <button class="btn btn-primary" id="save" type="submit">guardar</button>
+>>>>>>> 53f57e1073d08414c963eca291c922c29805a6b0
                 <button class="btn btn-danger" type="reset">cancelar</button>
             </div>
-        </div>    
-        </form>    
+        </div>        
     </div>
 </div>
 
-
+</form>
 
 @push('scripts')
 <script>
-// captura el evento del codigo de barras y llama al metodo donde se realiza la consulta
-    
-    $(document).ready(function(){
-        $('#bt_add').click(function(){
-            //Some code
-            agregar();
-        });
-    });
 
-    function runScript(e) {
-        if (e.keyCode == 13) {
-            consulBarras();
+function enviar_formulario(){ 
+   document.guardar.submit() 
+} 
+
+$(document).ready(function(){
+    $('#bt_add').click(function(){
+        agregar();
+    });
+$("#save").click(function(event){             
+// alert("Formulario enviado con jQuery");             
+$('#form').submit();         });
+
+});
+
+document.getElementById("idTrabajador").disabled = false;
+// captura el evento del codigo de barras y llama al metodo donde se realiza la consulta
+function runScript(e) {
+    if (e.keyCode == 13) {
+        consulBarras();
+    }
+}
+
+var cont=0;
+var producto=[];
+total=0;
+subtotal=[];
+
+function consulBarras(){
+    codBarras=$("#pcodigo").val();
+    $.ajax({
+        headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        data:{codBarras:codBarras}, //datos que se envian a traves de ajax
+        url:'barras', //archivo que recibe la peticion
+        type:'post', //método de envio
+        dataType:"json",//tipo de dato que envio 
+        beforeSend: function () {
+            console.log('procesando');
+            // $("#resultado").html("Procesando, espere por favor...");
+        },
+        success:  function (response) { //una vez que el archivo recibe el request lo procesa y lo devuelve
+            // console.log(response.consulta);
+            if(response.veri==true){
+                // var urlBase=window.location.origin;
+                // var url=urlBase+'/'+response.data;
+                // document.location.href=url; ptalla  pcolor
+                document.getElementById('pnproducto').value = response.consulta[0]['nombre_producto'];
+                document.getElementById('pcodigoP').value = response.consulta[0]['codigo_Prod'];
+                document.getElementById('ptalla').value = response.consulta[0]['nom_talla'];
+                document.getElementById('pcolor').value = response.consulta[0]['nombre_color'];
+
+                // console.log( response.consulta);
+            }                
+        }
+      });
+}
+
+
+$("#guardar").show();
+
+function agregar()
+{
+    codigob=$("#pcodigo").val();
+    idTaller=$("#pidTaller").val();
+    taller=$("#pidTaller option:selected").text();
+    codigo=$("#pcodigoP").val();
+    produco=$("#pnproducto").val();
+    talla=$("#ptalla").val();
+    color=$("#pcolor").val();
+    cantidad=$("#pcantidadPF").val();
+
+
+    
+    if(idTaller!=""  && talla!="" && color!="")
+    {
+       
+
+       var fila='<tr class="selected" id="fila'+cont+'"><td><button type="button" class="btn btn-warning" onclick="eliminar('+cont+');">X</button></td> <td><input type="hidden" name="codigo_bar[]" value="'+codigob+'">'+codigob+'</td>  <td><input type="hidden" name="idTaller[]" value="'+idTaller+'">'+taller+'</td>  <td><input type="hidden" name="codigoSMP[]" value="'+codigo+'">'+codigo+'</td> <td><input type="hidden" name="productoSMP[]" value="'+produco+'">'+produco+'</td> <td><input type="hidden" name="tallaSMP[]" value="'+talla+'">'+talla+'</td> <td><input type="hidden" name="colorSMP[]" value="'+color+'">'+color+'</td> <td><input type="hidden" name="cantidadSMP[]" value="'+cantidad+'">'+cantidad+'</td> </tr>';
+
+       cont++;
+
+       limpiar();
+       evaluar();
+       $('#detalles').append(fila);
+
+    }
+    else
+    {
+        alert("erros al ingresar el detale del ingreso, revise los datos del articulo");
+    }
+    }
+
+    total=0;
+    function limpiar(){
+        $("#pcantidad").val("");
+        
+    }
+
+    function evaluar()
+    {
+        if(total>0)
+        {
+            $("#guardar").show();
+        }
+        else
+        {
+            $("#guardar").hide();
         }
     }
-    // declaracion de variables 
-    var cont=0;
-
-    // funcion para el codigo de barras
-    function consulBarras(){
-        codBarras=$("#pcodigo").val();
-        $.ajax({
-            headers:{'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-            data:{codBarras:codBarras}, //datos que se envian a traves de ajax
-            url:'barras', //archivo que recibe la peticion
-            type:'post', //método de envio
-            dataType:"json",//tipo de dato que envio 
-            beforeSend: function () {
-                console.log('procesando');
-                // $("#resultado").html("Procesando, espere por favor...");
-            },
-            success:  function (response) { //una vez que el archivo recibe el request lo procesa y lo devuelve
-                // console.log(response.consulta);
-                if(response.veri==true){
-                    // var urlBase=window.location.origin;
-                    // var url=urlBase+'/'+response.data;
-                    // document.location.href=url; ptalla  pcolor
-                    document.getElementById('pnproducto').value = response.consulta[0]['nombre_producto'];
-                    document.getElementById('pcodigoP').value = response.consulta[0]['codigo_Prod'];
-                    document.getElementById('ptalla').value = response.consulta[0]['nom_talla'];
-                    document.getElementById('pcolor').value = response.consulta[0]['nombre_color'];
-
-                    // console.log( response.consulta);
-                }                
-            }
-        });
-    }
-
-    function agregar(){
-        codibarr=$("#pcodigo").val();
-        codiProd=$("#pcodigoP").val();//codigo de producto
-        NomProd=$("#pnproducto").val();
-        talla=$("#ptalla").val();
-        color=$("#pcolor").val();
-        cantProd=$("#pcantidadPF").val();
-        
-        Taller=$("#pidTaller").val();
-        // codigob=$("#pcodigo").val();
-        
-        var fila=
-                '<tr class="selected" id="fila'+cont+'">'+
-                    '<td>'+codibarr+'</td>'+
-                    '<td>'+Taller+'</td>'+
-                    '<td>'+codiProd+'</td>'+
-                    '<td>'+NomProd+'</td>'+
-                    '<td>'+talla+'</td>'+
-                    '<td>'+color+'</td>'+
-                    '<td>'+cantProd+'</td>'+
-                    // '<td>'++'</td>'+
-                '</tr>';
-        $('#detalles').append(fila);
-        cont++;
+    function eliminar(index){
+        $("#fila" + index).remove();
+        evaluar();
     }
 
 </script>
