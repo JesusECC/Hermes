@@ -194,6 +194,15 @@ Route::middleware(['auth','admin'])->group(function () {
     // ajax de salida
     Route::post('salida/barras',['as'=>'salida-cod','uses'=>'SalidaController@codBarra']);
     
+    //salidaVenta
+    Route::get('salidaVenta',['as'=>'salidaVenta-index','uses'=>'SalidaVentaController@index']);
+    Route::get('salidaVenta/create',['as'=>'salidaVenta-create','uses'=>'SalidaVentaController@create']);
+    Route::post('salidaVenta/guardar',['as'=>'salidaVenta-guardar','uses'=>'SalidaVentaController@store']);
+    Route::get('salidaVenta/editar/{id}',['as'=>'salidaVenta-edit','uses'=>'SalidaVentaController@edit']);
+    Route::post('salidaVenta/update',['as'=>'salidaVenta-update','uses'=>'SalidaVentaController@update']);
+    Route::get('salidaVenta/delete/{id}',['as'=>'salidaVenta-delete','uses'=>'SalidaVentaController@destroy']);
+    // ajax de salidaventa
+    Route::post('salidaVenta/barras',['as'=>'salidaVenta-cod','uses'=>'SalidaVentaController@codBarra']);
     
     
     //operador

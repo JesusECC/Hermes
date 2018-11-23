@@ -23,11 +23,8 @@
             </div>
         @endif
     </div> 
-
-    <form action="{{route('salida-guardar')}}" method="POST" id="form" name="guardar">
-        @csrf
-
-        <div class="card-body">
+    
+    <div class="card-body">
         <h4 class="card-title">Datos del Ingreso</h4>
         <div class="form-body">
             <div class="row p-t-10">
@@ -148,6 +145,7 @@
                     <th>opciones</th>
                     <th>Codigo B.</th>
                     <th>Taller</th>
+                 
                     <th>Cod.Producto</th>
                     <th>Producto</th>
                     <th>Talla</th>
@@ -173,30 +171,21 @@
         <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
             <div class="form-group">
                 <input name"_token" value="{{ csrf_token() }}" type="hidden">
-                <button class="btn btn-primary" id="save" type="submit">guardar</button>
+                <button id="save" class="btn btn-primary" type="button">guardar</button>
                 <button class="btn btn-danger" type="reset">cancelar</button>
             </div>
         </div>        
     </div>
 </div>
 
-</form>
+
 
 @push('scripts')
 <script>
-
-function enviar_formulario(){ 
-   document.guardar.submit() 
-} 
-
 $(document).ready(function(){
     $('#bt_add').click(function(){
         agregar();
     });
-$("#save").click(function(event){             
-// alert("Formulario enviado con jQuery");             
-$('#form').submit();         });
-
 });
 
 document.getElementById("idTrabajador").disabled = false;
@@ -241,12 +230,37 @@ function consulBarras(){
       });
 }
 
+$('#save').click(function(){
+            guardar();
+        });
+function guardar(){
 
-$("#guardar").show();
+$.ajax({
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                data:  {producto:producto}, //datos que se envian a traves de ajax
+                url:   'guardar', //archivo que recibe la peticion
+                type:  'post', //método de envio
+                dataType: "json",//tipo de dato que envio 
+                success:  function (response) { //una vez que el archivo recibe el request lo procesa y lo devuelve
+                    if(response.veri==true){
+                        var urlBase=window.location.origin;
+                        var url=urlBase+'/'+response.data;
+                        document.location.href=url;
+                    }else{
+                        alert("problemas al guardar la informacion");
+                    }
+                }
+            });
+        }
+       
+
+
 
 function agregar()
 {
     codigob=$("#pcodigo").val();
+    idAlmacen=$("#pidAlmacen").val();
+    almacen=$("#pidAlmacen option:selected").text();
     idTaller=$("#pidTaller").val();
     taller=$("#pidTaller option:selected").text();
     codigo=$("#pcodigoP").val();
@@ -254,10 +268,10 @@ function agregar()
     talla=$("#ptalla").val();
     color=$("#pcolor").val();
     cantidad=$("#pcantidadPF").val();
-
+    trabajador=$("#idTrabajador").val();
 
     
-    if(idTaller!=""  && talla!="" && color!="")
+    if(idAlmacen!="" && idTaller!=""  && talla!="" && color!="")
     {
        
 
@@ -265,7 +279,12 @@ function agregar()
 
        cont++;
 
+       var dat={codigob:codigob,idAlmacen:idAlmacen,idTaller:idTaller,codigo:codigo,produco:produco,talla:talla,color:color,cantidad:cantidad,trabajador:trabajador};
+        
+       producto.push(dat);
+        console.log(producto);
        limpiar();
+       
        evaluar();
        $('#detalles').append(fila);
 
@@ -274,7 +293,8 @@ function agregar()
     {
         alert("erros al ingresar el detale del ingreso, revise los datos del articulo");
     }
-    }
+}
+
 
     total=0;
     function limpiar(){
