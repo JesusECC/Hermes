@@ -8,18 +8,16 @@ class Salida_MP extends Model
 {
     //
     protected $table='Salida_MP';
-    protected $primarykey='idSalida';
+    protected $primarykey='id';
     public $timestamps=false;
     
     protected $filleable=[
-        'idTipo_salida',
-        'idTrabajador',
-        'idTipo_moneda',
-        'serie_NP',
-        'numero_NP',
-        'fecha_hora',
-        'subtotal',
-        'precio_total',
+        'idTipo_salida',	
+        'idTrabajador',	
+        'fecha_SMP'	,
+        'idEstado',	
+        'idAlmacen',
+
     ];
     protected $guarded=[
 

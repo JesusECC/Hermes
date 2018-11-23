@@ -23,10 +23,6 @@
             </div>
         @endif
     </div> 
-
-    <form action="{{route('salida-guardar')}}" method="POST" id="form" name="guardar">
-        @csrf
-
         <div class="card-body">
         <h4 class="card-title">Datos del Ingreso</h4>
         <div class="form-body">
@@ -143,10 +139,6 @@
     </div>
     <div class="card-footer">
         <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
-<<<<<<< HEAD
-        <form action="route('salida-guardar')" method="post">
-=======
->>>>>>> 53f57e1073d08414c963eca291c922c29805a6b0
             <table id="detalles" class="table table-striped table-bordered table-condensed table-hover">
                 <thead style="background-color:#A9D0F5">
                     <th>opciones</th>
@@ -176,34 +168,28 @@
         </div>
         <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
             <div class="form-group">
-                <input name"_token" value="{{ csrf_token() }}" type="hidden">
-<<<<<<< HEAD
-                <button id="save" class="btn btn-primary" type="submit">guardar</button>
-=======
-                <button class="btn btn-primary" id="save" type="submit">guardar</button>
->>>>>>> 53f57e1073d08414c963eca291c922c29805a6b0
+                <button class="btn btn-primary" id="save" type="button">guardar</button>
                 <button class="btn btn-danger" type="reset">cancelar</button>
             </div>
         </div>        
     </div>
 </div>
 
-</form>
-
 @push('scripts')
 <script>
 
-function enviar_formulario(){ 
-   document.guardar.submit() 
-} 
+
 
 $(document).ready(function(){
     $('#bt_add').click(function(){
         agregar();
     });
-$("#save").click(function(event){             
-// alert("Formulario enviado con jQuery");             
-$('#form').submit();         });
+    $("#save").click(function(event){             
+    // alert("Formulario enviado con jQuery");      
+        // console.log($("#codigo_bar[]").val());       
+       guardar();
+        
+    });
 
 });
 
@@ -214,11 +200,10 @@ function runScript(e) {
         consulBarras();
     }
 }
+// declacracion de variables
 
 var cont=0;
-var producto=[];
-total=0;
-subtotal=[];
+var filaob=[];
 
 function consulBarras(){
     codBarras=$("#pcodigo").val();
@@ -229,7 +214,7 @@ function consulBarras(){
         type:'post', //método de envio
         dataType:"json",//tipo de dato que envio 
         beforeSend: function () {
-            console.log('procesando');
+            // console.log('procesando');
             // $("#resultado").html("Procesando, espere por favor...");
         },
         success:  function (response) { //una vez que el archivo recibe el request lo procesa y lo devuelve
@@ -268,21 +253,74 @@ function agregar()
     if(idTaller!=""  && talla!="" && color!="")
     {
        
+        
+        var fila=
+                '<tr class="selected" id="fila'+cont+'">'+
+                    '<td>'+
+                        '<button type="button" class="btn btn-warning" onclick="eliminar('+cont+');">X</button>'+
+                    '</td> '+
+                    '<td>'+
+                        '<input type="hidden" name="codigo_bard[]" value="'+codigob+'">'+codigob+
+                    '</td>  '+
+                    '<td>'+
+                        '<input type="hidden" name="idTaller[]" value="'+idTaller+'">'+taller+'</td>  '+
+                    '<td>'+
+                        '<input type="hidden" name="codigoSMP[]" value="'+codigo+'">'+codigo+'</td>'+
+                    '<td>'+
+                        '<input type="hidden" name="productoSMP[]" value="'+produco+'">'+produco+'</td> '+
+                    '<td>'+
+                        '<input type="hidden" name="tallaSMP[]" value="'+talla+'">'+talla+'</td> '+
+                    '<td>'+
+                        '<input type="hidden" name="colorSMP[]" value="'+color+'">'+color+'</td> '+
+                    '<td>'+
+                        '<input type="hidden" name="cantidadSMP[]" value="'+cantidad+'">'+cantidad+'</td>'+
+                '</tr>';
 
-       var fila='<tr class="selected" id="fila'+cont+'"><td><button type="button" class="btn btn-warning" onclick="eliminar('+cont+');">X</button></td> <td><input type="hidden" name="codigo_bar[]" value="'+codigob+'">'+codigob+'</td>  <td><input type="hidden" name="idTaller[]" value="'+idTaller+'">'+taller+'</td>  <td><input type="hidden" name="codigoSMP[]" value="'+codigo+'">'+codigo+'</td> <td><input type="hidden" name="productoSMP[]" value="'+produco+'">'+produco+'</td> <td><input type="hidden" name="tallaSMP[]" value="'+talla+'">'+talla+'</td> <td><input type="hidden" name="colorSMP[]" value="'+color+'">'+color+'</td> <td><input type="hidden" name="cantidadSMP[]" value="'+cantidad+'">'+cantidad+'</td> </tr>';
 
-       cont++;
-
-       limpiar();
-       evaluar();
-       $('#detalles').append(fila);
+        cont++;
+        var dato={codigob:codigob,taller:taller,codigo:codigo,produco:produco,talla:talla,color:color,cantidad:cantidad};    
+        filaob.push(dato);
+        limpiar();
+        evaluar();
+        $('#detalles').append(fila);
+        // console.log(filaob);
 
     }
     else
     {
         alert("erros al ingresar el detale del ingreso, revise los datos del articulo");
     }
-    }
+}
+function guardar(){
+    var idTaller=$("#pidTaller").val();
+    var idTrabajador=$("#idTrabajador").val();
+    var pidAlmacen=$("#pidAlmacen").val();
+    
+    var vari=[{idTaller:idTaller,idTrabajador:idTrabajador,pidAlmacen:pidAlmacen}];
+    $.ajax({
+        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        data:  {filas:filaob,opsalida:vari}, //datos que se envian a traves de ajax
+        url:   'guardar', //archivo que recibe la peticion
+        type:  'post', //método de envio
+        dataType: "json",//tipo de dato que envio 
+        beforeSend: function () {
+            // console.log()
+                // $("#resultado").html("Procesando, espere por favor...");
+        },
+        success:  function (response) { //una vez que el archivo recibe el request lo procesa y lo devuelve
+        
+            if(response.veri==true){
+                var urlBase=window.location.origin;
+                var url=urlBase+'/'+response.data;
+                document.location.href=url;
+            }else{
+                alert("problemas al guardar la informacion");
+            }
+            console.log(response.filas);
+            console.log(response.opsalida);
+        }
+    });
+}
 
     total=0;
     function limpiar(){

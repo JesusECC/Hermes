@@ -5,6 +5,7 @@ namespace hermes\Http\Controllers;
 use Illuminate\Http\Request;
 use hermes\Ingreso_Podructo_Final;
 use hermes\Detalle_ingresoPF;
+use hermes\Detalle_Salida_MP;
 
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
@@ -70,46 +71,29 @@ $productos= DB::table('Productos as p')
 }
 
 public function store(Request $request){
-      
-      dd($request);
-   
+    $filas=$request->filas;
+    $opsalida=$request->opsalida;   
         $idSalida=DB::table('Salida_MP')->insertGetId(
             [
             'idTipo_salida'=>1,
-            'idTrabajador'=>$request->get('idTrabajador'),          
+            'idTrabajador'=>$opsalida[0]['idTrabajador'],          
             'idEstado'=>1,
-            'idAlmacen'=>$request->get('pidAlmacen'),
+            'idAlmacen'=>$opsalida[0]['pidAlmacen'],
             ]
         );
-
-        $idTaller=$request->get('idTaller');
-        $productoSMP=$request->get('productoSMP');
-        $codigo_bar=$request->get('codigo_bar');
-        $codigoSMP=$request->get('codigoSMP');
-        $tallaSMP=$request->get('tallaSMP');
-        $colorSMP=$request->get('colorSMP');
-        $cantidadSMP=$request->get('cantidadSMP');
-        
-
-        $cont=0;
-
-        while ($cont<count($codigo_bar)) {
-        
+        foreach ($filas as $fila) {
             $Dsalida = new Detalle_Salida_MP();
-            $Dsalida->idSalidaMP=$idSalida[$cont];
-            $Dsalida->codigoSMP=$codigoSMP[$cont];
-            $Dsalida->idTaller=$idTaller[$cont];
-            $Dsalida->productoSMP=$productoSMP[$cont];
-            $Dsalida->colorSMP=$colorSMP[$cont];
-            $Dsalida->tallaSMP=$tallaSMP[$cont];
-            $Dsalida->cantidadSMP=$cantidadSMP[$cont];
-            $Dsalida->codigo_bar=$codigo_bar[$cont];
+            $Dsalida->idSalidaMP=$idSalida;
+            $Dsalida->codigoSMP=$fila['codigo'];
+            $Dsalida->idTaller=$opsalida[0]['idTaller'];
+            $Dsalida->productoSMP=$fila['produco'];
+            $Dsalida->colorSMP=$fila['color'];
+            $Dsalida->tallaSMP=$fila['talla'];
+            $Dsalida->cantidadSMP=$fila['cantidad'];
+            $Dsalida->codigo_bar=$fila['codigob'];
             $Dsalida->save();
-
-            $cont=$cont+1;
-        } 
-
-        return Redirect::to('/salida');
+        }
+        return ['data' =>'salida','veri'=>true];
 }
 
  public function codBarra(Request $request)
