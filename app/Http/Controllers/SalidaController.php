@@ -73,7 +73,6 @@ $productos= DB::table('Productos as p')
 ->get();
  
  return view("salida.create",["tiposalida"=>$tiposalida,"taller"=>$taller,"color"=>$color,"talla"=>$talla,"almacen"=>$almacen,"trabajador"=>$trabajador,"productos"=>$productos]);
-    
 }
 
 public function store(Request $request){

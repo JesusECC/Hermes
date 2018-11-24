@@ -33,25 +33,24 @@ class ClienteController extends Controller
     public function index()
     {
         //
-        $cliente=DB::table('Cliente as c')
-     ->join('Tipo_Cliente as tc','tc.id','=','c.idTipo_Persona')
-     ->join('estado as est','est.id','=','c.estado_idEstado')
-     ->join('Persona as per','per.id','=','c.Persona_idPersona') 
-     ->join('Direccion_persona as dire','dire.idPersona','=','per.id')
-    
-    ->join('Tipo_documento as tpdoc','tpdoc.id','=','per.idTipo_documento')
-    ->join('Telefono_Persona as teleper','teleper.Persona_idPersona','=','per.id')
+    $cliente=DB::table('Cliente as c')
+    ->join('Tipo_Cliente as tc','tc.id','=','c.idTipo_Persona')
+    ->join('estado as est','est.id','=','c.estado_idEstado')
+    ->join('Persona as per','per.id','=','c.Persona_idPersona') 
+    ->join('Direccion_persona as dire','dire.idPersona','=','per.id')
+    ->join('Tipo_documento as tpdoc','tpdoc.id','=','per.idTipo_documento')    
+    ->join('Telefono_Persona as teleper','per.id','=','teleper.Persona_idPersona')
     ->join('Tipo_telefono as tptele','tptele.id','=','teleper.idTipo_telefono')
     ->join('operador as ope','ope.id','=','teleper.idTipo_telefono')
-
-  /*  ->select('c.id as cid','tc.nombre','tpdoc.nombre_TD','per.nro_documento','per.nro_documento',DB::raw('CONCAT(depa.nombre_departamento,"/",pro.nombre_provincia,"/",dis.nombre_distrito) as direc'),'dire.nombre_direccion','per.nombre as nombreper','per.apellidos','per.fecha_nacimiento','per.sexo','teleper.numero','tptele.nombre_tipo','ope.nombre_operador')*/
+    ->select('c.id as cid','tc.nombreTC','tpdoc.nombre_TD','per.nro_documento','per.nro_documento',
+    // DB::raw('CONCAT(depa.nombre_departamento,"/",pro.nombre_provincia,"/",dis.nombre_distrito) as direc'),
+    'dire.nombre_direccion','per.nombre as nombreper','per.apellidos','per.fecha_nacimiento','per.sexo','teleper.numero',
+    'tptele.nombre_tipo','ope.nombre_operador')    
     ->where('est.tipo_estado','=',1)
     ->orderBy('c.id','desc')
     ->get();
-            
-                
-                  return view('cliente.index',['cliente'=>$cliente]);
-
+    // dd($cliente);
+    return view('cliente.index',['cliente'=>$cliente]);
     }
 
    
@@ -99,9 +98,7 @@ class ClienteController extends Controller
         $cliente->estado_idEstado=1;
         $cliente->save();
 
-        // dd($cliente,$request,$request->get('tipocliente'),$idpersona);
-
-        
+        // dd($cliente,$request,$request->get('tipocliente'),$idpersona);       
 
         $Direccion_persona=new Direccion_persona;
         $Direccion_persona->nombre_direccion=$request->get('nombre_direccion');
