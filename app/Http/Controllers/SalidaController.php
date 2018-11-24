@@ -17,21 +17,27 @@ use DB;
 
 class SalidaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
+   public function __construct(){
+
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function index(Request $request)
+    {
+    if($request)
+    {
+
+     $query=trim($request->get('searchText'));
+     $salida=DB::table('Salida_MP as s')
+     ->join('Almacen as a','s.idAlmacen','=','a.id')
+     ->join('Trabajador as t','s.idTrabajador','=','t.id')
+     ->join('Persona as p','p.id','=','t.idPersona')
+     ->select('a.nombre_almacen','p.nombre','p.apellidos','s.id','s.fecha_SMP')
+     ->where('s.id','LIKE','%'.$query.'%')
+     ->where('s.idEstado','=',1)
+     ->paginate(17);
+       return view('salida.index',["salida"=>$salida,"searchText"=>$query]);
+    }
+}
     public function create()
 {
 

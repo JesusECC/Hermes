@@ -40,8 +40,13 @@ $color=DB::table('Color as t')
 ->select('t.id as idC','t.nombre_color')
 ->get();
 
-$tiposalida=DB::table('Tipo_salida as ts')
-->select('ts.id as idSa','ts.nombre as nombreS')
+$Cliente=DB::table('Cliente as c')
+->join('Persona as p','p.id','=','c.Persona_idPersona')
+->join('Direccion_persona as dp','dp.idPersona','=','p.id')
+->join('Departamento as de','de.id','=','dp.Distrito_Provincia_Departamento_idDepartamento')
+->join('Distrito as di','di.id','=','dp.Distrito_idDistrito')
+->join('Provincia as pr','pr.id','=','dp.Distrito_Provincia_idProvincia')
+->select('p.nombre','c.id','p.apellidos','p.nro_documento','dp.nombre_direccion','de.nombre_departamento','di.nombre_distrito','pr.nombre_provincia',db::raw('CONCAT(dp.nombre_direccion," ",de.nombre_departamento," ",pr.nombre_provincia," ",di.nombre_distrito) as Direccion'))
 ->get();
 
 $productos= DB::table('Productos as p')
@@ -49,60 +54,39 @@ $productos= DB::table('Productos as p')
 ->select('p.CodigoB_Producto','pd.nombre_producto','pd.marca_producto','pd.categoria','pd.descuento','p.stockP','p.precio_unitario','p.id as idPro','pd.codigo_Prod')
 ->get();
  
- return view("salidaVenta.create",["tiposalida"=>$tiposalida,"taller"=>$taller,"color"=>$color,"talla"=>$talla,"almacen"=>$almacen,"trabajador"=>$trabajador,"productos"=>$productos]);
+ return view("salidaVenta.create",["Cliente"=>$Cliente,"taller"=>$taller,"color"=>$color,"talla"=>$talla,"almacen"=>$almacen,"trabajador"=>$trabajador,"productos"=>$productos]);
     
 }
 
 public function store(Request $request)
     {
-     try{
-        $idAlmacen;
-        $codigob;
-        $idTaller;
-        $codigo;
-        $producto;
-        $talla;
-        $color;
-        $cantidad;
-        $idTrabajador;
-  
-        foreach ($request->producto as $dato) {
-            $idAlmacen=$dato['idAlmacen'];
-            $codigob=$dato['codigob'];
-            $idTaller=$dato['idTaller'];
-            $codigo=$dato['codigo'];
-            $producto=$dato['produco'];
-            $talla=$dato['talla'];
-            $color=$dato['color'];
-            $cantidad=$dato['cantidad'];
-            $idTrabajador=$dato['trabajador'];
- 
-        }
-        $idSalida=DB::table('Salida')->insertGetId(
-            ['idTrabajador'=>$idTrabajador,
-            'idAlmacen'=>$idAlmacen,           
-            'idTipo_salida'=>1,
-            'estado_idEstado'=>1,
-            
+        dd($request);
+
+      $filas=$request->filas;
+    $opsalida=$request->opsalida;   
+        $idSalida=DB::table('Salida_MP')->insertGetId(
+            [
+            'idTipo_salida'=>2,
+            'idTrabajador'=>$opsalida[0]['idTrabajador'],  
+            'idCliente'=>$opsalida[0]['idCliente'],  
+            'total_venta'=>$opsalida[0]['totalV'],       
+            'idEstado'=>1,
+            'idAlmacen'=>$opsalida[0]['pidAlmacen'],
             ]
         );
-
-        foreach($request->fila as $fila){
-            $detalle=new Detalle_Salida;	
-            $detalle->idSalidaMP=$idSalida;
-            $detalle->codigoSMP=$fila['cantidad'];
-            $detalle->idTaller=$fila['cantidad'];
-            $detalle->productoSMP=$fila['producto'];
-            $detalle->colorSMP=$fila['color'];	
-            $detalle->tallaSMP=$fila['talla'];
-            $detalle->cantidadSMP=$fila['precio_venta']; 
-            $detalle->codigo_bar=$fila['codigob'];
-            $detalle->save();            
+        foreach ($filas as $fila) {
+            $Dsalida = new Detalle_Salida_MP();
+            $Dsalida->idSalidaMP=$idSalida;
+            $Dsalida->codigoSMP=$fila['codigo'];
+            $Dsalida->idTaller=$opsalida[0]['idTaller'];
+            $Dsalida->productoSMP=$fila['produco'];
+            $Dsalida->colorSMP=$fila['color'];
+            $Dsalida->tallaSMP=$fila['talla'];
+            $Dsalida->cantidadSMP=$fila['cantidad'];
+            $Dsalida->codigo_bar=$fila['codigob'];
+            $Dsalida->save();
         }
-            return ['dat' =>'/salida','veri'=>true];
-        }catch(Exception $e){
-            return ['dat' =>$e,'veri'=>false];
-        }
+        return ['data' =>'salidaVenta','veri'=>true];
 }
 
  public function codBarra(Request $request)
