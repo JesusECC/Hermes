@@ -28,7 +28,7 @@
         <h4 class="card-title">Datos del Ingreso</h4>
         <div class="form-body">
             <div class="row p-t-10">
-                <div class="col-lg-4">
+                <div class="col-lg-3">
                     <div class="form-group">
                         <label for="proveedor">Trabajador</label>
                         <!-- <select name="idTrabajador" id="idTrabajador" class="form-control selectpicker" data-live-search="true">-->
@@ -56,18 +56,12 @@
                 </div> 
                 
                 
-                <div class="col-lg-4">
+                <div class="col-md-5">
                     <div class="form-group">
-                        <label for="proveedor">Taller</label>
-                        <select name="idTaller" id="pidTaller" class="form-control selectpicker" data-live-search="true">
-                            <option value="" selected="" disabled="">Seleccione</option>
-                             @foreach($taller as $ta)>
-                                 <option value="{{$ta->idTA}}">{{$ta->codigoT.' '.$ta->nombre_taller}}</option>
-                             @endforeach
-                        </select>
-                    </div>                    
+                        <label>WIP</label>
+                        <input type="text" name="WIP" id="wip" class="form-control" placeholder="Ingrese Lugar">                    
+                    </div>
                 </div>
-                
                           
             </div>
             
@@ -106,7 +100,7 @@
                 </div>
             </div>
 <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-2">
                     <div class="form-group">
                         <label>Talla</label>
                         <input type="text" name="ptalla" id="ptalla" class="form-control" placeholder="talla">                    
@@ -114,14 +108,19 @@
                 </div>
 
 
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <div class="form-group">
                         <label>Color</label>
                         <input type="text" name="pcolor" id="pcolor" class="form-control" placeholder="Color">                     
                     </div>
                 </div>               
             
-                
+                <div class="col-md-2">
+                    <div class="from-group">
+                        <label>stock</label>
+                        <input type="text" name="pstockP" id="pstockP" class="form-control" placeholder="cantidad">
+                    </div>                    
+                </div>
                 <div class="col-md-3">
                     <div class="from-group">
                         <label>Cantidad</label>
@@ -223,6 +222,7 @@ function consulBarras(){
                 document.getElementById('pcodigoP').value = response.consulta[0]['codigo_Prod'];
                 document.getElementById('ptalla').value = response.consulta[0]['nom_talla'];
                 document.getElementById('pcolor').value = response.consulta[0]['nombre_color'];
+                document.getElementById('pstockP').value = response.consulta[0]['stockP'];
 
                 // console.log( response.consulta);
             }                
