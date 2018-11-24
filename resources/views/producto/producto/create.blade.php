@@ -23,49 +23,40 @@
             </div>
         @endif
     </div>
+
+    {!!Form::open(array('url'=>'/producto','method'=>'POST','autocomplete'=>'off'))!!}
+
+    {{Form::token()}}
     <div class="card-body">
         <h4 class="card-title">Datos del Producto</h4>
         <div class="form-body">
-            <div class="row p-t-10">
-
-            	<div class="col-md-4">
-                    <div class="form-group">
-                        <label class="control-label">Tipo Producto</label>
-                        <select  class="form-control selectpicker" id="a" data-live-search="true">
+          <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label class="control-label">Producto</label>
+                        <select name="pidDetalle_produto" class="form-control selectpicker" id="pidDetalle_produto" data-live-search="true">
                             <option value="" disabled="" selected="">Producto</option>
                             @foreach($detalle_producto as $tp)                
                             <option value="{{$tp->id}}">{{$tp->nombre_producto}}</option>
                             @endforeach  
                         </select>   
-                    </div>                    
-                </div>
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label class="control-label">Nombre Producto</label>
-                        <input type="text" id="b" class="form-control" placeholder="Ingrese Producto">
-                    </div>                    
-                </div>
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label class="control-label">Codigo Producto</label>
-                        <input type="text" id="" class="form-control" placeholder="Ingrese Codigo">
-                    </div>                    
-                </div>
-
+                </div>                     
             </div>
-            <div class="row p-t-2">
-                <div class="col-md-6">
+
+        
+        
+          <div class="col-md-4">
                     <div class="form-group">
-                        <div class="form-group">
                             <label class="control-label">Codigo de Barras</label>
-                            <input type="text" id="c" class="form-control" placeholder="Asignar un codigo de barras">
-                        </div>                        
-                    </div>
+                            <input type="text" name="pCodigoB_Producto" id="pCodigoB_Producto" class="form-control" placeholder="Asignar un codigo de barras">
+                    </div>                        
                 </div>
-                <div class="col-md-6">
+            
+
+              <div class="col-md-4">
                     <div class="form-group">
                         <label>Almacen</label>
-                        <select  class="form-control selectpicker" id="d" data-live-search="true">
+                        <select  class="form-control selectpicker" name="pAlmacen_idAlmacen" id="pAlmacen_idAlmacen" data-live-search="true">
                         <option value="" disabled="" selected="">Almacen</option>
                         @foreach($almacen as $al)                
                         <option value="{{$al->id}}">{{$al->nombre_almacen}}</option>
@@ -73,24 +64,16 @@
                         </select>    
                     </div>
                 </div>
-            </div>
-            <div class="row p-t-2">
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label class="control-label">Marca</label>
-                        <input type="text" id="e" class="form-control" placeholder="Asignar un marca">                        
-                    </div>
                 </div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label class="control-label">Categoria</label>
-                        <input type="text" id="f" class="form-control" placeholder="Asignar un categoria">                        
-                    </div>
-                </div>
-                <div class="col-md-3">
+         
+            <div class="row">
+
+                
+
+                <div class="col-md-6">
                     <div class="form-group">
                         <label>Color</label>
-                        <select  class="form-control selectpicker" id="g" data-live-search="true">
+                        <select  class="form-control selectpicker" name="pColor_idColor" id="pColor_idColor" data-live-search="true">
                         <option value="" disabled="" selected="">Color</option>
                         @foreach($color as $c)                
                         <option value="{{$c->id}}">{{$c->nombre_color}}</option>
@@ -101,7 +84,7 @@
                 <div class="col-md-3">
                     <div class="form-group">
                         <label>talla</label>
-                        <select  class="form-control selectpicker" id="h" data-live-search="true">
+                        <select  class="form-control selectpicker" name="pTallas_idTallas" id="pTallas_idTallas" data-live-search="true">
                         <option value="" disabled="" selected="">Talla</option>
                         @foreach($talla as $t)                
                         <option value="{{$t->id}}">{{$t->nom_talla}}</option>
@@ -109,40 +92,57 @@
                         </select>                         
                     </div>
                 </div>
-            </div>
-            <div class="row p-t-2">
-                <div class="col-md-4">
+                <div class="col-md-3">
+                    <label>Precio</label>
                     <div class="input-group">
                         <span class="input-group-addon">S/.</span>
-                        <input type="text" class="form-control" id="i" aria-label="Amount (to the nearest dollar)" placeholder="Precio Unitario">                      
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="input-group">
-                        <span class="input-group-addon">%</span>
-                        <input type="text" id="j" class="form-control" aria-label="Amount (to the nearest dollar)" placeholder="Asignar un descuento">                        
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <input type="text" id="k" class="form-control" placeholder="Ingrese Stock">                        
+                        <input type="text" class="form-control" name="pprecio_unitario" id="pprecio_unitario" aria-label="Amount (to the nearest dollar)" placeholder="Precio Unitario">                      
                     </div>
                 </div>
             </div>
-        </div>
+            <div class="row">
+                
+                <div class="col-md-3">
+                    <label>Stock</label>
+                    <div class="input-group">
+                        <input type="text" name="pstockP" id="pstockP" class="form-control"  placeholder="stock">                        
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="input-group" style="margin-top: 35px">
+                        <button type="button" id="bt_add" class="btn btn-primary">Agregar</button>                        
+                    </div>
+                </div>
+            </div>
+     </div>
+   
+ </div>
 
-        <div class="col-lg-6">
+        <div class="col-lg-12">
                         <div class="nav-tabs-custom">
                             <div class="tab-content">
                                 <div class="row">
                                     <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
                                         <table id="detalles" class="table table-striped table-bordered table-condensed table-hover">
                                             <thead style="background-color:#A9D0F5">
-                                                <th>Tareas</th>
+                                               <th>Opciones</th>
+                                                <th>Producto</th>
+                                                <th>Almacen</th>
+                                                <th>Cod. Barras</th>
+                                                <th>Talla</th>
+                                                <th>Color</th>
+                                                <th>Stock</th>
                                                 <th>Precio</th>
-                                                <th>Opciones</th>
+                                                
+                                                
+                                                
                                             </thead>
                                             <tfoot>
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
                                                 <th></th>
                                                 <th></th>
                                                 <th></th>
@@ -151,11 +151,22 @@
                                     </div>                                            
                                 </div>
                             </div>
-                        </div>                        
+                        </div>
+
+
                     </div>
-        <button type="submit" class="btn waves-effect waves-light btn-success pull-right" id="save">Agregar</button>
+        <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12" id="guardar">
+       <div class="from-group">
+            <input name"_token" value="{{ csrf_token() }}" type="hidden"></input>
+           <button class="btn btn-primary" type="submit">guardar</button>
+           <button class="btn btn-danger" type="reset">cancelar</button>
+        </div>
+      </div>
     </div>
-</div>                            
+
+</div>      
+{!!Form::close()!!}           
+
 @push('scripts')
 <script>
 $(document).ready(function(){
@@ -172,14 +183,25 @@ $("#guardar").show();
 function agregar()
 {
     
-    tarea=$("#pnombre_tarea").val();
-    precio=$("#pprecioT").val();
+    idProducto=$("#pidDetalle_produto").val();
+    producto=$("#pidDetalle_produto option:selected").text();
+    codigo=$("#pCodigoB_Producto").val();
+    idTalla=$("#pTallas_idTallas").val();
+    talla=$("#pTallas_idTallas option:selected").text();
+    idColor=$("#pColor_idColor").val();
+    color=$("#pColor_idColor option:selected").text();
+    idAlmacen_idAlmacen=$("#pAlmacen_idAlmacen").val();
+    almacen=$("#pAlmacen_idAlmacen option:selected").text();
+    stock=$("#pstockP").val();
+    precio=$("#pprecio_unitario").val();
+    
    
 
-    if(tarea!="")
+    if(idProducto!="" )
     {
        
-       var fila='<tr class="selected" id="fila'+cont+'"><td><input type="hidden" name="nombre_tarea[]" value="'+tarea+'">'+tarea+'</td> <td><input type="hidden" name="precioT[]" value="'+precio+'">'+precio+'</td><td><button type="button" class="btn btn-danger" onclick="eliminar('+cont+');">X</button></td></tr>';
+   var fila='<tr class="selected" id="fila'+cont+'"><td><button type="button" class="btn btn-warning" onclick="eliminar('+cont+');">X</button></td> <td><input type="hidden" name="idDetalle_produto[]" value="'+idProducto+'">'+producto+'</td> <td><input type="hidden" name="Almacen_idAlmacen[]" value="'+idAlmacen_idAlmacen+'">'+almacen+'</td> <td><input type="hidden" name="CodigoB_Producto[]" value="'+codigo+'">'+codigo+'</td> <td><input type="hidden" name="Tallas_idTallas[]" value="'+idTalla+'">'+talla+'</td> <td><input type="hidden" name="Color_idColor[]" value="'+idColor+'">'+color+'</td> <td><input type="hidden" name="stockP[]" value="'+stock+'">'+stock+'</td> <td><input type="hidden" name="precio_unitario[]" value="'+precio+'">'+precio+'</td> </tr>';
+
        cont++;
        limpiar();
        evaluar();

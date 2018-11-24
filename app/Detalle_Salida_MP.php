@@ -8,16 +8,19 @@ class Detalle_Salida_MP extends Model
 {
     //
     protected $table='Detalle_Salida_MP';
-    protected $primarykey='idDetalle_Salida';
+    protected $primarykey='id';
     public $timestamps=false;
     
     protected $filleable=[
-        'idProduto_MP',
-        'idSalida',
-        'cantidadPF',
-        'precio_ventaPF',
-        'impuesto',
-        'descuentoDS',
+        'idSalidaMP',
+        'codigoSMP',	
+        'idTaller',	
+        'productoSMP',	
+        'colorSMP',	
+        'tallaSMP',	
+        'cantidadSMP',	
+        'codigo_bar',
+
     ];
     protected $guarded=[
 

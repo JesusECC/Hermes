@@ -250,7 +250,10 @@ class TiendaController extends Controller
 
     public function destroy($id)
     {
-        //
+        $tienda=Tienda::find($id);
+        $tienda->estado_idEstado=2;
+        $tienda->update();
+        return redirect('Tienda');
     }
 
        public function provincia(Request $request)

@@ -45,9 +45,15 @@
                 <td>{{$tiend->nombre_operador}}</td>
                 <td class="text-nowrap">
                           <a href="{{ route('tienda-editar',$tiend->id) }}" data-toggle="tooltip" data-original-title="Edit" ><i class="fa fa-pencil text-warning m-r-10"></i> </a>
+<<<<<<< HEAD
                          <a href="#" data-toggle="tooltip" data-original-title="Delete"> <i class="fa fa-close text-danger m-r-10"></i> </a>    
                 </td>
                         
+=======
+                        
+                          <a href="{{ route('tienda-delete',$tiend->id) }}" data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-close text-danger m-r-10"></i></a>
+                </td>
+>>>>>>> 3d7738a60f35f04b9188404b6096e54623625c25
             </tr>   
                 @endforeach
         </tbody>

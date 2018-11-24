@@ -75,74 +75,35 @@ class ProductoController extends Controller
     
     public function store(Request $request)
     {
+        
+
         $idDetalle_produto=$request->get('idDetalle_produto');
         $CodigoB_Producto=$request->get('CodigoB_Producto');
         $Tallas_idTallas=$request->get('Tallas_idTallas');
         $Color_idColor=$request->get('Color_idColor');
         $Almacen_idAlmacen=$request->get('Almacen_idAlmacen');
         $stockP=$request->get('stockP');
-        $precio_unitario=$request->get('precio_unitario');
-        //dd($nombre_tarea,$precioT);  
+        $precio_unitario=$request->get('precio_unitario'); 
+
         $cont=0;
-        while ($cont<count($nombre_tarea)) {
+
+        while ($cont<count($CodigoB_Producto)) {
         
-            $tarea = new Tipotarea();
-            $tarea->nombre_tarea=$nombre_tarea[$cont];
-            $tarea->precioT=$precioT[$cont];
-            $tarea->nombre_tarea=$nombre_tarea[$cont];
-            $tarea->precioT=$precioT[$cont];
-            $tarea->nombre_tarea=$nombre_tarea[$cont];
-            $tarea->precioT=$precioT[$cont];
-            $tarea->estado=1;
+            $tarea = new Producto();
+            $tarea->idDetalle_produto=$idDetalle_produto[$cont];
+            $tarea->CodigoB_Producto=$CodigoB_Producto[$cont];
+            $tarea->Tallas_idTallas=$Tallas_idTallas[$cont];
+            $tarea->Color_idColor=$Color_idColor[$cont];
+            $tarea->Almacen_idAlmacen=$Almacen_idAlmacen[$cont];
+            $tarea->stockP=$stockP[$cont];
+            $tarea->precio_unitario=$precio_unitario[$cont];
+            $tarea->estado_idEstado=1;
             $tarea->save();
 
             $cont=$cont+1;
-        }    
-        try{
-            $idTipoProducto;
-            $nombre;
-            $marca;
-            $categoria;
-            $descuento;
-            $codigo;
-            $talla;
-            $color;
-            $almacen;
-            $precioU;
-            $stock;
-        
-  
-            foreach ($request->datos as $dato) {
-                $idTipoProducto=$dato['idTipoProducto'];
-                $nombre=$dato['nombre'];
-                $marca=$dato['marca'];
-                $categoria=$dato['categoria'];
-                $descuento=$dato['descuento'];
-                $codigo=$dato['codigo'];
-                $talla=$dato['talla'];
-                $color=$dato['color'];
-                $almacen=$dato['almacen'];
-                $precioU=$dato['precioU'];
-                $stock=$dato['stock'];
-                        
-            }
-    
-            $producto=new Producto;
-            $producto->idDetalle_produto=$idDetalleProducto;
-            $producto->CodigoB_Producto=$codigo;
-            $producto->Tallas_idTallas=$talla;
-            $producto->Color_idColor=$color;
-            $producto->Almacen_idAlmacen=$almacen;
-            $producto->stockP=$stock;
-            $producto->precio_unitario=$precioU;
-            $producto->estado_idEstado=1;
-            $producto->save();
+        } 
 
-
-            return ['data' =>'/producto','veri'=>true];
-        }catch(Exception $e){
-            return ['data' =>$e,'veri'=>false];
-        }
-
-   }    
+        return Redirect::to('producto');
+      
+}
 }
