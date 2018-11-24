@@ -8,7 +8,7 @@ class Detalle_Salida extends Model
 {
     //
     protected $table='Detalle_Salida';
-    protected $primarykey='idDetalle_Salida';
+    protected $primarykey='id';
     public $timestamps=false;
     
     protected $filleable=[

@@ -30,7 +30,6 @@
                         <th>Opciones</th>
 
                     </tr>
-
                 </thead>
                 <tbody>
                     

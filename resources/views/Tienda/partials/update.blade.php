@@ -1,5 +1,4 @@
  @csrf
-
                                          <div class="row p-t-20">
                                             <div class="col-md-4">
                                                 <div class="form-group">
@@ -24,7 +23,7 @@
                                                 @endforeach  
                                                 </select>    
                                                 </div>
-                                            </div>
+                                            </div>  
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Tipo de Telefono</label>

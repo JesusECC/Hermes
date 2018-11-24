@@ -8,7 +8,7 @@ class Proveedor extends Model
 {
     //
     protected $table='Proveedor';
-    protected $primarykey='idProveedor';
+    protected $primarykey='id';
     public $timestamps=false;
 
     protected $filleable=[

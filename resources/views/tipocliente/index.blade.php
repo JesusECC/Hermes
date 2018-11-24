@@ -29,7 +29,7 @@
                 @foreach($tipocliente as $cli)
                     <tr>
                         <td>{{ $cli->id}}</td>
-                        <td>{{ $cli->nombre}}</td>
+                        <td>{{ $cli->nombreTC}}</td>
                         <td class="text-nowrap">
                             <a href="{{ route('tipocliente-editar',$cli->id) }}" data-toggle="tooltip" data-original-title="Edit"> <i class="fa fa-pencil text-warning m-r-10"></i> </a>
                             <a href="{{ route('tipocliente-delete',$cli->id) }}" data-toggle="tooltip" data-original-title="Close"> <i class="fa fa-close text-danger m-r-10"></i> </a>

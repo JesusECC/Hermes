@@ -8,7 +8,7 @@ class Almacen extends Model
 {
     //
     protected $table='Almacen';
-    protected $primarykey='idAlmacen';
+    protected $primarykey='id';
     public $timestamps=false;
     
     protected $filleable=[

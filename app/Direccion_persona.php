@@ -8,7 +8,7 @@ class Direccion_persona extends Model
 {
     //
     protected $table='Direccion_persona';
-    protected $primarykey='idDireccion';
+    protected $primarykey='id';
     public $timestamps=false;
     
     protected $filleable=[

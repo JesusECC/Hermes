@@ -8,7 +8,7 @@ class Tipo_Comprobante extends Model
 {
     //
     protected $table='Tipo_Comprobante';
-    protected $primarykey='idTipo_Comprobante';
+    protected $primarykey='id';
     public $timestamps=false;
     
     protected $filleable=[

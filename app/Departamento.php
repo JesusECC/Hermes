@@ -8,7 +8,7 @@ class Departamento extends Model
 {
     //
     protected $table='Departamento';
-    protected $primarykey='idDepartamento';
+    protected $primarykey='id';
     public $timestamps=false;
     
     protected $filleable=[

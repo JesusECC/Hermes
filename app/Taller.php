@@ -8,7 +8,7 @@ class Taller extends Model
 {
     //
     protected $table='Taller';
-    protected $primarykey='idTaller';
+    protected $primarykey='id';
     public $timestamps=false;
     
     protected $filleable=[

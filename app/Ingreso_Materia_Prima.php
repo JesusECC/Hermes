@@ -8,7 +8,7 @@ class Ingreso_Materia_Prima extends Model
 {
     //
     protected $table='Ingreso_Materia_Prima';
-    protected $primarykey='idIngreso';
+    protected $primarykey='id';
     public $timestamps=false;
     
     protected $filleable=[
