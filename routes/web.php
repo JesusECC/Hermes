@@ -44,12 +44,12 @@ Route::middleware(['auth','admin'])->group(function () {
     //   Route::get('Tienda/{idTienda}/edit',['as'=>'Tienda','uses'=>'ControllerClientes@edit']);
     
     //Taller
-      Route::get('Taller',['as'=>'taller','uses'=>'TallerController@index']);
-     Route::get('Taller/create',['as' => 'taller-create','uses'=>'TallerController@create']);
-     Route::post('Taller/guardar',['as' => 'taller-store','uses'=>'TallerController@store']);
-     Route::get('Taller/editar/{id}',['as' => 'taller-editar','uses'=>'TallerController@edit']);
-     Route::post('Taller/update/{id}',['as' => 'taller-update','uses'=>'TallerController@update']);
-      Route::get('Taller/delete/{id}',['as' => 'taller-delete','uses'=>'TallerController@destroy']);
+    Route::get('Taller',['as'=>'taller','uses'=>'TallerController@index']);
+    Route::get('Taller/create',['as' => 'taller-create','uses'=>'TallerController@create']);
+    Route::post('Taller/guardar',['as' => 'taller-store','uses'=>'TallerController@store']);
+    Route::get('Taller/editar/{id}',['as' => 'taller-editar','uses'=>'TallerController@edit']);
+    Route::post('Taller/update/{id}',['as' => 'taller-update','uses'=>'TallerController@update']);
+    Route::get('Taller/delete/{id}',['as' => 'taller-delete','uses'=>'TallerController@destroy']);
     
     
     //roles
@@ -103,7 +103,7 @@ Route::middleware(['auth','admin'])->group(function () {
     Route::get('producto/delete/{id}',['as' => 'producto-delete','uses'=>'ProductoController@destroy']);
 
     //detalle_producto
-     Route::get('detalle_producto',['as' => 'detalle_producto','uses'=>'Producto_DetalleController@index']);
+    Route::get('detalle_producto',['as' => 'detalle_producto','uses'=>'Producto_DetalleController@index']);
     Route::get('detalle_producto/create',['as' => 'detalle_producto-create','uses'=>'Producto_DetalleController@create']);
     Route::post('detalle_producto/',['as' => 'detalle_producto-guardar','uses'=>'Producto_DetalleController@store']);
     Route::get('detalle_producto/editar/{id}',['as' => 'detalle_producto-editar','uses'=>'Producto_DetalleController@edit']);
@@ -111,7 +111,7 @@ Route::middleware(['auth','admin'])->group(function () {
     Route::get('detalle_producto/delete/{id}',['as' => 'detalle_producto-delete','uses'=>'Producto_DetalleController@destroy']);
     
     
-    // tipo_producto
+    // tipo_producto-->error
     Route::get('tipoproducto',['as' => 'tipoproducto','uses'=>'Tipo_productoController@index']);
     Route::get('tipoproducto/create',['as' => 'tipoproducto-create','uses'=>'Tipo_productoController@create']);
     Route::post('tipoproducto/guardar',['as' => 'tipoproducto-guardar','uses'=>'Tipo_productoController@store']);
@@ -119,7 +119,7 @@ Route::middleware(['auth','admin'])->group(function () {
     Route::post('tipoproducto/update',['as' => 'tipoproducto-update','uses'=>'Tipo_productoController@update']);
     Route::get('tipoproducto/delete/{id}',['as' => 'tipoproducto-delete','uses'=>'Tipo_productoController@destroy']);
     
-    //ingreso
+    //ingreso-->error
     Route::get('ingreso',['as' => 'ingreso','uses'=>'Ingreso_Podructo_FinalController@index']);
     Route::get('ingreso/create',['as' => 'ingreso-create','uses'=>'Ingreso_Podructo_FinalController@create']);
     Route::post('ingreso/guardar',['as' => 'ingreso-guardar','uses'=>'Ingreso_Podructo_FinalController@store']);
