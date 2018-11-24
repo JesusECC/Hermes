@@ -8,7 +8,7 @@ class Producto_MP extends Model
 {
     //
     protected $table='Producto_MP';
-    protected $primarykey='idProducto_MP';
+    protected $primarykey='id';
     public $timestamps=false;
     
     protected $filleable=[

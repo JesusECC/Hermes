@@ -8,7 +8,7 @@ class Tipo_documento extends Model
 {
     //
     protected $table='Tipo_documento';
-    protected $primarykey='idTipo_documento';
+    protected $primarykey='id';
     public $timestamps=false;
     
     protected $filleable=[

@@ -8,7 +8,7 @@ class Cliente extends Model
 {
     //
     protected $table='Cliente';
-    protected $primarykey='idCliente';
+    protected $primarykey='id';
     public $timestamps=false;
     
     protected $filleable=[

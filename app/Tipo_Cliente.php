@@ -8,7 +8,7 @@ class Tipo_Cliente extends Model
 {
     //
     protected $table='Tipo_Cliente';
-    protected $primarykey='idTipo_Cliente';
+    protected $primarykey='id';
     public $timestamps=false;
     
     protected $filleable=[

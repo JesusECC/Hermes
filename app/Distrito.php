@@ -8,7 +8,7 @@ class Distrito extends Model
 {
     //
     protected $table='Distrito';
-    protected $primarykey='idDistrito';
+    protected $primarykey='id';
     public $timestamps=false;
     
     protected $filleable=[

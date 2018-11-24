@@ -8,7 +8,7 @@ class Ingreso_Podructo_Final extends Model
 {
     //
     protected $table='Ingreso_Podructo_Final';
-    protected $primarykey='idIngreso';
+    protected $primarykey='id';
     public $timestamps=false;
     
     protected $filleable=[

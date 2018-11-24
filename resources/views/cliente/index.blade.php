@@ -31,10 +31,10 @@
                       @foreach($cliente as $client)
          <tr>
                 <td>{{$client->nro_documento}}</td>
-                <td>{{$client->nombrclient}}</td>
+                <td>{{$client->nombreper}}</td>
                 <td>{{$client->apellidos}}</td>
                 <td>{{$client->sexo}}</td>
-                <td>{{$client->nombre}}</td>
+                <td>{{$client->nombretc}}</td>
                 <td class="text-nowrap">
                             <a href="#" data-toggle="tooltip" data-original-title="Edit"> <i class="fa fa-pencil text-warning m-r-10"></i> </a>
                             <a href="#" data-toggle="tooltip" data-original-title="Close"> <i class="fa fa-close text-danger m-r-10"></i> </a>

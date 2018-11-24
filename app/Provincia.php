@@ -8,7 +8,7 @@ class Provincia extends Model
 {
     //
     protected $table='Provincia';
-    protected $primarykey='idProvincia';
+    protected $primarykey='id';
     public $timestamps=false;
     
     protected $filleable=[

@@ -8,7 +8,7 @@ class Telefono_proveedor extends Model
 {
     //
     protected $table='Telefono_proveedor';
-    protected $primarykey='idTelefono';
+    protected $primarykey='id';
     public $timestamps=false;
     
     protected $filleable=[

@@ -8,7 +8,7 @@ class Tipo_ingreso extends Model
 {
     //
     protected $table='Tipo_ingreso';
-    protected $primarykey='idTipo_ingreso';
+    protected $primarykey='id';
     public $timestamps=false;
     
     protected $filleable=[

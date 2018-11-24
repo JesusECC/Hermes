@@ -200,7 +200,7 @@ class TiendaController extends Controller
         ->join('Direccion_TTA as dire','t.idDireccionT','=','dire.id')
         ->join('estado as est','t.estado_idEstado','=','est.id')
         ->join('Tipo_tienda as tptienda','tptienda.id','=','t.idtipo_tienda')
-        ->select('t.id as tid','t.nombre_tienda','t.codigo_tienda','t.estado_idEstado','dire.id as direid','dire.direccionAL','dire.Distrito_idDistrito','tele.id as teleid','tptienda.id as idtptienda','tele.numero','tele.idTipo_telefono','tele.idoperador')
+        ->select('t.id as tid','t.nombre_tienda','t.codigo_tienda','t.estado_idEstado','dire.id as direid','dire.direccionAL','dire.Distrito_idDistrito','tele.id as teleid','tptienda.id as idtptienda','tptienda.nombre','tele.numero','tele.idTipo_telefono','tele.idoperador')
         ->where('t.estado_idEstado','=',1)
         ->where('t.id','=',$id)
         ->get();

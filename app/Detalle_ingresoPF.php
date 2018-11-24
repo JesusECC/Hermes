@@ -8,7 +8,7 @@ class Detalle_ingresoPF extends Model
 {
     //
     protected $table='Detalle_ingresoPF';
-    protected $primarykey='idDetalle_ingresoPF';
+    protected $primarykey='id';
     public $timestamps=false;
     
     protected $filleable=[

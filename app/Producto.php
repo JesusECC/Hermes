@@ -8,7 +8,7 @@ class Producto extends Model
 {
     //
     protected $table='Productos';
-    protected $primarykey='idProductoUnitario';
+    protected $primarykey='id';
     public $timestamps=false;
     
     protected $filleable=[

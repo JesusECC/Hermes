@@ -34,13 +34,12 @@ Route::middleware(['auth','admin'])->group(function () {
      Route::post('Tienda/guardar',['as' => 'tienda-store','uses'=>'TiendaController@store']);
      Route::get('Tienda/editar/{id}',['as' => 'tienda-editar','uses'=>'TiendaController@edit']);
      Route::post('Tienda/update/{id}',['as' => 'tienda-update','uses'=>'TiendaController@update']);
-<<<<<<< HEAD
+
     Route::get('Tienda/delete/{id}',['as' => 'tienda-delete','uses'=>'TiendaController@destroy']);
 
 
-=======
+
      Route::get('Tienda/delete/{id}',['as' => 'tienda-delete','uses'=>'TiendaController@destroy']);
->>>>>>> 3d7738a60f35f04b9188404b6096e54623625c25
     //Route::get('trabajador/create',['as' => 'persona-create','uses'=>'TrabajadorController@create']);
     //   Route::get('Tienda/{idTienda}/edit',['as'=>'Tienda','uses'=>'ControllerClientes@edit']);
     

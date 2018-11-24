@@ -9,12 +9,20 @@ use Illuminate\Support\Facades\Redirect;
 use hermes\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 
-use DB;
+
 use hermes\Departamento;
 use hermes\Provincia;
 use hermes\Cliente;
-
+use hermes\operador;
+use hermes\Distrito;
+use hermes\Tipo_telefono;
+use hermes\Telefono_Persona;
 use hermes\Direccion_persona;
+use hermes\Tipo_Cliente;
+use hermes\estado;
+
+
+use DB;
 class ClienteController extends Controller
 {
     /**
@@ -26,28 +34,27 @@ class ClienteController extends Controller
     {
         //
         $cliente=DB::table('Cliente as c')
-                 ->join('Tipo_Cliente as tc','tc.id','=','c.idTipo_Persona')
-                 ->join('Persona as per','per.id','=','c.Persona_idPersona')
-                ->join('estado as est','est.id','=','c.estado_idEstado')
+     ->join('Tipo_Cliente as tc','tc.id','=','c.idTipo_Persona')
+     ->join('estado as est','est.id','=','c.estado_idEstado')
+     ->join('Persona as per','per.id','=','c.Persona_idPersona') 
+     ->join('Direccion_persona as dire','dire.idPersona','=','per.id')
+    
+    ->join('Tipo_documento as tpdoc','tpdoc.id','=','per.idTipo_documento')
+    ->join('Telefono_Persona as teleper','teleper.Persona_idPersona','=','per.id')
+    ->join('Tipo_telefono as tptele','tptele.id','=','teleper.idTipo_telefono')
+    ->join('operador as ope','ope.id','=','teleper.idTipo_telefono')
+
+    ->select('c.id as cid','tc.nombre','tpdoc.nombre_TD','per.nro_documento','per.nro_documento',DB::raw('CONCAT(depa.nombre_departamento,"/",pro.nombre_provincia,"/",dis.nombre_distrito) as direc'),'dire.nombre_direccion','per.nombre as nombreper','per.apellidos','per.fecha_nacimiento','per.sexo','teleper.numero','tptele.nombre_tipo','ope.nombre_operador')
+    ->where('est.tipo_estado','=',1)
+    ->orderBy('c.id','desc')
+    ->get();
+            
                 
-
-                 
-
-                 ->select('per.nro_documento','per.nombre as nombrclient','per.apellidos','per.sexo','tc.nombre')
-                ->where('est.tipo_estado','=',1)
-                 ->orderBy('c.id','desc')
-
-                 ->paginate(10);
-
                   return view('cliente.index',['cliente'=>$cliente]);
 
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+   
     public function create()
     {
         //

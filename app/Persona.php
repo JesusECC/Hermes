@@ -8,7 +8,7 @@ class Persona extends Model
 {
     //
     protected $table='Persona';
-    protected $primarykey='idPersona';
+    protected $primarykey='id';
     public $timestamps=false;
     
     protected $filleable=[
