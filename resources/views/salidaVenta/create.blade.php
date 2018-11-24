@@ -160,12 +160,7 @@
                         <input type="text" name="pdescuento" id="pdescuento" class="form-control" placeholder="Descuento">
                     </div>                    
                 </div> 
-                <div class="col-md-3">
-                    <div class="from-group">
-                        <label>Adicional</label>
-                        <input type="text" name="adicional" id="padicional" class="form-control" placeholder="adicional">
-                    </div>                    
-                </div>             
+                      
                  <div class="col-md-2">
                     <div class="from-group">
                          <button style="margin-top:31px; " type="button" id="bt_add" class="btn btn-primary pull-left">agregar</button>
@@ -206,10 +201,18 @@
                     <th></th>
                     <th></th>
                     <th></th>
-                    <th><h4 id="total">s/. 0.00</h4><input type="hidden" name="total_venta" id="total_venta">
+                    <th>
+                        <h4 id="total">s/. 0.00</h4><input type="hidden" name="total_venta" id="total_venta"></h4>
+                    </th>
 
                 </tfoot>
             </table>
+            <div class="col-md-3">
+                <div class="from-group">
+                    <label>Adicional</label>
+                    <input type="number" name="adicional" id="padicional" class="form-control" placeholder="adicional">
+                </div>                    
+            </div>       
         </div>
        <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
             <div class="form-group">
@@ -247,8 +250,8 @@ function runScript(e) {
  $("#idClientes").change(MostrarCliente);
 var cont=0;
 var producto=[];
-total=0;
-subtotal=[];
+var total=0;
+var subtotal=[];
 var filaob=[];
 
 
@@ -259,6 +262,7 @@ var filaob=[];
         $("#Dir").val(Cliente[1]);
         $("#Doc").val(Cliente[2]);
     }
+
 
 function consulBarras(){
     codBarras=$("#pcodigo").val();
@@ -292,18 +296,18 @@ function consulBarras(){
 }
 
 $("#guardar").show();
-
+var sumadicional=0;
 function agregar()
 {   
-    codigob=$("#pcodigo").val();
-    codigo=$("#pcodigoP").val();
-    produco=$("#pnproducto").val();
-    talla=$("#ptalla").val();
-    precio=$("#pprecio").val();
-    descuento=$("#pdescuento").val();
-    color=$("#pcolor").val();
-    cantidad=$("#pcantidadPF").val();
-    adicional=$("#padicional").val();
+    var codigob=$("#pcodigo").val();
+    var codigo=$("#pcodigoP").val();
+    var produco=$("#pnproducto").val();
+    var talla=$("#ptalla").val();
+    var precio=$("#pprecio").val();
+    var descuento=$("#pdescuento").val();
+    var color=$("#pcolor").val();
+    var cantidad=$("#pcantidadPF").val();
+    var adicional=$("#padicional").val();
 
 
     
@@ -319,8 +323,7 @@ function agregar()
                     '</td> '+
                     '<td>'+
                         '<input type="hidden" name="codigo_barr[]" value="'+codigob+'">'+codigob+
-                    '</td>  '+
-                    
+                    '</td>  '+                    
                     '<td>'+
                         '<input type="hidden" name="codigoPV[]" value="'+codigo+'">'+codigo+'</td>'+
                     '<td>'+
@@ -340,13 +343,17 @@ function agregar()
 
 
         cont++;
-        var dato={codigob:codigob,precio:precio,descuento:descuento,codigo:codigo,produco:produco,talla:talla,color:color,cantidad:cantidad};    
+        var dato={codigob:codigob,precio:precio,descuento:descuento,codigo:codigo,produco:produco,talla:talla,color:color,cantidad:cantidad,adicional:adicional};    
         filaob.push(dato);
+        sumadicional+=parseInt(adicional);
+
         limpiar();
-        $("#total").html("s/. " + to);
-       $("#total_venta").val(to);
+        $("#total").html("s/. " + total);
+       $("#total_venta").val(total);
         evaluar();
-        $('#detalles').append(fila);
+        $('#detalles').append(fila); 
+        // $('#adic').html('S/. '+sumadicional);
+        console.log(filaob,adicional);
         // console.log(filaob);
 
     }
@@ -355,6 +362,14 @@ function agregar()
         alert("erros al ingresar el detale del ingreso, revise los datos del articulo");
     }
 }
+
+    $( "#padicional" ).change(function() {
+        var adi=$("#padicional").val();
+        total+=parseFloat(adi);
+        document.getElementById("padicional").disabled = true;
+        $("#total").html("s/. " + total);
+
+    });
 function guardar(){
     var idCliente=$("#idClientes").val();
     var idTrabajador=$("#idTrabajador").val();
