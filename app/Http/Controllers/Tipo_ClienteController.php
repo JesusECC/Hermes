@@ -5,8 +5,9 @@ namespace hermes\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
-use DB;
+
 use hermes\Tipo_Cliente;
+use DB;
 class Tipo_ClienteController extends Controller
 {
     /**
@@ -40,7 +41,7 @@ class Tipo_ClienteController extends Controller
     public function store(Request $request)
     {
          $tipocliente=new Tipo_Cliente;
-        $tipocliente->nombre=$request->get('tipo');
+        $tipocliente->nombreTC=$request->get('tipo');
         $tipocliente->save();
         return redirect::to('tipocliente');
     }
@@ -78,7 +79,7 @@ class Tipo_ClienteController extends Controller
     {
          $id=$request->get('id'); 
         $tipocliente=Tipo_Cliente::Find($id);
-        $tipocliente->nombre=$request->get('tipo'); 
+        $tipocliente->nombreTC=$request->get('tipo'); 
         $tipocliente->update();
         return redirect::to('tipocliente');
     }
