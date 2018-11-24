@@ -67,7 +67,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => hermes\user::class,
+            'model' => hermes\User::class,
         ],
 
         // 'users' => [
