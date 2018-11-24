@@ -25,7 +25,7 @@
                             <div class="form-group">
                                 <label class="control-label">Tipo Cliente</label>
                                 <input type="hidden" name="id" value="{{ $tipocliente->id }}">
-                                <input type="text" name="tipo" id="tipo" class="form-control" value="{{ $tipocliente->nombre }}">
+                                <input type="text" name="tipo" id="tipo" class="form-control" value="{{ $tipocliente->nombreTC}}">
                                 <small class="form-control-feedback"> This is inline help </small> 
                             </div>
                         </div>
