@@ -67,92 +67,35 @@ $productos= DB::table('Productos as p')
 
 public function store(Request $request)
     {
-     try{
-        $idProducto;
-        $produc;
-        $cantidad;
-        $precio_compra;
-        $precio_venta;
-        $trabajador;
-        $almacen;
-        $tipoingreso;
-       
-           
-        foreach ($request->producto as $dato) {
-            $idProducto=$dato['idProducto'];
-            $produc=$dato['produc'];
-            $cantidad=$dato['cantidad'];
-            $precio_compra=$dato['precio_compra'];
-            $precio_venta=$dato['precio_venta'];
-            $trabajador=$dato['trabajador'];
-            $almacen=$dato['almacen'];
-            $tipoingreso=$dato['tipoingreso'];           
-        }
+
+        
+     $filas=$request->filas;
+    $opsalida=$request->opsalida;   
         $idIngreso=DB::table('Ingreso_Podructo_Final')->insertGetId(
-            ['idTrabajador'=>$trabajador,
-            'idAlmacen'=>$almacen,           
-            'idTipo_ingreso'=>$tipoingreso,
-            'tipo_producto_ingreso'=>'productoF',//le asigne un tipo de producto el que ingresa 
-            'codigo_ingresoPF'=>123,
-            'impuestoPF'=>18,
-            'estado_idEstado'=>1,            
+            [
+            'idTipo_ingreso'=>3,
+            'idTrabajador'=>$opsalida[0]['idTrabajador'],          
+            'estado_idEstado'=>1,
+            'idAlmacen'=>$opsalida[0]['idAlmacen'],
             ]
         );
-
-        foreach($request->fila as $fila){
-            $detalle=new Detalle_ingresoPF;	
-            $detalle->idIngreso_PF=$idIngreso;
-            $detalle->idProduto_PF=$idProducto;
-            $detalle->cantidadPF=$fila['cantidad'];
-            $detalle->precio_compraPF=$fila['precio_compra'];
-            $detalle->precio_ventaPF=$fila['precio_venta'];	
-            $detalle->save();            
+        foreach ($filas as $fila) {
+            $Dsalida = new Detalle_ingresoPF();
+            $Dsalida->idIngreso_PF=$idIngreso;
+            $Dsalida->codigo_PF=$fila['codigo'];
+            $Dsalida->nro_guia_PF=$fila['numeroG'];
+            $Dsalida->idTaller_PF=$opsalida[0]['idTaller'];
+            $Dsalida->productoPF=$fila['produco'];
+            $Dsalida->colorPF=$fila['color'];
+            $Dsalida->tallaPF=$fila['talla'];
+            $Dsalida->cantidadPF=$fila['cantidad'];
+            $Dsalida->descripcionPF=$fila['descripcion'];
+            $Dsalida->codigo_bar=$fila['codigob'];
+            $Dsalida->save();
         }
-            return ['dat' =>'/ingreso','veri'=>true];
-        }catch(Exception $e){
-            return ['dat' =>$e,'veri'=>false];
-        }
+        return ['data' =>'salida','veri'=>true];
 }
 
- 
-public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 
 
 

@@ -65,14 +65,7 @@
                         </select>
                     </div>                    
                 </div>
-                <div class="col-lg-6">
-                    <div class="form-group">
-                        <label for="proveedor">Numero de Guia</label>
-                         <input type="number" name="pnum" id="pcantidadPF" class="form-control" placeholder="Numero de guia">
-                             
-                        </select>
-                    </div>                    
-                </div>  
+                
                 
                           
             </div>
@@ -127,7 +120,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-3">
+                <div class="col-md-2">
                     <div class="from-group">
                         <label>Cantidad</label>
                         <input type="text" name="pcantidadPF" id="pcantidadPF" class="form-control" placeholder="cantidad">
@@ -138,14 +131,20 @@
                         <label>Descripcion</label>
                         <input type="text" name="pdescripcionPF" id="pdescripcionPF" class="form-control" placeholder="cantidad">
                     </div>                    
-                </div>             
-                 <div class="col-md-2">
+                </div>
+                 <div class="col-md-3">
+                    <div class="from-group">
+                        <label>Numero de Guia</label>
+                        <input type="text" name="pnum" id="pnum" class="form-control" placeholder="numero">
+                    </div>                    
+                </div>            
+                 
+          </div>
+             <div class="col-md-2">
                     <div class="from-group">
                          <button style="margin-top:31px; " type="button" id="bt_add" class="btn btn-primary pull-left">agregar</button>
                     </div>                    
                 </div>
-          </div>
-
         </div>
        
     </div>
@@ -154,15 +153,17 @@
             <table id="detalles" class="table table-striped table-bordered table-condensed table-hover">
                 <thead style="background-color:#A9D0F5">
                     <th>opciones</th>
-                    <th>Codigo B.</th>
+                    <th>Cod. B.</th>
                     <th>Taller</th>
                  
                     <th>Cod.Producto</th>
+                    <th>Num.Guia</th>
                     <th>Producto</th>
                     <th>Descripcion</th>
                     <th>Talla</th>
                     <th>Color</th>
                     <th>Cant.</th>
+                    
                 </thead>
                 <tbody>
                 </tbody>
@@ -177,17 +178,17 @@
                     <th></th>
                     <th></th>
                     <th></th>
-
+                    <th></th>
+                   
                 </tfoot>
             </table>
         </div>
-        <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+       <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
             <div class="form-group">
-                <input name"_token" value="{{ csrf_token() }}" type="hidden">
-                <button id="save" class="btn btn-primary" type="button">guardar</button>
+                <button class="btn btn-primary" id="save" type="button">guardar</button>
                 <button class="btn btn-danger" type="reset">cancelar</button>
             </div>
-        </div>        
+        </div>   
     </div>
 </div>
 
@@ -199,8 +200,14 @@ $(document).ready(function(){
     $('#bt_add').click(function(){
         agregar();
     });
-});
+    $("#save").click(function(event){             
+    // alert("Formulario enviado con jQuery");      
+        // console.log($("#codigo_bar[]").val());       
+       guardar();
+        
+    });
 
+});
 document.getElementById("idTrabajador").disabled = false;
 // captura el evento del codigo de barras y llama al metodo donde se realiza la consulta
 function runScript(e) {
@@ -213,6 +220,7 @@ var cont=0;
 var producto=[];
 total=0;
 subtotal=[];
+var filaob=[];
 
 function consulBarras(){
     codBarras=$("#pcodigo").val();
@@ -243,64 +251,62 @@ function consulBarras(){
       });
 }
 
-$('#save').click(function(){
-            guardar();
-        });
-function guardar(){
-
-$.ajax({
-                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-                data:  {producto:producto}, //datos que se envian a traves de ajax
-                url:   'guardar', //archivo que recibe la peticion
-                type:  'post', //método de envio
-                dataType: "json",//tipo de dato que envio 
-                success:  function (response) { //una vez que el archivo recibe el request lo procesa y lo devuelve
-                    if(response.veri==true){
-                        var urlBase=window.location.origin;
-                        var url=urlBase+'/'+response.data;
-                        document.location.href=url;
-                    }else{
-                        alert("problemas al guardar la informacion");
-                    }
-                }
-            });
-        }
-       
-
-
+$("#guardar").show();
 
 function agregar()
 {
-    codigob=$("#pcodigo").val();
-    idAlmacen=$("#pidAlmacen").val();
-    almacen=$("#pidAlmacen option:selected").text();
-    idTaller=$("#pidTaller").val();
-    taller=$("#pidTaller option:selected").text();
-    codigo=$("#pcodigoP").val();
-    produco=$("#pnproducto").val();
-    talla=$("#ptalla").val();
-    color=$("#pcolor").val();
-    cantidad=$("#pcantidadPF").val();
-    trabajador=$("#idTrabajador").val();
-    descripcion=$("#pdescripcionPF").val();
+    var codigob=$("#pcodigo").val();
+    var idTaller=$("#pidTaller").val();
+    var taller=$("#pidTaller option:selected").text();
+    var codigo=$("#pcodigoP").val();
+    var produco=$("#pnproducto").val();
+    var talla=$("#ptalla").val();
+    var color=$("#pcolor").val();
+    var cantidad=$("#pcantidadPF").val();
+    var descripcion=$("#pdescripcionPF").val();
+    var numeroG=$("#pnum").val();
+
 
     
-    if(idAlmacen!="" && idTaller!=""  && talla!="" && color!="")
+    if(idTaller!=""  && talla!="" && color!="")
     {
        
-
-       var fila='<tr class="selected" id="fila'+cont+'"><td><button type="button" class="btn btn-warning" onclick="eliminar('+cont+');">X</button></td> <td><input type="hidden" name="codigo_bar[]" value="'+codigob+'">'+codigob+'</td>  <td><input type="hidden" name="idTaller[]" value="'+idTaller+'">'+taller+'</td>  <td><input type="hidden" name="codigoSMP[]" value="'+codigo+'">'+codigo+'</td> <td><input type="hidden" name="productoSMP[]" value="'+produco+'">'+produco+'</td> <td><input type="hidden" name="pdescripcionPF[]" value="'+descripcion+'">'+descripcion+'</td> <td><input type="hidden" name="tallaSMP[]" value="'+talla+'">'+talla+'</td> <td><input type="hidden" name="colorSMP[]" value="'+color+'">'+color+'</td> <td><input type="hidden" name="cantidadSMP[]" value="'+cantidad+'">'+cantidad+'</td> </tr>';
-
-       cont++;
-
-       var dat={codigob:codigob,idAlmacen:idAlmacen,idTaller:idTaller,codigo:codigo,produco:produco,talla:talla,color:color,cantidad:cantidad,trabajador:trabajador};
         
-       producto.push(dat);
-        console.log(producto);
-       limpiar();
-       
-       evaluar();
-       $('#detalles').append(fila);
+        var fila=
+                '<tr class="selected" id="fila'+cont+'">'+
+                    '<td>'+
+                        '<button type="button" class="btn btn-warning" onclick="eliminar('+cont+');">X</button>'+
+                    '</td>'+
+                    '<td>'+
+                        '<input type="hidden" name="codigo_bard[]" value="'+codigob+'">'+codigob+
+                    '</td>'+
+                    '<td>'+
+                        '<input type="hidden" name="idTaller[]" value="'+idTaller+'">'+taller+'</td>  '+
+                        '<td>'+
+                        '<input type="hidden" name="nro_guia_PF[]" value="'+numeroG+'">'+numeroG+'</td>  '+
+                    '<td>'+
+                        '<input type="hidden" name="codigoSMP[]" value="'+codigo+'">'+codigo+'</td>'+
+                    '<td>'+
+                        '<input type="hidden" name="productoSMP[]" value="'+produco+'">'+produco+'</td> '+
+                    '<td>'+
+                        '<input type="hidden" name="descripcion[]" value="'+descripcion+'">'+descripcion+'</td>'+
+                    '<td>'+
+                        '<input type="hidden" name="tallaSMP[]" value="'+talla+'">'+talla+'</td> '+
+                    '<td>'+
+                        '<input type="hidden" name="colorSMP[]" value="'+color+'">'+color+'</td> '+
+                    '<td>'+
+                        '<input type="hidden" name="cantidadSMP[]" value="'+cantidad+'">'+cantidad+'</td>'+
+                    
+                '</tr>';
+
+
+        cont++;
+        var dato={codigob:codigob,taller:taller,codigo:codigo,produco:produco,talla:talla,color:color,cantidad:cantidad,descripcion:descripcion,numeroG:numeroG};    
+        filaob.push(dato);
+        limpiar();
+        evaluar();
+        $('#detalles').append(fila);
+        // console.log(filaob);
 
     }
     else
@@ -308,7 +314,37 @@ function agregar()
         alert("erros al ingresar el detale del ingreso, revise los datos del articulo");
     }
 }
-
+function guardar(){
+    var idTaller=$("#pidTaller").val();
+    var idTrabajador=$("#idTrabajador").val();
+    var idAlmacen=$("#idAlmacen").val();
+    
+    
+    var vari=[{idTaller:idTaller,idTrabajador:idTrabajador,idAlmacen:idAlmacen}];
+    $.ajax({
+        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        data:  {filas:filaob,opsalida:vari}, //datos que se envian a traves de ajax
+        url:   'guardar', //archivo que recibe la peticion
+        type:  'post', //método de envio
+        dataType: "json",//tipo de dato que envio 
+        beforeSend: function () {
+            // console.log()
+                // $("#resultado").html("Procesando, espere por favor...");
+        },
+        success:  function (response) { //una vez que el archivo recibe el request lo procesa y lo devuelve
+        
+            if(response.veri==true){
+                var urlBase=window.location.origin;
+                var url=urlBase+'/'+response.data;
+                document.location.href=url;
+            }else{
+                alert("problemas al guardar la informacion");
+            }
+            console.log(response.filas);
+            console.log(response.opsalida);
+        }
+    });
+}
 
     total=0;
     function limpiar(){
