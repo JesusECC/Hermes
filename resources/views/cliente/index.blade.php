@@ -19,22 +19,31 @@
             <table id="example" class="table table-striped table-bordered" style="width:100%">
                 <thead>
                     <tr>
-                        <th>Numero Documento </th>
-                        <th>Nombre   </th>
-                        <th>Apellidos</th>
-                        <th>sexo</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>N°Documento</th>
+                        <th>Direccion</th>
+                        <th>Lugar</th>
                         <th>Tipo Cliente</th>
-                        <th>Acciones</th>
+                        <th>Telefono</th>
+                        <th>Tipo Telefono</th>
+                        <th>Operador</th>
+                        <th>Opciones</th>
                     </tr>
                 </thead>
                 <tbody>
                       @foreach($cliente as $client)
-         <tr>
-                <td>{{$client->nro_documento}}</td>
+                <tr>
                 <td>{{$client->nombreper}}</td>
                 <td>{{$client->apellidos}}</td>
-                <td>{{$client->sexo}}</td>
-                <td>{{$client->nombretc}}</td>
+                <td>{{$client->nro_documento}}</td>
+                <td>{{$client->nombre_direccion}}</td>
+                <td>{{$client->nombre_direccion}}</td>
+                <td>{{$client->nombreTC}}</td>
+                <td>{{$client->numero}}</td>
+                <td>{{$client->nombre_tipo}}</td>
+                <td>{{$client->nombre_operador}}</td>
+
                 <td class="text-nowrap">
                             <a href="#" data-toggle="tooltip" data-original-title="Edit"> <i class="fa fa-pencil text-warning m-r-10"></i> </a>
                             <a href="#" data-toggle="tooltip" data-original-title="Close"> <i class="fa fa-close text-danger m-r-10"></i> </a>

@@ -57,19 +57,36 @@ class ClienteController extends Controller
     public function create()
     {
         //
-        $cliente=DB::table('Cliente')->where('estado_idEstado','=',1)->get();
-        $tipo_cliente=DB::table('Tipo_Cliente')->get();
-        $persona=DB::table('Persona')->get();
-        $tipo_documento=DB::table('Tipo_documento')->get();
-        $distrito=DB::table('Distrito')->get();
-        $provincia=DB::table('Provincia')->get();
-        $departamento=DB::table('Departamento')->get();
-        $tipo_telefono=DB::table('Tipo_telefono')->get();
-        $operador=DB::table('operador')->get();
+        $cliente=DB::table('Cliente')
+        ->where('estado_idEstado','=',1)
+        ->get();
+        $tipocliente=DB::table('Tipo_Cliente')
+        ->get();
+        $persona=DB::table('Persona')
+        ->get();
+        
+        $tipodocumento=DB::table('Tipo_documento')
+        ->get();
 
-        $estado=DB::table('estado')->get();
+        $direccionpersonas=DB::table('Direccion_persona')
+        ->get();
 
-        return view('cliente.create',["cliente"=>$cliente,"tipo_cliente"=>$tipo_cliente,"persona"=>$persona,"tipo_documento"=>$tipo_documento,"distrito"=>$distrito,"provincia"=>$provincia,"departamento"=>$departamento,"tipo_telefono"=>$tipo_telefono,"operador"=>$operador,'estado'=>$estado]);
+        $distrito=DB::table('Distrito')
+        ->get();
+        $provincia=DB::table('Provincia')
+        ->get();
+        $departamento=DB::table('Departamento')
+        ->get();
+       
+        $tipotelefono=DB::table('Tipo_telefono')
+        ->get();
+        $operador=DB::table('operador')
+        ->get();
+
+        $estado=DB::table('estado')
+        ->get();
+
+        return view('cliente.create',["cliente"=>$cliente,"tipocliente"=>$tipocliente,"persona"=>$persona,"tipodocumento"=>$tipodocumento,"direccionpersoras"=>$direccionpersonas,"distrito"=>$distrito,"provincia"=>$provincia,"departamento"=>$departamento,"tipotelefono"=>$tipotelefono,"operador"=>$operador,'estado'=>$estado]);
     }
 
     /**
