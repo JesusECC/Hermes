@@ -17,7 +17,7 @@ class AdminMiddleware
      */
     public function handle($request, Closure $next)
     {
-        $id=auth()->user()->id;        
+        $id=auth()->User()->id;        
         $uc=new usersController();        
         $rol=$uc->roles($id);
         // dd($rol);
