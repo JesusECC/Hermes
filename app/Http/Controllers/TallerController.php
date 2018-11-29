@@ -204,7 +204,6 @@ class TallerController extends Controller
 
 
              Taller::where('id',$id)
-
             ->update([
                 'codigoT'=>$request->get('codigoT'),
                 'nombre_taller'=>$request->get('nombre_taller'),
@@ -212,7 +211,7 @@ class TallerController extends Controller
                 'estado_idEstado'=>$request->get('estado_idEstado'),
                 
             ]);
-            Telefono_taller::where('idTaller',$id)
+            Telefono_taller::where('id',$request->get('teletaid'))
             ->update([
                 'numero'=>$request->get('numero'),
                 'idTipo_telefono'=>$request->get('idTipo_telefono'),
@@ -220,6 +219,18 @@ class TallerController extends Controller
                 'estado_idEstado'=>$request->get('estado_idEstado'),
                 
             ]);
+
+                Direccion_TTA::where('id',$request->get('dired'))
+                 ->update([
+
+                'direccionAL'=>$request->get('direccionAL'),
+                'Distrito_idDistrito'=>$request->get('distrito'),
+                 'Distrito_Provincia_idProvincia'=>$request->get('provincia'),
+                'Distrito_Provincia_Departamento_idDepartamento'=>$request->get('departamento'),
+                'estado_idEstado'=>$request->get('estado_idEstado'),
+                
+            ]);
+
 
             return redirect('Taller');
 

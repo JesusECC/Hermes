@@ -145,7 +145,7 @@
                                                                                 <select  class="select2" id="estado_idEstado" name="estado_idEstado" data-live-search="true">
                                                                                 <option value="" disabled="" selected="">Seleccione Tipo Telefono</option>
                                                                                 @foreach($estado as $est)                
-                                                                                <option value="{{$est->id}}">{{$est->tipo_estado}}</option>
+                                                                                <option value="{{$est->id}}">{{$est->descripcion}}</option>
                                                                                 @endforeach  
                                                                                 </select>    
                                                                         </div>
