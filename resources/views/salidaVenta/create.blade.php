@@ -58,6 +58,7 @@
                 <div class="col-lg-4">
                     <div class="form-group">
                         <label for="proveedor">Cliente</label>
+                         <input type="hidden"  id="id" class="form-control" placeholder="Direccion">
                         <select name="pidCliente" id="idClientes" class="form-control selectpicker" data-live-search="true">
                             <option value="" selected="" disabled="">Seleccione</option>
                             @foreach($Cliente as $cl)
@@ -80,6 +81,8 @@
                         <input type="text"  id="Dir" class="form-control" placeholder="Direccion"> 
                     </div>                    
                 </div> 
+                                  
+                </div>
                           
             </div>
             
@@ -177,8 +180,6 @@
                 <thead style="background-color:#A9D0F5">
                     <th>opciones</th>
                     <th>Codigo B.</th>
-                    
-                 
                     <th>Cod.Producto</th>
                     <th>Producto</th>
                     <th>Talla</th>
@@ -261,6 +262,7 @@ var filaob=[];
         idcliente=Cliente[0];
         $("#Dir").val(Cliente[1]);
         $("#Doc").val(Cliente[2]);
+        $("#id").val(Cliente[0]);
     }
 
 
@@ -371,10 +373,11 @@ function agregar()
 
     });
 function guardar(){
-    var idCliente=$("#idClientes").val();
+    var idCliente=$("#id").val();
     var idTrabajador=$("#idTrabajador").val();
     var pidAlmacen=$("#pidAlmacen").val();
     var totalV=$("#total_venta").val();
+
     
     var vari=[{idCliente:idCliente,idTrabajador:idTrabajador,pidAlmacen:pidAlmacen,totalV:totalV}];
     $.ajax({

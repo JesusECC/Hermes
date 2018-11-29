@@ -4,7 +4,7 @@ namespace hermes\Http\Controllers;
 
 use Illuminate\Http\Request;
 use hermes\Ingreso_Podructo_Final;
-use hermes\Detalle_ingresoPF;
+use hermes\Detalle_Salida;
 
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
@@ -60,34 +60,38 @@ $productos= DB::table('Productos as p')
 
 public function store(Request $request)
     {
-        dd($request);
+        
 
-      $filas=$request->filas;
-    $opsalida=$request->opsalida;   
-        $idSalida=DB::table('Salida_MP')->insertGetId(
+        $filas=$request->filas;
+        $opsalida=$request->opsalida;   
+        $idSalida=DB::table('Salida')->insertGetId(
             [
             'idTipo_salida'=>2,
             'idTrabajador'=>$opsalida[0]['idTrabajador'],  
             'idCliente'=>$opsalida[0]['idCliente'],  
             'total_venta'=>$opsalida[0]['totalV'],       
-            'idEstado'=>1,
+            'idEstadoS'=>1,
             'idAlmacen'=>$opsalida[0]['pidAlmacen'],
             ]
         );
         foreach ($filas as $fila) {
-            $Dsalida = new Detalle_Salida_MP();
-            $Dsalida->idSalidaMP=$idSalida;
-            $Dsalida->codigoSMP=$fila['codigo'];
-            $Dsalida->idTaller=$opsalida[0]['idTaller'];
-            $Dsalida->productoSMP=$fila['produco'];
-            $Dsalida->colorSMP=$fila['color'];
-            $Dsalida->tallaSMP=$fila['talla'];
-            $Dsalida->cantidadSMP=$fila['cantidad'];
-            $Dsalida->codigo_bar=$fila['codigob'];
+            $Dsalida = new Detalle_Salida();
+            $Dsalida->idSalida=$idSalida;
+            $Dsalida->codigo_barr=$fila['codigob'];
+            $Dsalida->codigoPV=$fila['codigo'];
+            $Dsalida->productoPV=$fila['produco'];
+            $Dsalida->tallaVP=$fila['talla'];
+            $Dsalida->colorVP=$fila['color'];
+            $Dsalida->cantidadPF=$fila['cantidad'];
+            $Dsalida->precio_ventaPF=$fila['precio'];
+            $Dsalida->descuento=$fila['descuento'];
+            $Dsalida->impuesto=18;
             $Dsalida->save();
         }
         return ['data' =>'salidaVenta','veri'=>true];
 }
+
+
 
  public function codBarra(Request $request)
     {

@@ -121,4 +121,24 @@ public function store(Request $request){
         }
         
     }
+
+    public function show($id)
+    {
+
+    $Salida=DB::table('Salida_MP as sp')
+    ->join('Trabajador as t','t.id','=','p.idTrabajador')
+    ->join('Almacen as t','t.al','=','p.idAlmacen')
+    ->select('p.idProforma','p.fecha_hora',DB::raw('CONCAT(cp.nombres_Rs," ",cp.paterno," ",cp.materno) as nombre'),DB::raw('CONCAT(cp.Direccion,"  ",cp.Departamento,"-",cp.Distrito) as direccion'),'cp.nro_documento as ndoc','cp.correo as mail','p.serie_proforma','p.igv','p.precio_total','p.forma_de','p.plazo_oferta','p.observacion_condicion','p.igv','p.precio_total','p.subtotal','p.precio_totalC','p.cliente_empleado')
+    ->where('p.idProforma','=',$id)
+    ->first();
+
+    $detalles=DB::table('Detalle_proforma as dpr')
+    ->join('Producto as pro','dpr.idProducto','=','pro.idProducto')
+    ->select('pro.nombre_producto as producto','dpr.cantidad','dpr.descuento','dpr.precio_venta','dpr.descripcionDP')
+    ->where('dpr.idProforma','=',$id)
+    ->get();
+
+    return view("proforma.proforma.show",["proforma"=>$proforma,"detalles"=>$detalles]);
+        
+    }
 }

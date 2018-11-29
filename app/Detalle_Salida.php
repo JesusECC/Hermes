@@ -12,10 +12,15 @@ class Detalle_Salida extends Model
     public $timestamps=false;
     
     protected $filleable=[
-        'idProduto_PF',
         'idSalida',
+        'codigo_barr',
+        'codigoPV',
+        'productoPV',
+        'tallaVP',
+        'colorVP',
         'cantidadPF',
         'precio_ventaPF',
+        'descuento',
         'impuesto',
 
     ];

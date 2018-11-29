@@ -1,0 +1,34 @@
+SELECT * FROM tuxczegz_hermes.Detalle_ingresoPF;
+select * from Productos,Producto_Detalle
+select * from Producto_Detalle
+
+
+DELIMITER $$ 
+create trigger tr_sumastock after insert on Detalle_ingresoPF 
+for each row begin 
+update Productos set stockP = stockP + NEW.cantidadPF 
+where Productos.CodigoB_Producto = NEW.codigo_bar;
+ 
+update Producto_Detalle set stock = stock + NEW.cantidadPF
+where Producto_Detalle.codigo_Prod = NEW.codigo_PF;
+END$$
+DELIMITER ;
+
+SELECT * FROM tuxczegz_hermes.Salida;
+SELECT * FROM tuxczegz_hermes.Detalle_Salida;
+
+DELIMITER $$ 
+create trigger tr_restastock after insert on Detalle_Salida 
+for each row begin 
+update Productos set stockP = stockP - NEW.cantidadPF 
+where Productos.CodigoB_Producto = NEW.codigo_barr;
+ 
+update Producto_Detalle set stock = stock - NEW.cantidadPF
+where Producto_Detalle.codigo_Prod = NEW.codigoPV;
+END$$
+DELIMITER ;
+
+
+
+
+drop trigger tr_sumastock

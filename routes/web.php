@@ -59,6 +59,10 @@ Route::middleware(['auth','admin'])->group(function () {
     Route::get('rol/editar/{id}',['as' => 'rol-editar','uses'=>'RolController@edit']);
     Route::post('rol/update',['as' => 'rol-update','uses'=>'RolController@update']);
     Route::get('rol/delete/{id}',['as' => 'rol-delete','uses'=>'RolController@destroy']);
+
+    //Reporte
+    Route::get('reporte',['as' => 'rol-reporte','uses'=>'ReporteController@index']);
+    
     
     
     // estado

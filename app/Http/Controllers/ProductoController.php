@@ -82,7 +82,7 @@ class ProductoController extends Controller
         $Tallas_idTallas=$request->get('Tallas_idTallas');
         $Color_idColor=$request->get('Color_idColor');
         $Almacen_idAlmacen=$request->get('Almacen_idAlmacen');
-        $stockP=$request->get('stockP');
+        
         $precio_unitario=$request->get('precio_unitario'); 
 
         $cont=0;
@@ -95,7 +95,7 @@ class ProductoController extends Controller
             $tarea->Tallas_idTallas=$Tallas_idTallas[$cont];
             $tarea->Color_idColor=$Color_idColor[$cont];
             $tarea->Almacen_idAlmacen=$Almacen_idAlmacen[$cont];
-            $tarea->stockP=$stockP[$cont];
+            $tarea->stockP=0;
             $tarea->precio_unitario=$precio_unitario[$cont];
             $tarea->estado_idEstado=1;
             $tarea->save();

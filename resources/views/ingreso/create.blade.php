@@ -278,7 +278,7 @@ function agregar()
                         '<button type="button" class="btn btn-warning" onclick="eliminar('+cont+');">X</button>'+
                     '</td>'+
                     '<td>'+
-                        '<input type="hidden" name="codigo_bard[]" value="'+codigob+'">'+codigob+
+                        '<input type="hidden" name="codigo_bar[]" value="'+codigob+'">'+codigob+
                     '</td>'+
                     '<td>'+
                         '<input type="hidden" name="idTaller[]" value="'+idTaller+'">'+taller+'</td>  '+
