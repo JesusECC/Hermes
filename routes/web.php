@@ -62,6 +62,7 @@ Route::middleware(['auth','admin'])->group(function () {
 
     //Reporte
     Route::get('reporte',['as' => 'rol-reporte','uses'=>'ReporteController@index']);
+    Route::get('reporte/pdf','ReporteController@pdf')->name('reportes.pdf');
     
     
     

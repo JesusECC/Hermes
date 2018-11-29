@@ -34,7 +34,7 @@
                 @foreach($ingreso as $i)
                     <tr>
                 
-                        <td>{{$i->idTaller_PF}}</td>
+                        <td>{{$i->nombre_taller}}</td>
                         <td>{{$i->nro_guia_PF}}</td>
                         <td>{{$i->codigo_PF}}</td>
                         <td>{{$i->codigo_bar}}</td>
@@ -200,5 +200,6 @@
             </table>
         </div>
     </div>
+     <h3><a href="{{route('reportes.pdf')}}"><button class="btn btn-success">Imprimir Reporte</button></a></h3>
 </div>
 @endsection

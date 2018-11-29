@@ -1,48 +1,50 @@
-@extends ('layouts.admin')
-@section ('contenido')
-
-<div class='col-lg-8 col-sm-8 col-xs-12'>
-	<h3> Lista de Ingresos<a href="ingreso/create"><button class="btn btn-success">Nuevo</button></a></h3>
-	@include('compras.ingreso.search')
+@extends('layouts.admin')
+@section('content')
+<div class="row page-titles">
+    <div class="col-md-5 col-8 align-self-center">
+        <h3 class="text-themecolor">Panel de Adminsitrador</h3>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="javascript:void(0)">Salidas</a></li>
+            
+        </ol>
+    </div>
 </div>
-<div class='row'>
-	<div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
-		<div class="table-responsive">
-			<table class=" table table-striped table-bordered table-condensed table-hover">
+<div class="card">
+  <div class="card-header">
+     <h4 class="card-title pull-left">Salidas</h4>
+     <a href="{{ route('salidaVenta-create') }}"><button type="button" class="btn waves-effect waves-light btn-success pull-right">Agregar</button></a>
+  </div>
+    <div class="card-body">
+        <div class="col-lg-12">
+            <table id="example" class="table table-striped table-bordered" style="width:100%">
 				<thead>
 					
+					<th>Num. Comprobante</th>
 					<th>fecha</th>
-					<th>proveedor</th>
-					<th>Comprobante</th>
-					<th>impuesto</th>
-					<th>total</th>
-					<th>estado</th>
-					<th>opciones</th>
+					<th>Trabajador</th>
+					<th>Almacen</th>
 				</thead>
 
-				@foreach ($ingresos as $ing)
+				@foreach ($Salida as $sal)
 				
 
 				<tr>
 
+					<td>SV00{{$sal->id}}</td>
+					<td>{{$sal->fecha_horaS}}</td>
+					<td>{{$sal->nombre}}</td>
+					<td>{{$sal->nombre_almacen}}</td>
 					
-					<td>{{$ing->fecha_hora}}</td>
-					<td>{{$ing->nombre}}</td>
-					<td>{{$ing->tipo_comprobante.': '.$ing->serie_comprobante.'-'.$ing->num_comprobante}}</td>
-					<td>{{$ing->impuesto}}</td>
-					<td>{{$ing->total}}</td>
-					<td>{{$ing->estado}}</td>
 					<td>
-					<a href="{{URL::action('IngresoController@show',$ing->idingreso)}}"><button class="btn btn-primary">detalles</button>
-					</a>
-					<a href="" data-target="#modal-delete-{{$ing->idingreso}}" data-toggle="modal"><button class="btn btn-danger">anular</button></a>
+					
+					<a href="" data-target="#modal-delete-{{$sal->id}}" data-toggle="modal"><button class="btn btn-danger">anular</button></a>
 					</td>
 				</tr>
-				@include('ventas.ingreso.modal')
+				
              @endforeach
 			</table>
 		</div>
-		{{$ingresos->render()}}
+		{{$Salida->render()}}
 	</div>
 </div>
 

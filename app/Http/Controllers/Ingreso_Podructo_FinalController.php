@@ -93,7 +93,7 @@ public function store(Request $request)
             $Dsalida->codigo_bar=$fila['codigob'];
             $Dsalida->save();
         }
-        return ['data' =>'salida','veri'=>true];
+        return ['data' =>'reporte','veri'=>true];
 }
 
 

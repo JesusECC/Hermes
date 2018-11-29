@@ -15,6 +15,27 @@ use DB;
 
 class SalidaVentaController extends Controller
 {
+   /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+    
+
+     
+     $Salida=DB::table('Salida as s')
+     ->join('Almacen as a','s.idAlmacen','=','a.id')
+     ->join('Trabajador as t','s.idTrabajador','=','t.id')
+     ->join('Persona as p','p.id','=','t.idPersona')
+     ->select('a.nombre_almacen','p.nombre','p.apellidos','s.id','s.fecha_horaS')
+    
+     
+     ->paginate(17);
+       return view('salidaVenta.index',["Salida"=>$Salida]);
+    }
+
      public function create()
 {
 
