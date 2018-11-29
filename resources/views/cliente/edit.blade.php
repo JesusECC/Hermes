@@ -20,7 +20,7 @@
         <div class="form-body">
              {!! Form::model($cliente, ['method'=>'POST','route' => ['cliente-update',$cliente->id]]) !!}
             @include('cliente.partials.update')
-                <button type="submit" class="btn waves-effect waves-light btn-success pull-right">Agregar</button>
+                <button type="submit" class="btn waves-effect waves-light btn-success pull-right">Actualizar</button>
             {!! Form::close() !!}
         </div>
     </div>

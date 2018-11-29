@@ -236,7 +236,7 @@ Route::middleware(['auth','admin'])->group(function () {
     Route::get('cliente/create',['as'=>'cliente-create','uses'=>'ClienteController@create']);
     Route::post('cliente/guardar',['as'=>'cliente-guardar','uses'=>'ClienteController@store']);
     Route::get('cliente/editar/{id}',['as'=>'cliente-edit','uses'=>'ClienteController@edit']);
-    Route::post('cliente/update',['as'=>'cliente-update','uses'=>'ClienteController@update']);
+    Route::post('cliente/update/{id}',['as'=>'cliente-update','uses'=>'ClienteController@update']);
     Route::get('cliente/delete/{id}',['as'=>'cliente-delete','uses'=>'ClienteController@destroy']);
     
     // rutas para ajax

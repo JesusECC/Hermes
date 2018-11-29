@@ -11,7 +11,7 @@
 </div>
 <div class="card">
   <div class="card-header">
-     <h4 class="card-title pull-left">Listar Productos Finales</h4>
+     <h4 class="card-title pull-left">Lista de Clientes</h4>
      <a href="{{ route('cliente-create') }}"><button type="button" class="btn waves-effect waves-light btn-success pull-right">Agregar</button></a>
   </div>
     <div class="card-body">
@@ -32,23 +32,23 @@
                     </tr>
                 </thead>
                 <tbody>
-                      @foreach($cliente as $client)
+             @foreach($cliente as $client)
                 <tr>
                 <td>{{$client->nombreper}}</td>
                 <td>{{$client->apellidos}}</td>
                 <td>{{$client->nro_documento}}</td>
                 <td>{{$client->nombre_direccion}}</td>
-                <td>{{$client->nombre_direccion}}</td>
+                <td>{{$client->direc}}</td>
                 <td>{{$client->nombreTC}}</td>
                 <td>{{$client->numero}}</td>
                 <td>{{$client->nombre_tipo}}</td>
                 <td>{{$client->nombre_operador}}</td>
-
-                <td class="text-nowrap">
-                            <a href="#" data-toggle="tooltip" data-original-title="Edit"> <i class="fa fa-pencil text-warning m-r-10"></i> </a>
-                            <a href="#" data-toggle="tooltip" data-original-title="Close"> <i class="fa fa-close text-danger m-r-10"></i> </a>
-                            <a href="#" data-toggle="tooltip" data-original-title="Close"> <i class="fa fa-eye text-success"></i> </a>
-                        </td>
+                        
+                 <td class="text-nowrap">
+                          <a href="{{ route('cliente-edit',$client->id) }}" data-toggle="tooltip" data-original-title="Edit" ><i class="fa fa-pencil text-warning m-r-10"></i> </a>                     
+                          <a href="{{ route('cliente-delete',$client->id) }}" data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-close text-danger m-r-10"></i></a> 
+                          
+                </td>
             </tr>   
                 @endforeach
                 </tbody>

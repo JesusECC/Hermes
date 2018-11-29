@@ -12,8 +12,7 @@ use hermes\operador;
 use hermes\Telefono_Tienda;
 use hermes\Tienda;
 use hermes\Direccion_TTA;
-use hermes\Tipo_tienda
-;
+use hermes\Tipo_tienda;
 
 
 use Illuminate\Support\Facades\Input;
