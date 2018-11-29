@@ -15,6 +15,7 @@ use hermes\Provincia;
 use hermes\Cliente;
 use hermes\operador;
 use hermes\Distrito;
+use hermes\Persona;
 use hermes\Tipo_telefono;
 use hermes\Telefono_Persona;
 use hermes\Direccion_persona;
@@ -230,7 +231,7 @@ class ClienteController extends Controller
         ->join('Tipo_telefono as tptele','tptele.id','=','teleper.idTipo_telefono')
         ->join('operador as ope','ope.id','=','teleper.idTipo_telefono')
             */
-        ->select('c.id as cid','tc.nombreTC','tpdoc.nombre_TD','per.nro_documento','per.nro_documento',
+        ->select('c.id as cid','tc.nombreTC','tpdoc.nombre_TD','per.nro_documento','per.nro_documento','per.id as perid','tc.id as tcid','est.id as estid','dire.id as direid','dis.id as disid','pro.id as proid','depa.id as depaid','tpdoc.id as tpdocid','tep.id as tepid','tpt.id as tptid','ope.id as opeid',
          DB::raw('CONCAT(depa.nombre_departamento,"/",pro.nombre_provincia,"/",dis.nombre_distrito) as direc'),
         'dire.nombre_direccion','per.nombre as nombreper','per.apellidos','per.fecha_nacimiento','per.sexo','tep.numero','tpt.nombre_tipo','ope.nombre_operador')    
         ->where('est.tipo_estado','=',1)
@@ -253,27 +254,37 @@ class ClienteController extends Controller
      */
     public function update(Request $request, $id)
     {
-         Persona::where('id',$id)
+         
+        Cliente::where('id',$id)
+        ->update([
+            'idTipo_Persona'=>$request->get('tipocliente'),                       
+            'estado_idEstado'=>$request->get('estado_idEstado'),
+        ]);
+         Persona::where('id',$request->get('perid'))
         ->update([
             'IdTipo_documento'=>$request->get('idTipo_documento'),
             'nro_documento'=>$request->get('nro_documento'),
-            'nombre'=>$request->get('nombre'),
+            'nombre'=>$request->get('nombreper'),
             'apellidos'=>$request->get('apellidos'),
             'fecha_nacimiento'=>$request->get('fecha_nacimiento'),
             'sexo'=>$request->get('sexo'),
         ]);
-        Telefono_Persona::where('Persona_idPersona',$id)
+        Telefono_Persona::where('id',$request->get('tepid'))
         ->update([
             'numero'=>$request->get('numero'),
             'idTipo_telefono'=>$request->get('idTipo_telefono'),
-            'idoperador'=>$request->get('idoperador'),
-            'estado_idEstado'=>$request->get('estado_idEstado')
+            'idoperador'=>$request->get('idTipooperador'),
+            'estado_idEstado'=>$request->get('estado_idEstado'),
         ]);
-        Cliente::where('Persona_idPersona',$id)
+          Direccion_persona::where('id',$request->get('direid'))
         ->update([
-            'idTipo_Persona'=>$request->get('idTipo_Persona'),                       
-            'estado_idEstado'=>$request->get('estado_idEstado')
+            'nombre_direccion'=>$request->get('nombre_direccion'),                       
+            'Distrito_idDistrito'=>$request->get('distrito'),
+            'Distrito_Provincia_idProvincia'=>$request->get('provincia'),
+            'Distrito_Provincia_Departamento_idDepartamento'=>$request->get('departamento'),
         ]);
+
+
         return redirect('cliente');
     }
 
@@ -285,7 +296,10 @@ class ClienteController extends Controller
      */
     public function destroy($id)
     {
-        //
+         $cliente=Cliente::find($id);
+        $cliente->estado_idEstado=2;
+        $cliente->update();
+        return redirect('cliente');
     }
     /**
      * Update the specified resource in storage.

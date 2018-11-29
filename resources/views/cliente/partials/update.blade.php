@@ -150,9 +150,17 @@
                                                                                 </select>    
                                                                         </div>
                                                                </div>  
-                                                        </div>
-
-                                        
-                                        
+                                                       </div>
+                                        <input type="hidden" name="perid" value="{{$telecliente[
+                                            0]->perid}}">
+                                         <input type="hidden" name="tcid" value="{{$telecliente[
+                                            0]->tcid}}">
+                                          <input type="hidden" name="estid" value="{{$telecliente[
+                                            0]->estid}}">
+                                             <input type="hidden" name="direid" value="{{$telecliente[
+                                            0]->direid}}">
+                                             <input type="hidden" name="tepid" value="{{$telecliente[
+                                            0]->tepid}}">
+                                      
                                             
                                            
