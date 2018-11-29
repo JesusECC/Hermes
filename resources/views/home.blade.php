@@ -145,6 +145,35 @@
             </div>
         </div>
     </div>
+    <!-- Column -->
+    <div class="col-lg-3 col-md-6">
+        <div class="card">
+            <div class="card-body">
+            	<a href="{{route('rol-reporte')}}">
+	                <div class="d-flex flex-row">
+	                    <div class="round round-lg align-self-center round-info"><i class="mdi  mdi-read"></i></div>
+	                    <div class="m-l-10 align-self-center">
+	                        <h5 class="text-muted m-b-0">Reporte</h5>
+	                    </div>
+	                </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6">
+        <div class="card">
+            <div class="card-body">
+            	<a href="{{route('salidaVenta-create')}}">
+	                <div class="d-flex flex-row">
+	                    <div class="round round-lg align-self-center round-info"><i class="mdi  mdi-cart-outline"></i></div>
+	                    <div class="m-l-10 align-self-center">
+	                        <h5 class="text-muted m-b-0">Salida venta</h5>
+	                    </div>
+	                </div>
+                </a>
+            </div>
+        </div>
+    </div>
 </div>
 @endsection
                     
