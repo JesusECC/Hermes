@@ -249,7 +249,7 @@ Route::middleware(['auth','admin'])->group(function () {
     Route::post('cliente/distrito',['as'=>'cliente-distrito','uses'=>'ClienteController@distrito']);
     
     
-    
+    Route::get('ajustes',['as'=>'ajustes-index','uses'=>'AjustesController@index']);
     
     // persona -> Trabajador 
     Route::get('trabajador',['as' => 'persona-index','uses'=>'TrabajadorController@index']);
