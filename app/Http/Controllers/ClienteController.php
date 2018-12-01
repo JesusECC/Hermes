@@ -69,7 +69,7 @@ class ClienteController extends Controller
     //->join('Tipo_telefono as tptele','tptele.id','=','teleper.idTipo_telefono')
     //->join('operador as ope','ope.id','=','teleper.idTipo_telefono')
 
-    ->select('c.id','per.nombre as nombreper','per.apellidos','per.nro_documento','dire.nombre_direccion',DB::raw('CONCAT(depa.nombre_departamento,"/",pro.nombre_provincia,"/",dis.nombre_distrito) as direc'),'tc.nombreTC','tep.numero','tpt.nombre_tipo','ope.nombre_operador',
+    ->select('c.id','per.nombre as nombreper','per.apellidos','per.nro_documento','dire.nombre_direccion',DB::raw('CONCAT(depa.nombre_departamento," ",pro.nombre_provincia," ",dis.nombre_distrito) as direc'),'tc.nombreTC','tep.numero','tpt.nombre_tipo','ope.nombre_operador',
     'per.fecha_nacimiento','per.sexo')    
     ->where('est.tipo_estado','=',1)
     ->orderBy('c.id','desc')
