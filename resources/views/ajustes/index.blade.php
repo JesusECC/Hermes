@@ -10,22 +10,45 @@
     </div>
 </div>
 <div class="row">
-	<div class="col-6">
+	<div class="col-10">
 		<div class="card">
 		  <div class="card-header">
-		     <h4 class="card-title pull-left">Listado de ajustes 1</h4>
+		     <h4 class="card-title pull-left">Listado de Configuracion</h4>
 		  </div>
 		  <div class="card-body">
 		  	<div class="row">
-		  		<div class="col-12">
+		  		<div class="col-6">
 			  		<div class="card">
 			            <div class="card-body">
-			                <h4 class="card-title">Editable with Datatable</h4>
+			                <a href="{{route('talla-index')}}"><h4 class="card-title">Configurar Talla</h4></a>
 			            </div>
 			        </div>
+			    </div>
+			    <div class="col-6">
 			        <div class="card">
 			            <div class="card-body">
-			                <h4 class="card-title">Editable with Datatable</h4>
+			                <a href="{{route('color-index')}}"><h4 class="card-title">Configurar Color</h4></a>
+			            </div>
+			        </div>  			
+		  		</div>
+		  		<div class="col-6">
+			        <div class="card">
+			            <div class="card-body">
+			                <a href="{{route('tipocliente')}}"><h4 class="card-title">Configurar Tipo de Cliente</h4></a>
+			            </div>
+			        </div>  			
+		  		</div>
+		  		<div class="col-6">
+			        <div class="card">
+			            <div class="card-body">
+			                <a href="{{route('tipoproducto')}}"><h4 class="card-title">Configurar Tipo de Producto</h4></a>
+			            </div>
+			        </div>  			
+		  		</div>
+		  		<div class="col-6">
+			        <div class="card">
+			            <div class="card-body">
+			                <a href="{{route('tipotienda')}}"><h4 class="card-title">Configurar Tipo de Tienda</h4></a>
 			            </div>
 			        </div>  			
 		  		</div>

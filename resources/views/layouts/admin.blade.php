@@ -157,7 +157,7 @@
                     <ul id="sidebarnav">
                         <li class="nav-small-cap">MANTIS CODE</li>
                         <li>
-                            <a class="has-arrow waves-effect waves-dark" href="{{ route('principal') }}" aria-expanded="false">
+                            <a class="has-arrow waves-effect waves-dark" href="{{ route('principal') }}" aria-expanded="true">
                                 <i class="mdi mdi-gauge"></i>
                                 <span class="hide-menu">Panel de Control</span>
                             </a>
@@ -169,32 +169,43 @@
                                 <span class="hide-menu">Productos</span>
                             </a>
                             <ul aria-expanded="false" class="collapse">
-                                <li><a href="">Detalle producto</a></li>
-                                <li><a href="">Detalle Producto 2</a></li>
+                                <li><a href="{{route('detalle_producto-create')}}">Detalle producto</a></li>
+                                <li><a href="{{route('producto')}}">Productos</a></li>
                             </ul>
+                        </li>
+                        <li>
+                            <a class="waves-dark" href="{{route('almacen')}}" >
+                                
+                                <span class="hide-menu">Almacen</span>
+                            </a>
+                           
+                        </li>
+                        <li>
+                            <a class="waves-dark" href="{{route('tienda')}}" >
+                                <span class="hide-menu">Tienda</span>
+                            </a>
+                            
                         </li>
                         <!-- fin de persona -->
                         <!-- usuarios -->
                         <li>
-                            <a class="has-arrow waves-effect waves-dark" href="" aria-expanded="false">
-                                <i class="mdi mdi-barcode"></i>
+                            <a class="waves-dark" href="{{route('cliente-index')}}" >
                                 <span class="hide-menu">Clientes</span>
                             </a>
-                            <ul aria-expanded="false" class="collapse">
-                                <li><a href="">Detalle cliente</a></li>
-                                <li><a href="">Detalle cliente 2</a></li>
-                            </ul>
+                            
                         </li>
                         <!-- fin de usuarios -->
                         <li>
-                            <a class="has-arrow waves-effect waves-dark" href="" aria-expanded="false">
-                                <i class="mdi mdi-barcode"></i>
+                            <a class="waves-dark" href="{{url('persona-index')}}" >
                                 <span class="hide-menu">Trabajadores</span>
                             </a>
-                            <ul aria-expanded="false" class="collapse">
-                                <li><a href="">Detalle Trabajadores</a></li>
-                                <li><a href="">Detalle Trabajadores 2</a></li>
-                            </ul>
+                            
+                        </li>
+                        <li>
+                            <a class="waves-dark" href="" >
+                                <span class="hide-menu">Proveedores</span>
+                            </a>
+                            
                         </li>
                         <!-- taller -->
                         <li>
@@ -204,57 +215,43 @@
                             </a>
                             <ul aria-expanded="false" class="collapse">
                                 <li>
-                                    <a href="">Salida detalle</a>
+                                    <a href="{{route('salida-index')}}">Salida Materia Prima</a>
                                 </li>
                                 <li>
-                                    <a href="">Salida detalle 2</a>
+                                    <a href="{{route('salidaVenta-index')}}">Nota de Pedido</a>
                                 </li>
                             </ul>
                         </li>
                         <li>
                             <a class="has-arrow waves-effect waves-dark" href="" aria-expanded="false">
                                 <i class="mdi mdi-domain"></i>
-                                <span class="hide-menu">Ingresos Productos</span>
+                                <span class="hide-menu">Ingreso Productos</span>
                             </a>
                             <ul aria-expanded="false" class="collapse">
                                 <li>
-                                    <a href="">Ingreso detalle</a>
-                                </li>
-                                <li>
-                                    <a href="">Ingreso detalle 2</a>
+                                    <a href="{{route('ingreso')}}">Ingreso Producto Final</a>
                                 </li>
                             </ul>
                         </li>
                         <li>
-                            <a class="has-arrow waves-effect waves-dark" href="" aria-expanded="false">
-                                <i class="mdi mdi-clipboard-text"></i>
+                            <a class="waves-dark" href="{{route('rol-reporte')}}" >
                                 <span class="hide-menu">Reportes</span>
                             </a>
-                            <ul aria-expanded="false" class="collapse">
-                                <li><a href="">Reportes detalle</a></li>
-                                <li><a href="">Reportes detalle 2</a></li>
-                            </ul>
+                            
                         </li>
                         <!-- usuarios -->
                         <li>
-                            <a class="has-arrow waves-effect waves-dark" href="" aria-expanded="false">
-                                <i class="mdi mdi-barcode"></i>
+                             <a class="waves-dark" href="{{route('usuarios-index')}}" >
                                 <span class="hide-menu">Usuarios</span>
                             </a>
-                            <ul aria-expanded="false" class="collapse">
-                                <li><a href="">Usuarios Detalle</a></li>
-                                <li><a href="">Usuarios Detalle 2</a></li>
-                            </ul>
+                           
                         </li>
                         <li>
-                            <a class="has-arrow waves-effect waves-dark"  href="{{route ('ajustes-index')}}" aria-expanded="false">
+                            <a class="waves-dark" href="{{route('ajustes-index')}}" >
                                 <i class="mdi mdi-barcode"></i>
                                 <span class="hide-menu">Configuración</span>
                             </a>
-                            <ul aria-expanded="false" class="collapse">
-                                <li><a href="{{route ('ajustes-index')}}">Configuración Detalle</a></li>
-                                <li><a href="">Configuración Detalle 2</a></li>
-                            </ul>
+                            
                         </li>
                         <!-- fin de usuarios -->
                     </ul>

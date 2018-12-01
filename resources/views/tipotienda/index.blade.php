@@ -20,7 +20,7 @@
             <table id="example" class="table table-striped table-bordered" style="width:100%">
                 <thead>
                     <tr>
-                        <th>id</th>
+                       
                         <th>Nombre</th>
                         <th>Opciones</th>
                     </tr>

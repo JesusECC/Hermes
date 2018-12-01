@@ -4,9 +4,9 @@
     <div class="col-md-5 col-8 align-self-center">
         <h3 class="text-themecolor">Panel de Adminsitrador</h3>
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="javascript:void(0)">Productos</a></li>
-            <li class="breadcrumb-item ">Producto Final</li>
-            <li class="breadcrumb-item active">Producto Final</li>
+            <li class="breadcrumb-item"><a href="javascript:void(0)">Notas de Pedido</a></li>
+            <li class="breadcrumb-item ">Registrar Nota de Pedido</li>
+           
         </ol>
     </div>
 </div>
@@ -108,7 +108,7 @@
                 <div class="col-md-3">
                     <div class="form-group">
                         <label>Tipo de Producto</label>
-                        <input type="text" name="pcodigoP" id="pcodigoP" class="form-control" placeholder="Codigo Producto">                    
+                        <input type="text" name="pcodigoP" id="pcodigoP" class="form-control" placeholder="Tipo Producto">                    
                     </div>
                 </div>
 
@@ -139,7 +139,7 @@
                 <div class="col-md-3">
                     <div class="from-group">
                         <label>stock</label>
-                        <input type="text" name="pstockP" id="pstockP" class="form-control" placeholder="cantidad">
+                        <input type="text" name="pstockP" id="pstockP" class="form-control" placeholder="Cantidad">
                     </div>                    
                 </div>
                  <div class="col-md-3">
@@ -310,10 +310,11 @@ function agregar()
     var color=$("#pcolor").val();
     var cantidad=$("#pcantidadPF").val();
     var adicional=$("#padicional").val();
+    var stock=$("#pstockP").val();
 
 
     
-    if( talla!="" && color!="" && cantidad!="")
+    if( talla!="" && color!="" && cantidad<stock)
     {
        subtotal[cont]=cantidad*(precio-(precio*descuento/100));
        total=total+subtotal[cont];

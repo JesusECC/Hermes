@@ -11,7 +11,7 @@
 </div>
 <div class="card">
   <div class="card-header">
-     <h4 class="card-title pull-left">Salidas</h4>
+     <h4 class="card-title pull-left">Notas de Pedido</h4>
      <a href="{{ route('salidaVenta-create') }}"><button type="button" class="btn waves-effect waves-light btn-success pull-right">Agregar</button></a>
   </div>
     <div class="card-body">
