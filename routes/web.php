@@ -27,6 +27,10 @@ Route::middleware(['auth','admin'])->group(function () {
     Route::get('Almacen',['as' => 'almacen','uses'=>'AlmacenController@index']);
     Route::get('Almacen/create',['as' => 'almacen-create','uses'=>'AlmacenController@create']);
     Route::post('Almacen/guardar',['as' => 'almacen-store','uses'=>'AlmacenController@store']);
+        Route::get('Almacen/editar/{id}',['as' => 'almacen-editar','uses'=>'AlmacenController@edit']);
+            Route::post('Almacen/update/{id}',['as' => 'almacen-update','uses'=>'AlmacenController@update']);
+    
+            Route::get('Almacen/delete/{id}',['as' => 'almacen-detele','uses'=>'AlmacenController@destroy']);
     
     // tienda
     Route::get('Tienda',['as'=>'tienda','uses'=>'TiendaController@index']);
