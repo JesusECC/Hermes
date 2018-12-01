@@ -16,15 +16,19 @@ use DB;
 
 class Ingreso_Podructo_FinalController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+   
     public function index()
     {
 
-
+    $ingresos=DB::table('Ingreso_Podructo_Final as i')
+     ->join('Almacen as a','i.idAlmacen','=','a.id')
+     ->join('Trabajador as t','i.idTrabajador','=','t.id')
+     ->join('Persona as p','p.id','=','t.idPersona')
+     ->select('a.nombre_almacen','p.nombre','p.apellidos','i.id','i.fecha_horaPF')
+    
+     
+     ->paginate(17);
+       return view('ingreso.index',["ingresos"=>$ingresos]);
     }
 
 public function create()
@@ -93,15 +97,9 @@ public function store(Request $request)
             $Dsalida->codigo_bar=$fila['codigob'];
             $Dsalida->save();
         }
-        return ['data' =>'reporte','veri'=>true];
+        return ['data' =>'ingreso','veri'=>true];
 }
-
-
-
-
-    // 
-    // CONSULTA PARA EL CODIGO DE BARRAS
-    // 
+ 
     public function codBarra(Request $request)
     {
         //

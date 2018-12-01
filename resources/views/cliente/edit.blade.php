@@ -3,11 +3,11 @@
 <!-- vista create-->
 <div class="row page-titles">
     <div class="col-md-5 col-8 align-self-center">
-        <h3 class="text-themecolor">Ingresar Tienda</h3>
+        <h3 class="text-themecolor">Editar Cliente</h3>
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="javascript:void(0)">Tienda</a></li>
-            <li class="breadcrumb-item ">Producto Final</li>
-            <li class="breadcrumb-item active">Producto Final</li>
+            <li class="breadcrumb-item"><a href="javascript:void(0)">Clientes</a></li>
+            <li class="breadcrumb-item ">Editar CLiente</li>
+            
         </ol>
     </div>
 </div>

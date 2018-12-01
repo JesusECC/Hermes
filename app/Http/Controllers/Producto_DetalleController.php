@@ -34,14 +34,11 @@ class Producto_DetalleController extends Controller
             $producto->idTipoProducto=$request->get('idTipoProducto');
             $producto->nombre_producto=$request->get('nombre_producto');
             $producto->codigo_Prod=$request->get('codigo_Prod');
-            $producto->marca_producto=$request->get('marca_producto');
+            $producto->marca_producto='Quality Moda';
             $producto->categoria=$request->get('categoria');
-            $producto->descuento=$request->get('descuento');
             $producto->save();
-            return redirect::to('detalle_producto');
+            return redirect::to('producto');
     }
-
-    
     public function show($id)
     {
         //

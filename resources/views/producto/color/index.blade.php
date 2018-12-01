@@ -4,7 +4,7 @@
     <div class="col-md-5 col-8 align-self-center">
         <h3 class="text-themecolor">Panel de Adminsitrador</h3>
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="javascript:void(0)">Productos</a></li>
+            
             <li class="breadcrumb-item ">Configuración</li>
             <li class="breadcrumb-item active">Color</li>
         </ol>
@@ -20,7 +20,7 @@
             <table id="example" class="table table-striped table-bordered" style="width:100%">
                 <thead>
                     <tr>
-                        <th>Id</th>
+                        
                         <th>Nombre Color</th>
                         <th>Acción</th>
                     </tr>
@@ -28,12 +28,12 @@
                 <tbody>
                 @foreach($color as $co)
                     <tr>
-                        <td>{{ $co->id }}</td>
+                       
                         <td>{{ $co->nombre_color }}</td>
                         <td class="text-nowrap">
-                            <a href="{{ route('color-edit',$co->id) }}" data-toggle="tooltip" data-original-title="Editar"> <i class="fa fa-pencil text-warning m-r-10"></i> </a>
+                            
                             <a href="{{ route('color-delete',$co->id) }}" data-toggle="tooltip" data-original-title="Eliminar"> <i class="fa fa-close text-danger m-r-10"></i> </a>
-                            <!-- <a href="#" data-toggle="tooltip" data-original-title="Close"> <i class="fa fa-eye text-success"></i> </a> -->
+                        
                         </td>                        
                     </tr>    
                 @endforeach 

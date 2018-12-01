@@ -219,7 +219,7 @@ class TiendaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //dd($request,$id);
+        dd($request,$id);
         Tienda::where('id',$id)
 
         ->update([
@@ -230,11 +230,19 @@ class TiendaController extends Controller
             'idtipo_tienda'=>$request->get('idTipo_tienda'),
             
         ]);
-        Telefono_Tienda::where('Tienda_idTienda',$id)
+        Direccion_TTA::where('id',$request->get('direid'))
+        ->update([
+            'direccionAL'=>$request->get('direccionAL'),
+            'Distrito_idDistrito'=>$request->get('distrito'),
+            'Distrito_Provincia_idProvincia'=>$request->get('provincia'),
+            'Distrito_Provincia_Departamento_idDepartamento'=>$request->get('departamento'),
+             'estado_idEstado'=>$request->get('estado_idEstado'),
+        ]);
+        Telefono_Tienda::where('id',$request->get('teleid'))
         ->update([
             'numero'=>$request->get('numero'),
             'idTipo_telefono'=>$request->get('idTipo_telefono'),
-            'idoperador'=>$request->get('idTipooperador')
+            'idoperador'=>$request->get('idTipooperador'),
         ]);
 
         return redirect('Tienda');

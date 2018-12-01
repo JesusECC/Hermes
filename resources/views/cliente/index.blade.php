@@ -4,8 +4,8 @@
     <div class="col-md-5 col-8 align-self-center">
         <h3 class="text-themecolor">Panel de Adminsitrador</h3>
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="javascript:void(0)">Productos</a></li>
-            <li class="breadcrumb-item active">Producto Final</li>
+            <li class="breadcrumb-item"><a href="javascript:void(0)">Cleinte</a></li>
+         
         </ol>
     </div>
 </div>
@@ -20,10 +20,8 @@
                 <thead>
                     <tr>
                         <th>Nombre</th>
-                        <th>Apellido</th>
                         <th>N°Documento</th>
                         <th>Direccion</th>
-                        <th>Lugar</th>
                         <th>Tipo Cliente</th>
                         <th>Telefono</th>
                         <th>Tipo Telefono</th>
@@ -34,11 +32,10 @@
                 <tbody>
              @foreach($cliente as $client)
                 <tr>
-                <td>{{$client->nombreper}}</td>
-                <td>{{$client->apellidos}}</td>
+                <td>{{$client->nombreper}} {{$client->apellidos}}</td>
                 <td>{{$client->nro_documento}}</td>
-                <td>{{$client->nombre_direccion}}</td>
-                <td>{{$client->direc}}</td>
+                <td>{{$client->nombre_direccion}} {{$client->direc}}</td>
+                
                 <td>{{$client->nombreTC}}</td>
                 <td>{{$client->numero}}</td>
                 <td>{{$client->nombre_tipo}}</td>

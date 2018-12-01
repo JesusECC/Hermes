@@ -20,7 +20,7 @@
             <table id="example" class="table table-striped table-bordered" style="width:100%">
                 <thead>
                     <tr>
-                        <th>Id</th>
+                        
                         <th>Tipo Salida</th>
                         <th>Acción</th>
                     </tr>
@@ -28,10 +28,10 @@
                 <tbody>
                 @foreach($tipo_salida as $ts)
                     <tr>
-                        <td>{{ $ts->id }}</td>
+                       
                         <td>{{ $ts->nombre }}</td>
                         <td class="text-nowrap">
-                            <a href="{{ route('tipo_salida-edit',$ts->id) }}" data-toggle="tooltip" data-original-title="Editar"> <i class="fa fa-pencil text-warning m-r-10"></i> </a>
+                            
                             <a href="{{ route('tipo_salida-delete',$ts->id) }}" data-toggle="tooltip" data-original-title="Eliminar"> <i class="fa fa-close text-danger m-r-10"></i> </a>
                             <!-- <a href="#" data-toggle="tooltip" data-original-title="Close"> <i class="fa fa-eye text-success"></i> </a> -->
                         </td>                        
