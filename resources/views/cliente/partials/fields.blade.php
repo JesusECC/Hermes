@@ -97,9 +97,6 @@
                                                                     <label>Provincia</label>
                                                                     <select  class="select2" id="provincia" name="provincia" data-live-search="true">
                                                                     <option value="" disabled="" selected="">Seleccione Provincia</option>
-                                                                    @foreach($provincia as $pro)                
-                                                                    <option value="{{$pro->id}}">{{$pro->nombre_provincia}}</option>
-                                                                    @endforeach  
                                                                     </select>    
                                                                 </div>
                                                          </div>
@@ -108,9 +105,6 @@
                                                                     <label>Distrito</label>
                                                                     <select  class="select2" id="distrito" name="distrito" data-live-search="true">
                                                                     <option value="" disabled="" selected="">Seleccione Distrito</option>
-                                                                    @foreach($distrito as $dis)                
-                                                                    <option value="{{$dis->id}}">{{$dis->nombre_distrito}}</option>
-                                                                    @endforeach  
                                                                     </select>    
                                                             </div>
                                                          </div>
