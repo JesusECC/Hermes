@@ -20,12 +20,12 @@
 		  		<div class="col-12">
 			  		<div class="card">
 			            <div class="card-body">
-			                <h4 class="card-title">Editable with Datatable</h4>
+			                <a href=""><h4 class="card-title">Editable with Datatable</h4></a>
 			            </div>
 			        </div>
 			        <div class="card">
 			            <div class="card-body">
-			                <h4 class="card-title">Editable with Datatable</h4>
+			                <a href=""><h4 class="card-title">Editable with Datatable</h4></a>
 			            </div>
 			        </div>  			
 		  		</div>
