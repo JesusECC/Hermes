@@ -146,5 +146,51 @@ class AlmacenController extends Controller
         }
 
    }  
+    public function edit($id)
+    {
+
+    }
+
+     public function update(Request $request, $id)
+    {
+    }
+
+
+      public function destroy($id)
+    {
+        
+
+        $almacen=Almacen::find($id);
+        $almacen->estado_idEstado=2;
+        $almacen->update();
+        return redirect('Almacen');
+    }
+
+
+
+    public function provincia(Request $request)
+    {
+        $idDepartamento=$request->get('departamento');
+        $provincia=DB::table('Provincia')
+        ->where('Departamento_idDepartamento','=',$idDepartamento)
+        ->get();
+        // dd($request);
+        return ['provincia' =>$provincia,'veri'=>true];
+    }
+    public function distrito(Request $request)
+    {
+        $idProvincia=$request->get('Provincia');
+
+        $distrito=DB::table('Distrito')
+        ->where('Provincia_idProvincia','=',$idProvincia)
+        ->get();
+        // dd($request);
+        return ['distrito' =>$distrito,'veri'=>true];
+
+    //    id
+    //    nombre_distrito
+    //    Provincia_idProvincia
+
+}
 
 }
