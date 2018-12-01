@@ -20,7 +20,7 @@
             <table id="example" class="table table-striped table-bordered" style="width:100%">
                 <thead>
                     <tr>
-                        <th>id</th>
+                        
                         <th>Nombre</th>
                         <th>Opciones</th>
                     </tr>       
@@ -28,10 +28,10 @@
                 <tbody>
                 @foreach($tipoproducto as $pro)
                     <tr>
-                        <td>{{ $pro->id}}</td>
-                        <td>{{ $pro->nombre}}</td>
+                        
+                        <td>{{ $pro->nombreTP}}</td>
                         <td class="text-nowrap">
-                            <a href="{{ route('tipoproducto-editar',$pro->id) }}" data-toggle="tooltip" data-original-title="Edit"> <i class="fa fa-pencil text-warning m-r-10"></i> </a>
+                            
                             <a href="{{ route('tipoproducto-delete',$pro->id) }}" data-toggle="tooltip" data-original-title="Close"> <i class="fa fa-close text-danger m-r-10"></i> </a>
                             <!-- <a href="#" data-toggle="tooltip" data-original-title="Close"> <i class="fa fa-eye text-success"></i> </a> -->
                         </td>                        

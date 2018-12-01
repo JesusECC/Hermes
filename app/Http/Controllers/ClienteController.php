@@ -88,6 +88,7 @@ class ClienteController extends Controller
         ->get();
         $tipocliente=DB::table('Tipo_Cliente')
         ->get();
+        // dd($tipocliente);
         $persona=DB::table('Persona')
         ->get();
         
