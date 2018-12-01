@@ -11,7 +11,7 @@
 </div>
 <div class="card">
   <div class="card-header">
-     <h4 class="card-title pull-left">Listar Productos Finales</h4>
+     <h4 class="card-title pull-left">Listar Productos </h4>
      <a href="{{ route('producto-create') }}"><button type="button" class="btn waves-effect waves-light btn-success pull-right">Agregar</button></a>
   </div>
     <div class="card-body">

@@ -5,7 +5,7 @@
     <div class="col-md-5 col-8 align-self-center">
         <h3 class="text-themecolor">Panel de Adminsitrador</h3>
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="javascript:void(0)">Productos</a></li>
+            <li class="breadcrumb-item"><a href="javascript:void(0)">Almacenes</a></li>
             <li class="breadcrumb-item ">Almacen</li>
         </ol>
     </div>
@@ -14,8 +14,8 @@
 
 <div class="card">
   <div class="card-header">
-     <h4 class="card-title pull-left">Registrar Producto Final</h4>
-     <button id="save" type="sumbit" class="btn waves-effect waves-light btn-success pull-right"><i class="far fa-save"></i>Agregar</button>
+     <h4 class="card-title pull-left">Registrar Alamacen</h4>
+     <button id="save" type="sumbit" class="btn waves-effect waves-light btn-success pull-right">Agregar</button>
   </div>
   <div class="card-body">
     <div class="form-body">
@@ -23,23 +23,23 @@
         <div class="row p-t-20">
             <div class="col-md-4">
                 <div class="form-group">
-                    <label class="control-label">Codigo</label>
+                    <label class="control-label">Codigo del Almacen</label>
                     <input type="text" id="a" class="form-control" placeholder="Asignar un codigo">
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="form-group">
-                    <label class="control-label">Nombre Almacen</label>
+                    <label class="control-label">Nombre del Almacen</label>
                     <input type="text" id="b" class="form-control" placeholder="Nombre Almacen">
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="form-group">
-                    <label>Tienda</label>
+                    <label>Tienda Perteneciente</label>
                     <select  class="form-control selectpicker" id="g" data-live-search="true">
-                        <option value="" disabled="" selected="">Tienda</option>
+                    <option value="" disabled="" selected="">Seleccione Tienda</option>
                         @foreach($tienda as $ti)                
-                        <option value="{{$ti->id}}">{{$ti->nombre_tienda}}</option>
+                    <option value="{{$ti->id}}">{{$ti->nombre_tienda}}</option>
                         @endforeach  
                     </select>    
                 </div>
@@ -49,14 +49,14 @@
             <div class="col-md-4">
                 <div class="form-group">
                     <label class="control-label">Telefono </label>
-                    <input type="text" id="h" class="form-control" placeholder="Nombre Almacen">
+                    <input type="text" id="h" class="form-control" placeholder="Telefono del Almacen">
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="form-group">
-                    <label>Tienda</label>
+                    <label>Tipo de Telefono</label>
                     <select  class="form-control selectpicker" id="i" data-live-search="true">
-                    <option value="" disabled="" selected="">Tipo Telefono</option>
+                    <option value="" disabled="" selected="">Seleccione Tipo</option>
                     @foreach($tipotelefono as $tt)                
                     <option value="{{$tt->id}}">{{$tt->nombre_tipo}}</option>
                     @endforeach  
@@ -65,9 +65,9 @@
             </div>
             <div class="col-md-4">
                 <div class="form-group">
-                    <label>Tienda</label>
+                    <label>Operador</label>
                     <select  class="form-control selectpicker" id="j" data-live-search="true">
-                    <option value="" disabled="" selected="">Operador</option>
+                    <option value="" disabled="" selected="">Seleccione Operador</option>
                     @foreach($operador as $op)                
                     <option value="{{$op->id}}">{{$op->nombre_operador}}</option>
                     @endforeach  

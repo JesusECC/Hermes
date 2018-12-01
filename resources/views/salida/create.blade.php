@@ -4,15 +4,15 @@
     <div class="col-md-5 col-8 align-self-center">
         <h3 class="text-themecolor">Panel de Adminsitrador</h3>
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="javascript:void(0)">Productos</a></li>
-            <li class="breadcrumb-item ">Producto Final</li>
-            <li class="breadcrumb-item active">Producto Final</li>
+            <li class="breadcrumb-item"><a href="javascript:void(0)">Salida Materia Prima</a></li>
+            <li class="breadcrumb-item ">Registro Salida Materi Prima</li>
+            
         </ol>
     </div>
 </div>
 <div class="card">
     <div class="card-header">
-        <h4 class="card-title pull-left">Salida del Producto</h4>
+        <h4 class="card-title pull-left">Salida del Producto Materia Prima</h4>
         @if (count($errors)>0)
             <div class="alert-alert-danger">
                 <ul>
@@ -24,22 +24,15 @@
         @endif
     </div> 
         <div class="card-body">
-        <h4 class="card-title">Datos del Ingreso</h4>
+        <h4 class="card-title">Datos de Salida</h4>
         <div class="form-body">
             <div class="row p-t-10">
                 <div class="col-lg-4">
                     <div class="form-group">
                         <label for="proveedor">Trabajador</label>
-                        <!-- <select name="idTrabajador" id="idTrabajador" class="form-control selectpicker" data-live-search="true">-->
-                            <!-- <option value="" selected="" disabled="">Seleccione</option> -->
-                           <!-- @foreach($trabajador as $tra)
-                           
-                           <option value="{{$tra->idTra}}">{{$tra->nombre.' '.$tra->apellidos}}</option>
-                           @endforeach   
-                        </select> -->
                         <input type="hidden" name="idTrabajador" id="idTrabajador" class="form-control" value="{{ $usuario[0]->id }}">
                         <input type="text" name="Nombres" id="Nombres" class="form-control" value="{{ $usuario[0]->nombre }} {{ $usuario[0]->apellidos }}" readonly >
-                        <!-- {{ $usuario[0]->id }} {{ $usuario[0]->apellidos }} -->
+                        
                     </div>
                 </div> 
                 <div class="col-lg-4">
