@@ -16,25 +16,107 @@
      
   </div>
     <div class="card-body">
+         <h4 class="card-title">Datos del Taller</h4>
         <div class="form-body">
-            {!! Form::open(['route'=>'taller-store','method'=>'POST']) !!}
-                   @include('Taller.partials.fields')
-                <button type="submit" class="btn waves-effect waves-light btn-success pull-right">Agregar</button>
-            {!! Form::close() !!}
+            <form action="{{ route('taller-store') }}" method="post" >
+                 @csrf
+
+                                         <div class="row p-t-20">
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label class="control-label">Codigo</label>
+                                                    <input type="text" name="codigoT" id="codigoT" class="form-control" placeholder="Asignar un codigo">
+                                                </div>
+                                            </div>
+                                            <!--/span-->
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label class="control-label">Nombre</label>
+                                                    <input type="text" id="nombre_taller" name="nombre_taller" class="form-control" placeholder="Nombre Taller">
+                                                 </div>
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label class="control-label">Telefono</label>
+                                                    <input type="text" id="numero" name="numero" class="form-control" placeholder="Ingrese numero Telefono">
+                                                    </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label>Tipo de Telefono</label>
+                                                <select  class="form-control selectpicker" id="idTipo_telefono" name="idTipo_telefono" data-live-search="true">
+                                                <option value="" disabled="" selected="">Seleccione Tipo Telefono</option>
+                                                @foreach($tipotelefono as $tt)                
+                                                <option value="{{$tt->id}}">{{$tt->nombre_tipo}}</option>
+                                                @endforeach  
+                                                </select>    
+                                                    </div>
+                                            </div>
+                                       
+                                             <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label>Operador</label>
+                                                <select  class="form-control selectpicker" id="idTipooperador" name="idTipooperador" data-live-search="true">
+                                                <option value="" disabled="" selected="">Seleccione el operador</option>
+                                                @foreach($operador as $op)                
+                                                <option value="{{$op->id}}">{{$op->nombre_operador}}</option>
+                                                @endforeach  
+                                                </select>    
+                                                    </div>
+                                            </div>
+
+                                                 <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label class="control-label">Direccion</label>
+                                                    <input type="text" id="direccionAL" name="direccionAL" class="form-control" placeholder="Ingrese la Direccion">
+                                                    </div>
+                                            </div>                                  
+                                            <div class="row p-t-2">
+                                        <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label class="control-label">Departamento</label>
+                                                  
+                                                <select  class="form-control selectpicker" id="departamento" name="departamento" data-live-search="true">
+                                                <option value="" disabled="" selected="">Seleccione</option>
+                                                @foreach($departamento as $depa)                
+                                                <option value="{{$depa->id}}">{{$depa->nombre_departamento}}</option>
+                                                @endforeach  
+                                                </select>   
+                                                </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                    <label class="control-label">Provincia</label>                                  
+                                                <select  class="form-control selectpicker" id="provincia" name="provincia" data-live-search="true">
+                                                    <option value="" disabled="" selected="">Seleccione</option>
+                                                </select>   
+                                                </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                        <div class="form-group">
+                                                    <label class="control-label">Distrito</label>                                  
+                                                <select  class="form-control selectpicker" id="distrito" nama="distrito" data-live-search="true">
+                                                    <option value="" disabled="" selected="">Seleccione</option>
+                                                </select>   
+                                                </div>
+                                        </div>
+                                    </div>
+                                            
+                                       
+                <button id="save" type="sumbit" class="btn waves-effect waves-light btn-success pull-right"><i class="far fa-save"></i>Agregar</button>
+
+                 </form>  
         </div>
     </div>
 </div>
-
-
 
 @push('scripts')
 <script>
     // $('#departamento').click(function(){
     //         console.log('departamento');
     // });
-
     // $("#departamento").change(console.log('entre'));
-
     var selectDepartamento = document.getElementById('departamento');
     selectDepartamento.addEventListener('change',function(){
         var selectedOption = this.options[selectDepartamento.selectedIndex];
@@ -52,8 +134,6 @@
         console.log(id);
         distrito(id);        
     });
-  
-
     function provincia(idDepartamento){
         console.log(idDepartamento,'-----');
       $.ajax({
@@ -68,7 +148,6 @@
             },
             success:  function (response) { //una vez que el archivo recibe el request lo procesa y lo devuelve
                 if(response.veri==true){
-
                     // var urlBase=window.location.origin;
                     // var url=urlBase+'/'+response.data;
                     // document.location.href=url;
@@ -100,7 +179,6 @@
             },
             success:  function (response) { //una vez que el archivo recibe el request lo procesa y lo devuelve
                 if(response.veri==true){
-
                     // var urlBase=window.location.origin;
                     // var url=urlBase+'/'+response.data;
                     // document.location.href=url;
@@ -118,8 +196,6 @@
             }
         });
     }
-
-
 </script>
 @endpush
 @endsection

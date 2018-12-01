@@ -12,7 +12,7 @@ use hermes\Distrito;
 use hermes\Provincia;
 use hermes\estado;
 use hermes\Telefono_proveedor;
-use hermes\Direccion_persona;
+use hermes\Direccion_TTA;
 use hermes\Tipo_telefono;
 
 
@@ -35,7 +35,8 @@ class ProveedorController extends Controller
     public function index()
     {
         $proveedor=DB::table('Proveedor as pro')
-         ->join( 'Direccion_persona as dire', 'dire.id','=','pro.idDireccionP')
+         //->join( 'Direccion_persona as dire', 'dire.id','=','pro.idDireccionP')
+         ->join( 'Direccion_TTA as dire', 'dire.id','=','pro.idDireccionP')
          ->join( 'Tipo_documento as tpdoc' , 'tpdoc.id','=','pro.idTipo_documento')
          ->join( 'estado as est' , 'est.id','=','pro.estado_idEstado')
         ->join( 'Telefono_proveedor as telepro','telepro.idProveedor','=','pro.id')
@@ -70,6 +71,7 @@ class ProveedorController extends Controller
     public function create()
     {
           $proveedor=DB::table('Proveedor')
+              ->where('estado_idEstado','=',1)
              ->get();
             $Direccion_persona=DB::table('Direccion_persona')    
             ->get();
@@ -109,7 +111,40 @@ class ProveedorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+       
+        $idDireccion=DB::table('Direccion_TTA')->insertGetId(
+            [
+            'direccionAL'=>$request->get('direccionAL'),
+            'Distrito_idDistrito'=>$request->get('distrito'),          
+            'Distrito_Provincia_idProvincia'=>$request->get('provincia'),
+            'Distrito_Provincia_Departamento_idDepartamento'=>$request->get('departamento'),
+            'estado_idEstado'=>1,
+            ]
+        );
+
+        $idProveedo=DB::table('Proveedor')->insertGetId(
+            [
+                'razon_social'=>$request->get('razon_social'),
+                'nro_documentoP'=>$request->get('nro_documentoP'),
+                'idTipo_documento'=>$request->get('idTipo_documento'),
+                'estado_idEstado'=>1,
+                'idDireccionP'=>$idDireccion,
+                
+            ]
+        );
+
+        
+
+        $teleproveedor=new Telefono_proveedor;
+        $teleproveedor->numero=$request->get('numero');
+        $teleproveedor->idProveedor=$idProveedo;
+        $teleproveedor->idTipo_telefono=$request->get('idTipo_telefono');;
+        $teleproveedor->idoperador=$request->get('idTipooperador');
+        $teleproveedor->estado_idEstado=1;
+        $teleproveedor->save();
+
+        return redirect('Proveedor');
     }
 
     /**
@@ -155,5 +190,29 @@ class ProveedorController extends Controller
     public function destroy($id)
     {
         //
+    }
+   public function provincia(Request $request)
+    {
+        $idDepartamento=$request->get('departamento');
+        $provincia=DB::table('Provincia')
+        ->where('Departamento_idDepartamento','=',$idDepartamento)
+        ->get();
+        // dd($request);
+        return ['provincia' =>$provincia,'veri'=>true];
+    }
+    public function distrito(Request $request)
+    {
+        $idProvincia=$request->get('Provincia');
+
+        $distrito=DB::table('Distrito')
+        ->where('Provincia_idProvincia','=',$idProvincia)
+        ->get();
+        // dd($request);
+        return ['distrito' =>$distrito,'veri'=>true];
+
+    //    id
+    //    nombre_distrito
+    //    Provincia_idProvincia
+    //    Provincia_Departamento_idDepartamento
     }
 }

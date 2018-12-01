@@ -64,6 +64,9 @@ Route::middleware(['auth','admin'])->group(function () {
     Route::get('Proveedor/editar/{id}',['as' => 'proveedor-editar','uses'=>'ProveedorController@edit']);
     Route::post('Proveedor/update/{id}',['as' => 'proveedor-update','uses'=>'ProveedorController@update']);
     Route::get('Proveedor/delete/{id}',['as' => 'proveedor-delete','uses'=>'ProveedorController@destroy']);
+    Route::post('Proveedor/departamento',['as'=>'proveedor-departamento','uses'=>'ProveedorController@provincia']);
+    Route::post('Proveedor/distrito',['as'=>'proveedor-distrito','uses'=>'ProveedorController@distrito']);
+    
     
     
 

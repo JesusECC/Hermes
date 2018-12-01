@@ -3,25 +3,129 @@
 <!-- vista create-->
 <div class="row page-titles">
     <div class="col-md-5 col-8 align-self-center">
-        <h3 class="text-themecolor">Editar Cliente</h3>
+        <h3 class="text-themecolor">Editar Proveedor</h3>
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="javascript:void(0)">Clientes</a></li>
-            <li class="breadcrumb-item ">Editar CLiente</li>
+            <li class="breadcrumb-item"><a href="javascript:void(0)">Proveedor</a></li>
+            <li class="breadcrumb-item ">Editar Proveedor</li>
             
         </ol>
     </div>
 </div>
 <div class="card">
   <div class="card-header">
-     <h4 class="card-title pull-left">Registrar Cliente</h4>
+     <h4 class="card-title pull-left">Actualizar Proveedor</h4>
      
   </div>
     <div class="card-body">
         <div class="form-body">
-             {!! Form::model($cliente, ['method'=>'POST','route' => ['cliente-update',$cliente->id]]) !!}
-            @include('cliente.partials.update')
+              <form action="{{ route('proveedor-update') }}" method="get" >
+            @csrf
+
+                                         <div class="row p-t-20">
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label class="control-label">Razon Social</label>
+                                                    <input type="text" name="nombreper" id="nombreper" class="form-control" placeholder="Asignar Nombre">
+                                                </div>
+                                            </div>
+                                             <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label>Tipo de Documento</label>
+                                                            <select  class="select2" id="idTipo_documento" name="idTipo_documento" data-live-search="true">
+                                                            <option value="" disabled="" selected="">Seleccione Tipo Telefono</option>
+                                                            @foreach($tipodocumento as $tt)                
+                                                            <option value="{{$tt->id}}">{{$tt->nombre_TD}}</option>
+                                                            @endforeach  
+                                                            </select>    
+                                                    </div>
+                                                </div>
+                                                 <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label class="control-label">N°Documento</label>
+                                                            <input type="text" id="nro_documentoP" name="nro_documentoP" class="form-control" placeholder="Ingrese documento">
+                                                         </div>
+                                                     </div>    
+                                        </div>
+                                         <div class="row p-t-20">
+                                                <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label>Tipo de Telefono</label>
+                                                                <select  class="select2" id="idTipo_telefono" name="idTipo_telefono" data-live-search="true">
+                                                                <option value="" disabled="" selected="">Seleccione Tipo Telefono</option>
+                                                                @foreach($tipotelefono as $tt)                
+                                                                <option value="{{$tt->id}}">{{$tt->nombre_tipo}}</option>
+                                                                @endforeach  
+                                                                </select>    
+                                                        </div>
+                                               </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label class="control-label">Telefono</label>
+                                                        <input type="text" id="numero" name="numero" class="form-control" placeholder="Ingrese numero Telefono">
+                                                    </div>
+                                                </div>
+                                                 <div class="col-md-4">
+                                                        <div class="form- group">
+                                                            <label>Operador</label>
+                                                                <select  class="select2" id="idTipooperador" name="idTipooperador" data-live-search="true">
+                                                                <option value="" disabled="" selected="">Seleccione el operador</option>
+                                                                @foreach($operador as $op)                
+                                                                <option value="{{$op->id}}">{{$op->nombre_operador}}</option>
+                                                                @endforeach  
+                                                                </select>    
+                                                        </div>
+                                                 </div>
+                                            </div>
+                                            <div class="row p-t-20">
+                                                     <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label class="control-label">Direccion</label>
+                                                                    <input type="text" id="nombre_direccion" name="nombre_direccion" class="form-control" placeholder="Ingrese la Direccion">
+                                                                </div>
+                                                         </div>
+                                             </div>
+                                                     
+                
+                                                    <div class="row p-t-20">
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label>Departamento</label>
+                                                                <select  class="select2" id="departamento" name="departamento" data-live-search="true">
+                                                                <option value="" disabled="" selected="">Seleccione Departamento</option>
+                                                                @foreach($departamento as $de)                
+                                                                <option value="{{$de->id}}">{{$de->nombre_departamento}}</option>
+                                                                @endforeach  
+                                                                </select>    
+                                                            </div>
+                                                        </div>
+                                                         <div class="col-md-4">
+                                                                <div class="form-group">
+                                                                    <label>Provincia</label>
+                                                                    <select  class="select2" id="provincia" name="provincia" data-live-search="true">
+                                                                    <option value="" disabled="" selected="">Seleccione Provincia</option>
+                                                                    @foreach($provincia as $pro)                
+                                                                    <option value="{{$pro->id}}">{{$pro->nombre_provincia}}</option>
+                                                                    @endforeach  
+                                                                    </select>    
+                                                                </div>
+                                                         </div>
+                                                         <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                    <label>Distrito</label>
+                                                                    <select  class="select2" id="distrito" name="distrito" data-live-search="true">
+                                                                    <option value="" disabled="" selected="">Seleccione Distrito</option>
+                                                                    @foreach($distrito as $dis)                
+                                                                    <option value="{{$dis->id}}">{{$dis->nombre_distrito}}</option>
+                                                                    @endforeach  
+                                                                    </select>    
+                                                            </div>
+                                                         </div>
+                                                        
+                                                    </div>
+
                 <button type="submit" class="btn waves-effect waves-light btn-success pull-right">Actualizar</button>
-            {!! Form::close() !!}
+            </form> 
+          </div>
         </div>
     </div>
 </div>
