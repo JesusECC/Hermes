@@ -2,7 +2,7 @@
 @section('content')
 <form class="form-horizontal form-material" id="loginform" method="POST" action="{{ route('login-user') }}">
     @csrf
-        <a href="javascript:void(0)" class="text-center db"><img src="{{asset('images/logo-icon.png')}}" alt="Home" /><br/>            
+        <a href="javascript:void(0)" class="text-center db"><img src="{{asset('images/logo-icon.jpg')}}" width="200" style="border-radius:50px" alt="Home" /><br/>            
         </a>        
         <div class="form-group m-t-40">
           <div class="col-xs-12">

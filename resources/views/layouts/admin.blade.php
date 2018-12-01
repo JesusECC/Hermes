@@ -61,9 +61,8 @@
                         <!-- Logo icon --><b>
                             <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
                             <!-- Dark Logo icon -->
-                            <img src="{{asset('images/logo-icon.png')}}" alt="homepage" class="dark-logo" />
                             <!-- Light Logo icon -->
-                            <img src="{{asset('images/logo-light-icon.png')}}" alt="homepage" class="light-logo" />
+                            <img src="{{asset('images/logo-icon.jpg')}}" width="60" style="border-radius: 80px" alt="homepage" class="light-logo" />
                         </b>
                         <!--End Logo icon -->
                         <!-- Logo text --><span>
@@ -157,59 +156,104 @@
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
                         <li class="nav-small-cap">MANTIS CODE</li>
-                        <li> <a class="has-arrow waves-effect waves-dark" href="{{ route('principal') }}" aria-expanded="false"><i class="mdi mdi-gauge"></i><span class="hide-menu">Panel de Control</span></a>
+                        <li>
+                            <a class="has-arrow waves-effect waves-dark" href="{{ route('principal') }}" aria-expanded="false">
+                                <i class="mdi mdi-gauge"></i>
+                                <span class="hide-menu">Panel de Control</span>
+                            </a>
                         </li>
                         <!-- persona -->
-                        <li> <a class="has-arrow waves-effect waves-dark" href="" aria-expanded="false"><i class="mdi mdi-barcode"></i><span class="hide-menu">Persona</span></a>
+                        <li>
+                            <a class="has-arrow waves-effect waves-dark" href="" aria-expanded="false">
+                                <i class="mdi mdi-barcode"></i>
+                                <span class="hide-menu">Productos</span>
+                            </a>
                             <ul aria-expanded="false" class="collapse">
-                                <li><a href="{{ route('documento-index') }}">Tipo Documento</a></li>
-                                <li><a href="{{ route('tipocliente') }}">Tipo Cliente</a></li>
+                                <li><a href="">Detalle producto</a></li>
+                                <li><a href="">Detalle Producto 2</a></li>
                             </ul>
                         </li>
                         <!-- fin de persona -->
                         <!-- usuarios -->
-                        <li> <a class="has-arrow waves-effect waves-dark" href="" aria-expanded="false"><i class="mdi mdi-barcode"></i><span class="hide-menu">Usuarios</span></a>
+                        <li>
+                            <a class="has-arrow waves-effect waves-dark" href="" aria-expanded="false">
+                                <i class="mdi mdi-barcode"></i>
+                                <span class="hide-menu">Clientes</span>
+                            </a>
                             <ul aria-expanded="false" class="collapse">
-                                <li><a href="{{ route('usuarios-index') }}">Usuarios</a></li>
-                                <li><a href="{{ route('rol-index') }}">Roles</a></li>
+                                <li><a href="">Detalle cliente</a></li>
+                                <li><a href="">Detalle cliente 2</a></li>
                             </ul>
                         </li>
                         <!-- fin de usuarios -->
-                        <li> <a class="has-arrow waves-effect waves-dark" href="" aria-expanded="false"><i class="mdi mdi-barcode"></i><span class="hide-menu">Productos</span></a>
+                        <li>
+                            <a class="has-arrow waves-effect waves-dark" href="" aria-expanded="false">
+                                <i class="mdi mdi-barcode"></i>
+                                <span class="hide-menu">Trabajadores</span>
+                            </a>
                             <ul aria-expanded="false" class="collapse">
-                                <li><a href="{{ route('producto') }}">Ingreso Producto final</a></li>
-                                <li><a href="{{ route('detalle_producto-create') }}">Detalle Producto</a></li>
-                                <li><a href="{{ route('ingreso') }}">Producto Final</a></li>
-                                <li><a href="{{ route('ingresoMP') }}">Ingreso Materia Prima</a></li>
-                                <li><a href="{{ route('salida-index') }}">Salida Producto Final</a></li>
-                                <li><a href="{{ route('tipo_salida_mp-index') }}">Salida Materia Prima</a></li>
-                                <li><a href="{{ route('almacen') }}">Almacen</a></li>
+                                <li><a href="">Detalle Trabajadores</a></li>
+                                <li><a href="">Detalle Trabajadores 2</a></li>
                             </ul>
                         </li>
                         <!-- taller -->
-                        <li> <a class="has-arrow waves-effect waves-dark" href="" aria-expanded="false"><i class="mdi mdi-barcode"></i><span class="hide-menu">Taller</span></a>
+                        <li>
+                            <a class="has-arrow waves-effect waves-dark" href="" aria-expanded="false">
+                                <i class="mdi mdi-barcode"></i>
+                                <span class="hide-menu">Salida Productos</span>
+                            </a>
                             <ul aria-expanded="false" class="collapse">
-                                <li><a href="{{ route('taller') }}">Taller</a></li>
+                                <li>
+                                    <a href="">Salida detalle</a>
+                                </li>
+                                <li>
+                                    <a href="">Salida detalle 2</a>
+                                </li>
                             </ul>
                         </li>
-                        <!-- <li> <a class="has-arrow waves-effect waves-dark" href="{{ route('principal') }}" aria-expanded="false"><i class="mdi mdi-account-multiple"></i><span class="hide-menu">Proveedores</span></a>
-                        </li> -->
-                        <li> <a class="has-arrow waves-effect waves-dark" href="{{ route('principal') }}" aria-expanded="false"><i class="mdi mdi-domain"></i><span class="hide-menu">Tiendas</span></a>
+                        <li>
+                            <a class="has-arrow waves-effect waves-dark" href="" aria-expanded="false">
+                                <i class="mdi mdi-domain"></i>
+                                <span class="hide-menu">Ingresos Productos</span>
+                            </a>
                             <ul aria-expanded="false" class="collapse">
-                                <li><a href="{{ route('tienda') }}">Ingreso Tienda</a></li>
+                                <li>
+                                    <a href="">Ingreso detalle</a>
+                                </li>
+                                <li>
+                                    <a href="">Ingreso detalle 2</a>
+                                </li>
                             </ul>
                         </li>
-                        <li><a class="has-arrow waves-effect waves-dark" href="{{ route('principal') }}" aria-expanded="false"><i class="mdi mdi-clipboard-text"></i><span class="hide-menu">Control</span></a>
+                        <li>
+                            <a class="has-arrow waves-effect waves-dark" href="" aria-expanded="false">
+                                <i class="mdi mdi-clipboard-text"></i>
+                                <span class="hide-menu">Reportes</span>
+                            </a>
                             <ul aria-expanded="false" class="collapse">
-                                <li><a href="{{ route('principal') }}">Kardex</a></li>
-                                <li><a href="{{ route('principal') }}">Nota de Pedido</a></li>
+                                <li><a href="">Reportes detalle</a></li>
+                                <li><a href="">Reportes detalle 2</a></li>
                             </ul>
                         </li>
                         <!-- usuarios -->
-                        <li> <a class="has-arrow waves-effect waves-dark" href="" aria-expanded="false"><i class="mdi mdi-barcode"></i><span class="hide-menu">Configuraciones</span></a>
+                        <li>
+                            <a class="has-arrow waves-effect waves-dark" href="" aria-expanded="false">
+                                <i class="mdi mdi-barcode"></i>
+                                <span class="hide-menu">Usuarios</span>
+                            </a>
                             <ul aria-expanded="false" class="collapse">
-                                <li><a href="{{ route('estado-index') }}">Estados</a></li>
-                                <li><a href="{{ route('tipocomprobante') }}">Tipo de Comprobante</a></li>
+                                <li><a href="">Usuarios Detalle</a></li>
+                                <li><a href="">Usuarios Detalle 2</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="has-arrow waves-effect waves-dark" href="" aria-expanded="false">
+                                <i class="mdi mdi-barcode"></i>
+                                <span class="hide-menu">Configuración</span>
+                            </a>
+                            <ul aria-expanded="false" class="collapse">
+                                <li><a href="">Configuración Detalle</a></li>
+                                <li><a href="">Configuración Detalle 2</a></li>
                             </ul>
                         </li>
                         <!-- fin de usuarios -->
