@@ -36,28 +36,22 @@ class ProveedorController extends Controller
     {
         $proveedor=DB::table('Proveedor as pro')
          //->join( 'Direccion_persona as dire', 'dire.id','=','pro.idDireccionP')
-         ->join( 'Direccion_TTA as dire', 'dire.id','=','pro.idDireccionP')
-         ->join( 'Tipo_documento as tpdoc' , 'tpdoc.id','=','pro.idTipo_documento')
-         ->join( 'estado as est' , 'est.id','=','pro.estado_idEstado')
+        ->join( 'Direccion_TTA as dire', 'dire.id','=','pro.idDireccionP')
+        ->join( 'Tipo_documento as tpdoc' , 'tpdoc.id','=','pro.idTipo_documento')
+        ->join( 'estado as est' , 'est.id','=','pro.estado_idEstado')
         ->join( 'Telefono_proveedor as telepro','telepro.idProveedor','=','pro.id')
         ->join( 'operador as ope','ope.id','=','telepro.idoperador')
-       ->join( 'Tipo_telefono as tele','tele.id','=','telepro.idTipo_telefono')
+        ->join( 'Tipo_telefono as tele','tele.id','=','telepro.idTipo_telefono')
 
         ->join( 'Distrito as dis','dis.id','=','dire.Distrito_idDistrito')
         ->join( 'Provincia as prov','prov.id','=','dis.Provincia_idProvincia')
         ->join( 'Departamento as depa','depa.id','=','prov.Departamento_idDepartamento')
+        ->select('pro.id as proid','dire.id as direcid','telepro.id as teleproid','pro.razon_social','pro.nro_documentoP','tpdoc.id','tpdoc.nombre_TD','dire.direccionAL','tele.nombre_tipo',DB::raw('CONCAT(depa.nombre_departamento,"/",prov.nombre_provincia,"/",dis.nombre_distrito) as direc'),'ope.nombre_operador')
 
-    
-             ->select('pro.id as proid','dire.id as direcid','telepro.id as teleproid','pro.razon_social','pro.nro_documentoP','tpdoc.id','tpdoc.nombre_TD','dire.nombre_direccion','tele.nombre_tipo',DB::raw('CONCAT(depa.nombre_departamento,"/",prov.nombre_provincia,"/",dis.nombre_distrito) as direc'),'ope.nombre_operador')
-
-          ->where('est.tipo_estado','=',1)
-         ->orderBy('pro.id','desc')
-
-            ->paginate(5);
-             
-
-
-                    return view('Proveedor.index',['proveedor'=>$proveedor]);
+        ->where('est.tipo_estado','=',1)
+        ->orderBy('pro.id','desc')
+        ->paginate(5);  
+        return view('Proveedor.index',['proveedor'=>$proveedor]);
     
 
 
