@@ -252,217 +252,127 @@ border-collapse: collapse;
 </style>
 <body>
   <header class="clearfix" style="margin-top: -20px;margin-bottom: 20px">  
-    <table width="100%" > 
-          <tr align="center" valign="middle"> 
-           
+    <table width="100%" >  
           <th colspan="10" class="cotizacion" align="center">
             <div class="proforma">
           Reportes del Dia
             </div>
           </th>     
     </table>
+  </header>
+  <main>
+    <div class="card">
+      <div class="card-body">
+        <label for="" style="margin: 5px !important">Ingreso</label>
+        <div style="margin-top: 15px !important">
+          <table class="table table-striped table-bordered" width="100%">
+            <tr style="border-bottom: 2px solid #7D7D7D !important">
+              <th colspan="1"  style="border-bottom: solid 5px #323639 !important;background-color: #7D7D7D;color: white;text-align: center;">Taller</th>
+              <th colspan="1"  style="border-bottom: solid 5px #323639 !important;background-color: #7D7D7D;color: white;text-align: center;">Nro. Guía</th>
+              <th colspan="1"  style="border-bottom: solid 5px #323639 !important;background-color: #7D7D7D;color: white;text-align: center;">Código</th>
+              <th colspan="1"  style="border-bottom: solid 5px #323639 !important;background-color: #7D7D7D;color: white;text-align: center;">Código de Barras</th>
+              <th colspan="1"  style="border-bottom: solid 5px #323639 !important;background-color: #7D7D7D;color: white;text-align: center;">Color</th>
+              <th colspan="1"  style="border-bottom: solid 5px #323639 !important;background-color: #7D7D7D;color: white;text-align: center;">Talla</th>
+              <th olspan="1"  style="border-bottom: solid 5px #323639 !important;background-color: #7D7D7D;color: white;text-align: center;">Cantidad</th>
+            </tr>
+            {{$i=1}}
+            @foreach($ingreso as $i)
+              <tr class="principal"> 
+                <td colspan="1" style="border: 1px solid black;font-size: 11px;text-align: center;">{{$i->nombre_taller}}</td>
+                 <td colspan="1" style="border: 1px solid black;font-size: 11px;text-align: center;">{{$i->nro_guia_PF}}</td>
+                <td colspan="1" style="border: 1px solid black;font-size: 11px;text-align: center;">{{$i->codigo_PF}}</td>
+                <td colspan="1" style="border: 1px solid black;font-size: 11px;text-align: center;">{{$i->codigo_bar}}</td>
+                <td colspan="1" style="border: 1px solid black;font-size: 11px;text-align: center;">{{$i->colorPF}}</td>
+                <td colspan="1" style="border: 1px solid black;font-size: 11px;text-align: center;">{{$i->tallaPF}}</td>
+                <td colspan="1" style="border: 1px solid black;font-size: 11px;text-align: center;">{{$i->cantidadPF}}</td>
+              </tr>
+            @endforeach
+          </table>
+          <table id="example" class="table table-striped table-bordered" style="width:100%">
+            <tr style="border-bottom: 2px solid #7D7D7D !important">
+              <th colspan="7" style="border-bottom: solid 5px #323639 !important;background-color: #7D7D7D;color: white;text-align: center;"> 
+                Ingresos del Dia
+              </th>
+            </tr>
+            <tr>
+              <th colspan="6"  style="border: 1px solid black">Total</th>
+              <th colspan="1" style="border: 1px solid black">{{$ingreso2[0]->IngresoTotal}}</th>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <label for="" style="margin: 5px !important">Salida</label>
+        <div style="margin-top: 15px !important">
+          <table class="table table-striped table-bordered" width="100%">
+            <tr style="border-bottom: 2px solid #7D7D7D !important">
+              <th colspan="1"  style="border-bottom: solid 5px #323639 !important;background-color: #7D7D7D;color: white;text-align: center;">Taller</th>
+              <th colspan="1"  style="border-bottom: solid 5px #323639 !important;background-color: #7D7D7D;color: white;text-align: center;">Nro. Guía</th>
+              <th colspan="1"  style="border-bottom: solid 5px #323639 !important;background-color: #7D7D7D;color: white;text-align: center;">Código</th>
+              <th colspan="1"  style="border-bottom: solid 5px #323639 !important;background-color: #7D7D7D;color: white;text-align: center;">Código de Barras</th>
+              <th colspan="1"  style="border-bottom: solid 5px #323639 !important;background-color: #7D7D7D;color: white;text-align: center;">Color</th>
+              <th colspan="1"  style="border-bottom: solid 5px #323639 !important;background-color: #7D7D7D;color: white;text-align: center;">Talla</th>
+              <th olspan="1"  style="border-bottom: solid 5px #323639 !important;background-color: #7D7D7D;color: white;text-align: center;">Cantidad</th>
+            </tr>
+            @foreach($salida2 as $s2)
+                <tr>
+                  <td colspan="1" style="border: 1px solid black;font-size: 11px;text-align: center;">{{$s2->nombre}} {{$s2->apellidos}}</td>
+                  <td colspan="1" style="border: 1px solid black;font-size: 11px;text-align: center;">{{$s2->nombre_direccion}} {{$s2->nombre_departamento}} {{$s2->nombre_provincia}} {{$s2->nombre_distrito}}</td>
+                  <td colspan="1" style="border: 1px solid black;font-size: 11px;text-align: center;">{{$s2->codigoPV}}</td>
+                  <td colspan="1" style="border: 1px solid black;font-size: 11px;text-align: center;">{{$s2->codigo_barr}}</td>
+                  <td colspan="1" style="border: 1px solid black;font-size: 11px;text-align: center;">{{$s2->colorVP}}</td>
+                  <td colspan="1" style="border: 1px solid black;font-size: 11px;text-align: center;">{{$s2->tallaVP}}</td>
+                  <td colspan="1" style="border: 1px solid black;font-size: 11px;text-align: center;">{{$s2->cantidadPF}}</td>
+                </tr>   
+            @endforeach            
+          </table>
+          <table id="example" class="table table-striped table-bordered" style="width:100%">
+            <tr style="border-bottom: 2px solid #7D7D7D !important">
+              <td colspan="7" style="border-bottom: solid 5px #323639 !important;background-color: #7D7D7D;color: white;text-align: center;"> 
+                Salidas del Dia
+              </td>
+            </tr>
+            <tr>
+              <td colspan="6"  style="border: 1px solid black">Total</td>
+              <td colspan="1" style="border: 1px solid black">{{$salida[0]->SalidaTotal}}</td>
+            </tr>
+            <tr>
+                <td colspan="7" style="color: white;height: 10px">espacio</td>
+            </tr> 
 
-
-
-
-<div class="card">
-     <div class="card-body">
-        <div class="">
-            <label>INGRESO</label>
-           
-
-                <div id="main-container"> 
-      <table class="principal" width="100%"> 
-        <thead class="principal"> 
-          <tr class="principal"> 
-            
-            <th class="principal" >Taller.</th>
-            <th class="principal" >Nro. Guia </th>
-            <th class="principal" >Codigo</th>
-            <th class="principal" >Codigo de Barras</th>
-            <th class="principal" >Color</th>
-            <th class="principal" >Talla</th>
-            <th class="principal" >Cantidad</th>
-          </tr>
-        </thead>
-                <tbody>
-                
-                  
-          
-          {{$i=1}}
-          @foreach($ingreso as $i)
-          
-          <tr class="principal"> 
-            
-            
-            <td class="principal" style="font-size: 11px !important;border: 1px solid black">{{$i->nombre_taller}}</td>
-             <td class="principal" align="center" style="border: 1px solid black" >{{$i->nro_guia_PF}}</td>
-            <td class="principal" align="center" style="border: 1px solid black" >{{$i->codigo_PF}}</td>
-            <td class="principal"  align="center" style="border: 1px solid black">{{$i->codigo_bar}}</td>
-            <td class="principal" align="center" style="border: 1px solid black">{{$i->colorPF}}</td>
-            <td class="principal" align="center" style="border: 1px solid black">{{$i->tallaPF}}</td>
-            <td class="principal" align="center" style="border: 1px solid black">{{$i->cantidadPF}}</td>
-          </tr>
-          @endforeach
-          
-        </tbody>
-               
-            </table>
+            <tr>
+              <td colspan="5"></td>
+              <td colspan="1" style="text-align: right;font-size: 12px">STOCK INICIAL</td>
+              <td colspan="1" style="text-align: center;font-size: 15px;">{{$reporte[0]->StockTotal}}</td>
+            </tr>
+            <tr>
+              <td colspan="5"></td>
+              <td colspan="1" style="text-align: right;font-size: 12px">
+                MAS
+              </td>
+              <td colspan="1" style="text-align: center;font-size: 15px;">{{$ingreso2[0]->IngresoTotal}}</td>
+            </tr>
+            <tr>
+              <td colspan="5"></td>
+              <td colspan="1"></td>
+              <td colspan="1" style="text-align: center;font-size: 15px;">{{$reporte[0]->StockTotal+$ingreso2[0]->IngresoTotal}}</td>              
+            </tr>
+            <tr>
+              <td colspan="5"></td>
+              <td colspan="1" style="text-align: right;font-size: 12px">MENOS</td>
+              <td colspan="1" style="text-align: center;font-size: 15px;">{{$salida[0]->SalidaTotal}}</td>
+            </tr>
+            <tr>
+              <td colspan="5"></td>
+              <td colspan="1" style="text-align: right;font-size: 12px">CIERRE DE DÍA</td>
+              <td colspan="1" style="text-align: center;font-size: 15px;">{{$reporte2[0]->Total}}</td>
+            </tr>
+          </table>
         </div>
+      </div>
     </div>
-    <div class="card-body">
-        <div class="">
-            <table id="example" class="table table-striped table-bordered" style="width:100%">
-                <thead class="principal"> 
-          <tr class="principal"> 
-                        <th class="principal" >Ingresos del Dia</th>
-                        <th></th>
-                        
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>   
-                       <td class="principal" style="font-size: 11px !important;border: 1px solid black">Total</td>
-                        <td class="principal" style="font-size: 11px !important;border: 1px solid black">{{$ingreso2[0]->IngresoTotal}}</td>
-                    </tr>   
-                </tbody>
-            </table>
-        </div>
-    </div>
-    <div class="card-body">
-        <div class="">
-            <label>SALIDA</label>
-           
-
-                <div id="main-container"> 
-      <table class="principal" width="100%"> 
-        <thead class="principal"> 
-          <tr class="principal"> 
-                        <th class="principal" >Cliente</th>
-                        <th class="principal" >WIP</th>
-                        <th class="principal" >Codigo</th>
-                        <th class="principal" >Codigo de Barras</th>
-                        <th class="principal" >Color</th>
-                        <th class="principal" >Talla</th>
-                        <th class="principal" >Cantidad</th>
- 
-                    </tr>
-                </thead>
-                <tbody>
-                @foreach($salida2 as $s2)
-                    <tr>
-                        <td class="principal" style="font-size: 11px !important;border: 1px solid black">{{$s2->nombre}} {{$s2->apellidos}}</td>
-                        <td class="principal" style="font-size: 11px !important;border: 1px solid black">{{$s2->nombre_direccion}} {{$s2->nombre_departamento}} {{$s2->nombre_provincia}} {{$s2->nombre_distrito}}</td>
-                        <td class="principal" style="font-size: 11px !important;border: 1px solid black">{{$s2->codigoPV}}</td>
-                        <td class="principal" style="font-size: 11px !important;border: 1px solid black">{{$s2->codigo_barr}}</td>
-                        <td class="principal" style="font-size: 11px !important;border: 1px solid black">{{$s2->colorVP}}</td>
-                        <td class="principal" style="font-size: 11px !important;border: 1px solid black">{{$s2->tallaVP}}</td>
-                        <td class="principal" style="font-size: 11px !important;border: 1px solid black">{{$s2->cantidadPF}}</td>
-                    </tr>   
-                @endforeach
-                </tbody>
-            </table>
-        </div>
-    </div>
-    <div class="card-body">
-        <div class="">
-            <table id="example" class="table table-striped table-bordered" style="width:100%">
-                <thead class="principal"> 
-          <tr class="principal"> 
-                        <th class="principal">Salidas del Dia</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>     
-                    <tr>
-                        <td class="principal" style="font-size: 11px !important;border: 1px solid black">Total</td>
-                        <td class="principal" style="font-size: 11px !important;border: 1px solid black">{{$salida[0]->SalidaTotal}}</td>
-                    </tr>   
-                </tbody>              
-            </table>
-        </div>
-
-    <div class="card-body">
-        <div class="">
-            <table id="example" class="table table-striped table-bordered" style="width:100%">
-                <thead>
-                    <tr>
-                        <th>Stock Inicial</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>{{$reporte[0]->StockTotal}}</td>
-                    </tr>   
-                </tbody> 
-            </table>
-        </div>
-    </div>
-    <div class="card-body">
-        <div class="">
-            <table id="example" class="table table-striped table-bordered" style="width:100%">
-                <thead>
-                    <tr>
-                        <th>MAS</th> 
-                    </tr>
-                </thead>
-                <tbody>   
-                    <tr>   
-                        <td>{{$ingreso2[0]->IngresoTotal}}</td>
-                    </tr>    
-                </tbody> 
-            </table>
-        </div>
-    </div>
-    <div class="card-body">
-        <div class="">
-            <table id="example" class="table table-striped table-bordered" style="width:100%">
-                <thead>
-                    <tr>
-                        <th>Total</th>  
-                    </tr>
-                </thead>
-                <tbody>
-                
-                    <tr>
-                        <td>{{$reporte[0]->StockTotal+$ingreso2[0]->IngresoTotal}}</td>
-                    </tr>   
-                </tbody>
-            </table>
-        </div>
-    </div>
-    
-    <div class="card-body">
-        <div class="">
-            <table id="example" class="table table-striped table-bordered" style="width:100%">
-                <thead>
-                    <tr>
-                        <th>MENOS</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>{{$salida[0]->SalidaTotal}}</td>
-                    </tr>    
-                </tbody>   
-            </table>
-        </div>
-    </div>
-    <div class="card-body">
-        <div class="">
-            <table id="example" class="table table-striped table-bordered" style="width:100%">
-                <thead>
-                    <tr>
-                        <th>Cierre del Dia</th>  
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>{{$reporte2[0]->Total}}</td>
-                    </tr>   
-                </tbody> 
-            </table>
-        </div>
-    </div>
-   
-</div>
+  </main>
+</body>
+</html>
