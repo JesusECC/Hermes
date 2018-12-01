@@ -31,9 +31,6 @@
                     </tr>
                 </thead>
                 <tbody>
-            
-                
-            </tr>   
                
                 </tbody>
             </table>
