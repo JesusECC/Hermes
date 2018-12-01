@@ -40,7 +40,7 @@
 					<td>
 					
 					</a>
-					<a href="" data-target="#modal-delete-{{$ing->id}}" data-toggle="modal"><button class="btn btn-danger">anular</button></a>
+					
 					</td>
 				</tr>
 			 </td>

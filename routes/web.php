@@ -241,6 +241,8 @@ Route::middleware(['auth','admin'])->group(function () {
     Route::get('salidaVenta/delete/{id}',['as'=>'salidaVenta-delete','uses'=>'SalidaVentaController@destroy']);
     // ajax de salidaventa
     Route::post('salidaVenta/barras',['as'=>'salidaVenta-cod','uses'=>'SalidaVentaController@codBarra']);
+    Route::get('salidaVenta/show/{id}',['as'=>'salidaVenta-show','uses'=>'SalidaVentaController@show']);
+
     
     
     //operador
