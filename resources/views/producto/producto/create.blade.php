@@ -37,7 +37,7 @@
                         <select name="pidDetalle_produto" class="form-control selectpicker" id="pidDetalle_produto" data-live-search="true">
                             <option value="" disabled="" selected="">Producto</option>
                             @foreach($detalle_producto as $tp)                
-                            <option value="{{$tp->id}}">{{$tp->nombre_producto}}</option>
+                            <option value="{{$tp->id}}">{{$tp->codigo_Prod}}</option>
                             @endforeach  
                         </select>   
                 </div>                     
@@ -102,12 +102,7 @@
             </div>
             <div class="row">
                 
-                <div class="col-md-3">
-                    <label>Stock</label>
-                    <div class="input-group">
-                        <input type="text" name="pstockP" id="pstockP" class="form-control"  placeholder="stock">                        
-                    </div>
-                </div>
+                
                 <div class="col-md-4">
                     <div class="input-group" style="margin-top: 35px">
                         <button type="button" id="bt_add" class="btn btn-primary">Agregar</button>                        
@@ -131,7 +126,7 @@
                                                 <th>Cod. Barras</th>
                                                 <th>Talla</th>
                                                 <th>Color</th>
-                                                <th>Stock</th>
+                                               
                                                 <th>Precio</th>
                                                 
                                                 
@@ -192,7 +187,7 @@ function agregar()
     color=$("#pColor_idColor option:selected").text();
     idAlmacen_idAlmacen=$("#pAlmacen_idAlmacen").val();
     almacen=$("#pAlmacen_idAlmacen option:selected").text();
-    stock=$("#pstockP").val();
+    
     precio=$("#pprecio_unitario").val();
     
    
@@ -200,7 +195,7 @@ function agregar()
     if(idProducto!="" )
     {
        
-   var fila='<tr class="selected" id="fila'+cont+'"><td><button type="button" class="btn btn-warning" onclick="eliminar('+cont+');">X</button></td> <td><input type="hidden" name="idDetalle_produto[]" value="'+idProducto+'">'+producto+'</td> <td><input type="hidden" name="Almacen_idAlmacen[]" value="'+idAlmacen_idAlmacen+'">'+almacen+'</td> <td><input type="hidden" name="CodigoB_Producto[]" value="'+codigo+'">'+codigo+'</td> <td><input type="hidden" name="Tallas_idTallas[]" value="'+idTalla+'">'+talla+'</td> <td><input type="hidden" name="Color_idColor[]" value="'+idColor+'">'+color+'</td> <td><input type="hidden" name="stockP[]" value="'+stock+'">'+stock+'</td> <td><input type="hidden" name="precio_unitario[]" value="'+precio+'">'+precio+'</td> </tr>';
+   var fila='<tr class="selected" id="fila'+cont+'"><td><button type="button" class="btn btn-warning" onclick="eliminar('+cont+');">X</button></td> <td><input type="hidden" name="idDetalle_produto[]" value="'+idProducto+'">'+producto+'</td> <td><input type="hidden" name="Almacen_idAlmacen[]" value="'+idAlmacen_idAlmacen+'">'+almacen+'</td> <td><input type="hidden" name="CodigoB_Producto[]" value="'+codigo+'">'+codigo+'</td> <td><input type="hidden" name="Tallas_idTallas[]" value="'+idTalla+'">'+talla+'</td> <td><input type="hidden" name="Color_idColor[]" value="'+idColor+'">'+color+'</td>  <td><input type="hidden" name="precio_unitario[]" value="'+precio+'">'+precio+'</td> </tr>';
 
        cont++;
        limpiar();
