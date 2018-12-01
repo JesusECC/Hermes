@@ -30,7 +30,7 @@ Route::middleware(['auth','admin'])->group(function () {
         Route::get('Almacen/editar/{id}',['as' => 'almacen-editar','uses'=>'AlmacenController@edit']);
             Route::post('Almacen/update/{id}',['as' => 'almacen-update','uses'=>'AlmacenController@update']);
     
-            Route::get('Almacen/delete/{id}',['as' => 'almacen-detele','uses'=>'AlmacenController@destroy']);
+            Route::get('Almacen/delete/{id}',['as' => 'almacen-delete','uses'=>'AlmacenController@destroy']);
     
     // tienda
     Route::get('Tienda',['as'=>'tienda','uses'=>'TiendaController@index']);

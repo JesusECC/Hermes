@@ -36,7 +36,7 @@ class AlmacenController extends Controller
                  ->join('Tienda as tie','tie.id','=','a.Tienda_idTienda')
                       ->join('Tipo_telefono as tp','tp.id','=','Ta.idTipo_telefono')
 
-                 ->select('a.codigo','a.nombre_almacen','tie.nombre_tienda','Ta.numero','tp.nombre_tipo',DB::raw('CONCAT(depa.nombre_departamento,"/",pro.nombre_provincia,"/",dis.nombre_distrito) as direc'),'dire.direccionAL','op.nombre_operador')
+                 ->select('a.id','a.codigo','a.nombre_almacen','tie.nombre_tienda','Ta.numero','tp.nombre_tipo',DB::raw('CONCAT(depa.nombre_departamento,"/",pro.nombre_provincia,"/",dis.nombre_distrito) as direc'),'dire.direccionAL','op.nombre_operador')
                 ->where('est.tipo_estado','=',1)
                  ->orderBy('a.id','desc')
 
@@ -160,9 +160,9 @@ class AlmacenController extends Controller
     {
         
 
-        $almacen=Almacen::find($id);
-        $almacen->estado_idEstado=2;
-        $almacen->update();
+        $Almacen=Almacen::find($id);
+        $Almacen->idEstado=2;
+        $Almacen->update();
         return redirect('Almacen');
     }
 
