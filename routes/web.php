@@ -55,6 +55,21 @@ Route::middleware(['auth','admin'])->group(function () {
     Route::post('Taller/update/{id}',['as' => 'taller-update','uses'=>'TallerController@update']);
     Route::get('Taller/delete/{id}',['as' => 'taller-delete','uses'=>'TallerController@destroy']);
     
+
+
+    //proveedor
+    Route::get('Proveedor',['as'=>'proveedor','uses'=>'ProveedorController@index']);
+    Route::get('Proveedor/create',['as' => 'proveedor-create','uses'=>'ProveedorController@create']);
+    Route::post('Proveedor/guardar',['as' => 'proveedor-store','uses'=>'ProveedorController@store']);
+    Route::get('Proveedor/editar/{id}',['as' => 'proveedor-editar','uses'=>'ProveedorController@edit']);
+    Route::post('Proveedor/update/{id}',['as' => 'proveedor-update','uses'=>'ProveedorController@update']);
+    Route::get('Proveedor/delete/{id}',['as' => 'proveedor-delete','uses'=>'ProveedorController@destroy']);
+    Route::post('Proveedor/departamento',['as'=>'proveedor-departamento','uses'=>'ProveedorController@provincia']);
+    Route::post('Proveedor/distrito',['as'=>'proveedor-distrito','uses'=>'ProveedorController@distrito']);
+    
+    
+    
+
     
     //roles
     Route::get('rol',['as' => 'rol-index','uses'=>'RolController@index']);
