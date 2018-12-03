@@ -18,7 +18,7 @@
   </div>
     <div class="card-body">
         <div class="form-body">
-              <form action="{{ route('tienda-update') }}" method="get" >
+              <form action="{{ route('tienda-update',$tienda->id) }}" method="post" >
            @csrf
                                          <div class="row p-t-20">
                                             <div class="col-md-4">
@@ -96,13 +96,14 @@
                                                 </div>
                                           </div>
                                                   <div class="col-md-4">
-                                                                <div class="form-group">
+                                                    <div class="form-group">
                                                             <label class="control-label">Distrito</label>                                  
-                                                        <select  class="form-control selectpicker" id="distrito" nama="distrito" data-live-search="true">
+                                                        <select  class="form-control selectpicker" id="distrito" name="distrito" data-live-search="true">
                                                             <option value="" disabled="" selected="">Seleccione</option>
                                                         </select>   
                                                         </div>
                                                 </div>
+
                                             
                                             <div class="col-md-4">
                                                 <div class="form-group">

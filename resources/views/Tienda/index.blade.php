@@ -28,6 +28,7 @@
                 <th>Lugar</th>
                 <th>Tipo Tienda</th>
                  <th>Operador</th>
+                 <th>ID</th>
                   <th>Opciones</th>
             </tr>
         </thead>
@@ -42,9 +43,11 @@
                 <td>{{$tiend->direccionAL}}</td>
                 <td>{{$tiend->nombre}}</td>
                 <td>{{$tiend->nombre_operador}}</td>
+                <td>{{$tiend->tid}}</td>
+                
                 <td class="text-nowrap">
-                          <a href="{{ route('tienda-editar',$tiend->id) }}" data-toggle="tooltip" data-original-title="Edit" ><i class="fa fa-pencil text-warning m-r-10"></i> </a>                     
-                          <a href="{{ route('tienda-delete',$tiend->id) }}" data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-close text-danger m-r-10"></i></a>
+                          <a href="{{ route('tienda-editar',$tiend->tid) }}" data-toggle="tooltip" data-original-title="Edit" ><i class="fa fa-pencil text-warning m-r-10"></i> </a>                     
+                          <a href="{{ route('tienda-delete',$tiend->tid) }}" data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-close text-danger m-r-10"></i></a>
                 </td>
 
             </tr>   

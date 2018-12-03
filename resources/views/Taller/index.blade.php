@@ -29,6 +29,7 @@
                         <th>Telefono</th>
                         <th>Tipo Telefono</th>
                         <th>Operado</th>
+                       
                         <th>Opciones</th>
 
                     </tr>
@@ -44,9 +45,11 @@
                     <td>{{$tal->numero}}</td>
                     <td>{{$tal->nombre_tipo}}</td>
                     <td>{{$tal->nombre_operador}}</td>
+                    
+                    
                      <td class="text-nowrap">
-                            <a href="{{ route('taller-editar',$tal->id) }}" data-toggle="tooltip" data-original-title="Edit"> <i class="fa fa-pencil text-warning m-r-10"></i> </a>
-                          <a href="{{ route('taller-delete',$tal->id) }}" data-toggle="tooltip" data-original-title="Delete"> <i class="fa fa-close text-danger m-r-10"></i> </a>
+                            <a href="{{ route('taller-editar',$tal->taid) }}" data-toggle="tooltip" data-original-title="Edit"> <i class="fa fa-pencil text-warning m-r-10"></i> </a>
+                          <a href="{{ route('taller-delete',$tal->taid) }}" data-toggle="tooltip" data-original-title="Delete"> <i class="fa fa-close text-danger m-r-10"></i> </a>
                         </td> 
                     </tr>    
 				   @endforeach

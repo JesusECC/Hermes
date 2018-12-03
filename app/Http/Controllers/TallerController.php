@@ -46,7 +46,7 @@ class TallerController extends Controller
                  ->join('operador as op','op.id','=','teleta.idoperador')
                  ->join('Tipo_telefono as tt','tt.id','=','teleta.idTipo_telefono')
 
-                 ->select('ta.id','ta.codigoT','ta.nombre_taller','teleta.numero',DB::raw('CONCAT(depa.nombre_departamento,"/",pro.nombre_provincia,"/",dis.nombre_distrito) as direc'),'dire.direccionAL','tt.nombre_tipo','op.nombre_operador')
+                 ->select('ta.id as taid','ta.codigoT','ta.nombre_taller','teleta.numero',DB::raw('CONCAT(depa.nombre_departamento,"/",pro.nombre_provincia,"/",dis.nombre_distrito) as direc'),'dire.direccionAL','tt.nombre_tipo','op.nombre_operador')
                 ->where('est.tipo_estado','=',1)
                  ->orderBy('ta.id','desc')
 
@@ -156,7 +156,10 @@ class TallerController extends Controller
      */
     public function edit($id)
     {
-        
+         $taller=DB::table('Taller')
+        ->where('id','=',$id)
+              ->where('estado_idEstado','=',1)
+             ->get();
          $tipotelefono=DB::table('Tipo_telefono')
          ->get();
           $distrito=DB::table('Distrito')

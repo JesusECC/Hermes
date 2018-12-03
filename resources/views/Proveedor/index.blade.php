@@ -30,6 +30,7 @@
                         <th>Opciones</th>
                     </tr>
                 </thead>
+                <tbody>
                 @foreach($proveedor as $pro)
          <tr>
                 <td>{{$pro->razon_social}}</td>
@@ -40,15 +41,14 @@
                 <td>{{$pro->nombre_operador}}</td>
                 <td>{{$pro->direccionAL}}</td>
                 <td>{{$pro->direc}}</td>
+
                 <td class="text-nowrap">
-                             <a href="{{ route('proveedor-editar',$pro->id) }}" data-toggle="tooltip" data-original-title="Edit" ><i class="fa fa-pencil text-warning m-r-10"></i> </a> 
-                             <a href="{{ route('proveedor-delete',$pro->id) }}" data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-close text-danger m-r-10"></i></a> 
+                             <a href="{{ route('proveedor-editar',$pro->proid) }}" data-toggle="tooltip" data-original-title="Edit" ><i class="fa fa-pencil text-warning m-r-10"></i> </a> 
+                             <a href="{{ route('proveedor-delete',$pro->proid) }}" data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-close text-danger m-r-10"></i></a> 
                 </td>
             </tr>   
                 @endforeach
-                    
-                <tbody>
-               
+            
                 </tbody>
             </table>
         </div>
