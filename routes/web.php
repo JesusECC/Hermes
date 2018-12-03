@@ -27,23 +27,25 @@ Route::middleware(['auth','admin'])->group(function () {
     Route::get('Almacen',['as' => 'almacen','uses'=>'AlmacenController@index']);
     Route::get('Almacen/create',['as' => 'almacen-create','uses'=>'AlmacenController@create']);
     Route::post('Almacen/guardar',['as' => 'almacen-store','uses'=>'AlmacenController@store']);
-        Route::get('Almacen/editar/{id}',['as' => 'almacen-editar','uses'=>'AlmacenController@edit']);
-            Route::post('Almacen/update/{id}',['as' => 'almacen-update','uses'=>'AlmacenController@update']);
-    
-            Route::get('Almacen/delete/{id}',['as' => 'almacen-delete','uses'=>'AlmacenController@destroy']);
-    
+    Route::get('Almacen/editar/{id}',['as' => 'almacen-editar','uses'=>'AlmacenController@edit']);
+    Route::post('Almacen/update/{id}',['as' => 'almacen-update','uses'=>'AlmacenController@update']);
+    Route::get('Almacen/delete/{id}',['as' => 'almacen-delete','uses'=>'AlmacenController@destroy']);
+    Route::post('Almacen/departamento',['as'=>'almacen-departamento','uses'=>'AlmacenController@provincia']);
+    Route::post('Almacen/distrito',['as'=>'almacen-distrito','uses'=>'AlmacenController@distrito']);
+
+
     // tienda
     Route::get('Tienda',['as'=>'tienda','uses'=>'TiendaController@index']);
      Route::get('Tienda/create',['as' => 'tienda-create','uses'=>'TiendaController@create']);
      Route::post('Tienda/guardar',['as' => 'tienda-store','uses'=>'TiendaController@store']);
      Route::get('Tienda/editar/{id}',['as' => 'tienda-editar','uses'=>'TiendaController@edit']);
      Route::post('Tienda/update/{id}',['as' => 'tienda-update','uses'=>'TiendaController@update']);
-
     Route::get('Tienda/delete/{id}',['as' => 'tienda-delete','uses'=>'TiendaController@destroy']);
-
-
-
      Route::get('Tienda/delete/{id}',['as' => 'tienda-delete','uses'=>'TiendaController@destroy']);
+       Route::post('Tienda/departamento',['as'=>'tienda-departamento','uses'=>'TiendaController@provincia']);
+    Route::post('Tienda/distrito',['as'=>'tienda-distrito','uses'=>'TiendaController@distrito']);
+
+
     //Route::get('trabajador/create',['as' => 'persona-create','uses'=>'TrabajadorController@create']);
     //   Route::get('Tienda/{idTienda}/edit',['as'=>'Tienda','uses'=>'ControllerClientes@edit']);
     
@@ -54,7 +56,8 @@ Route::middleware(['auth','admin'])->group(function () {
     Route::get('Taller/editar/{id}',['as' => 'taller-editar','uses'=>'TallerController@edit']);
     Route::post('Taller/update/{id}',['as' => 'taller-update','uses'=>'TallerController@update']);
     Route::get('Taller/delete/{id}',['as' => 'taller-delete','uses'=>'TallerController@destroy']);
-    
+     Route::post('Taller/departamento',['as'=>'taller-departamento','uses'=>'ProveedorController@provincia']);
+    Route::post('Taller/distrito',['as'=>'taller-distrito','uses'=>'ProveedorController@distrito']);
 
 
     //proveedor

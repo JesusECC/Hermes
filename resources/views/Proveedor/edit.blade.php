@@ -18,14 +18,13 @@
   </div>
     <div class="card-body">
         <div class="form-body">
-              <form action="{{ route('proveedor-update') }}" method="get" >
-            @csrf
-
+                <form action="{{ route('proveedor-update') }}" method="post" >
+                        @csrf
                                          <div class="row p-t-20">
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label class="control-label">Razon Social</label>
-                                                    <input type="text" name="nombreper" id="nombreper" class="form-control" placeholder="Asignar Nombre">
+                                                    <input type="text" name="nombreper" id="nombreper" class="form-control" value="#">
                                                 </div>
                                             </div>
                                              <div class="col-md-4">
@@ -122,8 +121,10 @@
                                                          </div>
                                                         
                                                     </div>
+                                                     <input type="hidden" name="proid" value="{{$teleproveedor[
+                                            0]->proid}}">
 
-                <button type="submit" class="btn waves-effect waves-light btn-success pull-right">Actualizar</button>
+                 <button type="submit" class="btn waves-effect waves-light btn-success pull-right">Actualizar</button>
             </form> 
           </div>
         </div>

@@ -219,7 +219,7 @@ class TiendaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        dd($request,$id);
+        //dd($request,$id);
         Tienda::where('id',$id)
 
         ->update([

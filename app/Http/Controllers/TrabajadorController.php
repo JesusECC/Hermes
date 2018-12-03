@@ -151,6 +151,6 @@ class TrabajadorController extends Controller
         $trabajador=Trabajador::find($id);
         $trabajador->estado_idEstado=2;
         $trabajador->update();
-        return redirect('trabajador');
+        return redirect('Trabajador');
     }
 }

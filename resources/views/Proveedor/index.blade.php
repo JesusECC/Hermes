@@ -19,7 +19,7 @@
             <table id="example" class="table table-striped table-bordered" style="width:100%">
                 <thead>
                     <tr>
-                        <th>Razon social</th>
+                        <th>R.social</th>
                         <th>Tipo documento</th>
                         <th>numero documento</th>
                         <th>Telefono</th>
@@ -34,14 +34,15 @@
          <tr>
                 <td>{{$pro->razon_social}}</td>
                 <td>{{$pro->nombre_TD}}</td>
-                <td>{{$pro-nro_documentoP>}}</td>
+                <td>{{$pro->nro_documentoP}}</td>
                 <td>{{$pro->numero}}</td>
                 <td>{{$pro->nombre_tipo}}</td>
                 <td>{{$pro->nombre_operador}}</td>
                 <td>{{$pro->direccionAL}}</td>
                 <td>{{$pro->direc}}</td>
                 <td class="text-nowrap">
-                             <a href="{{ route('almacen-delete',$alma->id) }}" data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-close text-danger m-r-10"></i></a> 
+                             <a href="{{ route('proveedor-editar',$pro->id) }}" data-toggle="tooltip" data-original-title="Edit" ><i class="fa fa-pencil text-warning m-r-10"></i> </a> 
+                             <a href="{{ route('proveedor-delete',$pro->id) }}" data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-close text-danger m-r-10"></i></a> 
                 </td>
             </tr>   
                 @endforeach

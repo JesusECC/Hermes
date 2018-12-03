@@ -25,7 +25,7 @@
                 <th>Telefono</th>
                  <th>Tipo Telefono</th>
                 <th>Direccion</th>
-                <th>Lugar</th>>
+                <th>Lugar</th>
                 <th>Tipo Tienda</th>
                  <th>Operador</th>
                   <th>Opciones</th>

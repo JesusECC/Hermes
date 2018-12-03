@@ -90,7 +90,7 @@ class TallerController extends Controller
             $estado=DB::table('estado')
           ->get();
          
-        return view('Taller.create',["taller"=>$taller,"teleTaller"=>$teleTaller,"tipotelefono"=>$tipotelefono,"distrito"=>$distrito,"provincia"=>$provincia,"departamento"=>$departamento,"operador"=>$operador,"estado"=>$estado]);
+        return view('Taller.create',['taller'=>$taller,'teleTaller'=>$teleTaller,'tipotelefono'=>$tipotelefono,'distrito'=>$distrito,'provincia'=>$provincia,'departamento'=>$departamento,'operador'=>$operador,'estado'=>$estado]);
     }
 
     /**

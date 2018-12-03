@@ -26,7 +26,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class="control-label">Razon Social</label>
-                                                    <input type="text" name="nombreper" id="nombreper" class="form-control" placeholder="Asignar Nombre">
+                                                    <input type="text" name="razon_social" id="razon_social" class="form-control" placeholder="Asignar Nombre">
                                                 </div>
                                             </div>
                                              <div class="col-md-6">
