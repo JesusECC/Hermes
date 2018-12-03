@@ -43,7 +43,7 @@
                 <td>{{$alma->nombre_operador}}</td>
                 <td class="text-nowrap">
                              <a href="{{ route('almacen-delete',$alma->id) }}" data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-close text-danger m-r-10"></i></a> 
-                        </td>
+                </td>
             </tr>   
                 @endforeach
                     

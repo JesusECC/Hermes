@@ -127,7 +127,7 @@ class ClienteController extends Controller
         // dd($request);
         $idpersona=DB::table('Persona')->insertGetId(
             [
-                'idTipo_documento'=>$request->get('idTipo_documento'),
+                'idTipo_documento'=>$request->get('tipodocumento'),
                 'nro_documento'=>$request->get('nro_documento'),
                 'nombre'=>$request->get('nombreper'),
                 'apellidos'=>$request->get('apellidos'),
@@ -145,11 +145,11 @@ class ClienteController extends Controller
          $telepersona=new Telefono_Persona;
         $telepersona->numero=$request->get('numero');
         $telepersona->Persona_idPersona=$idpersona;
-        $telepersona->idTipo_telefono=$request->get('idTipo_telefono');;
-        $telepersona->idoperador=$request->get('idTipooperador');
+        $telepersona->idTipo_telefono=$request->get('tipotelefono');;
+        $telepersona->idoperador=$request->get('operador');
         $telepersona->estado_idEstado=1;
         $telepersona->save();
-        // dd($cliente,$request,$request->get('tipocliente'),$idpersona);       
+        // dd($cliente,$request);       
 
         $Direccion_persona=new Direccion_persona;
         $Direccion_persona->nombre_direccion=$request->get('nombre_direccion');

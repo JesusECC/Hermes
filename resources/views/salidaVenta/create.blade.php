@@ -311,10 +311,12 @@ function agregar()
     var cantidad=$("#pcantidadPF").val();
     var adicional=$("#padicional").val();
     var stock=$("#pstockP").val();
+    var idCli=$("#id").val();
+    var idAlm=$("#pidAlmacen").val();
 
 
     
-    if( talla!="" && color!="" && cantidad<stock)
+    if( talla!="" && color!="" && idCli!="" && idAlm!="" )
     {
        subtotal[cont]=cantidad*(precio-(precio*descuento/100));
        total=total+subtotal[cont];

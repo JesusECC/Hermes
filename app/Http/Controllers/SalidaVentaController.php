@@ -134,4 +134,30 @@ public function store(Request $request)
         }
         
     }
+
+    public function show($id){
+
+
+
+    $salidaV=DB::table('Salida as s')
+     ->join('Cliente as c','s.idCliente','=','c.id')
+     ->join('Almacen as a','s.idAlmacen','=','a.id')
+     ->join('Trabajador as t','s.idTrabajador','=','t.id')
+     ->join('Persona as pc','pc.id','=','c.Persona_idPersona')
+     ->join('Persona as pt','pt.id','=','t.idPersona')
+     ->join('Direccion_persona as dp','dp.idPersona','=','pc.id')
+     ->join('Departamento as de','de.id','=','dp.Distrito_Provincia_Departamento_idDepartamento')
+     ->join('Distrito as di','di.id','=','dp.Distrito_idDistrito')
+     ->join('Provincia as pr','pr.id','=','dp.Distrito_Provincia_idProvincia')
+     ->select('s.id','a.nombre_almacen','pt.nombre as nombre_trabajador','pc.nombre as nombre_cliente','dp.nombre_direccion','de.nombre_departamento','pr.nombre_provincia','di.nombre_distrito','s.fecha_horaS','pc.nro_documento as nroC','s.total_venta')
+    ->where('s.id','=',$id)
+    ->first();
+
+    $detalles=DB::table('Detalle_Salida')
+        ->where('id','=',$id)
+    ->get();
+
+    return view("salidaVenta.show",["salidaV"=>$salidaV,"detalles"=>$detalles]);
+   
+    }
 }

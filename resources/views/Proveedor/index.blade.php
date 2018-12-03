@@ -30,10 +30,23 @@
                         <th>Opciones</th>
                     </tr>
                 </thead>
-                <tbody>
-            
-                
+                @foreach($proveedor as $pro)
+         <tr>
+                <td>{{$pro->razon_social}}</td>
+                <td>{{$pro->nombre_TD}}</td>
+                <td>{{$pro-nro_documentoP>}}</td>
+                <td>{{$pro->numero}}</td>
+                <td>{{$pro->nombre_tipo}}</td>
+                <td>{{$pro->nombre_operador}}</td>
+                <td>{{$pro->direccionAL}}</td>
+                <td>{{$pro->direc}}</td>
+                <td class="text-nowrap">
+                             <a href="{{ route('almacen-delete',$alma->id) }}" data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-close text-danger m-r-10"></i></a> 
+                </td>
             </tr>   
+                @endforeach
+                    
+                <tbody>
                
                 </tbody>
             </table>

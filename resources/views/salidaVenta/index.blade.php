@@ -36,8 +36,8 @@
 					<td>{{$sal->nombre_almacen}}</td>
 					
 					<td>
+					<a  href="{{route('salidaVenta-show',$sal->id)}}" class="btn btn-primary btn-xs"  title="Ver Producto"> Ver </a>
 					
-					<a href="" data-target="#modal-delete-{{$sal->id}}" data-toggle="modal"><button class="btn btn-danger">anular</button></a>
 					</td>
 				</tr>
 				

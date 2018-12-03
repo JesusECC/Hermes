@@ -10,8 +10,6 @@
         </ol>
     </div>
 </div>
-
-
 <div class="card">
   <div class="card-header">
      <h4 class="card-title pull-left">Registrar Alamacen</h4>

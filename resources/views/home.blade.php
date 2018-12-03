@@ -174,6 +174,20 @@
             </div>
         </div>
     </div>
+    <div class="col-lg-3 col-md-6">
+        <div class="card">
+            <div class="card-body">
+            	<a href="{{route('proveedor')}}">
+	                <div class="d-flex flex-row">
+	                    <div class="round round-lg align-self-center round-info"><i class="mdi  mdi-cart-outline"></i></div>
+	                    <div class="m-l-10 align-self-center">
+	                        <h5 class="text-muted m-b-0">Proveedor</h5>
+	                    </div>
+	                </div>
+                </a>
+            </div>
+        </div>
+    </div>
 </div>
 @endsection
                     
