@@ -86,7 +86,7 @@ class ProductoController extends Controller
         $precio_unitario=$request->get('precio_unitario'); 
 
         $cont=0;
-
+        
         while ($cont<count($CodigoB_Producto)) {
         
             $tarea = new Producto();

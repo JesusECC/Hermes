@@ -41,10 +41,7 @@
                             @endforeach  
                         </select>   
                 </div>                     
-            </div>
-
-        
-        
+            </div>        
           <div class="col-md-4">
                     <div class="form-group">
                             <label class="control-label">Codigo de Barras</label>
@@ -164,58 +161,47 @@
 
 @push('scripts')
 <script>
-$(document).ready(function(){
-    $('#bt_add').click(function(){
-        agregar();
+    $(document).ready(function() {
+        $("pCodigoB_Producto").keypress(function(e) {
+            if (e.which == 13) {
+                return false;
+            }
+        });
     });
-});
+    $(document).ready(function(){
+        $('#bt_add').click(function(){
+            agregar();
+        });
+    });
 
-var cont=0;
-
-
-$("#guardar").show();
-
-function agregar()
-{
-    
-    idProducto=$("#pidDetalle_produto").val();
-    producto=$("#pidDetalle_produto option:selected").text();
-    codigo=$("#pCodigoB_Producto").val();
-    idTalla=$("#pTallas_idTallas").val();
-    talla=$("#pTallas_idTallas option:selected").text();
-    idColor=$("#pColor_idColor").val();
-    color=$("#pColor_idColor option:selected").text();
-    idAlmacen_idAlmacen=$("#pAlmacen_idAlmacen").val();
-    almacen=$("#pAlmacen_idAlmacen option:selected").text();
-    
-    precio=$("#pprecio_unitario").val();
-    
-   
-
-    if(idProducto!="" )
-    {
-       
-   var fila='<tr class="selected" id="fila'+cont+'"><td><button type="button" class="btn btn-warning" onclick="eliminar('+cont+');">X</button></td> <td><input type="hidden" name="idDetalle_produto[]" value="'+idProducto+'">'+producto+'</td> <td><input type="hidden" name="Almacen_idAlmacen[]" value="'+idAlmacen_idAlmacen+'">'+almacen+'</td> <td><input type="hidden" name="CodigoB_Producto[]" value="'+codigo+'">'+codigo+'</td> <td><input type="hidden" name="Tallas_idTallas[]" value="'+idTalla+'">'+talla+'</td> <td><input type="hidden" name="Color_idColor[]" value="'+idColor+'">'+color+'</td>  <td><input type="hidden" name="precio_unitario[]" value="'+precio+'">'+precio+'</td> </tr>';
-
-       cont++;
-       limpiar();
-       evaluar();
-       $('#detalles').append(fila);
-
+    var cont=0;
+    $("#guardar").show();
+    function agregar()
+    {    
+        idProducto=$("#pidDetalle_produto").val();
+        producto=$("#pidDetalle_produto option:selected").text();
+        codigo=$("#pCodigoB_Producto").val();
+        idTalla=$("#pTallas_idTallas").val();
+        talla=$("#pTallas_idTallas option:selected").text();
+        idColor=$("#pColor_idColor").val();
+        color=$("#pColor_idColor option:selected").text();
+        idAlmacen_idAlmacen=$("#pAlmacen_idAlmacen").val();
+        almacen=$("#pAlmacen_idAlmacen option:selected").text();    
+        precio=$("#pprecio_unitario").val();
+        if(idProducto!="" )
+        {
+            var fila='<tr class="selected" id="fila'+cont+'"><td><button type="button" class="btn btn-warning" onclick="eliminar('+cont+');">X</button></td> <td><input type="hidden" name="idDetalle_produto[]" value="'+idProducto+'">'+producto+'</td> <td><input type="hidden" name="Almacen_idAlmacen[]" value="'+idAlmacen_idAlmacen+'">'+almacen+'</td> <td><input type="hidden" name="CodigoB_Producto[]" value="'+codigo+'">'+codigo+'</td> <td><input type="hidden" name="Tallas_idTallas[]" value="'+idTalla+'">'+talla+'</td> <td><input type="hidden" name="Color_idColor[]" value="'+idColor+'">'+color+'</td>  <td><input type="hidden" name="precio_unitario[]" value="'+precio+'">'+precio+'</td> </tr>';
+            cont++;
+            limpiar();
+            evaluar();
+            $('#detalles').append(fila);    }
+        else{
+            alert("erros al ingresar el detale del ingreso, revise los datos del articulo");
+        }
     }
-    else
-    {
-        alert("erros al ingresar el detale del ingreso, revise los datos del articulo");
-    }
-}
-
-
-   
     function limpiar(){
         $("#pnombre_tarea").val("");
-        
     }
-
     function evaluar()
     {
         if(cont<0)
@@ -227,22 +213,16 @@ function agregar()
             $("#guardar").show();
         }
     }
- function eliminar(index){
-        
+    function eliminar(index){        
         $("#fila" + index).remove();
         evaluar();
     }
-
 </script>
 
 
 
 @endpush
 @endsection
-
-
-
-
 <!--
 <script>
     
