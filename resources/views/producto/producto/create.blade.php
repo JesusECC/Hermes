@@ -45,7 +45,7 @@
           <div class="col-md-4">
                     <div class="form-group">
                             <label class="control-label">Codigo de Barras</label>
-                            <input type="text" name="pCodigoB_Producto" id="pCodigoB_Producto" class="form-control" placeholder="Asignar un codigo de barras">
+                            <input type="text" name="pCodigoB_Producto" id="pCodigoB_Producto" class="form-control" placeholder="Asignar un codigo de barras" onkeypress="return runScript(event)">
                     </div>                        
                 </div>
             
@@ -161,13 +161,19 @@
 
 @push('scripts')
 <script>
-    $(document).ready(function() {
-        $("pCodigoB_Producto").keypress(function(e) {
-            if (e.which == 13) {
-                return false;
-            }
-        });
-    });
+    function runScript(e) {
+        if (e.keyCode == 13) {
+            // consulBarras();
+            return false;
+        }
+    }
+    // $(document).ready(function() {
+    //     $("pCodigoB_Producto").keypress(function(e) {
+    //         if (e.which == 13) {
+    //             return false;
+    //         }
+    //     });
+    // });
     $(document).ready(function(){
         $('#bt_add').click(function(){
             agregar();
