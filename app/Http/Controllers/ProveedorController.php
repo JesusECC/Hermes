@@ -48,12 +48,12 @@ class ProveedorController extends Controller
         ->join( 'Departamento as depa','depa.id','=','prov.Departamento_idDepartamento')
 
     
-             ->select('pro.id as proid','dire.id as direcid','telepro.id as teleproid','pro.razon_social','pro.nro_documentoP','tpdoc.id','tpdoc.nombre_TD','dire.nombre_direccion','tele.nombre_tipo',DB::raw('CONCAT(depa.nombre_departamento,"/",prov.nombre_provincia,"/",dis.nombre_distrito) as direc'),'ope.nombre_operador')
+             ->select('pro.id as proid','dire.id as direcid','telepro.id as teleproid','dis.id as disid','pro.razon_social','pro.nro_documentoP','tpdoc.id','tpdoc.nombre_TD','dire.nombre_direccion','tele.nombre_tipo',DB::raw('CONCAT(depa.nombre_departamento,"/",prov.nombre_provincia,"/",dis.nombre_distrito) as direc'),'ope.nombre_operador')
 
           ->where('est.tipo_estado','=',1)
          ->orderBy('pro.id','desc')
 
-            ->paginate(5);
+            ->get();
              
 
 
@@ -73,7 +73,7 @@ class ProveedorController extends Controller
           $proveedor=DB::table('Proveedor')
               ->where('estado_idEstado','=',1)
              ->get();
-            $Direccion_persona=DB::table('Direccion_persona')    
+            $Direccion_TTA=DB::table('Direccion_TTA')    
             ->get();
           $distrito=DB::table('Distrito')
              ->get();
@@ -98,7 +98,7 @@ class ProveedorController extends Controller
                $estado=DB::table('estado')
                ->get();
 
-             return view('Proveedor.create',["proveedor"=>$proveedor,"Direccion_persona"=>$Direccion_persona,"tipodocumento"=>$tipodocumento,"distrito"=>$distrito,"telefonoproveedor"=>$telefonoproveedor,"departamento"=>$departamento,"provincia"=>$provincia,"distrito"=>$distrito,"tipotelefono"=>$tipotelefono,"operador"=>$operador,"estado"=>$estado]);
+             return view('Proveedor.create',["proveedor"=>$proveedor,"Direccion_TTA"=>$Direccion_TTA,"tipodocumento"=>$tipodocumento,"distrito"=>$distrito,"telefonoproveedor"=>$telefonoproveedor,"departamento"=>$departamento,"provincia"=>$provincia,"distrito"=>$distrito,"tipotelefono"=>$tipotelefono,"operador"=>$operador,"estado"=>$estado]);
         
 
     }
@@ -112,7 +112,7 @@ class ProveedorController extends Controller
     public function store(Request $request)
     {
 
-       
+
         $idDireccion=DB::table('Direccion_TTA')->insertGetId(
             [
             'direccionAL'=>$request->get('direccionAL'),

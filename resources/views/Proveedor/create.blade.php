@@ -109,12 +109,12 @@
                                                         </div>
                                                 </div>
                                                 <div class="col-md-4">
-                                                <div class="form-group">
+                                                    <div class="form-group">
                                                             <label class="control-label">Distrito</label>                                  
-                                                        <select  class="form-control selectpicker" id="distrito" nama="distrito" data-live-search="true">
+                                                        <select  class="form-control selectpicker" id="distrito" name="distrito" data-live-search="true">
                                                             <option value="" disabled="" selected="">Seleccione</option>
                                                         </select>   
-                                                    </div>
+                                                        </div>
                                                 </div>
                                             </div>
                 <button id="save" type="sumbit" class="btn waves-effect waves-light btn-success pull-right"><i class="far fa-save"></i>Agregar</button>
