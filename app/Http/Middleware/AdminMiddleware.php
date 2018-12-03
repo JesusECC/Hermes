@@ -20,8 +20,8 @@ class AdminMiddleware
         $id=auth()->User()->id;        
         $uc=new usersController();        
         $rol=$uc->roles($id);
-        // dd($rol);
-        if(isset($rol[0]->nombreRol)){
+        // dd( $rol,isset($rol[0]->nombreRol));
+        if(isset($rol[0]->nombreRol)==true){
             if($rol[0]->nombreRol!='Admin'){
                 // dd($rol);
                 return redirect('/login');
