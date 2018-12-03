@@ -45,7 +45,7 @@
                 <td>{{$prod->precio_unitario}}</td>
                 <td>{{$prod->nombreTP}}</td>
                 <td class="text-nowrap">
-                            <a href="#" data-toggle="tooltip" data-original-title="Edit"> <i class="fa fa-pencil text-warning m-r-10"></i> </a>
+                            <a href="{{route('producto-editar',$prod->id)}}" data-toggle="tooltip" data-original-title="Edit"> <i class="fa fa-pencil text-warning m-r-10"></i> </a>
                             <a href="#" data-toggle="tooltip" data-original-title="Close"> <i class="fa fa-close text-danger m-r-10"></i> </a>
                             <a href="#" data-toggle="tooltip" data-original-title="Close"> <i class="fa fa-eye text-success"></i> </a>
                         </td>
