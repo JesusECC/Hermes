@@ -273,8 +273,15 @@ Route::middleware(['auth','admin'])->group(function () {
     // rutas para ajax
     Route::post('cliente/departamento',['as'=>'cliente-departamento','uses'=>'ClienteController@provincia']);
     Route::post('cliente/distrito',['as'=>'cliente-distrito','uses'=>'ClienteController@distrito']);
+      Route::post('cliente/editar/departamento',['as'=>'cliente-departamento','uses'=>'ClienteController@provincia']);
+    Route::post('cliente/editar/distrito',['as'=>'cliente-distrito','uses'=>'ClienteController@distrito']);
     
     
+
+
+
+
+
     Route::get('ajustes',['as'=>'ajustes-index','uses'=>'AjustesController@index']);
     
     // persona -> Trabajador 
