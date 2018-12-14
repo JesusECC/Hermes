@@ -48,7 +48,7 @@ class TiendaController extends Controller
                  ->join('operador as op','op.id','=','tele.idoperador')
                  ->join('Tipo_telefono as tt','tt.id','=','tele.idTipo_telefono')
 
-                 ->select('t.id','t.codigo_tienda','t.nombre_tienda','tele.numero',DB::raw('CONCAT(depa.nombre_departamento,"/",pro.nombre_provincia,"/",dis.nombre_distrito) as direc'),'dire.direccionAL','tp.nombre','tt.nombre_tipo','op.nombre_operador')
+                 ->select('t.id as tid','t.codigo_tienda','t.nombre_tienda','tele.numero',DB::raw('CONCAT(depa.nombre_departamento,"/",pro.nombre_provincia,"/",dis.nombre_distrito) as direc'),'dire.direccionAL','tp.nombre','tt.nombre_tipo','op.nombre_operador')
                 ->where('est.tipo_estado','=',1)
                  ->orderBy('t.id','desc')
 
@@ -104,7 +104,17 @@ class TiendaController extends Controller
      */
     public function store(Request $request)
     {
-        
+     
+            $idTienda=DB::table('Tienda')->insertGetId(
+            [
+                'nombre_tienda'=>$request->get('nombre_tienda'),
+                'codigo_tienda'=>$request->get('codigo_tienda'),
+                'estado_idEstado'=>1,
+                'idDireccionT'=>$idDireccion,
+                'idtipo_tienda'=>$request->get('idTipo_tienda'),
+                
+            ]
+        );   
          $idDireccion=DB::table('Direccion_TTA')->insertGetId(
             [
             'direccionAL'=>$request->get('direccionAL'),
@@ -114,19 +124,6 @@ class TiendaController extends Controller
             'estado_idEstado'=>1,
             ]
         );
-
-        $idTienda=DB::table('Tienda')->insertGetId(
-            [
-                'nombre_tienda'=>$request->get('nombre_tienda'),
-                'codigo_tienda'=>$request->get('codigo_tienda'),
-                'estado_idEstado'=>1,
-                'idDireccionT'=>$idDireccion,
-                'idtipo_tienda'=>$request->get('idTipo_tienda'),
-                
-            ]
-        );
-
-        
 
         $teletienda=new Telefono_Tienda;
         $teletienda->Tienda_idTienda=$idTienda;
@@ -168,7 +165,10 @@ class TiendaController extends Controller
      */
     public function edit($id)
     {
-
+       $tienda=DB::table('Tienda')
+        ->where('id','=',$id)
+              ->where('estado_idEstado','=',1)
+             ->get();
         $distrito=DB::table('Distrito')
                  ->get();
                  
@@ -197,9 +197,13 @@ class TiendaController extends Controller
         $teletienda=DB::table('Tienda as t')
         ->join('Telefono_Tienda as tele','t.id','=','tele.Tienda_idTienda')
         ->join('Direccion_TTA as dire','t.idDireccionT','=','dire.id')
+         ->join('Distrito as dis','dis.id','=','dire.Distrito_idDistrito')
+        ->join('Provincia as pro','pro.id','=','dis.Provincia_idProvincia')
+        ->join('Departamento as depa','depa.id','=','pro.Departamento_idDepartamento')
         ->join('estado as est','t.estado_idEstado','=','est.id')
         ->join('Tipo_tienda as tptienda','tptienda.id','=','t.idtipo_tienda')
-        ->select('t.id as tid','t.nombre_tienda','t.codigo_tienda','t.estado_idEstado','dire.id as direid','dire.direccionAL','dire.Distrito_idDistrito','tele.id as teleid','tptienda.id as idtptienda','tptienda.nombre','tele.numero','tele.idTipo_telefono','tele.idoperador')
+
+        ->select('t.id as tid','t.nombre_tienda','t.codigo_tienda','t.estado_idEstado','dire.id as direid','dire.direccionAL','depa.nombre_departamento','pro.nombre_provincia','dis.nombre_distrito','tele.id as teleid','tptienda.id as idtptienda','dire.Distrito_idDistrito','tptienda.nombre','tele.numero','tele.idTipo_telefono','tele.idoperador')
         ->where('t.estado_idEstado','=',1)
         ->where('t.id','=',$id)
         ->get();
@@ -219,9 +223,8 @@ class TiendaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        dd($request,$id);
+        //dd($request,$id);
         Tienda::where('id',$id)
-
         ->update([
             'nombre_tienda'=>$request->get('nombre_tienda'),
             'codigo_tienda'=>$request->get('codigo_tienda'),
@@ -230,20 +233,22 @@ class TiendaController extends Controller
             'idtipo_tienda'=>$request->get('idTipo_tienda'),
             
         ]);
+        Telefono_Tienda::where('id',$request->get('teleid'))
+        ->update([
+            'numero'=>$request->get('numero'),
+            'Tienda_idTienda'=>$request->get('tid'),
+            'idTipo_telefono'=>$request->get('idTipo_telefono'),
+            'idoperador'=>$request->get('idTipooperador'),
+        ]);
         Direccion_TTA::where('id',$request->get('direid'))
         ->update([
             'direccionAL'=>$request->get('direccionAL'),
             'Distrito_idDistrito'=>$request->get('distrito'),
             'Distrito_Provincia_idProvincia'=>$request->get('provincia'),
             'Distrito_Provincia_Departamento_idDepartamento'=>$request->get('departamento'),
-             'estado_idEstado'=>$request->get('estado_idEstado'),
+            'estado_idEstado'=>$request->get('estado_idEstado'),
         ]);
-        Telefono_Tienda::where('id',$request->get('teleid'))
-        ->update([
-            'numero'=>$request->get('numero'),
-            'idTipo_telefono'=>$request->get('idTipo_telefono'),
-            'idoperador'=>$request->get('idTipooperador'),
-        ]);
+        
 
         return redirect('Tienda');
     }

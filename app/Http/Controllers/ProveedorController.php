@@ -36,28 +36,31 @@ class ProveedorController extends Controller
     {
         $proveedor=DB::table('Proveedor as pro')
          //->join( 'Direccion_persona as dire', 'dire.id','=','pro.idDireccionP')
-         ->join( 'Direccion_TTA as dire', 'dire.id','=','pro.idDireccionP')
-         ->join( 'Tipo_documento as tpdoc' , 'tpdoc.id','=','pro.idTipo_documento')
-         ->join( 'estado as est' , 'est.id','=','pro.estado_idEstado')
+        ->join( 'Direccion_TTA as dire', 'dire.id','=','pro.idDireccionP')
+        ->join( 'Tipo_documento as tpdoc' , 'tpdoc.id','=','pro.idTipo_documento')
+        ->join( 'estado as est' , 'est.id','=','pro.estado_idEstado')
         ->join( 'Telefono_proveedor as telepro','telepro.idProveedor','=','pro.id')
         ->join( 'operador as ope','ope.id','=','telepro.idoperador')
-       ->join( 'Tipo_telefono as tele','tele.id','=','telepro.idTipo_telefono')
+        ->join( 'Tipo_telefono as tele','tele.id','=','telepro.idTipo_telefono')
 
         ->join( 'Distrito as dis','dis.id','=','dire.Distrito_idDistrito')
         ->join( 'Provincia as prov','prov.id','=','dis.Provincia_idProvincia')
         ->join( 'Departamento as depa','depa.id','=','prov.Departamento_idDepartamento')
-
-    
-             ->select('pro.id as proid','dire.id as direcid','telepro.id as teleproid','pro.razon_social','pro.nro_documentoP','tpdoc.id','tpdoc.nombre_TD','dire.nombre_direccion','tele.nombre_tipo',DB::raw('CONCAT(depa.nombre_departamento,"/",prov.nombre_provincia,"/",dis.nombre_distrito) as direc'),'ope.nombre_operador')
-
-          ->where('est.tipo_estado','=',1)
-         ->orderBy('pro.id','desc')
-
-            ->paginate(5);
-             
+        ->select('pro.id as proid','dire.id as direcid','telepro.id as teleproid','pro.razon_social','pro.nro_documentoP','tpdoc.id','tpdoc.nombre_TD','dire.direccionAL','tele.nombre_tipo',DB::raw('CONCAT(depa.nombre_departamento,"/",prov.nombre_provincia,"/",dis.nombre_distrito) as direc'),'telepro.numero','ope.nombre_operador')
 
 
-                    return view('Proveedor.index',['proveedor'=>$proveedor]);
+    /*
+             ->select('pro.id as proid','dire.id as direcid','telepro.id as teleproid','dis.id as disid','pro.razon_social','pro.nro_documentoP','tpdoc.id','tpdoc.nombre_TD','dire.direccionAL','tele.nombre_tipo',DB::raw('CONCAT(depa.nombre_departamento,"/",prov.nombre_provincia,"/",dis.nombre_distrito) as direc'),'ope.nombre_operador')
+*/
+
+        ->where('est.tipo_estado','=',1)
+        ->orderBy('pro.id','desc')
+        ->paginate(5);  
+
+
+       //dd($proveedor);
+        return view('Proveedor.index',['proveedor'=>$proveedor]);
+
     
 
 
@@ -73,7 +76,7 @@ class ProveedorController extends Controller
           $proveedor=DB::table('Proveedor')
               ->where('estado_idEstado','=',1)
              ->get();
-            $Direccion_persona=DB::table('Direccion_persona')    
+            $Direccion_TTA=DB::table('Direccion_TTA')    
             ->get();
           $distrito=DB::table('Distrito')
              ->get();
@@ -98,7 +101,7 @@ class ProveedorController extends Controller
                $estado=DB::table('estado')
                ->get();
 
-             return view('Proveedor.create',["proveedor"=>$proveedor,"Direccion_persona"=>$Direccion_persona,"tipodocumento"=>$tipodocumento,"distrito"=>$distrito,"telefonoproveedor"=>$telefonoproveedor,"departamento"=>$departamento,"provincia"=>$provincia,"distrito"=>$distrito,"tipotelefono"=>$tipotelefono,"operador"=>$operador,"estado"=>$estado]);
+             return view('Proveedor.create',["proveedor"=>$proveedor,"Direccion_TTA"=>$Direccion_TTA,"tipodocumento"=>$tipodocumento,"distrito"=>$distrito,"telefonoproveedor"=>$telefonoproveedor,"departamento"=>$departamento,"provincia"=>$provincia,"distrito"=>$distrito,"tipotelefono"=>$tipotelefono,"operador"=>$operador,"estado"=>$estado]);
         
 
     }
@@ -112,7 +115,7 @@ class ProveedorController extends Controller
     public function store(Request $request)
     {
 
-       
+
         $idDireccion=DB::table('Direccion_TTA')->insertGetId(
             [
             'direccionAL'=>$request->get('direccionAL'),
@@ -166,7 +169,57 @@ class ProveedorController extends Controller
      */
     public function edit($id)
     {
-        //
+        $proveedor=DB::table('Proveedor')
+        ->where('id','=',$id)
+              ->where('estado_idEstado','=',1)
+             ->get();
+            $Direccion_TTA=DB::table('Direccion_TTA')    
+            ->get();
+          $distrito=DB::table('Distrito')
+             ->get();
+             
+            $provincia=DB::table('Provincia')    
+            ->get();
+
+            $departamento=DB::table('Departamento')
+            ->get();
+
+            $tipotelefono=DB::table('Tipo_telefono')
+            ->get();
+
+            $tipodocumento=DB::table('Tipo_documento')
+            ->get();
+             $telefonoproveedor=DB::table('Telefono_proveedor')
+            ->get();
+            
+            $operador=DB::table('operador')
+            ->get();
+
+               $estado=DB::table('estado')
+               ->get();
+               
+               $teleproveedor=DB::table('Proveedor as pro')
+         //->join( 'Direccion_persona as dire', 'dire.id','=','pro.idDireccionP')
+        ->join( 'Direccion_TTA as dire', 'dire.id','=','pro.idDireccionP')
+        ->join( 'Tipo_documento as tpdoc' , 'tpdoc.id','=','pro.idTipo_documento')
+        ->join( 'estado as est' , 'est.id','=','pro.estado_idEstado')
+        ->join( 'Telefono_proveedor as telepro','telepro.idProveedor','=','pro.id')
+        ->join( 'operador as ope','ope.id','=','telepro.idoperador')
+        ->join( 'Tipo_telefono as tele','tele.id','=','telepro.idTipo_telefono')
+
+        ->join( 'Distrito as dis','dis.id','=','dire.Distrito_idDistrito')
+        ->join( 'Provincia as prov','prov.id','=','dis.Provincia_idProvincia')
+        ->join( 'Departamento as depa','depa.id','=','prov.Departamento_idDepartamento')
+         ->select('pro.id as proid','dire.id as direcid','telepro.id as teleproid','pro.razon_social','pro.nro_documentoP','tpdoc.id','tpdoc.nombre_TD','dire.direccionAL','tele.nombre_tipo','depa.nombre_departamento','prov.nombre_provincia','dis.nombre_distrito','telepro.numero','ope.nombre_operador')
+        ->where('est.tipo_estado','=',1)
+        ->where('pro.id','=',$id)
+        ->orderBy('pro.id','desc')
+        ->get();
+
+
+       // dd($id,Proveedor::findOrFail($id));
+             return view('Proveedor.edit',['proveedor'=>Proveedor::findOrFail($id),'teleproveedor'=>$teleproveedor,'Direccion_TTA'=>$Direccion_TTA,'tipodocumento'=>$tipodocumento,'distrito'=>$distrito,'telefonoproveedor'=>$telefonoproveedor,'departamento'=>$departamento,'provincia'=>$provincia,'distrito'=>$distrito,'tipotelefono'=>$tipotelefono,'operador'=>$operador,'estado'=>$estado]);
+        
     }
 
     /**
@@ -178,7 +231,33 @@ class ProveedorController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+       Proveedor::where('id',$id)
+        ->update([
+            'razon_social'=>$request->get('razon_social'),
+            'nro_documentoP'=>$request->get('nro_documentoP'),
+            'idTipo_documento'=>$request->get('idTipo_documento'),
+            'estado_idEstado'=>$request->get('estado_idEstado'),
+            'idDireccionP'=>$request->get('direcid'),
+            
+        ]);
+        Direccion_TTA::where('id',$request->get('direcid'))
+        ->update([
+            'direccionAL'=>$request->get('direccionAL'),
+            'Distrito_idDistrito'=>$request->get('distrito'),
+            'Distrito_Provincia_idProvincia'=>$request->get('provincia'),
+            'Distrito_Provincia_Departamento_idDepartamento'=>$request->get('departamento'),
+            'estado_idEstado'=>$request->get('estado_idEstado'),
+        ]);
+        
+        Telefono_proveedor::where('id',$request->get('teleproid'))
+        ->update([
+            'numero'=>$request->get('numero'),
+            'idProveedor'=>$request->get('proid'),
+            'idTipo_telefono'=>$request->get('idTipo_telefono'),
+            'idoperador'=>$request->get('idTipooperador'),
+            'estado_idEstado'=>$request->get('estado_idEstado'),
+        ]);
+        return redirect('Proveedor');
     }
 
     /**
@@ -189,7 +268,10 @@ class ProveedorController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $proveedor=Proveedor::find($id);
+        $proveedor->estado_idEstado=2;
+        $proveedor->update();
+        return redirect('Proveedor');
     }
    public function provincia(Request $request)
     {

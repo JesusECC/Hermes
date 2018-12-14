@@ -13,19 +13,17 @@
 </div>
 <div class="card">
   <div class="card-header">
-     <h4 class="card-title pull-left">Actualizar Proveedor</h4>
-     
+     <h4 class="card-title pull-left">Actualizar Proveedor</h4>     
   </div>
     <div class="card-body">
         <div class="form-body">
-              <form action="{{ route('proveedor-update') }}" method="get" >
-            @csrf
-
+                <form action="{{ route('proveedor-update',$proveedor->id) }}" method="post" >
+                        @csrf
                                          <div class="row p-t-20">
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label class="control-label">Razon Social</label>
-                                                    <input type="text" name="nombreper" id="nombreper" class="form-control" placeholder="Asignar Nombre">
+                                                    <input type="text" name="razon_social" id="razon_social" class="form-control" value="{{$teleproveedor[0]->razon_social}}">
                                                 </div>
                                             </div>
                                              <div class="col-md-4">
@@ -42,7 +40,7 @@
                                                  <div class="col-md-4">
                                                         <div class="form-group">
                                                             <label class="control-label">N°Documento</label>
-                                                            <input type="text" id="nro_documentoP" name="nro_documentoP" class="form-control" placeholder="Ingrese documento">
+                                                            <input type="text" id="nro_documentoP" name="nro_documentoP" class="form-control" value="{{$teleproveedor[0]->nro_documentoP}}">
                                                          </div>
                                                      </div>    
                                         </div>
@@ -61,7 +59,7 @@
                                                 <div class="col-md-4">
                                                     <div class="form-group">
                                                         <label class="control-label">Telefono</label>
-                                                        <input type="text" id="numero" name="numero" class="form-control" placeholder="Ingrese numero Telefono">
+                                                        <input type="text" id="numero" name="numero" class="form-control" value="{{$teleproveedor[0]->numero}}">
                                                     </div>
                                                 </div>
                                                  <div class="col-md-4">
@@ -80,50 +78,66 @@
                                                      <div class="col-md-4">
                                                                 <div class="form-group">
                                                                     <label class="control-label">Direccion</label>
-                                                                    <input type="text" id="nombre_direccion" name="nombre_direccion" class="form-control" placeholder="Ingrese la Direccion">
+                                                                    <input type="text" id="direccionAL" name="direccionAL" class="form-control" value="{{$teleproveedor[0]->direccionAL}}">
                                                                 </div>
                                                          </div>
                                              </div>
                                                      
                 
-                                                    <div class="row p-t-20">
-                                                        <div class="col-md-4">
-                                                            <div class="form-group">
-                                                                <label>Departamento</label>
-                                                                <select  class="select2" id="departamento" name="departamento" data-live-search="true">
-                                                                <option value="" disabled="" selected="">Seleccione Departamento</option>
-                                                                @foreach($departamento as $de)                
-                                                                <option value="{{$de->id}}">{{$de->nombre_departamento}}</option>
-                                                                @endforeach  
-                                                                </select>    
-                                                            </div>
+                                         <div class="row p-t-2">
+                                                <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label class="control-label">Departamento</label>
+                                                          
+                                                        <select  class="form-control selectpicker" id="departamento" name="departamento" data-live-search="true">
+                                                        <option value="" disabled="" selected="">Seleccione</option>
+                                                        @foreach($departamento as $depa)                
+                                                        <option value="{{$depa->id}}">{{$depa->nombre_departamento}}</option>
+                                                        @endforeach  
+                                                        </select>   
                                                         </div>
-                                                         <div class="col-md-4">
-                                                                <div class="form-group">
-                                                                    <label>Provincia</label>
-                                                                    <select  class="select2" id="provincia" name="provincia" data-live-search="true">
-                                                                    <option value="" disabled="" selected="">Seleccione Provincia</option>
-                                                                    @foreach($provincia as $pro)                
-                                                                    <option value="{{$pro->id}}">{{$pro->nombre_provincia}}</option>
-                                                                    @endforeach  
-                                                                    </select>    
-                                                                </div>
-                                                         </div>
-                                                         <div class="col-md-4">
+                                                </div>
+                                              <div class="col-md-4">
+                                                    <div class="form-group">
+                                                            <label class="control-label">Provincia</label>                                  
+                                                        <select  class="form-control selectpicker" id="provincia" name="provincia" data-live-search="true">
+                                                            <option value="" disabled="" selected="">Seleccione</option>
+                                                        </select>   
+                                                        </div>
+                                                </div>
+                                                 <div class="col-md-4">
+                                                    <div class="form-group">
+                                                            <label class="control-label">Distrito</label>                                  
+                                                        <select  class="form-control selectpicker" id="distrito" name="distrito" data-live-search="true">
+                                                            <option value="" disabled="" selected="">Seleccione</option>
+                                                        </select>   
+                                                        </div>
+                                                </div>
+
+                                            <div class="row p-t-2">
+                                                     <div class="col-md-4">
                                                             <div class="form-group">
-                                                                    <label>Distrito</label>
-                                                                    <select  class="select2" id="distrito" name="distrito" data-live-search="true">
-                                                                    <option value="" disabled="" selected="">Seleccione Distrito</option>
-                                                                    @foreach($distrito as $dis)                
-                                                                    <option value="{{$dis->id}}">{{$dis->nombre_distrito}}</option>
+                                                                <label>Estado</label>
+                                                                    <select  class="select2" id="estado_idEstado" name="estado_idEstado" data-live-search="true">
+                                                                    <option value="" disabled="" selected="">Seleccione</option>
+                                                                    @foreach($estado as $est)                
+                                                                    <option value="{{$est->id}}">{{$est->descripcion}}</option>
                                                                     @endforeach  
                                                                     </select>    
                                                             </div>
-                                                         </div>
-                                                        
-                                                    </div>
+                                                     </div>
+                                             </div>  
 
-                <button type="submit" class="btn waves-effect waves-light btn-success pull-right">Actualizar</button>
+
+                                                     <input type="hidden" name="proid" value="{{$teleproveedor[
+                                            0]->proid}}">
+                                                  <input type="hidden" name="direcid" value="{{$teleproveedor[
+                                            0]->direcid}}">
+                                            
+                                                   <input type="hidden" name="teleproid" value="{{$teleproveedor[
+                                            0]->teleproid}}">
+
+                   <button type="submit" class="btn waves-effect waves-light btn-success pull-right">Actualizar</button>
             </form> 
           </div>
         </div>
@@ -138,6 +152,10 @@
 
     // $("#departamento").change(console.log('entre'));
 
+    // $('#departamento').click(function(){
+    //         console.log('departamento');
+    // });
+    // $("#departamento").change(console.log('entre'));
     var selectDepartamento = document.getElementById('departamento');
     selectDepartamento.addEventListener('change',function(){
         var selectedOption = this.options[selectDepartamento.selectedIndex];
@@ -155,8 +173,6 @@
         console.log(id);
         distrito(id);        
     });
-  
-
     function provincia(idDepartamento){
         console.log(idDepartamento,'-----');
       $.ajax({
@@ -171,7 +187,6 @@
             },
             success:  function (response) { //una vez que el archivo recibe el request lo procesa y lo devuelve
                 if(response.veri==true){
-
                     // var urlBase=window.location.origin;
                     // var url=urlBase+'/'+response.data;
                     // document.location.href=url;
@@ -203,7 +218,6 @@
             },
             success:  function (response) { //una vez que el archivo recibe el request lo procesa y lo devuelve
                 if(response.veri==true){
-
                     // var urlBase=window.location.origin;
                     // var url=urlBase+'/'+response.data;
                     // document.location.href=url;
@@ -221,8 +235,6 @@
             }
         });
     }
-
-
 </script>
 @endpush
 @endsection

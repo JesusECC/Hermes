@@ -89,8 +89,9 @@ class AlmacenController extends Controller
         
       try{
         $departamento;
-        $distrito;
+        
         $provincia;
+        $distrito;
         $direccion;
         $codigo;
         $idTienda;
@@ -101,9 +102,9 @@ class AlmacenController extends Controller
   
         foreach ($request->datos as $dato) {
             $departamento=$dato['departamento'];
+             $provincia=$dato['provincia'];
             $distrito=$dato['distrito'];
-            $provincia=$dato['provincia'];
-            $direccion=$dato['direccion'];
+             $direccion=$dato['direccion'];
             $codigo=$dato['codigo'];
             $idTienda=$dato['idTienda'];
             $nombrea=$dato['nombrea'];
@@ -168,7 +169,7 @@ class AlmacenController extends Controller
 
 
 
-    public function provincia(Request $request)
+       public function provincia(Request $request)
     {
         $idDepartamento=$request->get('departamento');
         $provincia=DB::table('Provincia')
@@ -190,7 +191,7 @@ class AlmacenController extends Controller
     //    id
     //    nombre_distrito
     //    Provincia_idProvincia
-
-}
+    //    Provincia_Departamento_idDepartamento
+    }
 
 }

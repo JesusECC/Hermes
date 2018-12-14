@@ -69,7 +69,7 @@ class ClienteController extends Controller
     //->join('Tipo_telefono as tptele','tptele.id','=','teleper.idTipo_telefono')
     //->join('operador as ope','ope.id','=','teleper.idTipo_telefono')
 
-    ->select('c.id','per.nombre as nombreper','per.apellidos','per.nro_documento','dire.nombre_direccion',DB::raw('CONCAT(depa.nombre_departamento," ",pro.nombre_provincia," ",dis.nombre_distrito) as direc'),'tc.nombreTC','tep.numero','tpt.nombre_tipo','ope.nombre_operador',
+    ->select('c.id as cid','per.nombre as nombreper','per.apellidos','per.nro_documento','dire.nombre_direccion',DB::raw('CONCAT(depa.nombre_departamento," ",pro.nombre_provincia," ",dis.nombre_distrito) as direc'),'tc.nombreTC','tep.numero','tpt.nombre_tipo','ope.nombre_operador',
     'per.fecha_nacimiento','per.sexo')    
     ->where('est.tipo_estado','=',1)
     ->orderBy('c.id','desc')
@@ -127,7 +127,7 @@ class ClienteController extends Controller
         // dd($request);
         $idpersona=DB::table('Persona')->insertGetId(
             [
-                'idTipo_documento'=>$request->get('idTipo_documento'),
+                'idTipo_documento'=>$request->get('tipodocumento'),
                 'nro_documento'=>$request->get('nro_documento'),
                 'nombre'=>$request->get('nombreper'),
                 'apellidos'=>$request->get('apellidos'),
@@ -145,11 +145,11 @@ class ClienteController extends Controller
          $telepersona=new Telefono_Persona;
         $telepersona->numero=$request->get('numero');
         $telepersona->Persona_idPersona=$idpersona;
-        $telepersona->idTipo_telefono=$request->get('idTipo_telefono');;
-        $telepersona->idoperador=$request->get('idTipooperador');
+        $telepersona->idTipo_telefono=$request->get('tipotelefono');;
+        $telepersona->idoperador=$request->get('operador');
         $telepersona->estado_idEstado=1;
         $telepersona->save();
-        // dd($cliente,$request,$request->get('tipocliente'),$idpersona);       
+        // dd($cliente,$request);       
 
         $Direccion_persona=new Direccion_persona;
         $Direccion_persona->nombre_direccion=$request->get('nombre_direccion');
@@ -187,6 +187,7 @@ class ClienteController extends Controller
     {
       //
         $cliente=DB::table('Cliente')
+        ->where('id','=',$id)
         ->where('estado_idEstado','=',1)
         ->get();
         $tipocliente=DB::table('Tipo_Cliente')
@@ -236,6 +237,7 @@ class ClienteController extends Controller
          DB::raw('CONCAT(depa.nombre_departamento,"/",pro.nombre_provincia,"/",dis.nombre_distrito) as direc'),
         'dire.nombre_direccion','per.nombre as nombreper','per.apellidos','per.fecha_nacimiento','per.sexo','tep.numero','tpt.nombre_tipo','ope.nombre_operador')    
         ->where('est.tipo_estado','=',1)
+        ->where('c.id','=',$id)
         ->orderBy('c.id','desc')
         ->get();
 
@@ -273,13 +275,15 @@ class ClienteController extends Controller
         Telefono_Persona::where('id',$request->get('tepid'))
         ->update([
             'numero'=>$request->get('numero'),
+
             'idTipo_telefono'=>$request->get('idTipo_telefono'),
             'idoperador'=>$request->get('idTipooperador'),
             'estado_idEstado'=>$request->get('estado_idEstado'),
         ]);
           Direccion_persona::where('id',$request->get('direid'))
         ->update([
-            'nombre_direccion'=>$request->get('nombre_direccion'),                       
+            'nombre_direccion'=>$request->get('nombre_direccion'), 
+            'idPersona'=>$request->get('perid'),                      
             'Distrito_idDistrito'=>$request->get('distrito'),
             'Distrito_Provincia_idProvincia'=>$request->get('provincia'),
             'Distrito_Provincia_Departamento_idDepartamento'=>$request->get('departamento'),

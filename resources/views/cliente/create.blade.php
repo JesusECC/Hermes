@@ -23,7 +23,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="control-label">Nombe Cliente</label>
-                                <input type="text" name="nombre" id="nombre" class="form-control" placeholder="Nombres del Cliente">
+                                <input type="text" name="nombreper" id="nombreper" class="form-control" placeholder="Nombres del Cliente">
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -73,8 +73,12 @@
                         </div>
                         <div class="col-md-2">
                             <div class="group">
-                                <label class="control-label">Sexo</label>
-                                <input type="text" name="sexo" id="sexo" class="form-control" placeholder="Sexo">
+                                <label class="control-label">Sexo</label>                                  
+                                <select  class="form-control selectpicker" id="sexo" nama="sexo" data-live-search="true">
+                                    <option value="" disabled="" selected="">Seleccione</option>
+                                    <option value="M"  selected="">Masculino</option>
+                                    <option value="F"  selected="">Femenino</option>
+                                </select> 
                             </div>
                         </div>
                     </div>
@@ -100,12 +104,12 @@
                                 </div>
                         </div>
                         <div class="col-md-4">
-                        <div class="form-group">
+                            <div class="form-group">
                                     <label class="control-label">Distrito</label>                                  
-                                <select  class="form-control selectpicker" id="distrito" nama="distrito" data-live-search="true">
+                                <select  class="form-control selectpicker" id="distrito" name="distrito" data-live-search="true">
                                     <option value="" disabled="" selected="">Seleccione</option>
                                 </select>   
-                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="row p-t-2">
@@ -148,7 +152,7 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label class="control-label">Número Teléfonico</label>
-                                <input type="text" name="numero_telefonico" id="numero_telefonico" class="form-control" placeholder="Número">
+                                <input type="text" name="numero" id="numero" class="form-control" placeholder="Número">
                             </div>  
                         </div>                        
                     </div>                    

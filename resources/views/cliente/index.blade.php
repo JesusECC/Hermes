@@ -26,6 +26,7 @@
                         <th>Telefono</th>
                         <th>Tipo Telefono</th>
                         <th>Operador</th>
+                        <th>id</th>
                         <th>Opciones</th>
                     </tr>
                 </thead>
@@ -40,10 +41,10 @@
                 <td>{{$client->numero}}</td>
                 <td>{{$client->nombre_tipo}}</td>
                 <td>{{$client->nombre_operador}}</td>
-                        
+                   <td>{{$client->cid}}</td>      
                  <td class="text-nowrap">
-                          <a href="{{ route('cliente-edit',$client->id) }}" data-toggle="tooltip" data-original-title="Edit" ><i class="fa fa-pencil text-warning m-r-10"></i> </a>                     
-                          <a href="{{ route('cliente-delete',$client->id) }}" data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-close text-danger m-r-10"></i></a> 
+                          <a href="{{ route('cliente-edit',$client->cid) }}" data-toggle="tooltip" data-original-title="Edit" ><i class="fa fa-pencil text-warning m-r-10"></i> </a>                     
+                          <a href="{{ route('cliente-delete',$client->cid) }}" data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-close text-danger m-r-10"></i></a> 
                           
                 </td>
             </tr>   

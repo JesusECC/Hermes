@@ -19,7 +19,7 @@
             <table id="example" class="table table-striped table-bordered" style="width:100%">
                 <thead>
                     <tr>
-                        <th>Razon social</th>
+                        <th>R.social</th>
                         <th>Tipo documento</th>
                         <th>numero documento</th>
                         <th>Telefono</th>
@@ -31,10 +31,24 @@
                     </tr>
                 </thead>
                 <tbody>
-            
-                
+                @foreach($proveedor as $pro)
+         <tr>
+                <td>{{$pro->razon_social}}</td>
+                <td>{{$pro->nombre_TD}}</td>
+                <td>{{$pro->nro_documentoP}}</td>
+                <td>{{$pro->numero}}</td>
+                <td>{{$pro->nombre_tipo}}</td>
+                <td>{{$pro->nombre_operador}}</td>
+                <td>{{$pro->direccionAL}}</td>
+                <td>{{$pro->direc}}</td>
+
+                <td class="text-nowrap">
+                             <a href="{{ route('proveedor-editar',$pro->proid) }}" data-toggle="tooltip" data-original-title="Edit" ><i class="fa fa-pencil text-warning m-r-10"></i> </a> 
+                             <a href="{{ route('proveedor-delete',$pro->proid) }}" data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-close text-danger m-r-10"></i></a> 
+                </td>
             </tr>   
-               
+                @endforeach
+            
                 </tbody>
             </table>
         </div>

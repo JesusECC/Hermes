@@ -217,11 +217,11 @@
                         <li>
                             <a class="has-arrow waves-effect waves-dark" href="" aria-expanded="false">
                                 <i class="mdi mdi-barcode"></i>
-                                <span class="hide-menu">Salida Productos</span>
+                                <span class="hide-menu">Salida</span>
                             </a>
                             <ul aria-expanded="false" class="collapse">
                                 <li>
-                                    <a href="{{route('salida-index')}}">Salida Materia Prima</a>
+                                    <a href="{{route('salida-index')}}">Salida de producto</a>
                                 </li>
                                 <li>
                                     <a href="{{route('salidaVenta-index')}}">Nota de Pedido</a>
@@ -231,12 +231,14 @@
                         <li>
                             <a class="has-arrow waves-effect waves-dark" href="" aria-expanded="false">
                                 <i class="mdi mdi-domain"></i>
-                                <span class="hide-menu">Ingreso Productos</span>
+                                <span class="hide-menu">Ingreso </span>
                             </a>
                             <ul aria-expanded="false" class="collapse">
+                                
                                 <li>
                                     <a href="{{route('ingreso')}}">Ingreso Producto Final</a>
                                 </li>
+                                
                             </ul>
                         </li>
                         <li>
