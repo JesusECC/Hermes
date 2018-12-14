@@ -169,7 +169,7 @@
                                 <span class="hide-menu">Productos</span>
                             </a>
                             <ul aria-expanded="false" class="collapse">
-                                <li><a href="{{route('detalle_producto-create')}}">Detalle producto</a></li>
+                                <li><a href="{{route('detalle_producto')}}">Detalle producto</a></li>
                                 <li><a href="{{route('producto')}}">Productos</a></li>
                             </ul>
                         </li>
@@ -183,6 +183,12 @@
                         <li>
                             <a class="waves-dark" href="{{route('tienda')}}" >
                                 <span class="hide-menu">Tienda</span>
+                            </a>
+                            
+                        </li>
+                        <li>
+                            <a class="waves-dark" href="{{route('taller')}}" >
+                                <span class="hide-menu">Taller</span>
                             </a>
                             
                         </li>

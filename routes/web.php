@@ -27,10 +27,9 @@ Route::middleware(['auth','admin'])->group(function () {
     Route::get('Almacen',['as' => 'almacen','uses'=>'AlmacenController@index']);
     Route::get('Almacen/create',['as' => 'almacen-create','uses'=>'AlmacenController@create']);
     Route::post('Almacen/guardar',['as' => 'almacen-store','uses'=>'AlmacenController@store']);
-        Route::get('Almacen/editar/{id}',['as' => 'almacen-editar','uses'=>'AlmacenController@edit']);
-            Route::post('Almacen/update/{id}',['as' => 'almacen-update','uses'=>'AlmacenController@update']);
-    
-            Route::get('Almacen/delete/{id}',['as' => 'almacen-delete','uses'=>'AlmacenController@destroy']);
+    Route::get('Almacen/editar/{id}',['as' => 'almacen-editar','uses'=>'AlmacenController@edit']);        
+    Route::post('Almacen/update/{id}',['as' => 'almacen-update','uses'=>'AlmacenController@update']);
+    Route::get('Almacen/delete/{id}',['as' => 'almacen-delete','uses'=>'AlmacenController@destroy']);
     
     // tienda
     Route::get('Tienda',['as'=>'tienda','uses'=>'TiendaController@index']);
@@ -38,9 +37,7 @@ Route::middleware(['auth','admin'])->group(function () {
      Route::post('Tienda/guardar',['as' => 'tienda-store','uses'=>'TiendaController@store']);
      Route::get('Tienda/editar/{id}',['as' => 'tienda-editar','uses'=>'TiendaController@edit']);
      Route::post('Tienda/update/{id}',['as' => 'tienda-update','uses'=>'TiendaController@update']);
-
     Route::get('Tienda/delete/{id}',['as' => 'tienda-delete','uses'=>'TiendaController@destroy']);
-
 
 
      Route::get('Tienda/delete/{id}',['as' => 'tienda-delete','uses'=>'TiendaController@destroy']);
@@ -132,7 +129,7 @@ Route::middleware(['auth','admin'])->group(function () {
     Route::post('detalle_producto/',['as' => 'detalle_producto-guardar','uses'=>'Producto_DetalleController@store']);
     Route::get('detalle_producto/editar/{id}',['as' => 'detalle_producto-editar','uses'=>'Producto_DetalleController@edit']);
     Route::post('detalle_producto/update',['as' => 'detalle_producto-update','uses'=>'Producto_DetalleController@update']);
-    Route::get('detalle_producto/delete/{id}',['as' => 'detalle_producto-delete','uses'=>'Producto_DetalleController@destroy']);
+    Route::post('detalle_producto/delete/{id}',['as' => 'detalle_producto-delete','uses'=>'Producto_DetalleController@destroy']);
     
     
     // tipo_producto-->error

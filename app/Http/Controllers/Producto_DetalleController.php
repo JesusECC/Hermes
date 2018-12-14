@@ -8,8 +8,6 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 use hermes\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
-
-
 use DB;
 
 class Producto_DetalleController extends Controller
@@ -17,7 +15,10 @@ class Producto_DetalleController extends Controller
   
     public function index()
     {
-        //
+       $detalleproducto=DB::table('Producto_Detalle')
+       ->where('estado_idEstado','=',1)
+       ->get();
+       return view("producto.detalle_producto.index",["detalleproducto"=>$detalleproducto]);
     }
 
     
@@ -36,8 +37,9 @@ class Producto_DetalleController extends Controller
             $producto->codigo_Prod=$request->get('codigo_Prod');
             $producto->marca_producto='Quality Moda';
             $producto->categoria=$request->get('categoria');
+            $producto->estado_idEstado=1;
             $producto->save();
-            return redirect::to('producto');
+            return redirect::to('detalle_producto');
     }
     public function show($id)
     {
@@ -75,6 +77,9 @@ class Producto_DetalleController extends Controller
      */
     public function destroy($id)
     {
-        //
+    $detalleproducto=Producto_Detalle::findOrFail($id);
+    $detalleproducto->estado_idEstado=2;
+    $detalleproducto->update();
+    return Redirect::to('detalle_producto');
     }
 }

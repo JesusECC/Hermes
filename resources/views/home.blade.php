@@ -51,7 +51,7 @@
 	                <div class="d-flex flex-row">
 	                    <div class="round round-lg align-self-center round-primary"><i class="mdi mdi-cart-outline"></i></div>
 	                    <div class="m-l-10 align-self-center">
-	                        <h5 class="text-muted m-b-0">Salida Producto Final</h5>
+	                        <h5 class="text-muted m-b-0">Tipo Salida</h5>
 	                    </div>
 	                </div>
                 </a>

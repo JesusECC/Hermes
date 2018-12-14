@@ -12,44 +12,39 @@
 <div class="card">
   <div class="card-header">
      <h4 class="card-title pull-left">Listar de Detalle Productos </h4>
-     <a href="{{ route('producto-create') }}"><button type="button" class="btn waves-effect waves-light btn-success pull-right">Agregar</button></a>
+     <a href="{{ route('detalle_producto-create') }}"><button type="button" class="btn waves-effect waves-light btn-success pull-right">Agregar</button></a>
   </div>
     <div class="card-body">
         <div class="col-lg-12">
             <table id="example" class="table table-striped table-bordered" style="width:100%">
                 <thead>
                      <tr>
-                        <th>Cod. Producto</th>
+                        
                         <th>Nom. Producto</th>
-                        <th>Nom. Almacen</th>
+                        <th>Codigo</th>
                         <th>Marca</th>
-                        <th>Talla</th>
-                        <th>Color</th>
-                        <th>Stock</th>
-                         <th>Precio Unitario</th>
-                        <th>Tipo Producto</th>
+                        <th>Categoria</th>
                         <th>opciones</th>
                     </tr>
                 </thead>
                 <tbody>
                 
-                     @foreach($producto as $prod)
+                     @foreach($detalleproducto as $prod)
          <tr>
-                <td>{{$prod->CodigoB_Producto}}</td>
                 <td>{{$prod->nombre_producto}}</td>
-                <td>{{$prod->nombre_almacen}}</td>
+                <td>{{$prod->codigo_Prod}}</td>
                 <td>{{$prod->marca_producto}}</td>
-                <td>{{$prod->nom_talla}}</td>
-                <td>{{$prod->nombre_color}}</td>
-                <td>{{$prod->stockP}}</td>
-                <td>{{$prod->precio_unitario}}</td>
-                <td>{{$prod->nombreTP}}</td>
+                <td>{{$prod->categoria}}</td>
+                
+                
+                
                 <td class="text-nowrap">
-                            <a href="#" data-toggle="tooltip" data-original-title="Edit"> <i class="fa fa-pencil text-warning m-r-10"></i> </a>
-                            <a href="#" data-toggle="tooltip" data-original-title="Close"> <i class="fa fa-close text-danger m-r-10"></i> </a>
-                            <a href="#" data-toggle="tooltip" data-original-title="Close"> <i class="fa fa-eye text-success"></i> </a>
-                        </td>
+
+                <a href="" data-target="#modal-delete-{{$prod->id}}" data-toggle="modal" data-original-title="Delete" title="Eliminar Producto"><i class="fa fa-close text-danger m-r-10"></i></a>
+                            
+              </td>
             </tr>   
+            @include('producto.detalle_producto.modal')
                 @endforeach
                     
                 </tbody>

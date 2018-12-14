@@ -54,6 +54,7 @@ $color=DB::table('Color as t')
 
 $taller=DB::table('Taller as ta')
 ->select('ta.id as idTA','ta.nombre_taller','ta.codigoT')
+->where('ta.estado_idEstado','=',1)
 ->get();
 
 $tipoingreso=DB::table('Tipo_ingreso as t')
